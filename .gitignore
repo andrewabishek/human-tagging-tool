@@ -1,0 +1,21 @@
+# Reference data (large, external)
+EcoSync_10User_Optimal_Subset_Augmented/
+
+# Python
+__pycache__/
+*.pyc
+
+# Temp / audit
+golden-dataset/find_violations.py
+golden-dataset/audit.py
+
+# Office temp files
+~$*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Excel
+data.xlsx
+tagging-tool/

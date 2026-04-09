@@ -1,0 +1,222 @@
+[
+  {
+    "EventId": "ad6d714e-de8a-4fb0-9872-569680cc495b",
+    "Subject": "Sprint 15 Planning",
+    "StartDateTime": "2026-02-24T09:00:00Z",
+    "EndDateTime": "2026-02-24T10:00:00Z",
+    "Organizer": "davidpark",
+    "Attendees": [
+      "davidpark",
+      "alexkumar",
+      "priyasharma",
+      "jameswilson",
+      "ninacosta"
+    ],
+    "OnlineMeetingId": "6b955aab-3693-4ef7-b13f-eb3f727d3474"
+  },
+  {
+    "EventId": "2e8e4b01-3f0d-41ff-a644-9ee62c1dabe3",
+    "Subject": "Q1 QBR — Sales & Revenue Review",
+    "StartDateTime": "2026-02-25T10:00:00Z",
+    "EndDateTime": "2026-02-25T11:00:00Z",
+    "Organizer": "sarahmitchell",
+    "Attendees": [
+      "sarahmitchell",
+      "michaelchen",
+      "sofiarodriguez",
+      "racheltorres"
+    ],
+    "OnlineMeetingId": "21913a15-f46c-4a29-8861-678795fa39e2"
+  },
+  {
+    "EventId": "f742dc40-63aa-4dab-a8fa-8e7b7923fa45",
+    "Subject": "Board Deck Final Review — Dry Run",
+    "StartDateTime": "2026-02-26T11:00:00Z",
+    "EndDateTime": "2026-02-26T12:00:00Z",
+    "Organizer": "sarahmitchell",
+    "Attendees": [
+      "sarahmitchell",
+      "davidpark",
+      "racheltorres",
+      "amandafoster"
+    ],
+    "OnlineMeetingId": "9bf5b8e1-5f30-4b47-ad34-757a05880a5a"
+  },
+  {
+    "EventId": "abb693f7-bf5b-4845-9c5a-c04346d48d75",
+    "Subject": "Postmortem — API Gateway Incident (Jan 16)",
+    "StartDateTime": "2026-02-27T12:00:00Z",
+    "EndDateTime": "2026-02-27T13:00:00Z",
+    "Organizer": "davidpark",
+    "Attendees": [
+      "davidpark",
+      "alexkumar",
+      "jameswilson",
+      "derekjohnson"
+    ],
+    "OnlineMeetingId": "925c5180-317f-4c1c-b77c-387730663fde"
+  },
+  {
+    "EventId": "3607fbfa-e4c8-4dde-9865-ce9b7d4f6187",
+    "Subject": "H2 Product Strategy Offsite",
+    "StartDateTime": "2026-02-28T13:00:00Z",
+    "EndDateTime": "2026-02-28T14:00:00Z",
+    "Organizer": "sarahmitchell",
+    "Attendees": [
+      "sarahmitchell",
+      "davidpark",
+      "michaelchen",
+      "laurakim",
+      "alexkumar"
+    ],
+    "OnlineMeetingId": "38e778c4-f652-40ba-acbb-d5c6394c25e8"
+  },
+  {
+    "EventId": "f94fdfe0-baa1-4238-bed6-60293d799fb6",
+    "Subject": "H1 Performance Calibration — Engineering & Sales",
+    "StartDateTime": "2026-03-01T14:00:00Z",
+    "EndDateTime": "2026-03-01T15:00:00Z",
+    "Organizer": "sarahmitchell",
+    "Attendees": [
+      "sarahmitchell",
+      "daniellewright",
+      "davidpark",
+      "michaelchen",
+      "laurakim"
+    ],
+    "OnlineMeetingId": "49fa3975-ce0a-4bfa-9c29-7545a26ff158"
+  },
+  {
+    "EventId": "ad0fec32-fb64-446e-8a2a-26f4e1e089bc",
+    "Subject": "GlobalTech & Pinnacle — Customer Escalation Review",
+    "StartDateTime": "2026-03-02T15:00:00Z",
+    "EndDateTime": "2026-03-02T16:00:00Z",
+    "Organizer": "michaelchen",
+    "Attendees": [
+      "michaelchen",
+      "mariasantos",
+      "derekjohnson",
+      "alexkumar"
+    ],
+    "OnlineMeetingId": "c8822b70-1f0c-4ee1-8be2-726a197b460a"
+  },
+  {
+    "EventId": "cb765e0c-7443-42f7-9ba1-264155f8c104",
+    "Subject": "Budget Committee — Q2 Spend Approvals",
+    "StartDateTime": "2026-03-03T16:00:00Z",
+    "EndDateTime": "2026-03-03T17:00:00Z",
+    "Organizer": "sarahmitchell",
+    "Attendees": [
+      "sarahmitchell",
+      "racheltorres",
+      "kevinzhang"
+    ],
+    "OnlineMeetingId": "e7a29557-6a94-4360-8a3d-a80e4af998a7"
+  },
+  {
+    "EventId": "00ffef64-e977-4997-ae22-8fb20c702bf4",
+    "Subject": "Engineering Weekly Standup",
+    "StartDateTime": "2026-03-04T09:00:00Z",
+    "EndDateTime": "2026-03-04T10:00:00Z",
+    "Organizer": "alexkumar",
+    "Attendees": [
+      "alexkumar",
+      "priyasharma",
+      "jameswilson",
+      "ninacosta"
+    ],
+    "OnlineMeetingId": "3c95f95b-0ed3-4d87-94be-5d543b869953"
+  },
+  {
+    "EventId": "4da828e5-7cd4-4c8c-b5b4-c3be9a42e2d8",
+    "Subject": "Q1 All-Hands Follow-up",
+    "StartDateTime": "2026-03-05T10:00:00Z",
+    "EndDateTime": "2026-03-05T11:00:00Z",
+    "Organizer": "sarahmitchell",
+    "Attendees": [
+      "sarahmitchell",
+      "laurakim",
+      "daniellewright",
+      "davidpark"
+    ],
+    "OnlineMeetingId": "3248b1f6-2718-4254-a3a9-e28aa4c243aa"
+  },
+  {
+    "EventId": "69f64d06-fc43-4855-ac7a-9d33fb26ea3e",
+    "Subject": "Security Incident Postmortem — March 28 Breach Attempt",
+    "StartDateTime": "2026-03-13T10:00:00Z",
+    "EndDateTime": "2026-03-13T11:00:00Z",
+    "Organizer": "davidpark",
+    "Attendees": [
+      "davidpark",
+      "alexkumar",
+      "jameswilson",
+      "amandafoster",
+      "priyasharma"
+    ],
+    "OnlineMeetingId": "93091daa-5a77-4d3a-a75b-d629f8f3bc97"
+  },
+  {
+    "EventId": "2cca034c-b186-4547-9c11-22d42045b6ea",
+    "Subject": "Meridian Technologies Q1 All-Hands",
+    "StartDateTime": "2026-03-18T15:00:00Z",
+    "EndDateTime": "2026-03-18T16:00:00Z",
+    "Organizer": "sarahmitchell",
+    "Attendees": [
+      "sarahmitchell",
+      "davidpark",
+      "racheltorres",
+      "michaelchen",
+      "laurakim",
+      "daniellewright",
+      "alexkumar",
+      "priyasharma",
+      "sofiarodriguez",
+      "kevinzhang"
+    ],
+    "OnlineMeetingId": "c7453680-3653-44ef-b121-8ef0373df6bd"
+  },
+  {
+    "EventId": "3881cb05-3eb7-4689-a6b2-dccfa3822de4",
+    "Subject": "Q1 Sales Quarterly Business Review",
+    "StartDateTime": "2026-03-21T10:00:00Z",
+    "EndDateTime": "2026-03-21T11:00:00Z",
+    "Organizer": "michaelchen",
+    "Attendees": [
+      "michaelchen",
+      "sofiarodriguez",
+      "racheltorres",
+      "sarahmitchell"
+    ],
+    "OnlineMeetingId": "5d45da4c-9d01-4b9c-8060-ed296723b7a0"
+  },
+  {
+    "EventId": "0e1e76c6-0298-4648-9a0d-afea858eab41",
+    "Subject": "Sprint 47 Retrospective",
+    "StartDateTime": "2026-03-29T10:00:00Z",
+    "EndDateTime": "2026-03-29T11:00:00Z",
+    "Organizer": "alexkumar",
+    "Attendees": [
+      "alexkumar",
+      "priyasharma",
+      "jameswilson",
+      "ninacosta"
+    ],
+    "OnlineMeetingId": "f84632ac-b188-484e-a428-2196afac5a45"
+  },
+  {
+    "EventId": "a05be88f-82e8-4007-84d8-3a3e020ffe9b",
+    "Subject": "Q2 Budget Review Meeting",
+    "StartDateTime": "2026-04-01T13:00:00Z",
+    "EndDateTime": "2026-04-01T14:00:00Z",
+    "Organizer": "racheltorres",
+    "Attendees": [
+      "racheltorres",
+      "kevinzhang",
+      "sarahmitchell",
+      "davidpark",
+      "michaelchen"
+    ],
+    "OnlineMeetingId": "5097db77-3922-4386-b4a9-a2dcaf673214"
+  }
+]
