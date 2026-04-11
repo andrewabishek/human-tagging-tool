@@ -15,6 +15,7 @@ Schema (parallel to Reactions):
 """
 
 import random
+import re
 from datetime import datetime, timedelta
 from users import USER_MAP
 
@@ -24,50 +25,108 @@ random.seed(42)
 ALL_USERS = list(USER_MAP.keys())
 
 # ---------- Reaction rules ----------
-# Map content keywords/patterns → appropriate reaction emoji
+# Two-stage approach: detect TONE first, then pick emoji appropriate for that tone.
 # Teams standard reactions: 👍 ❤️ 😊 🎉 ✅ 🔥 💯 👀 😂 🙏 👏
-REACTION_RULES = [
-    # Appreciation / agreement / thanks
-    (["thanks", "thank you", "great work", "well done", "nice work", "awesome",
-      "good job", "excellent", "kudos", "appreciate", "amazing", "fantastic"],
-     ["❤️", "👏", "🙏", "👍"]),
-    # Humor / lighthearted
-    (["lol", "haha", "😂", "😅", "funny", "crack me up", "vibes"],
-     ["😂", "😊"]),
-    # Impressive results / surprising news
-    (["wow", "didn't expect", "unbelievable", "can't believe", "shocked",
-      "doubled", "tripled", "300%", "500%", "zero downtime",
-      "exceeded", "all-time high", "blew past", "whopping"],
-     ["🔥", "💯", "🎉"]),
-    # Bad news / frustration
-    (["outage", "down again", "failed", "sev1", "sev2", "breach",
-      "critical bug", "data loss", "missed deadline",
-      "churn", "threatening to leave", "at-risk", "impacting"],
-     ["👀"]),
-    # Important decisions / milestones / launch
-    (["approved", "greenlight", "go-ahead", "launched", "shipped", "signed",
-      "closed the deal", "milestone", "completed", "done!", "merged"],
-     ["🎉", "🔥", "✅"]),
-    # Volunteering / helpfulness / commitments
-    (["i'll handle", "i'll take", "i can do", "on it", "i got this",
-      "leave it to me", "i'll pick this up", "happy to help"],
-     ["👍", "✅", "🙏"]),
-    # Action items / task completion
-    (["done", "finished", "wrapped up", "all set", "submitted", "sent",
-      "uploaded", "pushed", "deployed", "published"],
-     ["✅", "👍"]),
-    # Good metrics / performance
-    (["on track", "ahead of schedule", "100%", "target met", "strong quarter",
-      "exceeded target", "beat forecast", "pipeline", "revenue"],
-     ["💯", "🔥"]),
+
+# --- Stage 1: Tone detection keywords ---
+# NEGATIVE: incidents, outages, failures, risks, complaints, security issues
+TONE_NEGATIVE = [
+    "outage", "is down", "been down", "prod is down", "goes down",
+    "502", "503", "5xx", "oomkill", "oomkilled",
+    "failed", "failing", "failure", "broken", "blocked", "blocker",
+    "sev1", "sev2", "breach", "security alert", "exposed", "misconfigured",
+    "critical bug", "data loss", "missed deadline", "incident",
+    "churn", "threatening", "at-risk", "at risk", "cancel",
+    "impacting", "errors", "error rate", "spike",
+    "concern", "frustrated", "frustration", "unacceptable",
+    "gap", "risk", "overdue", "stale", "flaky", "rough",
+    "below", "miss target", "missed", "losing", "lost",
+    "complaint", "escalat", "urgent", "unavailab",
+    "saturated", "exhausted", "leak", "regression",
+    "not sustainable", "unresolved", "pending",
+    "threatening to leave", "pull their renewal",
+    "can't lose", "worse", "slips", "slip",
+    "costly", "steep", "overage", "over budget",
+    "spammed", "timeout", "timed out",
+    "unassigned", "duplicate", "firing twice", "wrong",
+    "my mistake", "should have", "compounded",
+    "sign-off", "ship window", "miss the ship",
+    "56%", "assertion rate",
+    "rewrite", "cannot proceed",
+    "thought we fixed", "thought it was fixed",
 ]
 
-# Positive/resolution keywords that override sad/angry reactions
-POSITIVE_OVERRIDES = [
-    "fixed", "resolved", "healthy", "green", "is green", "relief",
-    "over", "incident over", "all clear", "recovered", "restored",
-    "back to normal", "stabilized", "passed", "no issues",
+# CELEBRATORY: milestones, approvals, launches, completions, impressive results
+TONE_CELEBRATORY = [
+    "approved", "greenlight", "go-ahead", "go for launch",
+    "launched", "shipped", "signed", "closed the deal",
+    "merged", "all-time high",
+    "exceeded", "beat forecast", "108%", "140%",
+    "ahead of schedule", "great collaboration",
+    "blew past", "whopping", "exceeded target",
+    "wow", "doubled", "tripled",
+    "best all-hands", "huge hit", "well-received",
 ]
+
+# APPRECIATIVE: thanks, praise, recognition, social warmth
+TONE_APPRECIATIVE = [
+    "thanks", "thank you", "great work", "well done", "nice work",
+    "awesome", "good job", "excellent", "kudos", "appreciate",
+    "amazing", "fantastic", "good handling", "smart", "great instinct",
+    "good catch", "good call", "good point", "strong",
+    "exceptional", "love that", "love it", "i like that",
+    "you're the best", "proud", "recognition", "shaping up nicely",
+    "excited", "productive session", "great sync", "great teamwork",
+    "investment discipline", "great collaboration",
+]
+
+# HUMOR: lighthearted, jokes, social fun
+TONE_HUMOR = [
+    "lol", "haha", "😂", "😅", "funny", "crack me up", "vibes",
+    "safe teeth", "jealous", "pajamas", "harsh but fair",
+    "isn't that always the way", "🍕",
+]
+
+# COMPLETION: task done, action finished, resolved
+TONE_COMPLETION = [
+    "done", "done!", "finished", "wrapped up", "all set",
+    "submitted", "sent", "uploaded", "pushed", "deployed",
+    "published", "completed", "resolved", "fixed", "confirmed",
+    "all clear", "recovered", "restored", "back to normal",
+    "stabilized", "passed", "healthy", "passing",
+    "booked", "reserved", "ordered", "processed",
+    "incident over", "tests pass", "ci is green", "green build",
+    "lgtm", "ready for review",
+]
+
+# VOLUNTEERING: someone stepping up, offering help
+TONE_VOLUNTEERING = [
+    "i'll handle", "i'll take", "i can do", "on it", "i got this",
+    "leave it to me", "i'll pick this up", "happy to help",
+    "i'll have it", "will do", "i'll prioritize",
+    "i'll draft", "i'll send", "i'll coordinate",
+    "i'll reach out", "i'll set up", "pulling",
+    "i'll review", "taking a look", "i'll look",
+]
+
+# AGREEMENT: concurrence, alignment
+TONE_AGREEMENT = [
+    "agree", "agreed", "makes sense", "fair point", "good idea",
+    "that works", "sounds good", "i like", "solid",
+    "same", "noted", "understood", "got it", "absolutely",
+]
+
+# --- Stage 2: Tone → appropriate emoji pool ---
+TONE_EMOJI_MAP = {
+    "negative":     ["👀"],
+    "celebratory":  ["🎉", "🔥", "💯"],
+    "appreciative": ["❤️", "👏", "🙏"],
+    "humor":        ["😂", "😊"],
+    "completion":   ["✅", "👍"],
+    "volunteering": ["👍", "✅", "🙏"],
+    "agreement":    ["👍", "💯"],
+    "neutral":      ["👍"],
+}
 
 # ---------- Saved rules ----------
 # Messages worth bookmarking: reference info, deadlines, decisions, key metrics
@@ -105,6 +164,18 @@ def _content_matches(content, keywords):
     return any(kw in lower for kw in keywords)
 
 
+def _word_matches(content, keywords):
+    """Check if any keyword matches as a whole word (case-insensitive).
+    
+    Prevents 'unresolved' from matching 'resolved', 'affixed' from matching 'fixed', etc.
+    """
+    lower = content.lower()
+    for kw in keywords:
+        if re.search(r'(?<!\w)' + re.escape(kw) + r'(?!\w)', lower):
+            return True
+    return False
+
+
 def _pick_reactors(sender, members, count=None):
     """Pick random reactors from chat members, excluding the sender."""
     candidates = [m for m in members if m != sender]
@@ -115,22 +186,83 @@ def _pick_reactors(sender, members, count=None):
     return random.sample(candidates, min(count, len(candidates)))
 
 
-def _pick_reaction_type(content):
-    """Pick a contextually appropriate reaction type based on content."""
+def _detect_tone(content):
+    """Detect the dominant tone of a message. Returns tone string.
+    
+    Priority order matters — negative tone takes precedence over others
+    to prevent happy emojis on bad-news messages. Completion/resolution
+    can override negative if the message is about fixing something.
+    """
     lower = content.lower()
-    has_positive = any(p in lower for p in POSITIVE_OVERRIDES)
-    for keywords, reaction_types in REACTION_RULES:
-        if any(kw in lower for kw in keywords):
-            # If content is positive/resolved, don't assign negative reactions
-            if has_positive and all(r in ("👀",) for r in reaction_types):
-                return "👍"
-            return random.choice(reaction_types)
-    # Default: weighted random from common Teams reactions
-    return random.choices(
-        ["👍", "✅", "😊", "❤️", "🎉", "🔥", "💯"],
-        weights=[25, 15, 15, 10, 10, 10, 15],
-        k=1
-    )[0]
+    
+    # Check completion/resolution and negative tone
+    is_completion = _word_matches(lower, TONE_COMPLETION)
+    is_negative = any(kw in lower for kw in TONE_NEGATIVE)
+    
+    # Resolution verbs that truly indicate the problem is FIXED
+    # (not just "submitted" or "sent" which could be routine actions during a crisis)
+    STRONG_RESOLUTION = [
+        "is fixed", "been fixed", "fix deployed", "fix confirmed", "now fixed",
+        "just fixed", "james fixed", "we fixed",
+        "is resolved", "been resolved", "now resolved",
+        "healthy", "incident over", "all clear",
+        "recovered", "restored", "back to normal", "stabilized",
+        "tests pass", "ci is green", "green build", "responding normally",
+        "lgtm", "approved",
+    ]
+    has_strong_resolution = _word_matches(lower, STRONG_RESOLUTION)
+    
+    # Negated resolution — looks like resolution but is actually negative context
+    # e.g. "I thought we fixed this" or "it wasn't resolved"
+    NEGATED_RESOLUTION = [
+        "thought we fixed", "thought it was fixed", "thought we had fixed",
+        "wasn't fixed", "not fixed", "wasn't resolved", "not resolved",
+        "still not", "hasn't been fixed", "hasn't been resolved",
+    ]
+    has_negated = any(neg in lower for neg in NEGATED_RESOLUTION)
+    
+    # If it has STRONG resolution language + negative words, treat as completion
+    # UNLESS the resolution is negated (e.g. "thought we fixed" = negative)
+    if has_strong_resolution and is_negative and not has_negated:
+        return "completion"
+    
+    # Pure negative — incidents, outages, failures, risks
+    # Takes priority over weak completion words like "submitted", "sent"
+    if is_negative:
+        return "negative"
+    
+    # Humor
+    if any(kw in lower for kw in TONE_HUMOR):
+        return "humor"
+    
+    # Appreciative — thanks, praise, recognition
+    if any(kw in lower for kw in TONE_APPRECIATIVE):
+        return "appreciative"
+    
+    # Celebratory — milestones, approvals, launches
+    if any(kw in lower for kw in TONE_CELEBRATORY):
+        return "celebratory"
+    
+    # Completion/done (without negative context)
+    if is_completion:
+        return "completion"
+    
+    # Volunteering / stepping up
+    if any(kw in lower for kw in TONE_VOLUNTEERING):
+        return "volunteering"
+    
+    # Agreement
+    if any(kw in lower for kw in TONE_AGREEMENT):
+        return "agreement"
+    
+    return "neutral"
+
+
+def _pick_reaction_type(content):
+    """Pick a contextually appropriate reaction emoji based on message tone."""
+    tone = _detect_tone(content)
+    emoji_pool = TONE_EMOJI_MAP.get(tone, ["👍"])
+    return random.choice(emoji_pool)
 
 
 def _reminder_time(sent_datetime_str):
@@ -190,25 +322,27 @@ def apply_interaction_signals(all_conversations, base_time):
             # Already has reactions from source data? Keep them.
             if not msg.get("reactions"):
                 should_react = False
+                tone = _detect_tone(content)
                 
-                # High-probability: important messages, appreciation, milestones
-                if is_important and random.random() < 0.45:
+                # Tone-aware triggering: different probabilities per tone
+                if tone == "appreciative" and random.random() < 0.55:
                     should_react = True
-                elif _content_matches(content, REACTION_RULES[0][0]) and random.random() < 0.55:
-                    should_react = True  # Appreciation
-                elif _content_matches(content, REACTION_RULES[1][0]) and random.random() < 0.50:
-                    should_react = True  # Humor
-                elif _content_matches(content, REACTION_RULES[2][0]) and random.random() < 0.60:
-                    should_react = True  # Surprise
-                elif _content_matches(content, REACTION_RULES[3][0]) and random.random() < 0.30:
-                    should_react = True  # Bad news
-                elif _content_matches(content, REACTION_RULES[4][0]) and random.random() < 0.40:
-                    should_react = True  # Decisions/milestones
-                elif _content_matches(content, REACTION_RULES[5][0]) and random.random() < 0.35:
-                    should_react = True  # Volunteering
-                # Low-probability random for variety
-                elif not is_short and random.random() < 0.06:
+                elif tone == "humor" and random.random() < 0.50:
                     should_react = True
+                elif tone == "celebratory" and random.random() < 0.50:
+                    should_react = True
+                elif tone == "completion" and random.random() < 0.35:
+                    should_react = True
+                elif tone == "volunteering" and random.random() < 0.30:
+                    should_react = True
+                elif tone == "agreement" and random.random() < 0.15:
+                    should_react = True
+                elif tone == "negative" and is_important and random.random() < 0.25:
+                    should_react = True  # 👀 only — acknowledging awareness
+                elif tone == "neutral" and is_important and random.random() < 0.20:
+                    should_react = True  # 👍 — acknowledging important info
+                elif tone == "neutral" and not is_short and random.random() < 0.04:
+                    should_react = True  # Low random for variety
 
                 if should_react and len(members) > 1:
                     reaction_type = _pick_reaction_type(content)

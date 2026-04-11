@@ -1,6 +1,6 @@
 [
   {
-    "EventId": "60bcd798-7d05-41dc-99fc-2540410385a8",
+    "EventId": "7a2c89fa-4068-4181-8081-0bcad8fb65bb",
     "Subject": "Sprint 15 Planning",
     "StartDateTime": "2026-02-24T09:00:00Z",
     "EndDateTime": "2026-02-24T10:00:00Z",
@@ -12,10 +12,10 @@
       "jameswilson",
       "ninacosta"
     ],
-    "OnlineMeetingId": "fff4810b-a8f5-4746-9908-e79538ba8eb4"
+    "OnlineMeetingId": "ae07da5f-09ab-488a-a4b7-72c888f396cb"
   },
   {
-    "EventId": "75fab04e-a130-4746-93a1-582bda9f28e6",
+    "EventId": "7ec51b27-403b-4278-aa04-d323aa2b051b",
     "Subject": "Q1 QBR — Sales & Revenue Review",
     "StartDateTime": "2026-02-25T10:00:00Z",
     "EndDateTime": "2026-02-25T11:00:00Z",
@@ -26,10 +26,10 @@
       "sofiarodriguez",
       "racheltorres"
     ],
-    "OnlineMeetingId": "0fc0b765-d8d7-4d8a-923a-fbb36f3bbbc2"
+    "OnlineMeetingId": "65a30528-51fa-43b1-b67d-de2c7192636d"
   },
   {
-    "EventId": "1445d642-2e17-45d8-85af-29cab6911ffc",
+    "EventId": "78e88599-98a2-4579-86d4-0d9bc5a08d9b",
     "Subject": "Board Deck Final Review — Dry Run",
     "StartDateTime": "2026-02-26T11:00:00Z",
     "EndDateTime": "2026-02-26T12:00:00Z",
@@ -40,10 +40,10 @@
       "racheltorres",
       "amandafoster"
     ],
-    "OnlineMeetingId": "3f300572-ade2-4daa-b791-9be59a907163"
+    "OnlineMeetingId": "e046d7a1-d667-4f37-8782-b114d7bc2ecd"
   },
   {
-    "EventId": "39da6f18-3562-4b51-b6b8-2e107a061aad",
+    "EventId": "5edafd81-c223-49ae-91b3-c3f397f1a479",
     "Subject": "Postmortem — API Gateway Incident (Jan 16)",
     "StartDateTime": "2026-02-27T12:00:00Z",
     "EndDateTime": "2026-02-27T13:00:00Z",
@@ -54,10 +54,10 @@
       "jameswilson",
       "derekjohnson"
     ],
-    "OnlineMeetingId": "36481e40-eca1-4f38-b217-f69cfac878da"
+    "OnlineMeetingId": "b8767872-62f9-4e17-bee6-c6cfd5c75f1a"
   },
   {
-    "EventId": "508df28a-77e2-4120-89f1-af733b99acbf",
+    "EventId": "e7b098b5-122d-4cc9-92ee-4719ebfd8586",
     "Subject": "H2 Product Strategy Offsite",
     "StartDateTime": "2026-02-28T13:00:00Z",
     "EndDateTime": "2026-02-28T14:00:00Z",
@@ -69,10 +69,10 @@
       "laurakim",
       "alexkumar"
     ],
-    "OnlineMeetingId": "454e2c0e-303f-4e97-83c9-a2281694c018"
+    "OnlineMeetingId": "c4b1edb7-145e-4a91-b336-f28b64dff13a"
   },
   {
-    "EventId": "ef945dfa-a2d7-4f25-a357-769e192ecad6",
+    "EventId": "ca7f7ac8-7d2e-4808-b0af-d46356c9a606",
     "Subject": "H1 Performance Calibration — Engineering & Sales",
     "StartDateTime": "2026-03-01T14:00:00Z",
     "EndDateTime": "2026-03-01T15:00:00Z",
@@ -84,10 +84,10 @@
       "michaelchen",
       "laurakim"
     ],
-    "OnlineMeetingId": "3704b33f-9f3d-42ad-85e2-a071c166e405"
+    "OnlineMeetingId": "ef023a79-1f1d-44be-9e4a-0b5f00309adc"
   },
   {
-    "EventId": "296b2182-37bd-48cb-b577-7fefc1226cf0",
+    "EventId": "2ea3e788-bd3a-4fc9-ad3a-c54ce4a476ea",
     "Subject": "GlobalTech & Pinnacle — Customer Escalation Review",
     "StartDateTime": "2026-03-02T15:00:00Z",
     "EndDateTime": "2026-03-02T16:00:00Z",
@@ -98,10 +98,10 @@
       "derekjohnson",
       "alexkumar"
     ],
-    "OnlineMeetingId": "6136aca0-6f35-49ca-a1a6-35f818636437"
+    "OnlineMeetingId": "bf3d2080-975a-4905-bbf6-40e6070879c4"
   },
   {
-    "EventId": "fe498691-5ae9-4609-bd55-eab0e6a283d4",
+    "EventId": "afda8158-cb2b-4dce-af84-3b035668988b",
     "Subject": "Budget Committee — Q2 Spend Approvals",
     "StartDateTime": "2026-03-03T16:00:00Z",
     "EndDateTime": "2026-03-03T17:00:00Z",
@@ -111,10 +111,10 @@
       "racheltorres",
       "kevinzhang"
     ],
-    "OnlineMeetingId": "07608b32-275a-44a0-b1dd-56eb55a380ec"
+    "OnlineMeetingId": "0ac94600-b521-443f-b8ad-567aa0cc239a"
   },
   {
-    "EventId": "4f45b13a-756b-4d0e-895d-fc8759d0f50a",
+    "EventId": "8a0d423d-2dbc-4758-838d-d4092539f5dd",
     "Subject": "Engineering Weekly Standup",
     "StartDateTime": "2026-03-04T09:00:00Z",
     "EndDateTime": "2026-03-04T10:00:00Z",
@@ -125,10 +125,10 @@
       "jameswilson",
       "ninacosta"
     ],
-    "OnlineMeetingId": "bc7b79e3-b696-491d-8aed-ffc9d1e33c2d"
+    "OnlineMeetingId": "6c3b170c-b7ab-4e4c-81ae-c723f41a1745"
   },
   {
-    "EventId": "720a1d8b-1dc2-4063-b4d5-32c8d1da3f7b",
+    "EventId": "81ae7a1b-f442-41c4-910f-282da1192268",
     "Subject": "Q1 All-Hands Follow-up",
     "StartDateTime": "2026-03-05T10:00:00Z",
     "EndDateTime": "2026-03-05T11:00:00Z",
@@ -139,10 +139,10 @@
       "daniellewright",
       "davidpark"
     ],
-    "OnlineMeetingId": "8afe0c59-3d5d-46b1-9773-3ac4133fc529"
+    "OnlineMeetingId": "a52e49d5-948f-483b-9e3b-86729a04ef04"
   },
   {
-    "EventId": "56939e2f-7cef-4fd7-a750-e016acf5a735",
+    "EventId": "86e5eacd-bb5e-46f1-84f3-11c31e44f07d",
     "Subject": "Security Incident Postmortem — March 28 Breach Attempt",
     "StartDateTime": "2026-03-13T10:00:00Z",
     "EndDateTime": "2026-03-13T11:00:00Z",
@@ -154,10 +154,10 @@
       "amandafoster",
       "priyasharma"
     ],
-    "OnlineMeetingId": "e7e715c3-b244-403f-a329-5ae3a5f7df24"
+    "OnlineMeetingId": "a6ca75f7-d628-4b57-b666-a92b6344a65b"
   },
   {
-    "EventId": "0b47bbbf-613f-4c4c-b92b-ea07302a1ff0",
+    "EventId": "ba9bab79-58b9-4d36-a189-29bc2722dd04",
     "Subject": "Meridian Technologies Q1 All-Hands",
     "StartDateTime": "2026-03-18T15:00:00Z",
     "EndDateTime": "2026-03-18T16:00:00Z",
@@ -175,10 +175,10 @@
       "kevinzhang",
       "ecosyncbot"
     ],
-    "OnlineMeetingId": "20fcdd30-d7dd-4982-b4af-844ebb506101"
+    "OnlineMeetingId": "6423dc2f-88b1-45a6-8011-366cdfa6210a"
   },
   {
-    "EventId": "cc1daf23-d860-4027-94e5-320adcc5ebda",
+    "EventId": "7c7567b8-c0d3-4d4e-9884-669e1c65926b",
     "Subject": "Q1 Sales Quarterly Business Review",
     "StartDateTime": "2026-03-21T10:00:00Z",
     "EndDateTime": "2026-03-21T11:00:00Z",
@@ -189,10 +189,10 @@
       "racheltorres",
       "sarahmitchell"
     ],
-    "OnlineMeetingId": "eb09de9b-c7fd-4f45-a3a2-e9620d67409c"
+    "OnlineMeetingId": "05b2ebc1-2a87-48c6-ad00-57d37f7ff29c"
   },
   {
-    "EventId": "3fa596c2-2d63-454f-a7f7-cbf1898f7b97",
+    "EventId": "019f4b55-b209-4efc-8729-34f7a0ddfc24",
     "Subject": "Sprint 47 Retrospective",
     "StartDateTime": "2026-03-29T10:00:00Z",
     "EndDateTime": "2026-03-29T11:00:00Z",
@@ -203,10 +203,10 @@
       "jameswilson",
       "ninacosta"
     ],
-    "OnlineMeetingId": "aecf5f7b-2dec-4be0-b66f-7420e0fc0def"
+    "OnlineMeetingId": "5d52a658-4c30-44c4-a390-e13eb6a7be29"
   },
   {
-    "EventId": "5c141737-94bb-4859-a403-caa8411c85a5",
+    "EventId": "9bad3e93-3e62-43a8-8e3f-673054b607a9",
     "Subject": "Q2 Budget Review Meeting",
     "StartDateTime": "2026-04-01T13:00:00Z",
     "EndDateTime": "2026-04-01T14:00:00Z",
@@ -218,6 +218,6 @@
       "davidpark",
       "michaelchen"
     ],
-    "OnlineMeetingId": "bfd05b0c-e05c-4ea3-90b6-ac1567af3ab6"
+    "OnlineMeetingId": "775b73fa-5998-41af-9b9d-ace49d74d26d"
   }
 ]
