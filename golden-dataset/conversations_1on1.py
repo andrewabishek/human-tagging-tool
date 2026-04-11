@@ -660,10 +660,8 @@ ONE_ON_ONE_CONVERSATIONS = [
               notes="Permission request — wants OK to engage counterparty"),
 
             m("sofiarodriguez", "Yes, please go ahead. Their legal contact is Rebecca Walsh — I'll send you her email.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["sofiarodriguez"],
-              notes="Self-initiated action — Sofia commits to sending contact info",
-              edge_case="self_initiated_task"),
+              edge_case="self_initiated_task",
+              notes="Commitment — Sofia commits to sending contact info"),
 
             m("amandafoster", "Thanks. I'll have the redline back to you by Wednesday morning.",
               notes="Commitment by sender"),
@@ -766,13 +764,13 @@ ONE_ON_ONE_CONVERSATIONS = [
               notes="Status request on another procurement item"),
 
             m("lisanakamura", "Got quotes from all three vendors. The Figma renewal is 12% higher than last year. Slack and Zoom are comparable. I'll send you the comparison spreadsheet.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["lisanakamura"],
-              notes="Self-initiated action — Lisa commits to sending comparison",
-              edge_case="self_initiated_action"),
+              edge_case="self_initiated_action",
+              notes="Commitment — Lisa commits to sending comparison"),
 
             m("kevinzhang", "12% increase on Figma? That's steep. Let me know the contract terms — I may want to negotiate.",
-              notes="Informational reaction — no specific task assigned"),
+              has_task=True, sub_class="RfK", task_type="Action Request",
+              attribution="Implicit", assignee=["lisanakamura"],
+              notes="Requests contract terms from Lisa — implicit RfK"),
 
             m("lisanakamura", "Will do.",
               notes="Acknowledgment"),

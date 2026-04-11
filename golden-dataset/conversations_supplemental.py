@@ -57,10 +57,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Question + data loss risk → Important"),
 
             m("priyasharma", "I'll run the analysis this afternoon and get you numbers by EOD.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["priyasharma"],
               edge_case="self_assigned_commitment",
-              notes="Self-assigned commitment → HasTask=TRUE, assignee=sender"),
+              notes="Commitment — sender commits"),
 
             m("alexkumar", "Perfect. Also — any update on the caching layer refactor? I think that was due last sprint.",
               has_task=True, sub_class="RfK", task_type="Follow-up",
@@ -85,10 +83,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Third follow-up — pattern of checking on stale items"),
 
             m("priyasharma", "I wrote up the summary in Confluence but forgot to share the link. Let me send it now.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["priyasharma"],
               edge_case="self_assigned_commitment",
-              notes="Self-directed commitment to act"),
+              notes="Commitment — sender commits"),
 
             m("alexkumar", "Thanks. And whenever you get a chance — not urgent — could you also add the latency benchmarks to the dashboard? Feel free to skip it if Q2 planning takes priority.",
               has_task=True, sub_class="RfA", task_type="Action Request",
@@ -187,10 +183,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Status request about blog post"),
 
             m("chrisevans", "Almost there. The writer is doing a final pass. I'll have it in your inbox by end of day.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["chrisevans"],
               edge_case="self_assigned_commitment",
-              notes="Self-directed commitment"),
+              notes="Commitment — sender commits"),
 
             m("laurakim", "Great. And one more — are you attending the product marketing sync on Friday?",
               has_task=True, sub_class="RfK", task_type="Availability / RSVP",
@@ -278,10 +272,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Confirmation request via @mention"),
 
             m("jameswilson", "Yeah, I can update it. But I'll need legal to sign off on the new language.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["jameswilson"],
               edge_case="self_assigned_with_dependency",
-              notes="Self-assigned commitment with external dependency (legal sign-off)"),
+              notes="Commitment — sender commits (with external dependency) (legal sign-off)"),
 
             m("alexkumar", "Great. Let's make sure this gets done before the public announcement. It would be embarrassing to promise 99.95% uptime and have the status page say 99.9%.",
               is_important=True,
@@ -289,10 +281,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Urgency expressed but no new task — James already committed. IsImportant due to public announcement risk."),
 
             m("ninacosta", "Agreed. I'll add a QA checkpoint for the status page update before it goes live.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["ninacosta"],
               edge_case="self_assigned_commitment",
-              notes="Self-assigned commitment by QA lead"),
+              notes="Commitment — QA lead commits"),
 
             m("laurakim", "This is great teamwork. If you need any copy review on the status page language, feel free to ping me.",
               edge_case="optional_offer",
@@ -504,10 +494,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Rachel volunteers for numbers but asks 'someone' for templates → Unassigned for the template part"),
 
             m("laurakim", "I'll send you the template deck today.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["laurakim"],
               edge_case="self_assigned_via_reply",
-              notes="Self-assigned by replying with commitment"),
+              notes="Commitment — replying with commitment"),
 
             m("sarahmitchell", "Thanks everyone. Let's make this a good kickoff. 🚀",
               notes="Social / motivational — no task"),
@@ -579,10 +567,9 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Recommendation framed as 'I recommend we...' → HasTask because it requires action, but assignee unclear"),
 
             m("davidpark", "I'll brief Sarah today and schedule the audit committee update. Good call, Amanda.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              is_important=True, attribution="Implicit", assignee=["davidpark"],
+              is_important=True,
               edge_case="self_assigned_commitment",
-              notes="Self-assigned — CTO takes ownership of board briefing"),
+              notes="Commitment — CTO takes ownership of board briefing"),
 
             m("jameswilson", "Action items from my side: (1) incident report for SOC 2 by Friday, (2) WAF rule propagation analysis with @Priya. Anything I'm missing?",
               has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
@@ -708,10 +695,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Question to Michael — need customer quote"),
 
             m("michaelchen", "I'll reach out to Pinnacle Systems — they've been our most vocal champion. Should have an answer by tomorrow morning.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["michaelchen"],
               edge_case="self_assigned_commitment",
-              notes="Self-assigned commitment"),
+              notes="Commitment — sender commits"),
 
             m("sarahmitchell", "@Amanda — any legal blockers we should know about?",
               has_task=True, sub_class="RfK", task_type="Question",
@@ -790,10 +775,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="New question on related topic"),
 
             m("jameswilson", "Different issue actually. Staging is overprovisioned on apps but underprovisioned on database. We need to rebalance. I'll create a ticket.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["jameswilson"],
               edge_case="self_assigned_commitment",
-              notes="Self-assigned — will create ticket"),
+              notes="Commitment — will create ticket"),
         ],
     },
 
@@ -838,10 +821,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Explicit question via @mention"),
 
             m("priyasharma", "Yeah — AppForge. They did solid work. I'll send you their info.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["priyasharma"],
               edge_case="self_assigned_commitment",
-              notes="Self-assigned commitment to share contact"),
+              notes="Commitment — sender commits to share contact"),
 
             m("michaelchen", "Let's also loop in Sofia — she has direct feedback from the prospects who churned over mobile.",
               edge_case="lets_also_suggestion",
@@ -922,10 +903,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Action request in all-hands context — directed at HR by context"),
 
             m("daniellewright", "Good point. I'll coordinate with IT to have everything set up by Friday.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["daniellewright"],
               edge_case="self_assigned_commitment",
-              notes="Self-assigned commitment"),
+              notes="Commitment — sender commits"),
 
             m("sarahmitchell", "Great discussion everyone. We're in a strong position heading into Q2. Let's keep the momentum going!",
               notes="Closing — motivational, no task"),
@@ -1041,10 +1020,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Question/observation to group — no specific target → Unassigned"),
 
             m("jameswilson", "Yeah, it's double-counting rollbacks. I noticed it last week but kept forgetting to fix it. I'll do it now before I forget again.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["jameswilson"],
               edge_case="self_assigned_commitment",
-              notes="Self-assigned commitment triggered by group question"),
+              notes="Commitment — sender commits"),
 
             m("ninacosta", "While you're fixing metrics, can you also check if the test pass rate metric is accurate? It seemed off in yesterday's report.",
               has_task=True, sub_class="RfA", task_type="Action Request",
@@ -1129,10 +1106,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Action request with deadline — Important"),
 
             m("sofiarodriguez", "I'll accelerate outreach on the top 5 upside deals and have the forecast to you by Thursday.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["sofiarodriguez"],
               edge_case="self_assigned_commitment",
-              notes="Self-assigned commitment — accelerated timeline"),
+              notes="Commitment — sender commits with accelerated timeline"),
 
             m("racheltorres", "I'd also recommend we review the discount approval process. Some deals are taking 2 weeks to get pricing approved. That's killing deal velocity.",
               has_task=True, sub_class="RfA", task_type="Action Request",
@@ -1195,10 +1170,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Action request + risk of losing implementation → Important"),
 
             m("derekjohnson", "Good idea. I'll send a formal email to their VP of IT today.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["derekjohnson"],
               edge_case="self_assigned_commitment",
-              notes="Self-assigned commitment"),
+              notes="Commitment — sender commits"),
 
             m("mariasantos", "Thanks. And circle back with me once you hear from them so I can update the leadership report.",
               has_task=True, sub_class="RfA", task_type="Action Request",
@@ -1239,10 +1212,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Question about budget"),
 
             m("daniellewright", "Total budget is $450K. I'll send you the breakdown.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["daniellewright"],
               edge_case="self_assigned_commitment",
-              notes="Self-assigned — will send breakdown"),
+              notes="Commitment — will send breakdown"),
 
             m("amandafoster", "Make sure the new lease agreement is finalized before we start any physical move prep. I'm still reviewing clause 12.",
               has_task=True, sub_class="RfA", task_type="Action Request",
@@ -1360,10 +1331,9 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="CTO directive but doesn't specify who rolls back — Unassigned"),
 
             m("jameswilson", "Rolling back now. ETA 3 minutes.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              is_important=True, attribution="Implicit", assignee=["jameswilson"],
+              is_important=True,
               edge_case="self_assigned_via_action",
-              notes="Self-assigned by acting on it"),
+              notes="Commitment — acting on it"),
 
             m("alexkumar", "@Nina, can you start the incident timeline doc? We'll need it for the postmortem.",
               has_task=True, sub_class="RfA", task_type="Action Request",
@@ -1556,10 +1526,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Process change request — decision needed from leadership"),
 
             m("alexkumar", "I love that idea. Let me propose it as a team agreement. I'll bring it to the next standup for a vote.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["alexkumar"],
               edge_case="self_assigned_commitment",
-              notes="Self-assigned — will propose process change"),
+              notes="Commitment — will propose process change"),
 
             m("priyasharma", "Best retro we've had in a while. 👍",
               notes="Social — positive"),
@@ -1597,10 +1565,9 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Legal question — Important (GDPR/regulatory)"),
 
             m("amandafoster", "Yes, absolutely. GDPR requires specific disclosures. I'll send you the list of required changes.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              is_important=True, attribution="Implicit", assignee=["amandafoster"],
+              is_important=True,
               edge_case="self_assigned_commitment",
-              notes="Self-assigned — will send required changes list. Important."),
+              notes="Commitment — will send required changes list. Important."),
 
             m("davidpark", "Perfect. Appreciate the quick turnaround on these.",
               notes="Social / appreciation"),
@@ -1705,10 +1672,9 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="CEO makes decision, asks CFO to confirm feasibility"),
 
             m("racheltorres", "Yes, that keeps us $110K under budget with some room for contingency. I'll update the allocations.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              is_important=True, attribution="Implicit", assignee=["racheltorres"],
+              is_important=True,
               edge_case="self_assigned_commitment",
-              notes="Self-assigned — will update allocations"),
+              notes="Commitment — will update allocations"),
 
             m("michaelchen", "Can we at least start the CRM vendor evaluation in Q2 so we're ready to implement in Q3?",
               has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
@@ -1744,10 +1710,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Question about system notifications"),
 
             m("alexkumar", "Yeah, there's a filter rule in the Outlook settings. I'll send you the steps.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["alexkumar"],
               edge_case="self_assigned_commitment",
-              notes="Self-assigned commitment"),
+              notes="Commitment — sender commits"),
 
             m("jameswilson", "Thanks. By the way — the automated deploy reports are showing duplicate entries. Can you check if the webhook is firing twice?",
               has_task=True, sub_class="RfA", task_type="Action Request",
@@ -1755,10 +1719,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Action request — debug webhook"),
 
             m("alexkumar", "I noticed that too. I think it's the retry logic. Let me investigate and fix it.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["alexkumar"],
               edge_case="self_assigned_commitment",
-              notes="Self-assigned commitment to investigate and fix"),
+              notes="Commitment — sender commits to investigate and fix"),
 
             m("jameswilson", "Perfect. Let me know when it's fixed so I can verify on my end.",
               has_task=True, sub_class="RfA", task_type="Action Request",
@@ -1797,10 +1759,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Blocker with implied task — someone needs to refresh credentials. Unassigned."),
 
             m("jameswilson", "I can refresh those. Give me 10 minutes.",
-              has_task=True, sub_class="Commitment", task_type="Action Request",
-              attribution="Implicit", assignee=["jameswilson"],
               edge_case="self_assigned_via_reply",
-              notes="Self-assigned by volunteering in reply"),
+              notes="Commitment — volunteering in reply"),
 
             m("ninacosta", "Thanks James! 🙏",
               notes="Acknowledgment / social"),

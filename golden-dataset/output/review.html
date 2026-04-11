@@ -85,6 +85,16 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; colo
 .signal-followed { background: #e8f4fd; color: #0078d4; }
 .signal-saved { background: #fde8e8; color: #d13438; }
 .signal-reminder { background: #e8fde8; color: #107c10; }
+
+/* Summary section */
+.summary-card { background: white; border-radius: 8px; padding: 24px 28px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 4px solid #0078d4; }
+.summary-card h2 { font-size: 18px; font-weight: 700; color: #0078d4; margin-bottom: 16px; }
+.summary-card p { font-size: 14px; line-height: 1.7; color: #333; margin-bottom: 10px; }
+.summary-card ul { margin: 8px 0 12px 20px; font-size: 13px; line-height: 1.8; color: #444; }
+.summary-card li { margin-bottom: 2px; }
+.summary-card .highlight { font-weight: 600; color: #0078d4; }
+.summary-card .section-label { font-size: 14px; font-weight: 700; color: #333; margin: 16px 0 6px; }
+.summary-card hr { border: none; border-top: 1px solid #e8e8e8; margin: 16px 0; }
 </style>
 </head>
 <body>
@@ -94,31 +104,68 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; colo
 </div>
 <div class="container">
 
+<!-- Executive Summary -->
+<div class="summary-card">
+    <h2>Dataset Summary</h2>
+    <p>This golden dataset contains <span class="highlight">907 messages</span> across <span class="highlight">83 conversations</span> involving <span class="highlight">18 users</span> at a fictional SaaS company (Meridian Technologies / EcoSync). It covers all three Teams chat types — 1:1 chats, group chats, and meeting chats — across <span class="highlight">11 workplace domains</span>.</p>
+
+    <p class="section-label">Purpose</p>
+    <p>Provide a comprehensive, spec-aligned test set for evaluating <strong>HasTask</strong> and <strong>IsImportant</strong> classifiers. The DS team will compare their model's predictions against these human-labeled ground truth annotations to measure precision, recall, and F1.</p>
+
+    <hr>
+    <p class="section-label">Label Definitions (per Spec v3)</p>
+    <ul>
+        <li><strong>HasTask = TRUE</strong> — Message contains an explicit or implicit request for action (RfA), response, or knowledge (RfK) from recipients. Commitments by the sender ("I'll handle it") are FALSE.</li>
+        <li><strong>IsImportant = TRUE</strong> — Message has high urgency or organizational impact: production incidents, blockers, hard deadlines at risk, compliance/security issues, CEO/board escalations, revenue/churn risk, policy changes.</li>
+        <li><strong>Attribution</strong> — Who the task is assigned to: Explicit (@mention), Implicit (contextual), Broadcast (everyone), Unassigned.</li>
+    </ul>
+
+    <hr>
+    <p class="section-label">Coverage Highlights</p>
+    <ul>
+        <li><strong>380</strong> HasTask=TRUE (42%) and <strong>527</strong> HasTask=FALSE (58%)</li>
+        <li><strong>200</strong> IsImportant=TRUE (22%) across all 12 importance signal types</li>
+        <li><strong>116</strong> annotated edge cases: rhetorical questions, conditionals, multi-part tasks, bot messages, optional asks, sender's own plans</li>
+        <li>All <strong>10 task types</strong> represented: Action Request, Question, Delegation, Decision Request, Review/Approval, Status Request, Scheduling, Follow-up, Confirmation/Permission, Availability/RSVP</li>
+        <li>Teams interaction signals: <strong>175</strong> reactions, <strong>97</strong> followed, <strong>38</strong> saved, <strong>32</strong> reminders</li>
+    </ul>
+
+    <hr>
+    <p class="section-label">QC Notes</p>
+    <ul>
+        <li>All labels verified against HasTask_IsImportant_Tag_Definitions_v3 spec</li>
+        <li>Commitment messages (sender's own plan/promise) consistently labeled HasTask=FALSE per spec Section 2.1</li>
+        <li>Reactions validated via tone-based semantic matching — no mismatches between emoji and message content</li>
+        <li>Followed/Saved/Reminder signals assigned based on message type (asks, deadlines, reference material)</li>
+        <li>Automated QC audit: <strong>PASS</strong> — 0 errors, 0 warnings, 10/10 task types, 12/12 importance signals, 9/9 FALSE patterns</li>
+    </ul>
+</div>
+
 <!-- Stats Dashboard -->
 <div class="stats-grid">
     <div class="stat-card"><div class="value">907</div><div class="label">Total Messages</div></div>
     <div class="stat-card"><div class="value">83</div><div class="label">Conversations</div></div>
-    <div class="stat-card"><div class="value">403</div><div class="label">HasTask = TRUE (44%)</div></div>
+    <div class="stat-card"><div class="value">380</div><div class="label">HasTask = TRUE (42%)</div></div>
     <div class="stat-card"><div class="value">200</div><div class="label">IsImportant = TRUE (22%)</div></div>
     <div class="stat-card"><div class="value">116</div><div class="label">Edge Cases (13%)</div></div>
 </div>
 
 <!-- Interaction Signals -->
 <div class="stats-grid">
-    <div class="stat-card"><div class="value">169</div><div class="label">❤️ Reacted (19%)</div></div>
-    <div class="stat-card"><div class="value">104</div><div class="label">👁️ Followed (11%)</div></div>
-    <div class="stat-card"><div class="value">40</div><div class="label">📌 Saved (4%)</div></div>
-    <div class="stat-card"><div class="value">31</div><div class="label">⏰ Reminder (3%)</div></div>
+    <div class="stat-card"><div class="value">175</div><div class="label">❤️ Reacted (19%)</div></div>
+    <div class="stat-card"><div class="value">97</div><div class="label">👁️ Followed (11%)</div></div>
+    <div class="stat-card"><div class="value">38</div><div class="label">📌 Saved (4%)</div></div>
+    <div class="stat-card"><div class="value">32</div><div class="label">⏰ Reminder (4%)</div></div>
 </div>
 
 <!-- Quadrant Matrix -->
 <div class="coverage">
     <h2>HasTask × IsImportant Quadrant Distribution</h2>
     <div class="quadrant">
-        <div class="cell tt"><div class="val">142</div><div class="desc">HasTask=TRUE + IsImportant=TRUE</div></div>
-        <div class="cell tf"><div class="val">261</div><div class="desc">HasTask=TRUE + IsImportant=FALSE</div></div>
-        <div class="cell ft"><div class="val">58</div><div class="desc">HasTask=FALSE + IsImportant=TRUE</div></div>
-        <div class="cell ff"><div class="val">446</div><div class="desc">HasTask=FALSE + IsImportant=FALSE</div></div>
+        <div class="cell tt"><div class="val">138</div><div class="desc">HasTask=TRUE + IsImportant=TRUE</div></div>
+        <div class="cell tf"><div class="val">242</div><div class="desc">HasTask=TRUE + IsImportant=FALSE</div></div>
+        <div class="cell ft"><div class="val">62</div><div class="desc">HasTask=FALSE + IsImportant=TRUE</div></div>
+        <div class="cell ff"><div class="val">465</div><div class="desc">HasTask=FALSE + IsImportant=FALSE</div></div>
     </div>
 </div>
 
@@ -141,19 +188,19 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; colo
         <div>
             <table class="coverage-table">
                 <tr><th>Task Type</th><th>Count</th></tr>
-                <tr><td>Action Request</td><td class="count">158</td></tr><tr><td>Availability / RSVP</td><td class="count">8</td></tr><tr><td>Confirmation / Permission</td><td class="count">23</td></tr><tr><td>Decision Request</td><td class="count">26</td></tr><tr><td>Delegation</td><td class="count">25</td></tr><tr><td>Follow-up</td><td class="count">9</td></tr><tr><td>Question</td><td class="count">108</td></tr><tr><td>Review / Approval</td><td class="count">15</td></tr><tr><td>Scheduling Action</td><td class="count">12</td></tr><tr><td>Status Request</td><td class="count">19</td></tr>
+                <tr><td>Action Request</td><td class="count">135</td></tr><tr><td>Availability / RSVP</td><td class="count">8</td></tr><tr><td>Confirmation / Permission</td><td class="count">23</td></tr><tr><td>Decision Request</td><td class="count">26</td></tr><tr><td>Delegation</td><td class="count">25</td></tr><tr><td>Follow-up</td><td class="count">9</td></tr><tr><td>Question</td><td class="count">108</td></tr><tr><td>Review / Approval</td><td class="count">15</td></tr><tr><td>Scheduling Action</td><td class="count">12</td></tr><tr><td>Status Request</td><td class="count">19</td></tr>
             </table>
         </div>
         <div>
             <table class="coverage-table">
                 <tr><th>Attribution</th><th>Count</th></tr>
-                <tr><td>Broadcast</td><td class="count">31</td></tr><tr><td>Explicit</td><td class="count">111</td></tr><tr><td>Implicit</td><td class="count">237</td></tr><tr><td>Unassigned</td><td class="count">24</td></tr>
+                <tr><td>Broadcast</td><td class="count">31</td></tr><tr><td>Explicit</td><td class="count">111</td></tr><tr><td>Implicit</td><td class="count">214</td></tr><tr><td>Unassigned</td><td class="count">24</td></tr>
             </table>
         </div>
         <div>
             <table class="coverage-table">
                 <tr><th>Sub-class</th><th>Count</th></tr>
-                <tr><td>Commitment</td><td class="count">24</td></tr><tr><td>Neither</td><td class="count">504</td></tr><tr><td>RfA</td><td class="count">182</td></tr><tr><td>RfK</td><td class="count">197</td></tr>
+                <tr><td>Neither</td><td class="count">527</td></tr><tr><td>RfA</td><td class="count">182</td></tr><tr><td>RfK</td><td class="count">198</td></tr>
             </table>
         </div>
     </div>
@@ -1408,7 +1455,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; colo
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Northwind Traders NDA Review</span>
-            <span class="msg-count"> · 9 messages · 5 tasks · 0 important</span>
+            <span class="msg-count"> · 9 messages · 4 tasks · 0 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-1on1">OneOnOne</span>
@@ -1475,18 +1522,18 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; colo
             <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ sofiarodriguez</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Sofia Rodriguez</div>
-            <div class="msg-content">Yes, please go ahead. Their legal contact is Rebecca Walsh — I'll send you her email.<div class="notes">Self-initiated action — Sofia commits to sending contact info</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">Yes, please go ahead. Their legal contact is Rebecca Walsh — I'll send you her email.<div class="notes">Commitment — Sofia commits to sending contact info</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ sofiarodriguez</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Amanda Foster</div>
-            <div class="msg-content">Thanks. I'll have the redline back to you by Wednesday morning.<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>Sofia Rodriguez</b></span></div><div class="notes">Commitment by sender</div></div>
+            <div class="msg-content">Thanks. I'll have the redline back to you by Wednesday morning.<div class="notes">Commitment by sender</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -1495,7 +1542,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; colo
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Sofia Rodriguez</div>
-            <div class="msg-content">Thanks Amanda 🙏<div class="signal-badges"><span class="signal signal-reaction">👏 <b>Amanda Foster</b></span></div><div class="notes">Social / acknowledgment</div></div>
+            <div class="msg-content">Thanks Amanda 🙏<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>Amanda Foster</b></span></div><div class="notes">Social / acknowledgment</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -1523,7 +1570,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; colo
 
         <div class="msg-row" data-hastask="false" data-isimportant="true" data-edge="False">
             <div class="msg-from">Nina Costa</div>
-            <div class="msg-content">Priya, I found a critical rendering bug in the dashboard module. Charts aren't loading when there are more than 50 data points. This is a release blocker for v4.2.<div class="notes">Bug report — ship-blocking severity → Important. No explicit task yet.</div></div>
+            <div class="msg-content">Priya, I found a critical rendering bug in the dashboard module. Charts aren't loading when there are more than 50 data points. This is a release blocker for v4.2.<div class="signal-badges"><span class="signal signal-reaction">👀 <b>Priya Sharma</b></span> <span class="signal signal-saved">📌 priyasharma</span></div><div class="notes">Bug report — ship-blocking severity → Important. No explicit task yet.</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -1693,22 +1740,22 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; colo
             <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ lisanakamura</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Lisa Nakamura</div>
-            <div class="msg-content">Got quotes from all three vendors. The Figma renewal is 12% higher than last year. Slack and Zoom are comparable. I'll send you the comparison spreadsheet.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Kevin Zhang</b></span></div><div class="notes">Self-initiated action — Lisa commits to sending comparison</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
-            <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ lisanakamura</div></div>
-        </div>
-
-        <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
-            <div class="msg-from">Kevin Zhang</div>
-            <div class="msg-content">12% increase on Figma? That's steep. Let me know the contract terms — I may want to negotiate.<div class="notes">Informational reaction — no specific task assigned</div></div>
+            <div class="msg-content">Got quotes from all three vendors. The Figma renewal is 12% higher than last year. Slack and Zoom are comparable. I'll send you the comparison spreadsheet.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Kevin Zhang</b></span></div><div class="notes">Commitment — Lisa commits to sending comparison</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
             <div><span class="tag tag-na">N/A</span></div>
+        </div>
+
+        <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
+            <div class="msg-from">Kevin Zhang</div>
+            <div class="msg-content">12% increase on Figma? That's steep. Let me know the contract terms — I may want to negotiate.<div class="notes">Requests contract terms from Lisa — implicit RfK</div></div>
+            <div><span class="tag tag-true">TRUE</span></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-rfk">RfK</span></div>
+            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ lisanakamura</div></div>
         </div>
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
@@ -6147,7 +6194,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Migration Follow-ups</span>
-            <span class="msg-count"> · 12 messages · 8 tasks · 1 important</span>
+            <span class="msg-count"> · 12 messages · 6 tasks · 1 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-1on1">OneOnOne</span>
@@ -6187,18 +6234,18 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
             <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ priyasharma</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Priya Sharma</div>
-            <div class="msg-content">I'll run the analysis this afternoon and get you numbers by EOD.<div class="notes">Self-assigned commitment → HasTask=TRUE, assignee=sender</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">I'll run the analysis this afternoon and get you numbers by EOD.<div class="notes">Commitment — sender commits</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ priyasharma</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">Perfect. Also — any update on the caching layer refactor? I think that was due last sprint.<div class="signal-badges"><span class="signal signal-followed">👁️ priyasharma</span></div><div class="notes">Second follow-up in same conversation</div></div>
+            <div class="msg-content">Perfect. Also — any update on the caching layer refactor? I think that was due last sprint.<div class="notes">Second follow-up in same conversation</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -6216,7 +6263,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">OK. When James is done, loop me in so I can reprioritize your backlog if needed.<div class="signal-badges"><span class="signal signal-reaction">✅ <b>Priya Sharma</b></span></div><div class="notes">Conditional ask — 'when James is done' → task exists but is conditional</div></div>
+            <div class="msg-content">OK. When James is done, loop me in so I can reprioritize your backlog if needed.<div class="notes">Conditional ask — 'when James is done' → task exists but is conditional</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -6241,13 +6288,13 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
             <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ priyasharma</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Priya Sharma</div>
-            <div class="msg-content">I wrote up the summary in Confluence but forgot to share the link. Let me send it now.<div class="notes">Self-directed commitment to act</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">I wrote up the summary in Confluence but forgot to share the link. Let me send it now.<div class="notes">Commitment — sender commits</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ priyasharma</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
@@ -6307,7 +6354,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Sofia Rodriguez</div>
-            <div class="msg-content">They pushed back last time we tried to modify indemnification. Can we accept their language with a cap?<div class="notes">Permission request — can we accept with modification?</div></div>
+            <div class="msg-content">They pushed back last time we tried to modify indemnification. Can we accept their language with a cap?<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Amanda Foster</b></span></div><div class="notes">Permission request — can we accept with modification?</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -6343,7 +6390,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Sofia Rodriguez</div>
-            <div class="msg-content">Thank you! Also, quick question — do we need a separate DPA for this deal or does our standard one cover it?<div class="signal-badges"><span class="signal signal-reaction">👏 <b>Amanda Foster</b></span></div><div class="notes">Knowledge question about data processing agreement</div></div>
+            <div class="msg-content">Thank you! Also, quick question — do we need a separate DPA for this deal or does our standard one cover it?<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>Amanda Foster</b></span></div><div class="notes">Knowledge question about data processing agreement</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -6374,7 +6421,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Campaign Launch Coordination</span>
-            <span class="msg-count"> · 12 messages · 8 tasks · 0 important</span>
+            <span class="msg-count"> · 12 messages · 7 tasks · 0 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-1on1">OneOnOne</span>
@@ -6389,7 +6436,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Laura Kim</div>
-            <div class="msg-content">Chris, are you free tomorrow at 2 PM for a run-through of the campaign assets?<div class="notes">Availability check</div></div>
+            <div class="msg-content">Chris, are you free tomorrow at 2 PM for a run-through of the campaign assets?<div class="signal-badges"><span class="signal signal-reminder">⏰ chrisevans</span></div><div class="notes">Availability check</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -6407,7 +6454,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Laura Kim</div>
-            <div class="msg-content">Thursday 10 AM works. Can you book a room and send the invite?<div class="notes">Scheduling action — book room + send invite</div></div>
+            <div class="msg-content">Thursday 10 AM works. Can you book a room and send the invite?<div class="signal-badges"><span class="signal signal-followed">👁️ chrisevans</span></div><div class="notes">Scheduling action — book room + send invite</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -6425,20 +6472,20 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Laura Kim</div>
-            <div class="msg-content">Perfect. Also — can you check if the blog post draft is ready for my review? I want to approve it before the launch.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Chris Evans</b></span></div><div class="notes">Status request about blog post</div></div>
+            <div class="msg-content">Perfect. Also — can you check if the blog post draft is ready for my review? I want to approve it before the launch.<div class="signal-badges"><span class="signal signal-followed">👁️ chrisevans</span></div><div class="notes">Status request about blog post</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
             <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ chrisevans</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Chris Evans</div>
-            <div class="msg-content">Almost there. The writer is doing a final pass. I'll have it in your inbox by end of day.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Laura Kim</b></span> <span class="signal signal-saved">📌 laurakim</span></div><div class="notes">Self-directed commitment</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">Almost there. The writer is doing a final pass. I'll have it in your inbox by end of day.<div class="notes">Commitment — sender commits</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ chrisevans</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
@@ -6501,7 +6548,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Q2 Planning Edge Cases</span>
-            <span class="msg-count"> · 14 messages · 7 tasks · 1 important</span>
+            <span class="msg-count"> · 14 messages · 5 tasks · 1 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-group">Group</span>
@@ -6525,7 +6572,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
             <div class="msg-from">Priya Sharma</div>
-            <div class="msg-content">Nice. Are these the same ones we discussed last week or did anything change?<div class="notes">Question directed at thread starter implicitly</div></div>
+            <div class="msg-content">Nice. Are these the same ones we discussed last week or did anything change?<div class="signal-badges"><span class="signal signal-reaction">💯 <b>James Wilson</b>, 💯 <b>Laura Kim</b>, 💯 <b>Nina Costa</b></span></div><div class="notes">Question directed at thread starter implicitly</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -6604,36 +6651,36 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
             <div><span class="tag tag-explicit">Explicit</span><div class="attr-detail">→ jameswilson</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">James Wilson</div>
-            <div class="msg-content">Yeah, I can update it. But I'll need legal to sign off on the new language.<div class="notes">Self-assigned commitment with external dependency (legal sign-off)</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">Yeah, I can update it. But I'll need legal to sign off on the new language.<div class="notes">Commitment — sender commits (with external dependency) (legal sign-off)</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ jameswilson</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row edge-case" data-hastask="false" data-isimportant="true" data-edge="True">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">Great. Let's make sure this gets done before the public announcement. It would be embarrassing to promise 99.95% uptime and have the status page say 99.9%.<div class="signal-badges"><span class="signal signal-followed">👁️ laurakim</span></div><div class="notes">Urgency expressed but no new task — James already committed. IsImportant due to public announcement risk.</div></div>
+            <div class="msg-content">Great. Let's make sure this gets done before the public announcement. It would be embarrassing to promise 99.95% uptime and have the status page say 99.9%.<div class="notes">Urgency expressed but no new task — James already committed. IsImportant due to public announcement risk.</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
             <div><span class="tag tag-na">N/A</span></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Nina Costa</div>
-            <div class="msg-content">Agreed. I'll add a QA checkpoint for the status page update before it goes live.<div class="notes">Self-assigned commitment by QA lead</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">Agreed. I'll add a QA checkpoint for the status page update before it goes live.<div class="notes">Commitment — QA lead commits</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ ninacosta</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Laura Kim</div>
-            <div class="msg-content">This is great teamwork. If you need any copy review on the status page language, feel free to ping me.<div class="notes">Optional offer — 'feel free to' → HasTask=FALSE per spec</div></div>
+            <div class="msg-content">This is great teamwork. If you need any copy review on the status page language, feel free to ping me.<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>Priya Sharma</b></span></div><div class="notes">Optional offer — 'feel free to' → HasTask=FALSE per spec</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -6661,7 +6708,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="true" data-edge="False">
             <div class="msg-from">Derek Johnson</div>
-            <div class="msg-content">URGENT: Zenith Corp is reporting complete system unavailability for the past 45 minutes. They're our third-largest customer and their VP of Engineering just called our support line directly.<div class="signal-badges"><span class="signal signal-reaction">👀 <b>Maria Santos</b></span></div><div class="notes">Urgent status report — no task yet but critical. IsImportant due to outage + strategic customer.</div></div>
+            <div class="msg-content">URGENT: Zenith Corp is reporting complete system unavailability for the past 45 minutes. They're our third-largest customer and their VP of Engineering just called our support line directly.<div class="signal-badges"><span class="signal signal-followed">👁️ mariasantos</span></div><div class="notes">Urgent status report — no task yet but critical. IsImportant due to outage + strategic customer.</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -6679,7 +6726,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Derek Johnson</div>
-            <div class="msg-content">@Alex, can your team investigate the root cause immediately? We need a preliminary RCA within the hour.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Sofia Rodriguez</b></span></div><div class="notes">Explicit action request + tight deadline + customer impact → Important</div></div>
+            <div class="msg-content">@Alex, can your team investigate the root cause immediately? We need a preliminary RCA within the hour.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Maria Santos</b></span></div><div class="notes">Explicit action request + tight deadline + customer impact → Important</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -6688,7 +6735,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">On it. Pulling Priya and James into the war room now.<div class="notes">Acknowledgment + delegation (but delegation is internal)</div></div>
+            <div class="msg-content">On it. Pulling Priya and James into the war room now.<div class="signal-badges"><span class="signal signal-reaction">✅ <b>Maria Santos</b></span></div><div class="notes">Acknowledgment + delegation (but delegation is internal)</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -6697,7 +6744,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Sofia Rodriguez</div>
-            <div class="msg-content">I'll reach out to their VP to buy us time. @Maria, do you have the latest support ticket history for Zenith? I want to go in with full context.<div class="signal-badges"><span class="signal signal-followed">👁️ mariasantos</span></div><div class="notes">Request for information + self-commitment (reaching out to VP)</div></div>
+            <div class="msg-content">I'll reach out to their VP to buy us time. @Maria, do you have the latest support ticket history for Zenith? I want to go in with full context.<div class="notes">Request for information + self-commitment (reaching out to VP)</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -6706,7 +6753,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="true" data-edge="False">
             <div class="msg-from">Maria Santos</div>
-            <div class="msg-content">Sending it now. They've had 7 P1 tickets in the last 90 days. That's way above our threshold.<div class="signal-badges"><span class="signal signal-followed">👁️ alexkumar</span></div><div class="notes">Informational — providing data. Important due to severity.</div></div>
+            <div class="msg-content">Sending it now. They've had 7 P1 tickets in the last 90 days. That's way above our threshold.<div class="notes">Informational — providing data. Important due to severity.</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -6715,7 +6762,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="true" data-edge="False">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">I just spoke with the infra team. It's a database connection pool exhaustion issue — same pattern as the March incident. I thought we fixed this.<div class="notes">Root cause identification — informational. Important due to recurring pattern.</div></div>
+            <div class="msg-content">I just spoke with the infra team. It's a database connection pool exhaustion issue — same pattern as the March incident. I thought we fixed this.<div class="signal-badges"><span class="signal signal-followed">👁️ mariasantos</span></div><div class="notes">Root cause identification — informational. Important due to recurring pattern.</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -6724,7 +6771,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="true" data-edge="True">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">We did patch it, but the fix only covered the primary cluster. The secondary cluster wasn't updated. @James, can you confirm and apply the hotfix to secondary NOW?<div class="signal-badges"><span class="signal signal-followed">👁️ mariasantos</span></div><div class="notes">Urgent directive with explicit @mention + NOW emphasis</div></div>
+            <div class="msg-content">We did patch it, but the fix only covered the primary cluster. The secondary cluster wasn't updated. @James, can you confirm and apply the hotfix to secondary NOW?<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Sofia Rodriguez</b>, 👍 <b>Derek Johnson</b>, 👍 <b>David Park</b></span> <span class="signal signal-followed">👁️ mariasantos</span></div><div class="notes">Urgent directive with explicit @mention + NOW emphasis</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -6918,7 +6965,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Q2 Kickoff Planning</span>
-            <span class="msg-count"> · 14 messages · 7 tasks · 1 important</span>
+            <span class="msg-count"> · 14 messages · 6 tasks · 1 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-group">Group</span>
@@ -7039,18 +7086,18 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
             <div><span class="tag tag-unassigned">Unassigned</span></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Laura Kim</div>
-            <div class="msg-content">I'll send you the template deck today.<div class="notes">Self-assigned by replying with commitment</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">I'll send you the template deck today.<div class="notes">Commitment — replying with commitment</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ laurakim</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Sarah Mitchell</div>
-            <div class="msg-content">Thanks everyone. Let's make this a good kickoff. 🚀<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>Laura Kim</b>, ❤️ <b>Michael Chen</b></span></div><div class="notes">Social / motivational — no task</div></div>
+            <div class="msg-content">Thanks everyone. Let's make this a good kickoff. 🚀<div class="notes">Social / motivational — no task</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7063,7 +7110,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Security Incident Postmortem — March 28 Breach Attempt</span>
-            <span class="msg-count"> · 14 messages · 9 tasks · 10 important</span>
+            <span class="msg-count"> · 14 messages · 8 tasks · 10 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-meeting">Meeting</span>
@@ -7087,7 +7134,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="true" data-edge="False">
             <div class="msg-from">James Wilson</div>
-            <div class="msg-content">At 3:12 AM Pacific, our IDS flagged anomalous traffic from an IP range associated with known threat actors. The traffic was targeting our staging environment's API gateway.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Amanda Foster</b>, 👍 <b>Alex Kumar</b></span></div><div class="notes">Informational — incident details. Important due to security.</div></div>
+            <div class="msg-content">At 3:12 AM Pacific, our IDS flagged anomalous traffic from an IP range associated with known threat actors. The traffic was targeting our staging environment's API gateway.<div class="notes">Informational — incident details. Important due to security.</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7096,7 +7143,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="true" data-edge="False">
             <div class="msg-from">James Wilson</div>
-            <div class="msg-content">By 3:24 AM, the automated WAF rules blocked the majority of requests. However, approximately 2,400 requests made it through before the rules kicked in.<div class="notes">Informational — continued timeline</div></div>
+            <div class="msg-content">By 3:24 AM, the automated WAF rules blocked the majority of requests. However, approximately 2,400 requests made it through before the rules kicked in.<div class="signal-badges"><span class="signal signal-followed">👁️ alexkumar, amandafoster</span></div><div class="notes">Informational — continued timeline</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7105,7 +7152,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Amanda Foster</div>
-            <div class="msg-content">Were any customer data endpoints exposed during that 12-minute window?<div class="notes">Critical question about data exposure — Important</div></div>
+            <div class="msg-content">Were any customer data endpoints exposed during that 12-minute window?<div class="signal-badges"><span class="signal signal-followed">👁️ jameswilson</span></div><div class="notes">Critical question about data exposure — Important</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -7123,7 +7170,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Amanda Foster</div>
-            <div class="msg-content">That's a relief. But we still need to document this for our SOC 2 compliance records. @James, can you prepare the incident report in the required format by end of week?<div class="signal-badges"><span class="signal signal-followed">👁️ jameswilson, alexkumar</span> <span class="signal signal-reminder">⏰ jameswilson</span></div><div class="notes">Compliance documentation request — Important due to SOC 2</div></div>
+            <div class="msg-content">That's a relief. But we still need to document this for our SOC 2 compliance records. @James, can you prepare the incident report in the required format by end of week?<div class="signal-badges"><span class="signal signal-followed">👁️ jameswilson, alexkumar</span> <span class="signal signal-saved">📌 priyasharma</span> <span class="signal signal-reminder">⏰ jameswilson</span></div><div class="notes">Compliance documentation request — Important due to SOC 2</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -7132,7 +7179,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">Agreed. And we need to address the 12-minute gap. @Priya, can you review the WAF rule propagation latency? I want that gap under 60 seconds.<div class="signal-badges"><span class="signal signal-followed">👁️ priyasharma, alexkumar</span></div><div class="notes">Security hardening task — Important</div></div>
+            <div class="msg-content">Agreed. And we need to address the 12-minute gap. @Priya, can you review the WAF rule propagation latency? I want that gap under 60 seconds.<div class="notes">Security hardening task — Important</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -7150,7 +7197,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="true" data-edge="True">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">What about the staging environment access controls? Should we be putting staging behind the same WAF as production?<div class="notes">Decision request to group — no specific target</div></div>
+            <div class="msg-content">What about the staging environment access controls? Should we be putting staging behind the same WAF as production?<div class="signal-badges"><span class="signal signal-followed">👁️ amandafoster</span></div><div class="notes">Decision request to group — no specific target</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -7159,7 +7206,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">Yes. Let's not have different security postures. @Alex, can you draft a proposal to unify the security controls across all environments?<div class="signal-badges"><span class="signal signal-followed">👁️ alexkumar</span></div><div class="notes">Delegation with @mention</div></div>
+            <div class="msg-content">Yes. Let's not have different security postures. @Alex, can you draft a proposal to unify the security controls across all environments?<div class="notes">Delegation with @mention</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -7168,25 +7215,25 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="true" data-edge="True">
             <div class="msg-from">Amanda Foster</div>
-            <div class="msg-content">One more thing — given this is the second security event this quarter, I recommend we brief the board's audit committee. Sarah should be in the loop.<div class="signal-badges"><span class="signal signal-followed">👁️ alexkumar</span></div><div class="notes">Recommendation framed as 'I recommend we...' → HasTask because it requires action, but assignee unclear</div></div>
+            <div class="msg-content">One more thing — given this is the second security event this quarter, I recommend we brief the board's audit committee. Sarah should be in the loop.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Alex Kumar</b></span> <span class="signal signal-followed">👁️ alexkumar</span></div><div class="notes">Recommendation framed as 'I recommend we...' → HasTask because it requires action, but assignee unclear</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
             <div><span class="tag tag-unassigned">Unassigned</span></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="true" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="true" data-edge="True">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">I'll brief Sarah today and schedule the audit committee update. Good call, Amanda.<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>Priya Sharma</b>, ❤️ <b>James Wilson</b>, ❤️ <b>Amanda Foster</b></span> <span class="signal signal-followed">👁️ alexkumar</span></div><div class="notes">Self-assigned — CTO takes ownership of board briefing</div></div>
+            <div class="msg-content">I'll brief Sarah today and schedule the audit committee update. Good call, Amanda.<div class="signal-badges"><span class="signal signal-reaction">👏 <b>Alex Kumar</b>, 👏 <b>Amanda Foster</b></span></div><div class="notes">Commitment — CTO takes ownership of board briefing</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
-            <div><span class="tag tag-true">TRUE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ davidpark</div></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
             <div class="msg-from">James Wilson</div>
-            <div class="msg-content">Action items from my side: (1) incident report for SOC 2 by Friday, (2) WAF rule propagation analysis with @Priya. Anything I'm missing?<div class="notes">Self-summary of action items + confirmation request to group</div></div>
+            <div class="msg-content">Action items from my side: (1) incident report for SOC 2 by Friday, (2) WAF rule propagation analysis with @Priya. Anything I'm missing?<div class="signal-badges"><span class="signal signal-reminder">⏰ alexkumar</span></div><div class="notes">Self-summary of action items + confirmation request to group</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -7195,7 +7242,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">That covers it. Thanks everyone. Let's close the loop on all items by next Monday.<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>James Wilson</b></span></div><div class="notes">Closing — no new task</div></div>
+            <div class="msg-content">That covers it. Thanks everyone. Let's close the loop on all items by next Monday.<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>James Wilson</b></span></div><div class="notes">Closing — no new task</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7223,7 +7270,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Rachel Torres</div>
-            <div class="msg-content">Kevin, where are we on the Q1 close reconciliation? The external auditors start next Monday.<div class="notes">Follow-up + audit deadline → Important</div></div>
+            <div class="msg-content">Kevin, where are we on the Q1 close reconciliation? The external auditors start next Monday.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Kevin Zhang</b></span> <span class="signal signal-followed">👁️ kevinzhang</span></div><div class="notes">Follow-up + audit deadline → Important</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -7232,7 +7279,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Kevin Zhang</div>
-            <div class="msg-content">Revenue recognition is done. Still working on the deferred revenue adjustments — should be complete by Thursday.<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>Rachel Torres</b></span></div><div class="notes">Status update — informational</div></div>
+            <div class="msg-content">Revenue recognition is done. Still working on the deferred revenue adjustments — should be complete by Thursday.<div class="notes">Status update — informational</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7241,7 +7288,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Rachel Torres</div>
-            <div class="msg-content">Thursday is cutting it close. Can you finish by Wednesday instead? I need a day to review before the auditors arrive.<div class="signal-badges"><span class="signal signal-followed">👁️ kevinzhang</span></div><div class="notes">Accelerated deadline request — Important</div></div>
+            <div class="msg-content">Thursday is cutting it close. Can you finish by Wednesday instead? I need a day to review before the auditors arrive.<div class="notes">Accelerated deadline request — Important</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -7250,7 +7297,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="true" data-edge="False">
             <div class="msg-from">Kevin Zhang</div>
-            <div class="msg-content">I'll try. The main blocker is the inter-company elimination entries — I'm waiting on the UK office's numbers.<div class="notes">Blocker — informational. Important because it threatens audit readiness.</div></div>
+            <div class="msg-content">I'll try. The main blocker is the inter-company elimination entries — I'm waiting on the UK office's numbers.<div class="signal-badges"><span class="signal signal-reaction">👀 <b>Rachel Torres</b></span></div><div class="notes">Blocker — informational. Important because it threatens audit readiness.</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7259,7 +7306,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Rachel Torres</div>
-            <div class="msg-content">Follow up with them today. Tell them it's for the external audit — that usually gets fast responses.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Kevin Zhang</b></span></div><div class="notes">Direct instruction to follow up with dependency</div></div>
+            <div class="msg-content">Follow up with them today. Tell them it's for the external audit — that usually gets fast responses.<div class="notes">Direct instruction to follow up with dependency</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -7268,7 +7315,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="true" data-edge="True">
             <div class="msg-from">Kevin Zhang</div>
-            <div class="msg-content">Will do. Also — I noticed a $47K variance in the SaaS subscription accruals. It looks like a timing difference but I want to flag it before the auditors find it.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Rachel Torres</b></span></div><div class="notes">'I want to flag it' — implicitly asking Rachel for guidance on how to handle it</div></div>
+            <div class="msg-content">Will do. Also — I noticed a $47K variance in the SaaS subscription accruals. It looks like a timing difference but I want to flag it before the auditors find it.<div class="signal-badges"><span class="signal signal-followed">👁️ racheltorres</span></div><div class="notes">'I want to flag it' — implicitly asking Rachel for guidance on how to handle it</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -7277,7 +7324,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Rachel Torres</div>
-            <div class="msg-content">Good catch. Prepare a variance analysis memo. If it's truly a timing difference, we document it; if it's a real error, we need to correct before close.<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>Kevin Zhang</b></span> <span class="signal signal-followed">👁️ kevinzhang</span></div><div class="notes">Action request — prepare memo</div></div>
+            <div class="msg-content">Good catch. Prepare a variance analysis memo. If it's truly a timing difference, we document it; if it's a real error, we need to correct before close.<div class="signal-badges"><span class="signal signal-reaction">👏 <b>Kevin Zhang</b></span></div><div class="notes">Action request — prepare memo</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -7308,7 +7355,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Meridian Analytics Pro — Launch Go/No-Go</span>
-            <span class="msg-count"> · 16 messages · 11 tasks · 7 important</span>
+            <span class="msg-count"> · 16 messages · 10 tasks · 7 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-group">Group</span>
@@ -7323,7 +7370,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Sarah Mitchell</div>
-            <div class="msg-content">Team — we need to make the go/no-go call on the Analytics Pro launch by end of today. Let's do a quick round-robin. @David — engineering readiness?<div class="signal-badges"><span class="signal signal-followed">👁️ davidpark</span></div><div class="notes">Status request for go/no-go — Important</div></div>
+            <div class="msg-content">Team — we need to make the go/no-go call on the Analytics Pro launch by end of today. Let's do a quick round-robin. @David — engineering readiness?<div class="signal-badges"><span class="signal signal-followed">👁️ davidpark, laurakim</span></div><div class="notes">Status request for go/no-go — Important</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -7341,7 +7388,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Sarah Mitchell</div>
-            <div class="msg-content">@Rachel — financial projections still on track?<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Laura Kim</b>, 👍 <b>Amanda Foster</b>, 👍 <b>Rachel Torres</b></span> <span class="signal signal-followed">👁️ racheltorres</span></div><div class="notes">Status request to CFO</div></div>
+            <div class="msg-content">@Rachel — financial projections still on track?<div class="notes">Status request to CFO</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -7359,7 +7406,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Sarah Mitchell</div>
-            <div class="msg-content">@Michael — sales team ready?<div class="signal-badges"><span class="signal signal-followed">👁️ michaelchen, laurakim</span></div><div class="notes">Status request to VP Sales</div></div>
+            <div class="msg-content">@Michael — sales team ready?<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Laura Kim</b>, 👍 <b>Amanda Foster</b>, 👍 <b>Rachel Torres</b></span> <span class="signal signal-followed">👁️ michaelchen</span></div><div class="notes">Status request to VP Sales</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -7368,7 +7415,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="true" data-edge="True">
             <div class="msg-from">Michael Chen</div>
-            <div class="msg-content">Ready. All AEs have been trained. One concern: Vertex Industries wants exclusive early access and is threatening to pull their renewal if we don't offer it.<div class="signal-badges"><span class="signal signal-followed">👁️ laurakim</span></div><div class="notes">Status report that contains an embedded decision request — should we offer exclusive access?</div></div>
+            <div class="msg-content">Ready. All AEs have been trained. One concern: Vertex Industries wants exclusive early access and is threatening to pull their renewal if we don't offer it.<div class="signal-badges"><span class="signal signal-followed">👁️ laurakim, amandafoster</span></div><div class="notes">Status report that contains an embedded decision request — should we offer exclusive access?</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -7386,7 +7433,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Sarah Mitchell</div>
-            <div class="msg-content">Go with Amanda's recommendation — 30-day head start, no exclusivity. @Michael, communicate that to Vertex today.<div class="signal-badges"><span class="signal signal-followed">👁️ michaelchen</span></div><div class="notes">Action request — communicate decision to customer</div></div>
+            <div class="msg-content">Go with Amanda's recommendation — 30-day head start, no exclusivity. @Michael, communicate that to Vertex today.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Laura Kim</b></span></div><div class="notes">Action request — communicate decision to customer</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -7411,13 +7458,13 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
             <div><span class="tag tag-explicit">Explicit</span><div class="attr-detail">→ michaelchen</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Michael Chen</div>
-            <div class="msg-content">I'll reach out to Pinnacle Systems — they've been our most vocal champion. Should have an answer by tomorrow morning.<div class="notes">Self-assigned commitment</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">I'll reach out to Pinnacle Systems — they've been our most vocal champion. Should have an answer by tomorrow morning.<div class="notes">Commitment — sender commits</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ michaelchen</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
@@ -7431,7 +7478,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="true" data-edge="True">
             <div class="msg-from">Amanda Foster</div>
-            <div class="msg-content">No blockers. ToS and privacy policy updates are live. One reminder: the GDPR data processing addendum needs to be available on the product page before EU customers can sign up.<div class="signal-badges"><span class="signal signal-reaction">👀 <b>Rachel Torres</b></span> <span class="signal signal-followed">👁️ laurakim</span> <span class="signal signal-saved">📌 racheltorres, sarahmitchell</span></div><div class="notes">Reminder that someone needs to ensure DPA is on product page — but no specific assignee</div></div>
+            <div class="msg-content">No blockers. ToS and privacy policy updates are live. One reminder: the GDPR data processing addendum needs to be available on the product page before EU customers can sign up.<div class="signal-badges"><span class="signal signal-followed">👁️ laurakim</span> <span class="signal signal-saved">📌 racheltorres, sarahmitchell</span></div><div class="notes">Reminder that someone needs to ensure DPA is on product page — but no specific assignee</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -7440,7 +7487,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Sarah Mitchell</div>
-            <div class="msg-content">OK — I'm calling it. We are GO for launch on Monday. The only open item is the GDPR addendum on the product page. @David, can your team handle that?<div class="signal-badges"><span class="signal signal-followed">👁️ davidpark, laurakim</span></div><div class="notes">Final action item — Important (launch gating)</div></div>
+            <div class="msg-content">OK — I'm calling it. We are GO for launch on Monday. The only open item is the GDPR addendum on the product page. @David, can your team handle that?<div class="signal-badges"><span class="signal signal-reaction">💯 <b>Michael Chen</b>, 💯 <b>Rachel Torres</b></span> <span class="signal signal-followed">👁️ davidpark, laurakim</span></div><div class="notes">Final action item — Important (launch gating)</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -7449,7 +7496,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">Will get it done by Friday.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Sarah Mitchell</b>, 👍 <b>Amanda Foster</b></span> <span class="signal signal-saved">📌 amandafoster, michaelchen</span></div><div class="notes">Acknowledgment + commitment</div></div>
+            <div class="msg-content">Will get it done by Friday.<div class="signal-badges"><span class="signal signal-reaction">✅ <b>Amanda Foster</b></span></div><div class="notes">Acknowledgment + commitment</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7471,7 +7518,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Dev Tooling Frustrations</span>
-            <span class="msg-count"> · 10 messages · 5 tasks · 1 important</span>
+            <span class="msg-count"> · 10 messages · 4 tasks · 1 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-1on1">OneOnOne</span>
@@ -7504,7 +7551,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="true" data-edge="True">
             <div class="msg-from">Priya Sharma</div>
-            <div class="msg-content">January?! Who do we need to escalate to?<div class="notes">Question about escalation path — Important due to blocking dev productivity</div></div>
+            <div class="msg-content">January?! Who do we need to escalate to?<div class="signal-badges"><span class="signal signal-followed">👁️ jameswilson</span></div><div class="notes">Question about escalation path — Important due to blocking dev productivity</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -7531,7 +7578,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">James Wilson</div>
-            <div class="msg-content">Yeah, I can bump it from 300s to 600s. That should help for now. Done.<div class="notes">Completed action — no new task</div></div>
+            <div class="msg-content">Yeah, I can bump it from 300s to 600s. That should help for now. Done.<div class="signal-badges"><span class="signal signal-reaction">✅ <b>Priya Sharma</b></span></div><div class="notes">Completed action — no new task</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7558,20 +7605,20 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Priya Sharma</div>
-            <div class="msg-content">While we're at it — the staging environment has been super slow too. Same issue?<div class="notes">New question on related topic</div></div>
+            <div class="msg-content">While we're at it — the staging environment has been super slow too. Same issue?<div class="signal-badges"><span class="signal signal-reaction">💯 <b>James Wilson</b></span></div><div class="notes">New question on related topic</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
             <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ jameswilson</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">James Wilson</div>
-            <div class="msg-content">Different issue actually. Staging is overprovisioned on apps but underprovisioned on database. We need to rebalance. I'll create a ticket.<div class="notes">Self-assigned — will create ticket</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">Different issue actually. Staging is overprovisioned on apps but underprovisioned on database. We need to rebalance. I'll create a ticket.<div class="notes">Commitment — will create ticket</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ jameswilson</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
     </div>
 </div>
@@ -7580,7 +7627,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Product Roadmap Alignment</span>
-            <span class="msg-count"> · 10 messages · 5 tasks · 1 important</span>
+            <span class="msg-count"> · 10 messages · 4 tasks · 1 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-group">Group</span>
@@ -7604,7 +7651,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">Agreed. But who's going to own it? We don't have mobile engineers.<div class="signal-badges"><span class="signal signal-reaction">💯 <b>Michael Chen</b>, 💯 <b>Priya Sharma</b></span></div><div class="notes">Ownership question → Unassigned</div></div>
+            <div class="msg-content">Agreed. But who's going to own it? We don't have mobile engineers.<div class="notes">Ownership question → Unassigned</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -7613,7 +7660,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="true" data-edge="False">
             <div class="msg-from">Michael Chen</div>
-            <div class="msg-content">From a sales perspective, we're losing deals because of the mobile gap. Three prospects in Q1 went with competitors specifically because of this.<div class="signal-badges"><span class="signal signal-reaction">👀 <b>Priya Sharma</b></span></div><div class="notes">Sales impact data — informational. Important due to revenue impact.</div></div>
+            <div class="msg-content">From a sales perspective, we're losing deals because of the mobile gap. Three prospects in Q1 went with competitors specifically because of this.<div class="signal-badges"><span class="signal signal-followed">👁️ alexkumar</span></div><div class="notes">Sales impact data — informational. Important due to revenue impact.</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7631,7 +7678,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">Here's what I propose: Let's outsource the initial SDK build. @Alex, can you vet 3 agencies and bring recommendations to next week's sync?<div class="notes">Explicit delegation with @mention — action request</div></div>
+            <div class="msg-content">Here's what I propose: Let's outsource the initial SDK build. @Alex, can you vet 3 agencies and bring recommendations to next week's sync?<div class="signal-badges"><span class="signal signal-reminder">⏰ alexkumar</span></div><div class="notes">Explicit delegation with @mention — action request</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -7647,13 +7694,13 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
             <div><span class="tag tag-explicit">Explicit</span><div class="attr-detail">→ priyasharma</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Priya Sharma</div>
-            <div class="msg-content">Yeah — AppForge. They did solid work. I'll send you their info.<div class="notes">Self-assigned commitment to share contact</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">Yeah — AppForge. They did solid work. I'll send you their info.<div class="notes">Commitment — sender commits to share contact</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ priyasharma</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
@@ -7676,7 +7723,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">Got it. I'll set up a shared channel for the eval.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Laura Kim</b></span></div><div class="notes">Acknowledgment + commitment</div></div>
+            <div class="msg-content">Got it. I'll set up a shared channel for the eval.<div class="notes">Acknowledgment + commitment</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7689,7 +7736,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Meridian Technologies Q1 All-Hands</span>
-            <span class="msg-count"> · 19 messages · 5 tasks · 0 important</span>
+            <span class="msg-count"> · 19 messages · 4 tasks · 0 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-meeting">Meeting</span>
@@ -7713,7 +7760,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Sarah Mitchell</div>
-            <div class="msg-content">First, I want to recognize the engineering team for shipping the Analytics Pro feature ahead of schedule. Amazing work.<div class="notes">Recognition — social</div></div>
+            <div class="msg-content">First, I want to recognize the engineering team for shipping the Analytics Pro feature ahead of schedule. Amazing work.<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>Laura Kim</b></span></div><div class="notes">Recognition — social</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7731,7 +7778,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Priya Sharma</div>
-            <div class="msg-content">Thanks! It was a team effort. 💪<div class="notes">Social / acknowledgment</div></div>
+            <div class="msg-content">Thanks! It was a team effort. 💪<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>David Park</b></span></div><div class="notes">Social / acknowledgment</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7776,7 +7823,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Sofia Rodriguez</div>
-            <div class="msg-content">On the sales side, we closed 47 new logos in Q1. Pipeline for Q2 is looking strong.<div class="notes">Informational — department update</div></div>
+            <div class="msg-content">On the sales side, we closed 47 new logos in Q1. Pipeline for Q2 is looking strong.<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>EcoSync Bot</b></span></div><div class="notes">Informational — department update</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7785,7 +7832,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Michael Chen</div>
-            <div class="msg-content">The Vertex Industries deal alone is worth $800K ARR. Great work Sofia! 🙌<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>Kevin Zhang</b>, ❤️ <b>Sofia Rodriguez</b></span></div><div class="notes">Social / recognition</div></div>
+            <div class="msg-content">The Vertex Industries deal alone is worth $800K ARR. Great work Sofia! 🙌<div class="notes">Social / recognition</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7821,25 +7868,25 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">Can we get them access to the dev environment before Day 1? Last batch had to wait 3 days for accounts.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Sofia Rodriguez</b>, 👍 <b>Michael Chen</b></span></div><div class="notes">Action request in all-hands context — directed at HR by context</div></div>
+            <div class="msg-content">Can we get them access to the dev environment before Day 1? Last batch had to wait 3 days for accounts.<div class="notes">Action request in all-hands context — directed at HR by context</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
             <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ daniellewright</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Danielle Wright</div>
-            <div class="msg-content">Good point. I'll coordinate with IT to have everything set up by Friday.<div class="signal-badges"><span class="signal signal-reaction">👏 <b>Sarah Mitchell</b></span></div><div class="notes">Self-assigned commitment</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">Good point. I'll coordinate with IT to have everything set up by Friday.<div class="signal-badges"><span class="signal signal-reaction">👏 <b>Sarah Mitchell</b>, 👏 <b>David Park</b></span></div><div class="notes">Commitment — sender commits</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ daniellewright</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Sarah Mitchell</div>
-            <div class="msg-content">Great discussion everyone. We're in a strong position heading into Q2. Let's keep the momentum going!<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>Priya Sharma</b></span></div><div class="notes">Closing — motivational, no task</div></div>
+            <div class="msg-content">Great discussion everyone. We're in a strong position heading into Q2. Let's keep the momentum going!<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>EcoSync Bot</b></span></div><div class="notes">Closing — motivational, no task</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7848,7 +7895,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Laura Kim</div>
-            <div class="msg-content">Thanks everyone! 👏<div class="signal-badges"><span class="signal signal-reaction">👏 <b>Alex Kumar</b>, 👏 <b>Priya Sharma</b>, 👏 <b>EcoSync Bot</b></span></div><div class="notes">Social / closing</div></div>
+            <div class="msg-content">Thanks everyone! 👏<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>Sofia Rodriguez</b></span></div><div class="notes">Social / closing</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7894,7 +7941,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Michael Chen</div>
-            <div class="msg-content">Sofia, I need an updated forecast for Q2 by tomorrow morning. The board package goes to Sarah at noon.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Sofia Rodriguez</b></span> <span class="signal signal-followed">👁️ sofiarodriguez</span> <span class="signal signal-reminder">⏰ sofiarodriguez</span></div><div class="notes">Action request + board deadline → Important</div></div>
+            <div class="msg-content">Sofia, I need an updated forecast for Q2 by tomorrow morning. The board package goes to Sarah at noon.<div class="signal-badges"><span class="signal signal-followed">👁️ sofiarodriguez</span></div><div class="notes">Action request + board deadline → Important</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -7939,7 +7986,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Sofia Rodriguez</div>
-            <div class="msg-content">The Pinnacle Systems RFP response is due Friday. I've drafted it but need your review on the pricing section. Can you take a look today?<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Michael Chen</b></span></div><div class="notes">Review request + RFP deadline → Important</div></div>
+            <div class="msg-content">The Pinnacle Systems RFP response is due Friday. I've drafted it but need your review on the pricing section. Can you take a look today?<div class="notes">Review request + RFP deadline → Important</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -7948,7 +7995,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Michael Chen</div>
-            <div class="msg-content">Send it over. I'll review after my 2 PM call.<div class="notes">Acknowledgment + commitment</div></div>
+            <div class="msg-content">Send it over. I'll review after my 2 PM call.<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>Sofia Rodriguez</b></span></div><div class="notes">Acknowledgment + commitment</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -7957,7 +8004,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Sofia Rodriguez</div>
-            <div class="msg-content">Sent. One more thing — Vertex wants to renegotiate their payment terms from net-30 to net-60. Thoughts?<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Michael Chen</b></span> <span class="signal signal-followed">👁️ michaelchen</span></div><div class="notes">Decision request — financial impact on large deal</div></div>
+            <div class="msg-content">Sent. One more thing — Vertex wants to renegotiate their payment terms from net-30 to net-60. Thoughts?<div class="notes">Decision request — financial impact on large deal</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -7966,7 +8013,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Michael Chen</div>
-            <div class="msg-content">That's a $800K deal — we don't want to lose it over payment terms. Accept net-60 but ask for auto-renewal in exchange. Run it by Rachel for the cash flow impact.<div class="notes">Decision + delegation to Sofia to run by Rachel</div></div>
+            <div class="msg-content">That's a $800K deal — we don't want to lose it over payment terms. Accept net-60 but ask for auto-renewal in exchange. Run it by Rachel for the cash flow impact.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Sofia Rodriguez</b></span></div><div class="notes">Decision + delegation to Sofia to run by Rachel</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -7988,7 +8035,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">General - Friday Vibes & Housekeeping</span>
-            <span class="msg-count"> · 16 messages · 5 tasks · 0 important</span>
+            <span class="msg-count"> · 16 messages · 4 tasks · 0 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-group">Group</span>
@@ -8003,7 +8050,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">Happy Friday team! 🍕 Who's up for lunch at the new Thai place?<div class="signal-badges"><span class="signal signal-reaction">😊 <b>Chris Evans</b></span></div><div class="notes">Social question — not a task, social coordination</div></div>
+            <div class="msg-content">Happy Friday team! 🍕 Who's up for lunch at the new Thai place?<div class="notes">Social question — not a task, social coordination</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -8057,7 +8104,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Maria Santos</div>
-            <div class="msg-content">Before everyone disappears for the weekend — quick reminder that the customer NPS survey results come out Monday. @Alex, can you make sure the eng dashboard is pulling the right data source?<div class="signal-badges"><span class="signal signal-reminder">⏰ alexkumar</span></div><div class="notes">Action request via @mention embedded in casual conversation</div></div>
+            <div class="msg-content">Before everyone disappears for the weekend — quick reminder that the customer NPS survey results come out Monday. @Alex, can you make sure the eng dashboard is pulling the right data source?<div class="signal-badges"><span class="signal signal-reaction">👍 <b>James Wilson</b>, 👍 <b>Nina Costa</b>, 👍 <b>Chris Evans</b></span> <span class="signal signal-reminder">⏰ alexkumar</span></div><div class="notes">Action request via @mention embedded in casual conversation</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -8075,20 +8122,20 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
             <div class="msg-from">Priya Sharma</div>
-            <div class="msg-content">Speaking of dashboards — has anyone noticed the deploy frequency metric is wrong? It's showing 3x our actual rate.<div class="signal-badges"><span class="signal signal-saved">📌 mariasantos</span></div><div class="notes">Question/observation to group — no specific target → Unassigned</div></div>
+            <div class="msg-content">Speaking of dashboards — has anyone noticed the deploy frequency metric is wrong? It's showing 3x our actual rate.<div class="notes">Question/observation to group — no specific target → Unassigned</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
             <div><span class="tag tag-unassigned">Unassigned</span></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">James Wilson</div>
-            <div class="msg-content">Yeah, it's double-counting rollbacks. I noticed it last week but kept forgetting to fix it. I'll do it now before I forget again.<div class="notes">Self-assigned commitment triggered by group question</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">Yeah, it's double-counting rollbacks. I noticed it last week but kept forgetting to fix it. I'll do it now before I forget again.<div class="notes">Commitment — sender commits</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ jameswilson</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
@@ -8151,7 +8198,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Q1 Sales Quarterly Business Review</span>
-            <span class="msg-count"> · 15 messages · 9 tasks · 5 important</span>
+            <span class="msg-count"> · 15 messages · 8 tasks · 5 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-meeting">Meeting</span>
@@ -8184,7 +8231,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Sarah Mitchell</div>
-            <div class="msg-content">That's excellent. What drove the win rate improvement?<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>Sofia Rodriguez</b>, ❤️ <b>Michael Chen</b></span></div><div class="notes">Question to presenter</div></div>
+            <div class="msg-content">That's excellent. What drove the win rate improvement?<div class="notes">Question to presenter</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -8220,7 +8267,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Michael Chen</div>
-            <div class="msg-content">The big concern is Vertex. They represent 18% of our Q2 pipeline. If that deal slips, we miss target. @Sofia, what's the confidence level?<div class="notes">High-stakes question about key deal — Important</div></div>
+            <div class="msg-content">The big concern is Vertex. They represent 18% of our Q2 pipeline. If that deal slips, we miss target. @Sofia, what's the confidence level?<div class="signal-badges"><span class="signal signal-followed">👁️ sofiarodriguez</span></div><div class="notes">High-stakes question about key deal — Important</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -8229,7 +8276,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="true" data-edge="False">
             <div class="msg-from">Sofia Rodriguez</div>
-            <div class="msg-content">I'd say 75% confidence. The main risk is their budget approval process — it's a public company and they have a new CFO who's scrutinizing all new spend.<div class="signal-badges"><span class="signal signal-saved">📌 racheltorres</span></div><div class="notes">Risk assessment — informational. Important due to pipeline concentration.</div></div>
+            <div class="msg-content">I'd say 75% confidence. The main risk is their budget approval process — it's a public company and they have a new CFO who's scrutinizing all new spend.<div class="notes">Risk assessment — informational. Important due to pipeline concentration.</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -8238,7 +8285,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Sarah Mitchell</div>
-            <div class="msg-content">What's our mitigation plan if Vertex slips?<div class="signal-badges"><span class="signal signal-followed">👁️ michaelchen</span></div><div class="notes">Risk mitigation question to group</div></div>
+            <div class="msg-content">What's our mitigation plan if Vertex slips?<div class="signal-badges"><span class="signal signal-reaction">👀 <b>Sofia Rodriguez</b>, 👀 <b>Michael Chen</b></span></div><div class="notes">Risk mitigation question to group</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -8247,25 +8294,25 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Michael Chen</div>
-            <div class="msg-content">We have $600K in upside pipeline that could pull in. @Sofia, can you work those deals harder this month and give me a realistic pull-in forecast by next Friday?<div class="signal-badges"><span class="signal signal-followed">👁️ sofiarodriguez</span></div><div class="notes">Action request with deadline — Important</div></div>
+            <div class="msg-content">We have $600K in upside pipeline that could pull in. @Sofia, can you work those deals harder this month and give me a realistic pull-in forecast by next Friday?<div class="notes">Action request with deadline — Important</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
             <div><span class="tag tag-explicit">Explicit</span><div class="attr-detail">→ sofiarodriguez</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Sofia Rodriguez</div>
-            <div class="msg-content">I'll accelerate outreach on the top 5 upside deals and have the forecast to you by Thursday.<div class="notes">Self-assigned commitment — accelerated timeline</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">I'll accelerate outreach on the top 5 upside deals and have the forecast to you by Thursday.<div class="notes">Commitment — sender commits with accelerated timeline</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ sofiarodriguez</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
             <div class="msg-from">Rachel Torres</div>
-            <div class="msg-content">I'd also recommend we review the discount approval process. Some deals are taking 2 weeks to get pricing approved. That's killing deal velocity.<div class="notes">Recommendation framed as task but no specific assignee</div></div>
+            <div class="msg-content">I'd also recommend we review the discount approval process. Some deals are taking 2 weeks to get pricing approved. That's killing deal velocity.<div class="signal-badges"><span class="signal signal-reaction">🔥 <b>Sofia Rodriguez</b></span> <span class="signal signal-saved">📌 michaelchen, sofiarodriguez</span></div><div class="notes">Recommendation framed as task but no specific assignee</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -8274,7 +8321,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Sarah Mitchell</div>
-            <div class="msg-content">Good point. @Michael, @Rachel — work together to streamline the discount approval process. I want a proposal by end of month.<div class="signal-badges"><span class="signal signal-followed">👁️ michaelchen</span></div><div class="notes">Multi-assignee delegation with deadline</div></div>
+            <div class="msg-content">Good point. @Michael, @Rachel — work together to streamline the discount approval process. I want a proposal by end of month.<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>Rachel Torres</b>, 🙏 <b>Michael Chen</b></span></div><div class="notes">Multi-assignee delegation with deadline</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -8305,7 +8352,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">At-Risk Account Reviews</span>
-            <span class="msg-count"> · 10 messages · 6 tasks · 2 important</span>
+            <span class="msg-count"> · 10 messages · 5 tasks · 2 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-1on1">OneOnOne</span>
@@ -8347,7 +8394,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="true" data-edge="False">
             <div class="msg-from">Derek Johnson</div>
-            <div class="msg-content">Not with current staffing. We'd need an additional after-hours support engineer. That's a budget conversation with Rachel.<div class="signal-badges"><span class="signal signal-saved">📌 mariasantos</span></div><div class="notes">Blocker — budget dependency. Important due to churn risk.</div></div>
+            <div class="msg-content">Not with current staffing. We'd need an additional after-hours support engineer. That's a budget conversation with Rachel.<div class="notes">Blocker — budget dependency. Important due to churn risk.</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -8374,25 +8421,25 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Maria Santos</div>
-            <div class="msg-content">That's been going on for 3 weeks now. Can you escalate to their project sponsor? If they don't go live soon, we risk losing the implementation window.<div class="notes">Action request + risk of losing implementation → Important</div></div>
+            <div class="msg-content">That's been going on for 3 weeks now. Can you escalate to their project sponsor? If they don't go live soon, we risk losing the implementation window.<div class="signal-badges"><span class="signal signal-followed">👁️ derekjohnson</span></div><div class="notes">Action request + risk of losing implementation → Important</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
             <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ derekjohnson</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Derek Johnson</div>
-            <div class="msg-content">Good idea. I'll send a formal email to their VP of IT today.<div class="notes">Self-assigned commitment</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">Good idea. I'll send a formal email to their VP of IT today.<div class="signal-badges"><span class="signal signal-reaction">✅ <b>Maria Santos</b></span></div><div class="notes">Commitment — sender commits</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ derekjohnson</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Maria Santos</div>
-            <div class="msg-content">Thanks. And circle back with me once you hear from them so I can update the leadership report.<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>Derek Johnson</b></span></div><div class="notes">Action request — report back</div></div>
+            <div class="msg-content">Thanks. And circle back with me once you hear from them so I can update the leadership report.<div class="notes">Action request — report back</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -8401,7 +8448,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Derek Johnson</div>
-            <div class="msg-content">Will do.<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>Maria Santos</b></span></div><div class="notes">Acknowledgment</div></div>
+            <div class="msg-content">Will do.<div class="notes">Acknowledgment</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -8414,7 +8461,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Office Move Planning</span>
-            <span class="msg-count"> · 11 messages · 7 tasks · 2 important</span>
+            <span class="msg-count"> · 11 messages · 6 tasks · 2 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-group">Group</span>
@@ -8429,7 +8476,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Danielle Wright</div>
-            <div class="msg-content">Hi team — we've confirmed the office move to the new building on March 15. Department heads need to submit their space requirements by end of this week.<div class="signal-badges"><span class="signal signal-followed">👁️ alexkumar</span></div><div class="notes">Broadcast task with deadline — Important due to office move logistics</div></div>
+            <div class="msg-content">Hi team — we've confirmed the office move to the new building on March 15. Department heads need to submit their space requirements by end of this week.<div class="notes">Broadcast task with deadline — Important due to office move logistics</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -8463,18 +8510,18 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
             <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ daniellewright</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Danielle Wright</div>
-            <div class="msg-content">Total budget is $450K. I'll send you the breakdown.<div class="signal-badges"><span class="signal signal-reaction">✅ <b>Laura Kim</b></span></div><div class="notes">Self-assigned — will send breakdown</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">Total budget is $450K. I'll send you the breakdown.<div class="notes">Commitment — will send breakdown</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ daniellewright</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="true" data-edge="True">
             <div class="msg-from">Amanda Foster</div>
-            <div class="msg-content">Make sure the new lease agreement is finalized before we start any physical move prep. I'm still reviewing clause 12.<div class="signal-badges"><span class="signal signal-followed">👁️ daniellewright</span> <span class="signal signal-reminder">⏰ alexkumar</span></div><div class="notes">Legal gating requirement — Important. 'Make sure' is directed at group.</div></div>
+            <div class="msg-content">Make sure the new lease agreement is finalized before we start any physical move prep. I'm still reviewing clause 12.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Kevin Zhang</b></span> <span class="signal signal-reminder">⏰ laurakim</span></div><div class="notes">Legal gating requirement — Important. 'Make sure' is directed at group.</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -8492,7 +8539,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Danielle Wright</div>
-            <div class="msg-content">Good point. Yes, we should. @Laura, can you draft customer communication? And @Amanda, when will clause 12 be resolved?<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>Alex Kumar</b></span> <span class="signal signal-followed">👁️ laurakim</span></div><div class="notes">Multi-assignee — delegation to Laura + follow-up to Amanda (2 asks in 1 message)</div></div>
+            <div class="msg-content">Good point. Yes, we should. @Laura, can you draft customer communication? And @Amanda, when will clause 12 be resolved?<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>Laura Kim</b>, 🙏 <b>Alex Kumar</b></span> <span class="signal signal-followed">👁️ laurakim, amandafoster</span></div><div class="notes">Multi-assignee — delegation to Laura + follow-up to Amanda (2 asks in 1 message)</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -8501,7 +8548,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Laura Kim</div>
-            <div class="msg-content">Sure, I'll draft something by Wednesday.<div class="notes">Acknowledgment + commitment</div></div>
+            <div class="msg-content">Sure, I'll draft something by Wednesday.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Danielle Wright</b></span></div><div class="notes">Acknowledgment + commitment</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -8547,7 +8594,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">James — what's the SSH key for the staging jumpbox? I need to debug something.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>James Wilson</b></span></div><div class="notes">Simple knowledge request</div></div>
+            <div class="msg-content">James — what's the SSH key for the staging jumpbox? I need to debug something.<div class="notes">Simple knowledge request</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -8565,7 +8612,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">Found it. Thanks!<div class="signal-badges"><span class="signal signal-reaction">👏 <b>James Wilson</b></span></div><div class="notes">Acknowledgment</div></div>
+            <div class="msg-content">Found it. Thanks!<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>James Wilson</b></span></div><div class="notes">Acknowledgment</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -8602,7 +8649,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Danielle Wright</div>
-            <div class="msg-content">Let me check... it's booked at 2, but free from 2:30 onward. Want me to book it for 2:30-3:30?<div class="signal-badges"><span class="signal signal-reaction">✅ <b>Laura Kim</b></span></div><div class="notes">Counter-offer with confirmation request</div></div>
+            <div class="msg-content">Let me check... it's booked at 2, but free from 2:30 onward. Want me to book it for 2:30-3:30?<div class="notes">Counter-offer with confirmation request</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -8629,7 +8676,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Laura Kim</div>
-            <div class="msg-content">Thanks! 🙏<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>Danielle Wright</b></span></div><div class="notes">Social / acknowledgment</div></div>
+            <div class="msg-content">Thanks! 🙏<div class="notes">Social / acknowledgment</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -8642,7 +8689,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">PRODUCTION DOWN — API Gateway Failure</span>
-            <span class="msg-count"> · 14 messages · 6 tasks · 10 important</span>
+            <span class="msg-count"> · 14 messages · 5 tasks · 10 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-group">Group</span>
@@ -8666,7 +8713,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">I see it. PagerDuty alert just fired. @Priya, are you available to help triage?<div class="signal-badges"><span class="signal signal-followed">👁️ priyasharma</span></div><div class="notes">Availability request during incident</div></div>
+            <div class="msg-content">I see it. PagerDuty alert just fired. @Priya, are you available to help triage?<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Priya Sharma</b>, 👍 <b>David Park</b>, 👍 <b>James Wilson</b></span></div><div class="notes">Availability request during incident</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -8675,7 +8722,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Priya Sharma</div>
-            <div class="msg-content">I'm here. Pulling up the dashboards now.<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>James Wilson</b>, 🙏 <b>Alex Kumar</b></span></div><div class="notes">Availability confirmation — no task</div></div>
+            <div class="msg-content">I'm here. Pulling up the dashboards now.<div class="notes">Availability confirmation — no task</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -8693,25 +8740,25 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="true" data-edge="True">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">Roll back immediately. We'll investigate after service is restored.<div class="notes">CTO directive but doesn't specify who rolls back — Unassigned</div></div>
+            <div class="msg-content">Roll back immediately. We'll investigate after service is restored.<div class="signal-badges"><span class="signal signal-followed">👁️ alexkumar</span></div><div class="notes">CTO directive but doesn't specify who rolls back — Unassigned</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
             <div><span class="tag tag-unassigned">Unassigned</span></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="true" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="true" data-edge="True">
             <div class="msg-from">James Wilson</div>
-            <div class="msg-content">Rolling back now. ETA 3 minutes.<div class="signal-badges"><span class="signal signal-followed">👁️ alexkumar</span></div><div class="notes">Self-assigned by acting on it</div></div>
+            <div class="msg-content">Rolling back now. ETA 3 minutes.<div class="notes">Commitment — acting on it</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
-            <div><span class="tag tag-true">TRUE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ jameswilson</div></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">@Nina, can you start the incident timeline doc? We'll need it for the postmortem.<div class="signal-badges"><span class="signal signal-followed">👁️ ninacosta</span></div><div class="notes">Explicit delegation during incident</div></div>
+            <div class="msg-content">@Nina, can you start the incident timeline doc? We'll need it for the postmortem.<div class="signal-badges"><span class="signal signal-reaction">👀 <b>David Park</b></span> <span class="signal signal-followed">👁️ ninacosta</span></div><div class="notes">Explicit delegation during incident</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -8747,7 +8794,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">Good work on the fast recovery. @Alex, I want a postmortem doc by tomorrow with: root cause, timeline, and preventive measures. Include a section on why our canary deployment didn't catch this.<div class="signal-badges"><span class="signal signal-reminder">⏰ alexkumar</span></div><div class="notes">Postmortem delegation — Important</div></div>
+            <div class="msg-content">Good work on the fast recovery. @Alex, I want a postmortem doc by tomorrow with: root cause, timeline, and preventive measures. Include a section on why our canary deployment didn't catch this.<div class="signal-badges"><span class="signal signal-followed">👁️ alexkumar</span> <span class="signal signal-reminder">⏰ alexkumar</span></div><div class="notes">Postmortem delegation — Important</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -8756,7 +8803,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">Will have it ready by noon tomorrow. @Priya, @James — I'll need your input on the technical timeline.<div class="signal-badges"><span class="signal signal-followed">👁️ priyasharma</span> <span class="signal signal-reminder">⏰ priyasharma</span></div><div class="notes">Multi-assignee input request</div></div>
+            <div class="msg-content">Will have it ready by noon tomorrow. @Priya, @James — I'll need your input on the technical timeline.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Priya Sharma</b></span> <span class="signal signal-followed">👁️ priyasharma, jameswilson</span></div><div class="notes">Multi-assignee input request</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -8774,7 +8821,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">James Wilson</div>
-            <div class="msg-content">Same. I'll document the deploy and rollback timeline.<div class="notes">Acknowledgment + commitment</div></div>
+            <div class="msg-content">Same. I'll document the deploy and rollback timeline.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Priya Sharma</b></span></div><div class="notes">Acknowledgment + commitment</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -8802,7 +8849,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Laura Kim</div>
-            <div class="msg-content">Chris, I just read the Analytics Pro launch blog post draft. Nice work but I have several rounds of feedback.<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>Chris Evans</b></span></div><div class="notes">Informational — praise + heads-up</div></div>
+            <div class="msg-content">Chris, I just read the Analytics Pro launch blog post draft. Nice work but I have several rounds of feedback.<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>Chris Evans</b></span></div><div class="notes">Informational — praise + heads-up</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -8811,7 +8858,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Laura Kim</div>
-            <div class="msg-content">First — can you rewrite the opening paragraph? It buries the lead. I want the customer ROI stat front and center.<div class="signal-badges"><span class="signal signal-followed">👁️ chrisevans</span></div><div class="notes">Specific editing request</div></div>
+            <div class="msg-content">First — can you rewrite the opening paragraph? It buries the lead. I want the customer ROI stat front and center.<div class="notes">Specific editing request</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -8978,7 +9025,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Sprint 47 Retrospective</span>
-            <span class="msg-count"> · 14 messages · 4 tasks · 2 important</span>
+            <span class="msg-count"> · 14 messages · 3 tasks · 2 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-meeting">Meeting</span>
@@ -9056,7 +9103,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">Both valid. Let's turn these into action items. For the scope change issue — @Priya, can you document the impact and I'll take it to the next product-eng sync?<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>Priya Sharma</b></span></div><div class="notes">Action item from retro — explicit delegation</div></div>
+            <div class="msg-content">Both valid. Let's turn these into action items. For the scope change issue — @Priya, can you document the impact and I'll take it to the next product-eng sync?<div class="notes">Action item from retro — explicit delegation</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -9074,7 +9121,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">@James — for the staging stability, can you create a proposal for dedicated staging infrastructure? Include cost estimates so I can make the budget case.<div class="signal-badges"><span class="signal signal-saved">📌 jameswilson, priyasharma</span></div><div class="notes">Delegation with @mention — retro action item</div></div>
+            <div class="msg-content">@James — for the staging stability, can you create a proposal for dedicated staging infrastructure? Include cost estimates so I can make the budget case.<div class="signal-badges"><span class="signal signal-saved">📌 ninacosta, priyasharma</span></div><div class="notes">Delegation with @mention — retro action item</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -9099,13 +9146,13 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
             <div><span class="tag tag-unassigned">Unassigned</span></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">I love that idea. Let me propose it as a team agreement. I'll bring it to the next standup for a vote.<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>James Wilson</b>, ❤️ <b>Nina Costa</b></span></div><div class="notes">Self-assigned — will propose process change</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">I love that idea. Let me propose it as a team agreement. I'll bring it to the next standup for a vote.<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>Priya Sharma</b>, 🙏 <b>Nina Costa</b></span></div><div class="notes">Commitment — will propose process change</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ alexkumar</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
@@ -9123,7 +9170,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Quick Legal Questions</span>
-            <span class="msg-count"> · 7 messages · 4 tasks · 2 important</span>
+            <span class="msg-count"> · 7 messages · 3 tasks · 2 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-1on1">OneOnOne</span>
@@ -9156,7 +9203,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">Can you check which of our top 10 customers have the clause and which need a separate agreement?<div class="notes">Action request — contract review</div></div>
+            <div class="msg-content">Can you check which of our top 10 customers have the clause and which need a separate agreement?<div class="signal-badges"><span class="signal signal-followed">👁️ amandafoster</span></div><div class="notes">Action request — contract review</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -9174,25 +9221,25 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">Thanks. One more — do we need to update our privacy policy before launching in the EU?<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>Amanda Foster</b></span> <span class="signal signal-followed">👁️ amandafoster</span> <span class="signal signal-saved">📌 amandafoster</span></div><div class="notes">Legal question — Important (GDPR/regulatory)</div></div>
+            <div class="msg-content">Thanks. One more — do we need to update our privacy policy before launching in the EU?<div class="signal-badges"><span class="signal signal-reaction">👏 <b>Amanda Foster</b></span></div><div class="notes">Legal question — Important (GDPR/regulatory)</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
             <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ amandafoster</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="true" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="true" data-edge="True">
             <div class="msg-from">Amanda Foster</div>
-            <div class="msg-content">Yes, absolutely. GDPR requires specific disclosures. I'll send you the list of required changes.<div class="notes">Self-assigned — will send required changes list. Important.</div></div>
+            <div class="msg-content">Yes, absolutely. GDPR requires specific disclosures. I'll send you the list of required changes.<div class="signal-badges"><span class="signal signal-reaction">✅ <b>David Park</b></span></div><div class="notes">Commitment — will send required changes list. Important.</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
-            <div><span class="tag tag-true">TRUE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ amandafoster</div></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">Perfect. Appreciate the quick turnaround on these.<div class="notes">Social / appreciation</div></div>
+            <div class="msg-content">Perfect. Appreciate the quick turnaround on these.<div class="signal-badges"><span class="signal signal-reaction">❤️ <b>Amanda Foster</b></span></div><div class="notes">Social / appreciation</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -9220,7 +9267,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Laura Kim</div>
-            <div class="msg-content">Just shared the new landing page mockups in the design channel. Everyone please review and leave feedback by tomorrow.<div class="signal-badges"><span class="signal signal-followed">👁️ sofiarodriguez</span> <span class="signal signal-reminder">⏰ alexkumar</span></div><div class="notes">Broadcast review request with deadline</div></div>
+            <div class="msg-content">Just shared the new landing page mockups in the design channel. Everyone please review and leave feedback by tomorrow.<div class="signal-badges"><span class="signal signal-reminder">⏰ sofiarodriguez</span></div><div class="notes">Broadcast review request with deadline</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -9296,7 +9343,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Q2 Budget Review Meeting</span>
-            <span class="msg-count"> · 14 messages · 7 tasks · 7 important</span>
+            <span class="msg-count"> · 14 messages · 6 tasks · 7 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-meeting">Meeting</span>
@@ -9311,7 +9358,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="true" data-edge="False">
             <div class="msg-from">Rachel Torres</div>
-            <div class="msg-content">Let's go through the Q2 budget proposals. Each department submitted their asks — we need to decide allocations today.<div class="signal-badges"><span class="signal signal-saved">📌 michaelchen, davidpark</span></div><div class="notes">Meeting opening — framing but no specific task. Important due to budget decisions.</div></div>
+            <div class="msg-content">Let's go through the Q2 budget proposals. Each department submitted their asks — we need to decide allocations today.<div class="signal-badges"><span class="signal signal-saved">📌 davidpark, kevinzhang</span></div><div class="notes">Meeting opening — framing but no specific task. Important due to budget decisions.</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -9320,7 +9367,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Rachel Torres</div>
-            <div class="msg-content">@David, engineering is requesting $1.2M. That's 30% above Q1. Walk us through the justification.<div class="signal-badges"><span class="signal signal-followed">👁️ davidpark</span></div><div class="notes">Presentation request in budget review — Important</div></div>
+            <div class="msg-content">@David, engineering is requesting $1.2M. That's 30% above Q1. Walk us through the justification.<div class="signal-badges"><span class="signal signal-reaction">👀 <b>Sarah Mitchell</b>, 👀 <b>David Park</b></span></div><div class="notes">Presentation request in budget review — Important</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -9338,7 +9385,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Sarah Mitchell</div>
-            <div class="msg-content">The security spend is non-negotiable given the incidents. What about the analytics vendor — can that wait?<div class="signal-badges"><span class="signal signal-followed">👁️ davidpark, kevinzhang</span></div><div class="notes">Decision question from CEO — Important</div></div>
+            <div class="msg-content">The security spend is non-negotiable given the incidents. What about the analytics vendor — can that wait?<div class="notes">Decision question from CEO — Important</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -9356,7 +9403,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Rachel Torres</div>
-            <div class="msg-content">@Michael, sales is asking for $800K. That includes 2 new AEs at $350K total and $450K for the new CRM implementation.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Kevin Zhang</b>, 👍 <b>Michael Chen</b></span></div><div class="notes">Ask VP Sales to justify</div></div>
+            <div class="msg-content">@Michael, sales is asking for $800K. That includes 2 new AEs at $350K total and $450K for the new CRM implementation.<div class="notes">Ask VP Sales to justify</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -9374,7 +9421,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="true" data-edge="False">
             <div class="msg-from">Kevin Zhang</div>
-            <div class="msg-content">I ran the numbers. If we approve everything, we're $340K over the total Q2 operating budget. We'd need to either cut or pull from reserves.<div class="signal-badges"><span class="signal signal-followed">👁️ racheltorres</span></div><div class="notes">Budget constraint — informational. Important.</div></div>
+            <div class="msg-content">I ran the numbers. If we approve everything, we're $340K over the total Q2 operating budget. We'd need to either cut or pull from reserves.<div class="signal-badges"><span class="signal signal-saved">📌 racheltorres</span></div><div class="notes">Budget constraint — informational. Important.</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -9383,20 +9430,20 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Sarah Mitchell</div>
-            <div class="msg-content">OK, here's my call: approve engineering in full including analytics. Approve the AEs for sales but defer the CRM to Q3 — that saves $450K and gives us buffer. @Rachel, does that math work?<div class="signal-badges"><span class="signal signal-followed">👁️ racheltorres, kevinzhang</span></div><div class="notes">CEO makes decision, asks CFO to confirm feasibility</div></div>
+            <div class="msg-content">OK, here's my call: approve engineering in full including analytics. Approve the AEs for sales but defer the CRM to Q3 — that saves $450K and gives us buffer. @Rachel, does that math work?<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Rachel Torres</b>, 👍 <b>Michael Chen</b></span> <span class="signal signal-followed">👁️ racheltorres</span></div><div class="notes">CEO makes decision, asks CFO to confirm feasibility</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
             <div><span class="tag tag-explicit">Explicit</span><div class="attr-detail">→ racheltorres</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="true" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="true" data-edge="True">
             <div class="msg-from">Rachel Torres</div>
-            <div class="msg-content">Yes, that keeps us $110K under budget with some room for contingency. I'll update the allocations.<div class="signal-badges"><span class="signal signal-saved">📌 davidpark, kevinzhang</span></div><div class="notes">Self-assigned — will update allocations</div></div>
+            <div class="msg-content">Yes, that keeps us $110K under budget with some room for contingency. I'll update the allocations.<div class="notes">Commitment — will update allocations</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
-            <div><span class="tag tag-true">TRUE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ racheltorres</div></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
@@ -9410,7 +9457,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Sarah Mitchell</div>
-            <div class="msg-content">That's fine — just don't sign anything until Q3 budget is confirmed.<div class="signal-badges"><span class="signal signal-reaction">✅ <b>David Park</b>, ✅ <b>Kevin Zhang</b></span> <span class="signal signal-saved">📌 kevinzhang, davidpark</span></div><div class="notes">Permission granted with caveat — informational</div></div>
+            <div class="msg-content">That's fine — just don't sign anything until Q3 budget is confirmed.<div class="notes">Permission granted with caveat — informational</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -9419,7 +9466,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Rachel Torres</div>
-            <div class="msg-content">@Kevin, please update the budget tracker with today's decisions and distribute to all department heads by end of day.<div class="signal-badges"><span class="signal signal-followed">👁️ kevinzhang</span> <span class="signal signal-reminder">⏰ kevinzhang</span></div><div class="notes">Action request with deadline — Important (budget communication)</div></div>
+            <div class="msg-content">@Kevin, please update the budget tracker with today's decisions and distribute to all department heads by end of day.<div class="signal-badges"><span class="signal signal-followed">👁️ kevinzhang</span> <span class="signal signal-saved">📌 davidpark, michaelchen</span> <span class="signal signal-reminder">⏰ kevinzhang</span></div><div class="notes">Action request with deadline — Important (budget communication)</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -9428,7 +9475,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Kevin Zhang</div>
-            <div class="msg-content">Will do.<div class="signal-badges"><span class="signal signal-reaction">✅ <b>Michael Chen</b></span></div><div class="notes">Acknowledgment</div></div>
+            <div class="msg-content">Will do.<div class="notes">Acknowledgment</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -9441,7 +9488,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">System Notifications Discussion</span>
-            <span class="msg-count"> · 6 messages · 5 tasks · 0 important</span>
+            <span class="msg-count"> · 6 messages · 3 tasks · 0 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-1on1">OneOnOne</span>
@@ -9463,13 +9510,13 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
             <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ alexkumar</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">Yeah, there's a filter rule in the Outlook settings. I'll send you the steps.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>James Wilson</b></span></div><div class="notes">Self-assigned commitment</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">Yeah, there's a filter rule in the Outlook settings. I'll send you the steps.<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>James Wilson</b></span></div><div class="notes">Commitment — sender commits</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ alexkumar</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
@@ -9481,13 +9528,13 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
             <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ alexkumar</div></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">I noticed that too. I think it's the retry logic. Let me investigate and fix it.<div class="notes">Self-assigned commitment to investigate and fix</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">I noticed that too. I think it's the retry logic. Let me investigate and fix it.<div class="notes">Commitment — sender commits to investigate and fix</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ alexkumar</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
@@ -9514,7 +9561,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
             <span class="conv-title">Engineering Standup Thread</span>
-            <span class="msg-count"> · 13 messages · 5 tasks · 0 important</span>
+            <span class="msg-count"> · 13 messages · 4 tasks · 0 important</span>
         </div>
         <div class="conv-meta">
             <span class="badge badge-group">Group</span>
@@ -9563,18 +9610,18 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
             <div><span class="tag tag-unassigned">Unassigned</span></div>
         </div>
 
-        <div class="msg-row edge-case" data-hastask="true" data-isimportant="false" data-edge="True">
+        <div class="msg-row edge-case" data-hastask="false" data-isimportant="false" data-edge="True">
             <div class="msg-from">James Wilson</div>
-            <div class="msg-content">I can refresh those. Give me 10 minutes.<div class="notes">Self-assigned by volunteering in reply</div></div>
-            <div><span class="tag tag-true">TRUE</span></div>
+            <div class="msg-content">I can refresh those. Give me 10 minutes.<div class="notes">Commitment — volunteering in reply</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
-            <div><span class="tag tag-commitment">Commitment</span></div>
-            <div><span class="tag tag-implicit">Implicit</span><div class="attr-detail">→ jameswilson</div></div>
+            <div><span class="tag tag-false">FALSE</span></div>
+            <div><span class="tag tag-neither">Neither</span></div>
+            <div><span class="tag tag-na">N/A</span></div>
         </div>
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Nina Costa</div>
-            <div class="msg-content">Thanks James! 🙏<div class="notes">Acknowledgment / social</div></div>
+            <div class="msg-content">Thanks James! 🙏<div class="signal-badges"><span class="signal signal-reaction">👏 <b>James Wilson</b>, 👏 <b>Priya Sharma</b>, 👏 <b>Alex Kumar</b></span></div><div class="notes">Acknowledgment / social</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -9710,7 +9757,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">Makes sense. I'll keep it on the backlog.<div class="notes">Acknowledgment</div></div>
+            <div class="msg-content">Makes sense. I'll keep it on the backlog.<div class="signal-badges"><span class="signal signal-reaction">💯 <b>Sarah Mitchell</b></span></div><div class="notes">Acknowledgment</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -9746,7 +9793,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">Will do. Thanks for checking in, Sarah.<div class="notes">Social / closing</div></div>
+            <div class="msg-content">Will do. Thanks for checking in, Sarah.<div class="signal-badges"><span class="signal signal-reaction">👏 <b>Sarah Mitchell</b></span></div><div class="notes">Social / closing</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -9792,7 +9839,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Priya Sharma</div>
-            <div class="msg-content">Thanks for the update!<div class="notes">Spec example: 'Thanks for the update!' → HasTask=FALSE, acknowledgment</div></div>
+            <div class="msg-content">Thanks for the update!<div class="signal-badges"><span class="signal signal-reaction">🙏 <b>James Wilson</b></span></div><div class="notes">Spec example: 'Thanks for the update!' → HasTask=FALSE, acknowledgment</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -9847,7 +9894,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="false" data-edge="False">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">Could you please review the Status Update post before I send it to leadership? @Nina<div class="notes">Spec example: 'Could you please review the Status Update post?' → HasTask=TRUE</div></div>
+            <div class="msg-content">Could you please review the Status Update post before I send it to leadership? @Nina<div class="signal-badges"><span class="signal signal-followed">👁️ ninacosta</span></div><div class="notes">Spec example: 'Could you please review the Status Update post?' → HasTask=TRUE</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -9865,7 +9912,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">There's some pressure to get it to design for LT preview tomorrow. Let's make sure it's polished.<div class="signal-badges"><span class="signal signal-followed">👁️ alexkumar</span> <span class="signal signal-reminder">⏰ priyasharma</span></div><div class="notes">Spec example: 'Some pressure to get it to design for LT preview tomorrow' → HasTask+IsImportant</div></div>
+            <div class="msg-content">There's some pressure to get it to design for LT preview tomorrow. Let's make sure it's polished.<div class="signal-badges"><span class="signal signal-reminder">⏰ ninacosta</span></div><div class="notes">Spec example: 'Some pressure to get it to design for LT preview tomorrow' → HasTask+IsImportant</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -9892,7 +9939,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="true" data-isimportant="true" data-edge="True">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">FYI: @Nikhil, @Andrew — I don't see you listed as DRIs for the dashboard module. Can you check and confirm?<div class="signal-badges"><span class="signal signal-saved">📌 davidpark</span></div><div class="notes">Spec example: 'FYI: I don't see you listed as DRIs' → HasTask=TRUE (borderline), IsImportant=TRUE. Assignees don't exist in our user set so Unassigned.</div></div>
+            <div class="msg-content">FYI: @Nikhil, @Andrew — I don't see you listed as DRIs for the dashboard module. Can you check and confirm?<div class="signal-badges"><span class="signal signal-saved">📌 ninacosta</span></div><div class="notes">Spec example: 'FYI: I don't see you listed as DRIs' → HasTask=TRUE (borderline), IsImportant=TRUE. Assignees don't exist in our user set so Unassigned.</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -9901,7 +9948,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Nina Costa</div>
-            <div class="msg-content">Need sign-off by EOD or we miss the ship window for the release candidate.<div class="signal-badges"><span class="signal signal-followed">👁️ alexkumar</span> <span class="signal signal-reminder">⏰ priyasharma</span></div><div class="notes">Spec example: 'Need sign-off by EOD or we miss ship window' → HasTask=TRUE, IsImportant=TRUE</div></div>
+            <div class="msg-content">Need sign-off by EOD or we miss the ship window for the release candidate.<div class="signal-badges"><span class="signal signal-reaction">👀 <b>Alex Kumar</b></span> <span class="signal signal-followed">👁️ alexkumar</span> <span class="signal signal-saved">📌 davidpark</span> <span class="signal signal-reminder">⏰ priyasharma</span></div><div class="notes">Spec example: 'Need sign-off by EOD or we miss ship window' → HasTask=TRUE, IsImportant=TRUE</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -9910,7 +9957,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">David Park</div>
-            <div class="msg-content">Following up — still waiting on approval from the security team. This is blocking the rollout.<div class="notes">Spec example: 'Following up. Still waiting on approval; blocking rollout.' → HasTask+IsImportant</div></div>
+            <div class="msg-content">Following up — still waiting on approval from the security team. This is blocking the rollout.<div class="signal-badges"><span class="signal signal-followed">👁️ alexkumar</span></div><div class="notes">Spec example: 'Following up. Still waiting on approval; blocking rollout.' → HasTask+IsImportant</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfk">RfK</span></div>
@@ -9919,7 +9966,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row edge-case" data-hastask="false" data-isimportant="true" data-edge="True">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">Quality is at 56% assertion rate vs our 80% production target. We need to address this before release.<div class="notes">Spec example: 'Quality is 56% assertion rate (vs 80% prod).' → HasTask=FALSE, IsImportant=TRUE</div></div>
+            <div class="msg-content">Quality is at 56% assertion rate vs our 80% production target. We need to address this before release.<div class="signal-badges"><span class="signal signal-reaction">👀 <b>David Park</b>, 👀 <b>Nina Costa</b></span></div><div class="notes">Spec example: 'Quality is 56% assertion rate (vs 80% prod).' → HasTask=FALSE, IsImportant=TRUE</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -9956,7 +10003,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">Team — these cleanups must be completed before 3/31. I've assigned owners in the tracking sheet. Check your items and confirm you're on track.<div class="signal-badges"><span class="signal signal-reaction">💯 <b>Priya Sharma</b></span> <span class="signal signal-followed">👁️ ninacosta</span></div><div class="notes">Spec example: 'These cleanups must be completed before 3/31.' → HasTask+IsImportant, Broadcast</div></div>
+            <div class="msg-content">Team — these cleanups must be completed before 3/31. I've assigned owners in the tracking sheet. Check your items and confirm you're on track.<div class="signal-badges"><span class="signal signal-followed">👁️ priyasharma</span></div><div class="notes">Spec example: 'These cleanups must be completed before 3/31.' → HasTask+IsImportant, Broadcast</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -9965,7 +10012,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">Priya Sharma</div>
-            <div class="msg-content">Checked — my 3 items are on track. Should be done by Thursday.<div class="signal-badges"><span class="signal signal-reaction">✅ <b>Alex Kumar</b>, ✅ <b>Nina Costa</b></span></div><div class="notes">Status confirmation — informational</div></div>
+            <div class="msg-content">Checked — my 3 items are on track. Should be done by Thursday.<div class="notes">Status confirmation — informational</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -9974,7 +10021,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="true" data-edge="False">
             <div class="msg-from">James Wilson</div>
-            <div class="msg-content">Two of mine are done. The third is blocked on the DNS propagation — same issue from last week.<div class="notes">Status with blocker — informational. Important due to blocker.</div></div>
+            <div class="msg-content">Two of mine are done. The third is blocked on the DNS propagation — same issue from last week.<div class="signal-badges"><span class="signal signal-reaction">👀 <b>Nina Costa</b></span></div><div class="notes">Status with blocker — informational. Important due to blocker.</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
@@ -9992,7 +10039,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="true" data-isimportant="true" data-edge="False">
             <div class="msg-from">Alex Kumar</div>
-            <div class="msg-content">@James, can you escalate the DNS issue to the provider? We can't let this slip past 3/31.<div class="notes">Explicit action request + hard deadline → Important</div></div>
+            <div class="msg-content">@James, can you escalate the DNS issue to the provider? We can't let this slip past 3/31.<div class="signal-badges"><span class="signal signal-followed">👁️ jameswilson</span></div><div class="notes">Explicit action request + hard deadline → Important</div></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-true">TRUE</span></div>
             <div><span class="tag tag-rfa">RfA</span></div>
@@ -10001,7 +10048,7 @@ GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third
 
         <div class="msg-row" data-hastask="false" data-isimportant="false" data-edge="False">
             <div class="msg-from">James Wilson</div>
-            <div class="msg-content">Already sent an email this morning. Waiting for their response.<div class="signal-badges"><span class="signal signal-reaction">👍 <b>Alex Kumar</b></span></div><div class="notes">Status update — informational</div></div>
+            <div class="msg-content">Already sent an email this morning. Waiting for their response.<div class="signal-badges"><span class="signal signal-reaction">✅ <b>Alex Kumar</b>, ✅ <b>Nina Costa</b></span></div><div class="notes">Status update — informational</div></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-false">FALSE</span></div>
             <div><span class="tag tag-neither">Neither</span></div>
