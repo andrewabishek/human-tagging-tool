@@ -121,7 +121,7 @@ ONE_ON_ONE_CONVERSATIONS = [
         "members": ["sarahmitchell", "racheltorres"],
         "messages": [
             m("sarahmitchell", "Rachel, I need your sign-off on the Q2 hiring plan. David's team needs 4 additional engineers and Michael wants 2 more AEs.",
-              has_task=True, sub_class="RfA", task_type="Review/Approval",
+              has_task=True, sub_class="RfA", task_type="Review / Approval",
               is_important=True, attribution="Implicit", assignee=["racheltorres"],
               notes="Approval request + hiring impact → Important"),
 
@@ -217,7 +217,7 @@ ONE_ON_ONE_CONVERSATIONS = [
               notes="Status update during incident — still important context"),
 
             m("davidpark", "Great. Let me know when EU is confirmed clean. And schedule a postmortem for tomorrow — I want the full team there.",
-              has_task=True, sub_class="RfA", task_type="Scheduling",
+              has_task=True, sub_class="RfA", task_type="Scheduling Action",
               attribution="Implicit", assignee=["alexkumar"],
               notes="Two tasks: notification + scheduling. Both for Alex in 1:1."),
 
@@ -245,7 +245,7 @@ ONE_ON_ONE_CONVERSATIONS = [
         "members": ["alexkumar", "priyasharma"],
         "messages": [
             m("alexkumar", "Priya, can you review the API v3 migration PR? It's PR #847. I want to ship this by end of sprint.",
-              has_task=True, sub_class="RfA", task_type="Review/Approval",
+              has_task=True, sub_class="RfA", task_type="Review / Approval",
               attribution="Implicit", assignee=["priyasharma"],
               notes="Review request in 1:1 → attribute to non-sender"),
 
@@ -352,7 +352,7 @@ ONE_ON_ONE_CONVERSATIONS = [
         "members": ["daniellewright", "sarahmitchell"],
         "messages": [
             m("daniellewright", "Sarah, I've completed the analysis on the proposed restructuring. Can we discuss the recommendations?",
-              has_task=True, sub_class="RfK", task_type="Availability/RSVP",
+              has_task=True, sub_class="RfK", task_type="Availability / RSVP",
               attribution="Implicit", assignee=["sarahmitchell"],
               notes="Availability request — needs Sarah to confirm she can discuss"),
 
@@ -506,7 +506,7 @@ ONE_ON_ONE_CONVERSATIONS = [
               notes="Commitment"),
 
             m("amandafoster", "Good. Let's do a dry run walkthrough of all the financial controls next Friday. Can you have everything ready by then?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Implicit", assignee=["kevinzhang"],
               notes="Confirmation request — can he meet the deadline?"),
 
@@ -588,7 +588,7 @@ ONE_ON_ONE_CONVERSATIONS = [
               notes="Status update — investigating"),
 
             m("alexkumar", "Is this something you can fix today? We need this migration done by Friday or we're going to miss the Q1 infra target.",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               is_important=True, attribution="Implicit", assignee=["jameswilson"],
               notes="Confirmation request + hard deadline → Important"),
 
@@ -634,7 +634,7 @@ ONE_ON_ONE_CONVERSATIONS = [
         "members": ["sofiarodriguez", "amandafoster"],
         "messages": [
             m("sofiarodriguez", "Amanda, I need the Northwind Traders NDA reviewed and redlined. Can you turn it around by Wednesday?",
-              has_task=True, sub_class="RfA", task_type="Review/Approval",
+              has_task=True, sub_class="RfA", task_type="Review / Approval",
               attribution="Implicit", assignee=["amandafoster"],
               notes="Review request with deadline in 1:1"),
 
@@ -655,7 +655,7 @@ ONE_ON_ONE_CONVERSATIONS = [
               notes="Context / informational — explaining urgency"),
 
             m("amandafoster", "Understood. I'll prioritize it. If the IP language is as non-standard as you're saying, I may need to push back on their counsel. Are you OK if I engage directly with their legal team?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Implicit", assignee=["sofiarodriguez"],
               notes="Permission request — wants OK to engage counterparty"),
 
@@ -740,7 +740,7 @@ ONE_ON_ONE_CONVERSATIONS = [
         "members": ["kevinzhang", "lisanakamura"],
         "messages": [
             m("lisanakamura", "Kevin, I need to submit the PO for the new conference room equipment. Can you approve the $28K spend?",
-              has_task=True, sub_class="RfA", task_type="Review/Approval",
+              has_task=True, sub_class="RfA", task_type="Review / Approval",
               attribution="Implicit", assignee=["kevinzhang"],
               notes="Approval request — routine procurement"),
 

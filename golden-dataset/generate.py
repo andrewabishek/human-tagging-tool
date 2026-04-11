@@ -41,6 +41,12 @@ def build_chat_message(msg, base_time, msg_index):
         cm["Reactions"] = [{"Reaction": r[0], "Sender": r[1]} for r in msg["reactions"]]
     if msg.get("mentions"):
         cm["Mentions"] = [{"MentionText": m, "Mentioned": {"User": {"DisplayName": USER_MAP.get(m, {}).get("DisplayName", m)}}} for m in msg["mentions"]]
+    if msg.get("followed_by"):
+        cm["Followed"] = [{"Sender": u} for u in msg["followed_by"]]
+    if msg.get("saved_by"):
+        cm["Saved"] = [{"Sender": u} for u in msg["saved_by"]]
+    if msg.get("reminder"):
+        cm["Reminder"] = [{"Sender": r[0], "ReminderDateTime": r[1]} for r in msg["reminder"]]
     return cm
 
 
@@ -159,6 +165,12 @@ def generate_review_html(conversations, annotations):
         sc = a["task_sub_class"] or "Neither"
         sub_class_counts[sc] = sub_class_counts.get(sc, 0) + 1
 
+    # Count interaction signals
+    sig_reactions = sum(1 for c in conversations for m in c["messages"] if m.get("reactions"))
+    sig_followed = sum(1 for c in conversations for m in c["messages"] if m.get("followed_by"))
+    sig_saved = sum(1 for c in conversations for m in c["messages"] if m.get("saved_by"))
+    sig_reminder = sum(1 for c in conversations for m in c["messages"] if m.get("reminder"))
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -238,9 +250,14 @@ body {{ font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; col
 .tag-broadcast {{ background: #8764b8; color: white; }}
 .tag-na {{ background: #e0e0e0; color: #888; }}
 .attr-detail {{ font-size: 11px; color: #666; margin-top: 2px; }}
-.edge-tag {{ background: #ff8c00; color: white; padding: 1px 6px; border-radius: 3px; font-size: 10px; margin-left: 4px; }}
 .notes {{ font-size: 11px; color: #888; font-style: italic; margin-top: 4px; }}
 .msg-count {{ font-size: 12px; color: #888; }}
+.signal-badges {{ display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }}
+.signal {{ display: inline-flex; align-items: center; gap: 2px; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 600; }}
+.signal-reaction {{ background: #fff3e0; color: #ca5010; }}
+.signal-followed {{ background: #e8f4fd; color: #0078d4; }}
+.signal-saved {{ background: #fde8e8; color: #d13438; }}
+.signal-reminder {{ background: #e8fde8; color: #107c10; }}
 </style>
 </head>
 <body>
@@ -257,6 +274,14 @@ body {{ font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; col
     <div class="stat-card"><div class="value">{has_task_true}</div><div class="label">HasTask = TRUE ({round(has_task_true/total_msgs*100)}%)</div></div>
     <div class="stat-card"><div class="value">{is_important_true}</div><div class="label">IsImportant = TRUE ({round(is_important_true/total_msgs*100)}%)</div></div>
     <div class="stat-card"><div class="value">{edge_cases}</div><div class="label">Edge Cases ({round(edge_cases/total_msgs*100)}%)</div></div>
+</div>
+
+<!-- Interaction Signals -->
+<div class="stats-grid">
+    <div class="stat-card"><div class="value">{sig_reactions}</div><div class="label">❤️ Reacted ({round(sig_reactions/total_msgs*100)}%)</div></div>
+    <div class="stat-card"><div class="value">{sig_followed}</div><div class="label">👁️ Followed ({round(sig_followed/total_msgs*100)}%)</div></div>
+    <div class="stat-card"><div class="value">{sig_saved}</div><div class="label">📌 Saved ({round(sig_saved/total_msgs*100)}%)</div></div>
+    <div class="stat-card"><div class="value">{sig_reminder}</div><div class="label">⏰ Reminder ({round(sig_reminder/total_msgs*100)}%)</div></div>
 </div>
 
 <!-- Quadrant Matrix -->
@@ -399,17 +424,36 @@ body {{ font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; col
             sc_class = {"RfA": "tag-rfa", "RfK": "tag-rfk", "Commitment": "tag-commitment"}.get(sc, "tag-neither")
             attr_class = {"Explicit": "tag-explicit", "Implicit": "tag-implicit", "Unassigned": "tag-unassigned", "Broadcast": "tag-broadcast"}.get(attr, "tag-na")
 
-            edge_html = f'<span class="edge-tag">{edge}</span>' if edge else ""
+            edge_html = ""
             notes_html = f'<div class="notes">{notes}</div>' if notes else ""
             assignee_html = f'<div class="attr-detail">→ {assignee}</div>' if assignee else ""
             row_class = "msg-row edge-case" if edge else "msg-row"
 
             content_escaped = msg["content"].replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
+            # Build interaction signal badges
+            signal_html_parts = []
+            if msg.get("reactions"):
+                rxn_parts = []
+                for r in msg["reactions"]:
+                    reactor_name = USER_MAP.get(r[1], {}).get("DisplayName", r[1])
+                    rxn_parts.append(f'{r[0]} <b>{reactor_name}</b>')
+                signal_html_parts.append(f'<span class="signal signal-reaction">{", ".join(rxn_parts)}</span>')
+            if msg.get("followed_by"):
+                followers = ", ".join(msg["followed_by"])
+                signal_html_parts.append(f'<span class="signal signal-followed">👁️ {followers}</span>')
+            if msg.get("saved_by"):
+                savers = ", ".join(msg["saved_by"])
+                signal_html_parts.append(f'<span class="signal signal-saved">📌 {savers}</span>')
+            if msg.get("reminder"):
+                reminders = ", ".join(f"{r[0]}" for r in msg["reminder"])
+                signal_html_parts.append(f'<span class="signal signal-reminder">⏰ {reminders}</span>')
+            signals_html = f'<div class="signal-badges">{" ".join(signal_html_parts)}</div>' if signal_html_parts else ""
+
             html += f"""
         <div class="{row_class}" data-hastask="{str(ht).lower()}" data-isimportant="{str(imp).lower()}" data-edge="{bool(edge)}">
             <div class="msg-from">{sender_name}</div>
-            <div class="msg-content">{content_escaped}{edge_html}{notes_html}</div>
+            <div class="msg-content">{content_escaped}{edge_html}{signals_html}{notes_html}</div>
             <div><span class="tag {ht_class}">{"TRUE" if ht else "FALSE"}</span></div>
             <div><span class="tag {imp_class}">{"TRUE" if imp else "FALSE"}</span></div>
             <div><span class="tag {sc_class}">{sc}</span></div>
@@ -468,6 +512,8 @@ def main():
     from conversations_meeting import MEETING_CONVERSATIONS
     from conversations_supplemental import SUPPLEMENTAL_CONVERSATIONS
 
+    from interaction_signals import apply_interaction_signals
+
     all_conversations = ONE_ON_ONE_CONVERSATIONS + GROUP_CONVERSATIONS + MEETING_CONVERSATIONS + SUPPLEMENTAL_CONVERSATIONS
 
     # Assign IDs to conversations and messages
@@ -479,6 +525,9 @@ def main():
         for j, msg in enumerate(conv["messages"]):
             if "id" not in msg:
                 msg["id"] = gen_id()
+
+    # Apply Teams interaction signals (Reactions, Followed, Saved, Reminder)
+    signal_stats = apply_interaction_signals(all_conversations, base_time)
 
     # 1. Generate users.config.json
     users_out = []

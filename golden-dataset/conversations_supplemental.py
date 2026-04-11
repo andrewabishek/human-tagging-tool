@@ -112,7 +112,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
         "members": ["sofiarodriguez", "amandafoster"],
         "messages": [
             m("sofiarodriguez", "Amanda, I need you to review the Contoso enterprise agreement. Deal is $2.3M ARR and they want to close by end of month.",
-              has_task=True, sub_class="RfA", task_type="Review/Approval",
+              has_task=True, sub_class="RfA", task_type="Review / Approval",
               is_important=True, attribution="Implicit", assignee=["amandafoster"],
               notes="Review request + revenue impact + deadline → Important"),
 
@@ -122,7 +122,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Question back to sales about customer flexibility"),
 
             m("sofiarodriguez", "They pushed back last time we tried to modify indemnification. Can we accept their language with a cap?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Implicit", assignee=["amandafoster"],
               notes="Permission request — can we accept with modification?"),
 
@@ -131,7 +131,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Informational — stating policy, no new ask. Important because it flags risk threshold."),
 
             m("sofiarodriguez", "OK, I'll propose the 2x cap to Contoso. Can you meanwhile redline sections 4.2 and 7.1 and send me a clean version by Wednesday?",
-              has_task=True, sub_class="RfA", task_type="Review/Approval",
+              has_task=True, sub_class="RfA", task_type="Review / Approval",
               is_important=True, attribution="Implicit", assignee=["amandafoster"],
               notes="Action request with deadline tied to deal close"),
 
@@ -164,17 +164,17 @@ SUPPLEMENTAL_CONVERSATIONS = [
         "members": ["laurakim", "chrisevans"],
         "messages": [
             m("laurakim", "Chris, are you free tomorrow at 2 PM for a run-through of the campaign assets?",
-              has_task=True, sub_class="RfK", task_type="Availability/RSVP",
+              has_task=True, sub_class="RfK", task_type="Availability / RSVP",
               attribution="Implicit", assignee=["chrisevans"],
               notes="Availability check"),
 
             m("chrisevans", "Tomorrow's packed — I have back-to-backs from 1 to 4. How about Thursday morning?",
-              has_task=True, sub_class="RfK", task_type="Scheduling",
+              has_task=True, sub_class="RfK", task_type="Scheduling Action",
               attribution="Implicit", assignee=["laurakim"],
               notes="Counter-proposal for scheduling — asks Laura to decide"),
 
             m("laurakim", "Thursday 10 AM works. Can you book a room and send the invite?",
-              has_task=True, sub_class="RfA", task_type="Scheduling",
+              has_task=True, sub_class="RfA", task_type="Scheduling Action",
               attribution="Implicit", assignee=["chrisevans"],
               notes="Scheduling action — book room + send invite"),
 
@@ -193,7 +193,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Self-directed commitment"),
 
             m("laurakim", "Great. And one more — are you attending the product marketing sync on Friday?",
-              has_task=True, sub_class="RfK", task_type="Availability/RSVP",
+              has_task=True, sub_class="RfK", task_type="Availability / RSVP",
               attribution="Implicit", assignee=["chrisevans"],
               notes="RSVP / availability check"),
 
@@ -272,7 +272,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Task exists (update SLA) but no assignee → Unassigned. Question about ownership."),
 
             m("alexkumar", "I think it's technically DevOps. @James?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Explicit", assignee=["jameswilson"],
               mentions=["jameswilson"],
               notes="Confirmation request via @mention"),
@@ -404,7 +404,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Decision request about process — Important due to sensitivity"),
 
             m("daniellewright", "HR can handle the initial investigation. If it escalates to a formal grievance, we'll need Amanda. For now, I'd like your permission to proceed with the informal resolution process.",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               is_important=True, attribution="Implicit", assignee=["sarahmitchell"],
               notes="Permission request from HR to CEO"),
 
@@ -452,7 +452,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
         "members": ["sarahmitchell", "davidpark", "racheltorres", "michaelchen", "laurakim", "daniellewright"],
         "messages": [
             m("sarahmitchell", "We need to get the Q2 kickoff on the calendar ASAP. @David @Rachel @Michael @Laura @Danielle — what does next Tuesday look like for everyone?",
-              has_task=True, sub_class="RfK", task_type="Availability/RSVP",
+              has_task=True, sub_class="RfK", task_type="Availability / RSVP",
               is_important=True, attribution="Explicit", assignee=["davidpark", "racheltorres", "michaelchen", "laurakim", "daniellewright"],
               mentions=["davidpark", "racheltorres", "michaelchen", "laurakim", "daniellewright"],
               notes="Multi-assignee availability request with urgency"),
@@ -464,7 +464,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="RSVP response with constraint — informational"),
 
             m("michaelchen", "Tuesday is out for me — I'm in New York for client meetings all day. What about Wednesday?",
-              has_task=True, sub_class="RfK", task_type="Scheduling",
+              has_task=True, sub_class="RfK", task_type="Scheduling Action",
               attribution="Unassigned", assignee=[],
               edge_case="counter_proposal_scheduling",
               notes="Counter-proposal — scheduling back to group"),
@@ -476,7 +476,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="RSVP — informational"),
 
             m("sarahmitchell", "Let's do Wednesday 10 AM then. Michael, can you join remotely if needed?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Implicit", assignee=["michaelchen"],
               notes="Confirmation request directed at Michael by name (no @mention)"),
 
@@ -484,7 +484,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Confirmation — informational"),
 
             m("sarahmitchell", "@Danielle, can you book the all-hands room and send the invite?",
-              has_task=True, sub_class="RfA", task_type="Scheduling",
+              has_task=True, sub_class="RfA", task_type="Scheduling Action",
               attribution="Explicit", assignee=["daniellewright"],
               mentions=["daniellewright"],
               notes="Scheduling action delegation via @mention"),
@@ -585,7 +585,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Self-assigned — CTO takes ownership of board briefing"),
 
             m("jameswilson", "Action items from my side: (1) incident report for SOC 2 by Friday, (2) WAF rule propagation analysis with @Priya. Anything I'm missing?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Unassigned", assignee=[],
               edge_case="summary_with_confirmation_request",
               notes="Self-summary of action items + confirmation request to group"),
@@ -867,7 +867,8 @@ SUPPLEMENTAL_CONVERSATIONS = [
         "topic": "Meridian Technologies Q1 All-Hands",
         "domain": "Executive",
         "members": ["sarahmitchell", "davidpark", "racheltorres", "michaelchen", "laurakim",
-                     "daniellewright", "alexkumar", "priyasharma", "sofiarodriguez", "kevinzhang"],
+                     "daniellewright", "alexkumar", "priyasharma", "sofiarodriguez", "kevinzhang",
+                     "ecosyncbot"],
         "messages": [
             m("sarahmitchell", "Welcome everyone to our Q1 all-hands! We have a lot to cover today. Let's get started.",
               notes="Opening — social/phatic"),
@@ -934,6 +935,10 @@ SUPPLEMENTAL_CONVERSATIONS = [
 
             m("ninacosta", "Great all-hands! 🎉",
               notes="Social / phatic"),
+
+            m("ecosyncbot", "📋 Meeting ended. Duration: 47 minutes. Recording and transcript are now available in the meeting chat. AI-generated summary will be ready in ~5 minutes.",
+              edge_case="bot_generated",
+              notes="Bot-generated content — always FALSE per spec (not human-authored)"),
         ],
     },
 
@@ -968,7 +973,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Status update — informational"),
 
             m("sofiarodriguez", "The Pinnacle Systems RFP response is due Friday. I've drafted it but need your review on the pricing section. Can you take a look today?",
-              has_task=True, sub_class="RfA", task_type="Review/Approval",
+              has_task=True, sub_class="RfA", task_type="Review / Approval",
               is_important=True, attribution="Implicit", assignee=["michaelchen"],
               notes="Review request + RFP deadline → Important"),
 
@@ -1015,6 +1020,10 @@ SUPPLEMENTAL_CONVERSATIONS = [
 
             m("chrisevans", "I'm remote today but enjoy!",
               notes="Social / informational"),
+
+            m("jameswilson", "I'm heading to the downtown office for a client meeting this afternoon, back online by 4.",
+              edge_case="senders_own_plan",
+              notes="Sender's own plan / status — always FALSE per spec (no ask, informational only)"),
 
             m("mariasantos", "Before everyone disappears for the weekend — quick reminder that the customer NPS survey results come out Monday. @Alex, can you make sure the eng dashboard is pulling the right data source?",
               has_task=True, sub_class="RfA", task_type="Action Request",
@@ -1298,12 +1307,12 @@ SUPPLEMENTAL_CONVERSATIONS = [
         "members": ["laurakim", "daniellewright"],
         "messages": [
             m("laurakim", "Danielle, is the Cascade room available tomorrow from 2-3 PM?",
-              has_task=True, sub_class="RfK", task_type="Availability/RSVP",
+              has_task=True, sub_class="RfK", task_type="Availability / RSVP",
               attribution="Implicit", assignee=["daniellewright"],
               notes="Availability check for resource"),
 
             m("daniellewright", "Let me check... it's booked at 2, but free from 2:30 onward. Want me to book it for 2:30-3:30?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Implicit", assignee=["laurakim"],
               notes="Counter-offer with confirmation request"),
 
@@ -1332,7 +1341,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Incident alert — no task yet. IsImportant due to production outage."),
 
             m("alexkumar", "I see it. PagerDuty alert just fired. @Priya, are you available to help triage?",
-              has_task=True, sub_class="RfK", task_type="Availability/RSVP",
+              has_task=True, sub_class="RfK", task_type="Availability / RSVP",
               is_important=True, attribution="Explicit", assignee=["priyasharma"],
               mentions=["priyasharma"],
               notes="Availability request during incident"),
@@ -1431,7 +1440,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Acknowledgment + commitment"),
 
             m("laurakim", "Also — can you check if the featured image meets our new brand guidelines? Sarah's been particular about visual consistency lately.",
-              has_task=True, sub_class="RfA", task_type="Review/Approval",
+              has_task=True, sub_class="RfA", task_type="Review / Approval",
               attribution="Implicit", assignee=["chrisevans"],
               notes="Review request — brand compliance check"),
 
@@ -1481,7 +1490,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Conditional future task — 'when you're ready'. Not a current task, just setting expectations."),
 
             m("davidpark", "Great. Let's reconvene in two weeks. @Alex, set up the review meeting.",
-              has_task=True, sub_class="RfA", task_type="Scheduling",
+              has_task=True, sub_class="RfA", task_type="Scheduling Action",
               attribution="Explicit", assignee=["alexkumar"],
               mentions=["alexkumar"],
               notes="Scheduling action delegation"),
@@ -1608,7 +1617,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
         "members": ["laurakim", "chrisevans", "alexkumar", "sofiarodriguez"],
         "messages": [
             m("laurakim", "Just shared the new landing page mockups in the design channel. Everyone please review and leave feedback by tomorrow.",
-              has_task=True, sub_class="RfA", task_type="Review/Approval",
+              has_task=True, sub_class="RfA", task_type="Review / Approval",
               attribution="Broadcast", assignee=[],
               notes="Broadcast review request with deadline"),
 
@@ -1690,7 +1699,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Budget constraint — informational. Important."),
 
             m("sarahmitchell", "OK, here's my call: approve engineering in full including analytics. Approve the AEs for sales but defer the CRM to Q3 — that saves $450K and gives us buffer. @Rachel, does that math work?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               is_important=True, attribution="Explicit", assignee=["racheltorres"],
               mentions=["racheltorres"],
               notes="CEO makes decision, asks CFO to confirm feasibility"),
@@ -1702,7 +1711,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Self-assigned — will update allocations"),
 
             m("michaelchen", "Can we at least start the CRM vendor evaluation in Q2 so we're ready to implement in Q3?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Implicit", assignee=["sarahmitchell"],
               notes="Permission request — can we at least evaluate?"),
 
@@ -1900,12 +1909,12 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Spec example: 'Thanks for the update!' → HasTask=FALSE, acknowledgment"),
 
             m("priyasharma", "Can you call me when you're free? Need to discuss the migration plan.",
-              has_task=True, sub_class="RfA", task_type="Scheduling",
+              has_task=True, sub_class="RfA", task_type="Scheduling Action",
               attribution="Implicit", assignee=["jameswilson"],
               notes="Spec example: 'Can you call?' → HasTask=TRUE"),
 
             m("jameswilson", "Sure, does 2 PM work for you?",
-              has_task=True, sub_class="RfK", task_type="Scheduling",
+              has_task=True, sub_class="RfK", task_type="Scheduling Action",
               attribution="Implicit", assignee=["priyasharma"],
               notes="Spec example: 'Does 2 PM work for you?' → HasTask=TRUE"),
 
@@ -1924,7 +1933,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
         "members": ["alexkumar", "priyasharma", "ninacosta", "davidpark"],
         "messages": [
             m("alexkumar", "Could you please review the Status Update post before I send it to leadership? @Nina",
-              has_task=True, sub_class="RfA", task_type="Review/Approval",
+              has_task=True, sub_class="RfA", task_type="Review / Approval",
               attribution="Explicit", assignee=["ninacosta"],
               mentions=["ninacosta"],
               notes="Spec example: 'Could you please review the Status Update post?' → HasTask=TRUE"),
@@ -1951,7 +1960,7 @@ SUPPLEMENTAL_CONVERSATIONS = [
               notes="Spec example: 'FYI: I don't see you listed as DRIs' → HasTask=TRUE (borderline), IsImportant=TRUE. Assignees don't exist in our user set so Unassigned."),
 
             m("ninacosta", "Need sign-off by EOD or we miss the ship window for the release candidate.",
-              has_task=True, sub_class="RfA", task_type="Review/Approval",
+              has_task=True, sub_class="RfA", task_type="Review / Approval",
               is_important=True, attribution="Unassigned", assignee=[],
               notes="Spec example: 'Need sign-off by EOD or we miss ship window' → HasTask=TRUE, IsImportant=TRUE"),
 

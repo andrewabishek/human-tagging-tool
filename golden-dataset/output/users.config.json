@@ -382,5 +382,52 @@
       "State": "TX",
       "Street": "100 Meridian Way"
     }
+  },
+  {
+    "DisplayName": "Lisa Nakamura",
+    "FirstName": "Lisa",
+    "LastName": "Nakamura",
+    "MailNickName": "lisanakamura",
+    "CompanyName": "Meridian Technologies",
+    "Department": "Operations",
+    "JobTitle": "Operations Manager",
+    "OfficeLocation": "Seattle, WA",
+    "UsageLocation": "US",
+    "Licenses": [
+      "Office 365 E5 (no Teams)",
+      "Microsoft Teams Enterprise",
+      "Microsoft 365 Copilot"
+    ],
+    "Manager": "sarahmitchell",
+    "Address": {
+      "City": "Seattle",
+      "Country": "USA",
+      "PostalCode": "98101",
+      "State": "WA",
+      "Street": "100 Meridian Way"
+    }
+  },
+  {
+    "DisplayName": "EcoSync Bot",
+    "FirstName": "EcoSync",
+    "LastName": "Bot",
+    "MailNickName": "ecosyncbot",
+    "CompanyName": "Meridian Technologies",
+    "Department": "IT",
+    "JobTitle": "System Bot",
+    "OfficeLocation": "N/A",
+    "UsageLocation": "US",
+    "Licenses": [
+      "Office 365 E5 (no Teams)",
+      "Microsoft Teams Enterprise"
+    ],
+    "Manager": null,
+    "Address": {
+      "City": "N/A",
+      "Country": "USA",
+      "PostalCode": "98101",
+      "State": "N/A",
+      "Street": "100 Meridian Way"
+    }
   }
 ]

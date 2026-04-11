@@ -23,7 +23,7 @@ MEETING_CONVERSATIONS = [
               notes="Meeting notes — informational"),
 
             m("davidpark", "The AI prototype is top priority. @Priya, are you comfortable committing to a demo-ready version by end of sprint?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Explicit", assignee=["priyasharma"],
               notes="Confirmation request via @mention during meeting",
               mentions=["priyasharma"]),
@@ -357,7 +357,7 @@ MEETING_CONVERSATIONS = [
               notes="Context — informational"),
 
             m("michaelchen", "@Maria, once the API documentation is complete, I want to schedule an executive call with GlobalTech's CTO. Show them we take their partnership seriously. Can you set that up?",
-              has_task=True, sub_class="RfA", task_type="Scheduling",
+              has_task=True, sub_class="RfA", task_type="Scheduling Action",
               is_important=True, attribution="Explicit", assignee=["mariasantos"],
               notes="Scheduling action via @mention + customer retention → Important",
               mentions=["mariasantos"]),

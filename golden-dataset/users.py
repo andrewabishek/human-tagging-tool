@@ -213,6 +213,32 @@ USERS = [
         "Licenses": ["Office 365 E5 (no Teams)", "Microsoft Teams Enterprise", "Microsoft 365 Copilot"],
         "Manager": "mariasantos",
     },
+    {
+        "DisplayName": "Lisa Nakamura",
+        "FirstName": "Lisa",
+        "LastName": "Nakamura",
+        "MailNickName": "lisanakamura",
+        "CompanyName": "Meridian Technologies",
+        "Department": "Operations",
+        "JobTitle": "Operations Manager",
+        "OfficeLocation": "Seattle, WA",
+        "UsageLocation": "US",
+        "Licenses": ["Office 365 E5 (no Teams)", "Microsoft Teams Enterprise", "Microsoft 365 Copilot"],
+        "Manager": "sarahmitchell",
+    },
+    {
+        "DisplayName": "EcoSync Bot",
+        "FirstName": "EcoSync",
+        "LastName": "Bot",
+        "MailNickName": "ecosyncbot",
+        "CompanyName": "Meridian Technologies",
+        "Department": "IT",
+        "JobTitle": "System Bot",
+        "OfficeLocation": "N/A",
+        "UsageLocation": "US",
+        "Licenses": ["Office 365 E5 (no Teams)", "Microsoft Teams Enterprise"],
+        "Manager": None,
+    },
 ]
 
 # Quick lookup

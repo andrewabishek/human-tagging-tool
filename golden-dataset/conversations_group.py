@@ -39,7 +39,7 @@ GROUP_CONVERSATIONS = [
               mentions=["priyasharma"]),
 
             m("priyasharma", "I assigned it to James for the infra perspective. James, can you review it before noon?",
-              has_task=True, sub_class="RfA", task_type="Review/Approval",
+              has_task=True, sub_class="RfA", task_type="Review / Approval",
               attribution="Implicit", assignee=["jameswilson"],
               notes="Review request directed to James by name (no @mention)"),
 
@@ -185,7 +185,7 @@ GROUP_CONVERSATIONS = [
               notes="Informational response"),
 
             m("sarahmitchell", "Good. @David and @Alex — please do a launch readiness review on Thursday. I want sign-off from both of you before we go.",
-              has_task=True, sub_class="RfA", task_type="Review/Approval",
+              has_task=True, sub_class="RfA", task_type="Review / Approval",
               is_important=True, attribution="Explicit", assignee=["davidpark", "alexkumar"],
               notes="Multi-assignee task via @mentions + launch gating → Important",
               mentions=["davidpark", "alexkumar"]),
@@ -214,7 +214,7 @@ GROUP_CONVERSATIONS = [
         "members": ["sarahmitchell", "davidpark", "racheltorres"],
         "messages": [
             m("sarahmitchell", "We're a week out from the board meeting. Are we aligned on the narrative? I want to lead with product momentum and address the revenue gap proactively.",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Broadcast", assignee=[],
               notes="Confirmation request to both David and Rachel"),
 
@@ -257,7 +257,7 @@ GROUP_CONVERSATIONS = [
               notes="Suggestion — no task"),
 
             m("sarahmitchell", "Perfect. Let's do a dry run Tuesday afternoon. Rachel, can you coordinate a time?",
-              has_task=True, sub_class="RfA", task_type="Scheduling",
+              has_task=True, sub_class="RfA", task_type="Scheduling Action",
               attribution="Implicit", assignee=["racheltorres"],
               notes="Scheduling action directed at Rachel by name"),
 
@@ -355,7 +355,7 @@ GROUP_CONVERSATIONS = [
               notes="Urgent question to anyone who can answer"),
 
             m("jameswilson", "Monitoring shows ~8,000 active users getting errors. The status page is still green — should I update it?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               is_important=True, attribution="Implicit", assignee=["alexkumar", "davidpark"],
               notes="Permission request during incident — who approves status page update?"),
 
@@ -379,7 +379,7 @@ GROUP_CONVERSATIONS = [
               notes="Status update during mitigation → Important"),
 
             m("priyasharma", "Fix is ready — adding a connection.close() in the finally block of the cursor handler. PR #852. Alex, can you fast-track review? It's a 3-line change.",
-              has_task=True, sub_class="RfA", task_type="Review/Approval",
+              has_task=True, sub_class="RfA", task_type="Review / Approval",
               is_important=True, attribution="Implicit", assignee=["alexkumar"],
               notes="Emergency review request during incident → Important"),
 
@@ -416,7 +416,7 @@ GROUP_CONVERSATIONS = [
         "members": ["daniellewright", "davidpark", "alexkumar", "racheltorres"],
         "messages": [
             m("daniellewright", "Hi everyone. I want to finalize the Q2 headcount plan for engineering. David and Alex, can you confirm your final requirements?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Implicit", assignee=["davidpark", "alexkumar"],
               notes="Confirmation request directed at two people by name"),
 
@@ -593,7 +593,7 @@ GROUP_CONVERSATIONS = [
               notes="Commitment + resolution plan — not a task for others"),
 
             m("michaelchen", "Tomorrow morning isn't fast enough. Their VP of Ops is already cc'ing our CEO on emails. If we don't show progress by end of today, we risk the renewal. @Alex, can we expedite?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               is_important=True, attribution="Explicit", assignee=["alexkumar"],
               notes="Escalation pressure + churn risk → Important. @mention",
               mentions=["alexkumar"]),
@@ -633,7 +633,7 @@ GROUP_CONVERSATIONS = [
         "members": ["alexkumar", "priyasharma", "ninacosta"],
         "messages": [
             m("priyasharma", "PR #852 is up for the connection pool fix. It's a 3-line change in the cursor handler. @Alex already did a quick review during the incident, but I'd like a thorough review from @Nina on the test coverage.",
-              has_task=True, sub_class="RfA", task_type="Review/Approval",
+              has_task=True, sub_class="RfA", task_type="Review / Approval",
               attribution="Explicit", assignee=["ninacosta"],
               notes="Review request via @mention",
               mentions=["alexkumar", "ninacosta"]),
@@ -711,7 +711,7 @@ GROUP_CONVERSATIONS = [
               mentions=["lisanakamura"]),
 
             m("lisanakamura", "Sure. I'll also arrange catering for 50 in-office plus the streaming setup for remote folks. Want the usual lunch spread?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Broadcast", assignee=[],
               notes="Confirmation question to the group"),
 
@@ -932,7 +932,7 @@ GROUP_CONVERSATIONS = [
               notes="Commitment"),
 
             m("michaelchen", "Can I bring a customer to see the demo? Contoso has been asking about this exact feature.",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Broadcast", assignee=[],
               notes="Permission request to the group — is it OK to show customer?"),
 
@@ -1052,7 +1052,7 @@ GROUP_CONVERSATIONS = [
               notes="Commitment"),
 
             m("michaelchen", "Thanks everyone. Let's regroup tomorrow at 4 PM with the action plan. I'll schedule the meeting.",
-              has_task=True, sub_class="RfA", task_type="Scheduling",
+              has_task=True, sub_class="RfA", task_type="Scheduling Action",
               attribution="Implicit", assignee=["michaelchen"],
               notes="Self-scheduled meeting — sender's own action",
               edge_case="self_initiated_scheduling"),
@@ -1087,7 +1087,7 @@ GROUP_CONVERSATIONS = [
               notes="Breach scope details — Important context"),
 
             m("amandafoster", "OK. We need to assess whether this triggers notification requirements. Under GDPR, we have 72 hours from discovery. @David, can you confirm this has been fully contained and there's no ongoing exposure?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               is_important=True, attribution="Explicit", assignee=["davidpark"],
               notes="Confirmation request during security incident → Important",
               mentions=["davidpark"]),
@@ -1144,7 +1144,7 @@ GROUP_CONVERSATIONS = [
         "members": ["alexkumar", "priyasharma", "ninacosta", "lisanakamura"],
         "messages": [
             m("alexkumar", "Hey team! I'm organizing the spring hackathon for the engineering team. Thinking April 18-19 (Friday-Saturday). Who's in? 🎉",
-              has_task=True, sub_class="RfK", task_type="Availability/RSVP",
+              has_task=True, sub_class="RfK", task_type="Availability / RSVP",
               attribution="Broadcast", assignee=[],
               notes="RSVP request to group"),
 
@@ -1152,7 +1152,7 @@ GROUP_CONVERSATIONS = [
               notes="Social / RSVP response — no task"),
 
             m("ninacosta", "Count me in. Can we invite the support team too? Derek has some great ideas for automating ticket triage.",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Implicit", assignee=["alexkumar"],
               notes="Permission request — expand scope?"),
 
@@ -1275,7 +1275,7 @@ GROUP_CONVERSATIONS = [
               notes="Clarifying question on parameters"),
 
             m("davidpark", "Model at 10%, 15%, and 20% so we have negotiating room. @Lisa, please schedule a final vendor call with Datadog for next week to discuss enterprise terms.",
-              has_task=True, sub_class="RfA", task_type="Scheduling",
+              has_task=True, sub_class="RfA", task_type="Scheduling Action",
               attribution="Explicit", assignee=["lisanakamura"],
               notes="Scheduling action via @mention",
               mentions=["lisanakamura"]),
@@ -1397,7 +1397,7 @@ GROUP_CONVERSATIONS = [
               notes="Decision response — informational"),
 
             m("ninacosta", "Multi-tenant regression suite is going to be a bigger effort than expected. I'll need at least 2 weeks. Can I push to Sprint 16?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Implicit", assignee=["alexkumar"],
               notes="Permission request — timeline change"),
 
@@ -1434,7 +1434,7 @@ GROUP_CONVERSATIONS = [
         "members": ["priyasharma", "sofiarodriguez", "chrisevans", "ninacosta"],
         "messages": [
             m("priyasharma", "Who's up for lunch today? Thinking about trying that new Thai place on 3rd Street. 🍜",
-              has_task=True, sub_class="RfK", task_type="Availability/RSVP",
+              has_task=True, sub_class="RfK", task_type="Availability / RSVP",
               attribution="Broadcast", assignee=[],
               notes="RSVP request to the group"),
 
@@ -1444,7 +1444,7 @@ GROUP_CONVERSATIONS = [
               notes="RSVP + time question"),
 
             m("chrisevans", "Count me in. 12:30 work for everyone?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Broadcast", assignee=[],
               notes="Time confirmation request to group"),
 
@@ -1452,7 +1452,7 @@ GROUP_CONVERSATIONS = [
               notes="Social / declining invitation — no task"),
 
             m("priyasharma", "Aw, next time Nina! 12:30 works for me. Sofia?",
-              has_task=True, sub_class="RfK", task_type="Confirmation/Permission",
+              has_task=True, sub_class="RfK", task_type="Confirmation / Permission",
               attribution="Implicit", assignee=["sofiarodriguez"],
               notes="Confirmation request directed at Sofia by name"),
 
