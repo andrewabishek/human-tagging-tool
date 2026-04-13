@@ -1,0 +1,846 @@
+[1] N/A (OneOnOne)
+    FROM: sarahmitchell
+    MSG:  What gaps specifically? I want to make sure we address them before the board presentation on the 28th.
+    RXN:  ≡ƒæÇ davidpark
+
+[2] N/A (OneOnOne)
+    FROM: sarahmitchell
+    MSG:  That would be perfect. Can you have it ready by Thursday? I want to review it before the pre-board sync on Friday.
+    RXN:  ≡ƒæì davidpark
+
+[3] N/A (OneOnOne)
+    FROM: davidpark
+    MSG:  Understood. Will do.
+    RXN:  Γ£à sarahmitchell
+
+[4] N/A (OneOnOne)
+    FROM: sarahmitchell
+    MSG:  Thanks David. Talk tomorrow.
+    RXN:  ≡ƒæÅ davidpark
+
+[5] N/A (OneOnOne)
+    FROM: racheltorres
+    MSG:  Noted. I'll flag it for our April budget sync.
+    RXN:  ≡ƒæì sarahmitchell
+
+[6] N/A (OneOnOne)
+    FROM: alexkumar
+    MSG:  On it. I'll draft the exec update as soon as rollback is confirmed.
+    RXN:  Γ£à davidpark
+
+[7] N/A (OneOnOne)
+    FROM: davidpark
+    MSG:  Thanks Alex. Good handling tonight. Let's make sure we add deployment validation gates to prevent this class of issue.
+    RXN:  ≡ƒæÅ alexkumar
+
+[8] N/A (OneOnOne)
+    FROM: alexkumar
+    MSG:  Good catch. I ran the basic load test but not the high-concurrency scenario. Can you include that in your review? Run the k6 suite with the 500-concurrent profi
+    RXN:  Γ¥ñ∩╕Å priyasharma
+
+[9] N/A (OneOnOne)
+    FROM: priyasharma
+    MSG:  Will do. Thanks Alex.
+    RXN:  Γ¥ñ∩╕Å alexkumar
+
+[10] N/A (OneOnOne)
+    FROM: sarahmitchell
+    MSG:  I like that approach. Has Legal reviewed the restructuring for any compliance issues?
+    RXN:  ≡ƒæÅ daniellewright
+
+[11] N/A (OneOnOne)
+    FROM: sarahmitchell
+    MSG:  Thanks Danielle. This is sensitive ΓÇö please don't discuss with anyone outside of this until leadership approves.
+    RXN:  ≡ƒÖÅ daniellewright
+
+[12] N/A (OneOnOne)
+    FROM: chrisevans
+    MSG:  Post 1 is in final edit. Post 2 draft is done, needs your review. Post 3 I'm still outlining ΓÇö the customer story angle needs more input from Maria on the succe
+    RXN:  ≡ƒæì laurakim
+
+[13] N/A (OneOnOne)
+    FROM: chrisevans
+    MSG:  Got it. I'll coordinate with Maria and have the Post 3 draft ready by Friday.
+    RXN:  ≡ƒæì laurakim
+
+[14] N/A (OneOnOne)
+    FROM: laurakim
+    MSG:  Sounds good. Also, have you updated the social media calendar with the promotion schedule for these posts?
+    RXN:  ≡ƒæì chrisevans
+
+[15] N/A (OneOnOne)
+    FROM: amandafoster
+    MSG:  Kevin, the SOC 2 auditors are coming on-site in 3 weeks. I need the financial controls documentation updated and ready for review. Where do we stand?
+    RXN:  ≡ƒæì kevinzhang
+
+[16] N/A (OneOnOne)
+    FROM: mariasantos
+    MSG:  Derek, Pinnacle Logistics just escalated to me directly. They say they've had an open P1 ticket for 4 days with no resolution. What's going on?
+    RXN:  ≡ƒæÇ derekjohnson
+
+[17] N/A (OneOnOne)
+    FROM: alexkumar
+    MSG:  James, the CDN migration deploy is blocked. CI is failing on the integration tests. Can you look at it?
+    RXN:  ≡ƒæÇ jameswilson
+
+[18] N/A (OneOnOne)
+    FROM: jameswilson
+    MSG:  The config fix itself is straightforward ΓÇö maybe an hour. But I want to run the full regression suite after, which takes about 3 hours. Earliest I can have a gr
+    RXN:  Γ£à alexkumar
+
+[19] N/A (OneOnOne)
+    FROM: alexkumar
+    MSG:  Good catch. File the renewal request on our side ΓÇö don't rely on them. Better safe than sorry.
+    RXN:  ≡ƒÖÅ jameswilson
+
+[20] N/A (OneOnOne)
+    FROM: sofiarodriguez
+    MSG:  Their paper. They sent a mutual NDA with some non-standard language around IP ownership that I'm not comfortable with. I flagged the sections in yellow in the s
+    RXN:  ≡ƒæì amandafoster
+
+[21] N/A (OneOnOne)
+    FROM: amandafoster
+    MSG:  Thanks. I'll have the redline back to you by Wednesday morning.
+    RXN:  Γ¥ñ∩╕Å sofiarodriguez
+
+[22] N/A (OneOnOne)
+    FROM: sofiarodriguez
+    MSG:  Thanks Amanda ≡ƒÖÅ
+    RXN:  ≡ƒæÅ amandafoster
+
+[23] N/A (OneOnOne)
+    FROM: ninacosta
+    MSG:  Absolutely. Ping me when it's pushed and I'll run it immediately. I want this closed today if possible ΓÇö Alex is asking about the release timeline.
+    RXN:  ≡ƒæì priyasharma
+
+[24] N/A (OneOnOne)
+    FROM: lisanakamura
+    MSG:  Got quotes from all three vendors. The Figma renewal is 12% higher than last year. Slack and Zoom are comparable. I'll send you the comparison spreadsheet.
+    RXN:  ≡ƒæì kevinzhang
+
+[25] N/A (OneOnOne)
+    FROM: mariasantos
+    MSG:  Derek's team resolved the P1 last week. Pinnacle's contact seemed satisfied with the resolution. I think we're OK to ask, but I wanted you to know the context.
+    RXN:  ≡ƒæì laurakim
+
+[26] N/A (OneOnOne)
+    FROM: laurakim
+    MSG:  Thanks for flagging that. Go ahead and ask. If they push back, don't force it ΓÇö customer relationship comes first.
+    RXN:  ≡ƒÖÅ mariasantos
+
+[27] N/A (OneOnOne)
+    FROM: mariasantos
+    MSG:  Perfect. I'll coordinate with Chris and reach out to Pinnacle today.
+    RXN:  Γ£à laurakim
+
+[28] N/A (OneOnOne)
+    FROM: davidpark
+    MSG:  Makes sense. I'll model it that way.
+    RXN:  ≡ƒÆ» racheltorres
+
+[29] N/A (OneOnOne)
+    FROM: racheltorres
+    MSG:  Thanks David. This is a good example of the kind of investment discipline we need. ≡ƒæì
+    RXN:  ≡ƒÖÅ davidpark
+
+[30] N/A (Group)
+    FROM: priyasharma
+    MSG:  I wrapped up the API v3 pagination fix yesterday. PR #847 is ready for final review. Today I'm starting on the webhook refactor.
+    RXN:  Γ£à jameswilson, Γ£à alexkumar, Γ£à ninacosta
+
+[31] N/A (Group)
+    FROM: priyasharma
+    MSG:  I assigned it to James for the infra perspective. James, can you review it before noon?
+    RXN:  ≡ƒöÑ jameswilson, ≡ƒöÑ ninacosta
+
+[32] N/A (Group)
+    FROM: jameswilson
+    MSG:  Will do. Give me 20 minutes.
+    RXN:  ≡ƒÖÅ ninacosta, ≡ƒÖÅ alexkumar
+
+[33] N/A (Group)
+    FROM: sarahmitchell
+    MSG:  That's a big gap between committed and pipeline. What's the risk on Contoso?
+    RXN:  ≡ƒæÇ michaelchen, ≡ƒæÇ sofiarodriguez
+
+[34] N/A (Group)
+    FROM: sarahmitchell
+    MSG:  That's not where I need it to be for the board. Michael, can you put together a risk mitigation plan with backup deals we could accelerate? I need it by Monday.
+    RXN:  ≡ƒæÇ michaelchen
+
+[35] N/A (Group)
+    FROM: sarahmitchell
+    MSG:  Thanks both. Let's regroup Wednesday after Sofia's Contoso call.
+    RXN:  Γ¥ñ∩╕Å michaelchen, Γ¥ñ∩╕Å sofiarodriguez
+
+[36] N/A (Group)
+    FROM: sarahmitchell
+    MSG:  Include it. The board will appreciate the disciplined approach to build vs buy. It shows we're thinking about TCO, not just features.
+    RXN:  ≡ƒÖÅ racheltorres
+
+[37] N/A (Group)
+    FROM: davidpark
+    MSG:  I can do a prototype demo. Alex's team has a working proof of concept. I'll polish it up.
+    RXN:  ≡ƒæì racheltorres
+
+[38] N/A (Group)
+    FROM: sarahmitchell
+    MSG:  Yes, good call. Frame it as investing in growth ΓÇö the engineering hires are for the product features that drive the Q2-Q3 pipeline. It's correlated spend, not d
+    RXN:  ≡ƒÖÅ racheltorres, ≡ƒÖÅ davidpark
+
+[39] N/A (Group)
+    FROM: laurakim
+    MSG:  Great sync everyone. Let's regroup next Wednesday with Chris's draft messaging.
+    RXN:  Γ¥ñ∩╕Å sofiarodriguez, Γ¥ñ∩╕Å chrisevans
+
+[40] N/A (Group)
+    FROM: davidpark
+    MSG:  What's customer impact right now? How many users affected?
+    RXN:  ≡ƒæì alexkumar
+
+[41] N/A (Group)
+    FROM: jameswilson
+    MSG:  Monitoring shows ~8,000 active users getting errors. The status page is still green ΓÇö should I update it?
+    RXN:  ≡ƒæÇ alexkumar
+
+[42] N/A (Group)
+    FROM: priyasharma
+    MSG:  Found it. The new pagination code opens a new connection for each cursor-based query but doesn't release it when the client disconnects mid-stream. The batch jo
+    RXN:  ≡ƒæì jameswilson
+
+[43] N/A (Group)
+    FROM: alexkumar
+    MSG:  @Priya, can you push an emergency fix? In the meantime, @James, kill the batch job and manually free the stale connections.
+    RXN:  ≡ƒæÇ davidpark
+
+[44] N/A (Group)
+    FROM: alexkumar
+    MSG:  Reviewed. LGTM. Merge and deploy.
+    RXN:  Γ£à jameswilson
+
+[45] N/A (Group)
+    FROM: jameswilson
+    MSG:  Pool is back to 45/500. All endpoints responding normally. Deploying Priya's fix now.
+    RXN:  ≡ƒæì priyasharma
+
+[46] N/A (Group)
+    FROM: jameswilson
+    MSG:  Fix deployed. Monitoring confirms stable. Updating status page to resolved.
+    RXN:  ≡ƒæì priyasharma, ≡ƒæì davidpark, ≡ƒæì alexkumar
+
+[47] N/A (Group)
+    FROM: alexkumar
+    MSG:  Sure. I'll have it over by tomorrow morning.
+    RXN:  ≡ƒÖÅ davidpark, ≡ƒÖÅ racheltorres, ≡ƒÖÅ daniellewright
+
+[48] N/A (Group)
+    FROM: daniellewright
+    MSG:  Thanks Rachel. I'll factor that in. Let's check in next week on progress.
+    RXN:  Γ¥ñ∩╕Å alexkumar
+
+[49] N/A (Group)
+    FROM: michaelchen
+    MSG:  Amanda, can you prepare a counter-proposal with our preferred language on the IP and non-compete clauses? @Sofia, set up a call with their legal team for Thursd
+    RXN:  ≡ƒæì sofiarodriguez
+
+[50] N/A (Group)
+    FROM: michaelchen
+    MSG:  Smart. Let's lead with our preferred position and have that as a fallback. Good work team.
+    RXN:  Γ¥ñ∩╕Å amandafoster
+
+[51] N/A (Group)
+    FROM: racheltorres
+    MSG:  Agreed. Kevin, I'll share the department-level budget files with you today so you have the granular data. Also ΓÇö I want to flag that our cash runway is still he
+    RXN:  ≡ƒæì sarahmitchell
+
+[52] N/A (Group)
+    FROM: kevinzhang
+    MSG:  Understood. I'll focus the analysis on efficiency gains, not just cuts ΓÇö so we're not sacrificing growth.
+    RXN:  ≡ƒæì racheltorres
+
+[53] N/A (Group)
+    FROM: ninacosta
+    MSG:  Looks great. Approved. Γ£à
+    RXN:  ≡ƒÆ» alexkumar, ≡ƒÆ» priyasharma
+
+[54] N/A (Group)
+    FROM: daniellewright
+    MSG:  I can handle the employee recognition segment. I have the Q1 award nominations finalized. @Lisa, can you coordinate with facilities on the venue setup ΓÇö chairs 
+    RXN:  ≡ƒæÅ chrisevans
+
+[55] N/A (Group)
+    FROM: daniellewright
+    MSG:  This is shaping up nicely. I'm excited!
+    RXN:  Γ¥ñ∩╕Å sarahmitchell, Γ¥ñ∩╕Å chrisevans
+
+[56] N/A (Group)
+    FROM: amandafoster
+    MSG:  Everyone, the SOC 2 auditors confirmed their on-site visit for April 15. We have 3 weeks to close all open items. This is not negotiable ΓÇö a failed audit would 
+    RXN:  ≡ƒæÇ daniellewright, ≡ƒæÇ davidpark, ≡ƒæÇ kevinzhang
+
+[57] N/A (Group)
+    FROM: davidpark
+    MSG:  Access control remediation is done ΓÇö James implemented the segregation of duties changes in November. The DR test is scheduled for next week. I'll make sure it'
+    RXN:  ≡ƒæì daniellewright, ≡ƒæì amandafoster, ≡ƒæì kevinzhang
+
+[58] N/A (Group)
+    FROM: amandafoster
+    MSG:  @Kevin, the financial controls documentation ΓÇö specifically the vendor payment authorization gap we discussed. Is that closed?
+    RXN:  ≡ƒæÇ kevinzhang, ≡ƒæÇ davidpark, ≡ƒæÇ daniellewright
+
+[59] N/A (Group)
+    FROM: daniellewright
+    MSG:  Got it. I'll coordinate with David on the access provisioning update.
+    RXN:  ≡ƒÖÅ davidpark, ≡ƒÖÅ amandafoster
+
+[60] N/A (Group)
+    FROM: laurakim
+    MSG:  I like that. Sofia, would that work in your sales conversations?
+    RXN:  ≡ƒÖÅ sofiarodriguez, ≡ƒÖÅ chrisevans
+
+[61] N/A (Group)
+    FROM: laurakim
+    MSG:  Perfect. Great collaboration everyone ≡ƒÄ¿
+    RXN:  ≡ƒæÅ chrisevans, ≡ƒæÅ sofiarodriguez
+
+[62] N/A (Group)
+    FROM: lisanakamura
+    MSG:  Thanks James. @Derek, please send me a list of any impacted SLA responses so I can notify the customer success team.
+    RXN:  ≡ƒÖÅ derekjohnson, ≡ƒÖÅ jameswilson
+
+[63] N/A (Group)
+    FROM: alexkumar
+    MSG:  Agreed. Priya, let me know if you need help with the calendar integration piece. James might have some useful infrastructure code from the scheduling service.
+    RXN:  ≡ƒæì davidpark, ≡ƒæì michaelchen
+
+[64] N/A (Group)
+    FROM: priyasharma
+    MSG:  Thanks, I'll reach out. I think I actually have what I need from the existing API.
+    RXN:  ≡ƒÖÅ michaelchen
+
+[65] N/A (Group)
+    FROM: chrisevans
+    MSG:  Noted. Safe teeth! ≡ƒÿä
+    RXN:  ≡ƒÿè mariasantos
+
+[66] N/A (Group)
+    FROM: laurakim
+    MSG:  ≡ƒÿé Thanks. Have a good week everyone!
+    RXN:  ≡ƒÿé mariasantos
+
+[67] N/A (Group)
+    FROM: michaelchen
+    MSG:  I had no idea this was escalating. Maria, why wasn't I looped in earlier?
+    RXN:  ≡ƒæÇ alexkumar
+
+[68] N/A (Group)
+    FROM: michaelchen
+    MSG:  Thanks everyone. Let's regroup tomorrow at 4 PM with the action plan. I'll schedule the meeting.
+    RXN:  Γ¥ñ∩╕Å alexkumar
+
+[69] N/A (Group)
+    FROM: amandafoster
+    MSG:  @James, I need the complete access log from the exposure window. We need to determine if anyone actually accessed the data, or if it was just theoretically expo
+    RXN:  ≡ƒæÇ daniellewright, ≡ƒæÇ jameswilson, ≡ƒæÇ davidpark
+
+[70] N/A (Group)
+    FROM: davidpark
+    MSG:  What preventive measures should we implement immediately? I don't want a repeat.
+    RXN:  ≡ƒæì amandafoster
+
+[71] N/A (Group)
+    FROM: amandafoster
+    MSG:  Good. Everyone please treat this as confidential until we've completed the assessment and made notification decisions. No external communication until I clear i
+    RXN:  ≡ƒæì daniellewright, ≡ƒæì davidpark
+
+[72] N/A (Group)
+    FROM: ninacosta
+    MSG:  Love it. I'll draft the registration form and share it by Friday. ≡ƒô¥
+    RXN:  Γ¥ñ∩╕Å priyasharma, Γ¥ñ∩╕Å alexkumar
+
+[73] N/A (Group)
+    FROM: lisanakamura
+    MSG:  Conference room is booked. Catering ordered for 20. ≡ƒìò≡ƒìö
+    RXN:  ≡ƒÿè priyasharma, ≡ƒÿè ninacosta, ≡ƒÿè alexkumar
+
+[74] N/A (Group)
+    FROM: alexkumar
+    MSG:  You're the best Lisa! This is going to be fun. ≡ƒÜÇ
+    RXN:  ≡ƒæÅ priyasharma, ≡ƒæÅ lisanakamura
+
+[75] N/A (Group)
+    FROM: lisanakamura
+    MSG:  All set on my end. Welcome kit, badge, parking pass, and desk setup will be ready by April 4.
+    RXN:  ≡ƒæì daniellewright, ≡ƒæì alexkumar
+
+[76] N/A (Group)
+    FROM: kevinzhang
+    MSG:  I'll have it ready by Wednesday. Should I model the 3-year TCO with a 15% discount assumption?
+    RXN:  Γ£à davidpark
+
+[77] N/A (Group)
+    FROM: davidpark
+    MSG:  Will do.
+    RXN:  ≡ƒæì michaelchen, ≡ƒæì laurakim
+
+[78] N/A (Group)
+    FROM: racheltorres
+    MSG:  Done ΓÇö I already sent mine. ≡ƒÿä
+    RXN:  Γ£à laurakim, Γ£à michaelchen, Γ£à davidpark
+
+[79] N/A (Group)
+    FROM: priyasharma
+    MSG:  Also ΓÇö shouldn't we do something about the postmortem action items from Sprint 12? Those have been open for 4 sprints now. ≡ƒñª
+    RXN:  Γ£à jameswilson, Γ£à ninacosta
+
+[80] N/A (Group)
+    FROM: alexkumar
+    MSG:  Good call. I'll review them tomorrow and either close or reassign. If they've been open this long, some are probably no longer relevant.
+    RXN:  Γ¥ñ∩╕Å priyasharma
+
+[81] N/A (Group)
+    FROM: ninacosta
+    MSG:  Harsh but fair ≡ƒÿé
+    RXN:  ≡ƒÿè priyasharma
+
+[82] N/A (Group)
+    FROM: ninacosta
+    MSG:  Jealous of all of you. I'll be debugging in my pajamas ≡ƒÿé
+    RXN:  ≡ƒÿè priyasharma
+
+[83] N/A (Meeting)
+    FROM: ninacosta
+    MSG:  Quick flag ΓÇö the multi-tenant regression suite has a dependency on a test environment that Lisa's team is setting up. If the environment isn't ready by mid-spri
+    RXN:  ≡ƒæÇ davidpark, ≡ƒæÇ alexkumar
+
+[84] N/A (Meeting)
+    FROM: alexkumar
+    MSG:  Good callout. @James, can you check with Lisa on the test environment timeline?
+    RXN:  Γ¥ñ∩╕Å jameswilson, Γ¥ñ∩╕Å davidpark
+
+[85] N/A (Meeting)
+    FROM: alexkumar
+    MSG:  Will do. I'll update Jira and send the summary.
+    RXN:  ≡ƒæì ninacosta, ≡ƒæì priyasharma
+
+[86] N/A (Meeting)
+    FROM: sarahmitchell
+    MSG:  34% win rate is below our 40% target. @Michael, what's driving the conversion gap?
+    RXN:  ≡ƒæÇ michaelchen, ≡ƒæÇ sofiarodriguez
+
+[87] N/A (Meeting)
+    FROM: sofiarodriguez
+    MSG:  Great idea. I'll draft the win-back approach and target re-engaging within 2 weeks of v4.2 launch.
+    RXN:  ≡ƒæì racheltorres
+
+[88] N/A (Meeting)
+    FROM: michaelchen
+    MSG:  Rachel, the pricing concern ΓÇö should we consider a mid-market pricing tier? We're priced for enterprise but trying to compete in mid-market without a price poin
+    RXN:  ≡ƒæÇ racheltorres
+
+[89] N/A (Meeting)
+    FROM: sarahmitchell
+    MSG:  @David, your product slide has too much detail. The board doesn't need to see the Jira breakdown. Focus on: what shipped, what's coming, and the competitive moa
+    RXN:  ≡ƒÆ» amandafoster
+
+[90] N/A (Meeting)
+    FROM: davidpark
+    MSG:  Fair feedback. I'll strip it down to 3 key slides: shipped features, AI roadmap, and market differentiation.
+    RXN:  ≡ƒöÑ racheltorres, ≡ƒöÑ sarahmitchell
+
+[91] N/A (Meeting)
+    FROM: sarahmitchell
+    MSG:  @Rachel, the revenue bridge slide is strong but I want to add a 'path to profitability' appendix. Can you prepare that?
+    RXN:  ≡ƒæÅ racheltorres, ≡ƒæÅ amandafoster, ≡ƒæÅ davidpark
+
+[92] N/A (Meeting)
+    FROM: amandafoster
+    MSG:  FYI ΓÇö the board materials need to be distributed 48 hours before the meeting per the bylaws. That means everything finalized by Tuesday 6 PM.
+    RXN:  ≡ƒæì racheltorres
+
+[93] N/A (Meeting)
+    FROM: sarahmitchell
+    MSG:  Thanks for flagging that Amanda. So our hard deadline is Tuesday 6 PM, not Thursday. Everyone ΓÇö adjusted timeline. @David and @Rachel, I need final slides by Tu
+    RXN:  Γ¥ñ∩╕Å racheltorres, Γ¥ñ∩╕Å amandafoster
+
+[94] N/A (Meeting)
+    FROM: amandafoster
+    MSG:  I'll have the compilation and distribution done by Tuesday 3 PM. I'll also include the standard resolutions and consent agenda.
+    RXN:  Γ£à racheltorres
+
+[95] N/A (Meeting)
+    FROM: sarahmitchell
+    MSG:  Great team. Let's make this a strong board meeting. ≡ƒÆ¬
+    RXN:  ≡ƒæÅ davidpark, ≡ƒæÅ racheltorres
+
+[96] N/A (Meeting)
+    FROM: davidpark
+    MSG:  Good. Let's track these in Jira and review completion at the Sprint 15 retro. Thanks everyone.
+    RXN:  ≡ƒÖÅ alexkumar, ≡ƒÖÅ derekjohnson, ≡ƒÖÅ jameswilson
+
+[97] N/A (Meeting)
+    FROM: sarahmitchell
+    MSG:  This was a productive session. Let's execute with urgency. Q2 is when we prove the strategy.
+    RXN:  ≡ƒæÅ davidpark
+
+[98] N/A (Meeting)
+    FROM: davidpark
+    MSG:  Fair challenge. If I had to differentiate, Nina's QA lead role has been solid but she hasn't stretched beyond core responsibilities. She could be 'Meets with de
+    RXN:  ≡ƒÆ» michaelchen, ≡ƒÆ» sarahmitchell
+
+[99] N/A (Meeting)
+    FROM: davidpark
+    MSG:  Will do by end of week.
+    RXN:  ≡ƒæì daniellewright
+
+[100] N/A (Meeting)
+    FROM: daniellewright
+    MSG:  Thanks everyone. Please finalize all ratings and feedback in the system by Friday. I'll compile the final calibration report for Sarah's review on Monday.
+    RXN:  Γ¥ñ∩╕Å laurakim
+
+[101] N/A (Meeting)
+    FROM: michaelchen
+    MSG:  Also ΓÇö I want a systemic fix to prevent this from happening again. @Derek, can you propose an early warning system for at-risk customers? Look at ticket volume,
+    RXN:  ≡ƒæÇ mariasantos
+
+[102] N/A (Meeting)
+    FROM: michaelchen
+    MSG:  Excellent. Let's make sure we don't lose another customer to neglect.
+    RXN:  ≡ƒæÅ mariasantos, ≡ƒæÅ derekjohnson
+
+[103] N/A (Meeting)
+    FROM: sarahmitchell
+    MSG:  Approved. The AV upgrade and recruiting contingency ΓÇö any concerns on either?
+    RXN:  Γ£à racheltorres, Γ£à kevinzhang
+
+[104] N/A (Meeting)
+    FROM: laurakim
+    MSG:  Agreed. The video montage was a huge hit ΓÇö kudos to Chris. I got several messages from people saying it was the best all-hands we've done.
+    RXN:  Γ¥ñ∩╕Å daniellewright
+
+[105] N/A (Meeting)
+    FROM: daniellewright
+    MSG:  The employee recognition segment was well-received too. A few people I spoke with mentioned they appreciated being recognized in front of the whole company.
+    RXN:  Γ¥ñ∩╕Å laurakim
+
+[106] N/A (Meeting)
+    FROM: sarahmitchell
+    MSG:  Thanks team. The all-hands sets the tone for the quarter. This one hit the right notes. ≡ƒæÅ
+    RXN:  ≡ƒÖÅ laurakim, ≡ƒÖÅ daniellewright, ≡ƒÖÅ davidpark
+
+[107] N/A (Meeting)
+    FROM: davidpark
+    MSG:  Thanks for flagging. I'll review the comments and discuss with Alex before bringing it to the team.
+    RXN:  Γ¥ñ∩╕Å sarahmitchell, Γ¥ñ∩╕Å laurakim
+
+[108] N/A (OneOnOne)
+    FROM: alexkumar
+    MSG:  That's a bigger issue than expected. Can you quantify the data loss risk if we skip the validation step temporarily?
+    RXN:  ≡ƒæÇ priyasharma
+
+[109] N/A (OneOnOne)
+    FROM: alexkumar
+    MSG:  OK. When James is done, loop me in so I can reprioritize your backlog if needed.
+    RXN:  Γ£à priyasharma
+
+[110] N/A (OneOnOne)
+    FROM: priyasharma
+    MSG:  Will do.
+    RXN:  ≡ƒÖÅ alexkumar
+
+[111] N/A (OneOnOne)
+    FROM: sofiarodriguez
+    MSG:  Thank you! Also, quick question ΓÇö do we need a separate DPA for this deal or does our standard one cover it?
+    RXN:  ≡ƒæÅ amandafoster
+
+[112] N/A (OneOnOne)
+    FROM: sofiarodriguez
+    MSG:  Will check and confirm. Thanks Amanda!
+    RXN:  ≡ƒæÅ amandafoster
+
+[113] N/A (OneOnOne)
+    FROM: laurakim
+    MSG:  Perfect. Also ΓÇö can you check if the blog post draft is ready for my review? I want to approve it before the launch.
+    RXN:  ≡ƒæì chrisevans
+
+[114] N/A (OneOnOne)
+    FROM: chrisevans
+    MSG:  Almost there. The writer is doing a final pass. I'll have it in your inbox by end of day.
+    RXN:  ≡ƒæì laurakim
+
+[115] N/A (Group)
+    FROM: derekjohnson
+    MSG:  URGENT: Zenith Corp is reporting complete system unavailability for the past 45 minutes. They're our third-largest customer and their VP of Engineering just cal
+    RXN:  ≡ƒæÇ mariasantos
+
+[116] N/A (Group)
+    FROM: derekjohnson
+    MSG:  @Alex, can your team investigate the root cause immediately? We need a preliminary RCA within the hour.
+    RXN:  ≡ƒæì sofiarodriguez
+
+[117] N/A (Group)
+    FROM: alexkumar
+    MSG:  James is applying the hotfix now. ETA 15 minutes for connection pool recovery, then another 10 for full service restoration.
+    RXN:  ≡ƒæì davidpark
+
+[118] N/A (Group)
+    FROM: sofiarodriguez
+    MSG:  I got Zenith's VP on the phone. He's willing to hold off on escalation if we can: (1) provide RCA by tomorrow, (2) commit to a permanent fix timeline, and (3) o
+    RXN:  ≡ƒæÇ alexkumar
+
+[119] N/A (Group)
+    FROM: davidpark
+    MSG:  Agreed. I want the permanent fix timeline in our next leadership sync. This is now a top-3 priority.
+    RXN:  ≡ƒÆ» alexkumar
+
+[120] N/A (OneOnOne)
+    FROM: sarahmitchell
+    MSG:  You have my go-ahead. Keep me updated on progress but use your judgment on the approach.
+    RXN:  ≡ƒöÑ daniellewright
+
+[121] N/A (OneOnOne)
+    FROM: sarahmitchell
+    MSG:  Got it. Did you include the grandfathering clause for people who already have trips booked?
+    RXN:  Γ£à daniellewright
+
+[122] N/A (OneOnOne)
+    FROM: daniellewright
+    MSG:  Will do. Thanks Sarah.
+    RXN:  ≡ƒÖÅ sarahmitchell
+
+[123] N/A (Group)
+    FROM: racheltorres
+    MSG:  I can do Tuesday before noon. I have the audit committee call at 1 PM.
+    RXN:  ≡ƒæì michaelchen
+
+[124] N/A (Group)
+    FROM: sarahmitchell
+    MSG:  Thanks everyone. Let's make this a good kickoff. ≡ƒÜÇ
+    RXN:  Γ¥ñ∩╕Å laurakim, Γ¥ñ∩╕Å michaelchen
+
+[125] N/A (Meeting)
+    FROM: jameswilson
+    MSG:  At 3:12 AM Pacific, our IDS flagged anomalous traffic from an IP range associated with known threat actors. The traffic was targeting our staging environment's 
+    RXN:  ≡ƒæì amandafoster, ≡ƒæì alexkumar
+
+[126] N/A (Meeting)
+    FROM: davidpark
+    MSG:  I'll brief Sarah today and schedule the audit committee update. Good call, Amanda.
+    RXN:  Γ¥ñ∩╕Å priyasharma, Γ¥ñ∩╕Å jameswilson, Γ¥ñ∩╕Å amandafoster
+
+[127] N/A (Meeting)
+    FROM: davidpark
+    MSG:  That covers it. Thanks everyone. Let's close the loop on all items by next Monday.
+    RXN:  Γ¥ñ∩╕Å jameswilson
+
+[128] N/A (OneOnOne)
+    FROM: kevinzhang
+    MSG:  Revenue recognition is done. Still working on the deferred revenue adjustments ΓÇö should be complete by Thursday.
+    RXN:  ≡ƒÖÅ racheltorres
+
+[129] N/A (OneOnOne)
+    FROM: racheltorres
+    MSG:  Follow up with them today. Tell them it's for the external audit ΓÇö that usually gets fast responses.
+    RXN:  ≡ƒæì kevinzhang
+
+[130] N/A (OneOnOne)
+    FROM: kevinzhang
+    MSG:  Will do. Also ΓÇö I noticed a $47K variance in the SaaS subscription accruals. It looks like a timing difference but I want to flag it before the auditors find it
+    RXN:  ≡ƒæì racheltorres
+
+[131] N/A (OneOnOne)
+    FROM: racheltorres
+    MSG:  Good catch. Prepare a variance analysis memo. If it's truly a timing difference, we document it; if it's a real error, we need to correct before close.
+    RXN:  Γ¥ñ∩╕Å kevinzhang
+
+[132] N/A (Group)
+    FROM: sarahmitchell
+    MSG:  @Rachel ΓÇö financial projections still on track?
+    RXN:  ≡ƒæì laurakim, ≡ƒæì amandafoster, ≡ƒæì racheltorres
+
+[133] N/A (Group)
+    FROM: amandafoster
+    MSG:  No blockers. ToS and privacy policy updates are live. One reminder: the GDPR data processing addendum needs to be available on the product page before EU custom
+    RXN:  ≡ƒæÇ racheltorres
+
+[134] N/A (Group)
+    FROM: davidpark
+    MSG:  Will get it done by Friday.
+    RXN:  ≡ƒæì sarahmitchell, ≡ƒæì amandafoster
+
+[135] N/A (Group)
+    FROM: alexkumar
+    MSG:  Agreed. But who's going to own it? We don't have mobile engineers.
+    RXN:  ≡ƒÆ» michaelchen, ≡ƒÆ» priyasharma
+
+[136] N/A (Group)
+    FROM: michaelchen
+    MSG:  From a sales perspective, we're losing deals because of the mobile gap. Three prospects in Q1 went with competitors specifically because of this.
+    RXN:  ≡ƒæÇ priyasharma
+
+[137] N/A (Group)
+    FROM: alexkumar
+    MSG:  Got it. I'll set up a shared channel for the eval.
+    RXN:  ≡ƒæì laurakim
+
+[138] N/A (Meeting)
+    FROM: michaelchen
+    MSG:  The Vertex Industries deal alone is worth $800K ARR. Great work Sofia! ≡ƒÖî
+    RXN:  Γ¥ñ∩╕Å kevinzhang, Γ¥ñ∩╕Å sofiarodriguez
+
+[139] N/A (Meeting)
+    FROM: alexkumar
+    MSG:  Can we get them access to the dev environment before Day 1? Last batch had to wait 3 days for accounts.
+    RXN:  ≡ƒæì sofiarodriguez, ≡ƒæì michaelchen
+
+[140] N/A (Meeting)
+    FROM: daniellewright
+    MSG:  Good point. I'll coordinate with IT to have everything set up by Friday.
+    RXN:  ≡ƒæÅ sarahmitchell
+
+[141] N/A (Meeting)
+    FROM: sarahmitchell
+    MSG:  Great discussion everyone. We're in a strong position heading into Q2. Let's keep the momentum going!
+    RXN:  Γ¥ñ∩╕Å priyasharma
+
+[142] N/A (Meeting)
+    FROM: laurakim
+    MSG:  Thanks everyone! ≡ƒæÅ
+    RXN:  ≡ƒæÅ alexkumar, ≡ƒæÅ priyasharma, ≡ƒæÅ ecosyncbot
+
+[143] N/A (OneOnOne)
+    FROM: michaelchen
+    MSG:  Sofia, I need an updated forecast for Q2 by tomorrow morning. The board package goes to Sarah at noon.
+    RXN:  ≡ƒæì sofiarodriguez
+
+[144] N/A (OneOnOne)
+    FROM: sofiarodriguez
+    MSG:  The Pinnacle Systems RFP response is due Friday. I've drafted it but need your review on the pricing section. Can you take a look today?
+    RXN:  ≡ƒæì michaelchen
+
+[145] N/A (OneOnOne)
+    FROM: sofiarodriguez
+    MSG:  Sent. One more thing ΓÇö Vertex wants to renegotiate their payment terms from net-30 to net-60. Thoughts?
+    RXN:  ≡ƒæì michaelchen
+
+[146] N/A (Group)
+    FROM: alexkumar
+    MSG:  Happy Friday team! ≡ƒìò Who's up for lunch at the new Thai place?
+    RXN:  ≡ƒÿè chrisevans
+
+[147] N/A (Meeting)
+    FROM: sarahmitchell
+    MSG:  That's excellent. What drove the win rate improvement?
+    RXN:  Γ¥ñ∩╕Å sofiarodriguez, Γ¥ñ∩╕Å michaelchen
+
+[148] N/A (OneOnOne)
+    FROM: mariasantos
+    MSG:  Thanks. And circle back with me once you hear from them so I can update the leadership report.
+    RXN:  ≡ƒÖÅ derekjohnson
+
+[149] N/A (OneOnOne)
+    FROM: derekjohnson
+    MSG:  Will do.
+    RXN:  ≡ƒÖÅ mariasantos
+
+[150] N/A (Group)
+    FROM: daniellewright
+    MSG:  Total budget is $450K. I'll send you the breakdown.
+    RXN:  Γ£à laurakim
+
+[151] N/A (Group)
+    FROM: daniellewright
+    MSG:  Good point. Yes, we should. @Laura, can you draft customer communication? And @Amanda, when will clause 12 be resolved?
+    RXN:  ≡ƒÖÅ alexkumar
+
+[152] N/A (Group)
+    FROM: alexkumar
+    MSG:  Thanks for organizing this, Danielle. ≡ƒæÅ
+    RXN:  like kevinzhang, heart laurakim
+
+[153] N/A (OneOnOne)
+    FROM: alexkumar
+    MSG:  James ΓÇö what's the SSH key for the staging jumpbox? I need to debug something.
+    RXN:  ≡ƒæì jameswilson
+
+[154] N/A (OneOnOne)
+    FROM: alexkumar
+    MSG:  Found it. Thanks!
+    RXN:  ≡ƒæÅ jameswilson
+
+[155] N/A (OneOnOne)
+    FROM: daniellewright
+    MSG:  Let me check... it's booked at 2, but free from 2:30 onward. Want me to book it for 2:30-3:30?
+    RXN:  Γ£à laurakim
+
+[156] N/A (OneOnOne)
+    FROM: laurakim
+    MSG:  Thanks! ≡ƒÖÅ
+    RXN:  Γ¥ñ∩╕Å daniellewright
+
+[157] N/A (Group)
+    FROM: priyasharma
+    MSG:  I'm here. Pulling up the dashboards now.
+    RXN:  ≡ƒÖÅ jameswilson, ≡ƒÖÅ alexkumar
+
+[158] N/A (OneOnOne)
+    FROM: laurakim
+    MSG:  Chris, I just read the Analytics Pro launch blog post draft. Nice work but I have several rounds of feedback.
+    RXN:  ≡ƒÖÅ chrisevans
+
+[159] N/A (Meeting)
+    FROM: alexkumar
+    MSG:  Both valid. Let's turn these into action items. For the scope change issue ΓÇö @Priya, can you document the impact and I'll take it to the next product-eng sync?
+    RXN:  ≡ƒÖÅ priyasharma
+
+[160] N/A (Meeting)
+    FROM: alexkumar
+    MSG:  I love that idea. Let me propose it as a team agreement. I'll bring it to the next standup for a vote.
+    RXN:  Γ¥ñ∩╕Å jameswilson, Γ¥ñ∩╕Å ninacosta
+
+[161] N/A (OneOnOne)
+    FROM: davidpark
+    MSG:  Thanks. One more ΓÇö do we need to update our privacy policy before launching in the EU?
+    RXN:  Γ¥ñ∩╕Å amandafoster
+
+[162] N/A (Group)
+    FROM: chrisevans
+    MSG:  Looks great! The hero section is much better than the last version.
+    RXN:  like laurakim
+
+[163] N/A (Meeting)
+    FROM: racheltorres
+    MSG:  @Michael, sales is asking for $800K. That includes 2 new AEs at $350K total and $450K for the new CRM implementation.
+    RXN:  ≡ƒæì kevinzhang, ≡ƒæì michaelchen
+
+[164] N/A (Meeting)
+    FROM: sarahmitchell
+    MSG:  That's fine ΓÇö just don't sign anything until Q3 budget is confirmed.
+    RXN:  Γ£à davidpark, Γ£à kevinzhang
+
+[165] N/A (Meeting)
+    FROM: kevinzhang
+    MSG:  Will do.
+    RXN:  Γ£à michaelchen
+
+[166] N/A (OneOnOne)
+    FROM: alexkumar
+    MSG:  Yeah, there's a filter rule in the Outlook settings. I'll send you the steps.
+    RXN:  ≡ƒæì jameswilson
+
+[167] N/A (Group)
+    FROM: alexkumar
+    MSG:  Team ΓÇö these cleanups must be completed before 3/31. I've assigned owners in the tracking sheet. Check your items and confirm you're on track.
+    RXN:  ≡ƒÆ» priyasharma
+
+[168] N/A (Group)
+    FROM: priyasharma
+    MSG:  Checked ΓÇö my 3 items are on track. Should be done by Thursday.
+    RXN:  Γ£à alexkumar, Γ£à ninacosta
+
+[169] N/A (Group)
+    FROM: jameswilson
+    MSG:  Already sent an email this morning. Waiting for their response.
+    RXN:  ≡ƒæì alexkumar
+
+Total messages with reactions: 169

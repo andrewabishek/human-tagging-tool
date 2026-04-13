@@ -1,0 +1,4531 @@
+================================================================================
+SECTION 1: FOLLOWED SIGNALS
+================================================================================
+Messages where someone 'Followed' the message.
+Followed = user wants updates on this thread. Should be on asks, escalations, action items.
+
+[F1] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  What gaps specifically? I want to make sure we address them before the board presentation on the 28th.
+  FOLLOWED BY: davidpark
+
+[F2] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  That would be perfect. Can you have it ready by Thursday? I want to review it before the pre-board sync on Friday.
+  FOLLOWED BY: davidpark
+
+[F3] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Rachel, I need your sign-off on the Q2 hiring plan. David's team needs 4 additional engineers and Michael wants 2 more A...
+  FOLLOWED BY: racheltorres
+
+[F4] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  How many customers affected? Is this the US or EU cluster?
+  FOLLOWED BY: alexkumar
+
+[F5] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Roll back the deployment immediately. Don't wait for root cause.
+  FOLLOWED BY: alexkumar
+
+[F6] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  What's our confidence that the rollback fully resolves this? Any chance it's infrastructure-related too?
+  FOLLOWED BY: alexkumar
+
+[F7] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Good catch. I ran the basic load test but not the high-concurrency scenario. Can you include that in your review? Run th...
+  FOLLOWED BY: priyasharma
+
+[F8] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  OK, I need you to do three things ASAP: 1) Set up a call with David's team to assess the EU data residency feasibility, ...
+  FOLLOWED BY: sofiarodriguez
+
+[F9] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  What's the impact on Derek? Is he being let go?
+  FOLLOWED BY: daniellewright
+
+[F10] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  That vendor payment gap is a risk. The auditors specifically flagged authorization controls last year. Can you get that ...
+  FOLLOWED BY: kevinzhang
+
+[F11] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Please make sure that Q1 access review is completed within the next two weeks. If they find that incomplete, it undermin...
+  FOLLOWED BY: kevinzhang
+
+[F12] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Derek, Pinnacle Logistics just escalated to me directly. They say they've had an open P1 ticket for 4 days with no resol...
+  FOLLOWED BY: derekjohnson
+
+[F13] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Pinnacle is our third-largest customer. If we don't resolve this soon, the VP of Ops there is going to escalate to Micha...
+  FOLLOWED BY: derekjohnson
+
+[F14] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Unassigned for 4 days? That's unacceptable. Is there a workaround we can offer Pinnacle in the meantime?
+  FOLLOWED BY: derekjohnson
+
+[F15] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  James, the CDN migration deploy is blocked. CI is failing on the integration tests. Can you look at it?
+  FOLLOWED BY: jameswilson
+
+[F16] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Is this something you can fix today? We need this migration done by Friday or we're going to miss the Q1 infra target.
+  FOLLOWED BY: jameswilson
+
+[F17] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Kevin, I need to submit the PO for the new conference room equipment. Can you approve the $28K spend?
+  FOLLOWED BY: kevinzhang
+
+[F18] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  The AI features are what Sarah wants to showcase to the board. I'd lean toward buying Datadog and keeping the engineerin...
+  FOLLOWED BY: davidpark
+
+[F19] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  That's a big gap between committed and pipeline. What's the risk on Contoso?
+  FOLLOWED BY: sofiarodriguez
+
+[F20] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Contoso is make-or-break for Q1. @Sofia, I need you to send me a daily status update on that deal until it's resolved. I...
+  FOLLOWED BY: sofiarodriguez
+
+[F21] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Good. @David and @Alex ΓÇö please do a launch readiness review on Thursday. I want sign-off from both of you before we go.
+  FOLLOWED BY: davidpark
+
+[F22] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Rachel, can you add a slide on the cost optimization initiatives? I want to show the board we're being responsible with ...
+  FOLLOWED BY: racheltorres
+
+[F23] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  David, I also need you to prepare a 3-minute demo of the AI-assisted resource allocation feature. Even if it's a prototy...
+  FOLLOWED BY: davidpark
+
+[F24] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  PR #847 is deployed in production as of yesterday. But wait ΓÇö the pagination fix changed the connection handling. Let me...
+  FOLLOWED BY: alexkumar
+
+[F25] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  What's customer impact right now? How many users affected?
+  FOLLOWED BY: alexkumar
+
+[F26] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Monitoring shows ~8,000 active users getting errors. The status page is still green ΓÇö should I update it?
+  FOLLOWED BY: alexkumar
+
+[F27] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Yes, update the status page immediately. Mark it as partial service degradation.
+  FOLLOWED BY: jameswilson, alexkumar
+
+[F28] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Found it. The new pagination code opens a new connection for each cursor-based query but doesn't release it when the cli...
+  FOLLOWED BY: alexkumar
+
+[F29] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Fix is ready ΓÇö adding a connection.close() in the finally block of the cursor handler. PR #852. Alex, can you fast-track...
+  FOLLOWED BY: alexkumar
+
+[F30] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Good work team. Total incident duration was about 25 minutes. Alex, please schedule a postmortem for tomorrow and send t...
+  FOLLOWED BY: alexkumar
+
+[F31] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Budget is approved for 4 engineering headcount. @Danielle, please start the req process. I'd like offers extended by end...
+  FOLLOWED BY: daniellewright
+
+[F32] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Amanda, can you prepare a counter-proposal with our preferred language on the IP and non-compete clauses? @Sofia, set up...
+  FOLLOWED BY: amandafoster
+
+[F33] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  That's concerning. What's driving the opex overage?
+  FOLLOWED BY: kevinzhang
+
+[F34] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Alex, Michael ΓÇö Pinnacle Logistics has an open P1 for 5 days. They're our 3rd largest customer ($1.2M ARR). The issue is...
+  FOLLOWED BY: alexkumar
+
+[F35] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  5 days? That shouldn't have sat that long. Let me check the bug. Derek, what's the engineering ticket number?
+  FOLLOWED BY: derekjohnson
+
+[F36] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Tomorrow morning isn't fast enough. Their VP of Ops is already cc'ing our CEO on emails. If we don't show progress by en...
+  FOLLOWED BY: alexkumar, mariasantos
+
+[F37] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Everyone, the SOC 2 auditors confirmed their on-site visit for April 15. We have 3 weeks to close all open items. This i...
+  FOLLOWED BY: kevinzhang
+
+[F38] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @David, I need engineering to complete the access control remediation and the disaster recovery test. What's the status?
+  FOLLOWED BY: davidpark, kevinzhang
+
+[F39] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @Kevin, the financial controls documentation ΓÇö specifically the vendor payment authorization gap we discussed. Is that c...
+  FOLLOWED BY: kevinzhang
+
+[F40] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  OK, everyone please submit your final evidence packages to me by April 8. That gives me a week to compile and review bef...
+  FOLLOWED BY: kevinzhang
+
+[F41] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @Derek, can you make sure your team switches to the backup workflow for any critical tickets? And let me know if any cus...
+  FOLLOWED BY: derekjohnson
+
+[F42] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Team, let's define the MVP for the AI-assisted resource allocation feature. This is the top item on our Q2 roadmap and a...
+  FOLLOWED BY: michaelchen, alexkumar
+
+[F43] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Build for batch first ΓÇö 15-minute sync is fine for MVP. We can optimize to real-time in v2. @Priya, can you have the pro...
+  FOLLOWED BY: priyasharma
+
+[F44] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  OK. We need to assess whether this triggers notification requirements. Under GDPR, we have 72 hours from discovery. @Dav...
+  FOLLOWED BY: davidpark, daniellewright
+
+[F45] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @Danielle, we may need to notify affected customers. Can you prepare a draft notification email? Use the incident respon...
+  FOLLOWED BY: daniellewright
+
+[F46] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  I'll draft it immediately. Do we need to notify the DPA as well?
+  FOLLOWED BY: amandafoster
+
+[F47] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  What preventive measures should we implement immediately? I don't want a repeat.
+  FOLLOWED BY: amandafoster
+
+[F48] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Team, I want to finalize Q2 OKRs by end of this week. Each of you should submit your department's top 3 objectives with ...
+  FOLLOWED BY: laurakim
+
+[F49] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  OK let's keep it at $8M with the AE hiring as a flagged dependency. Everyone ΓÇö please send me your finalized OKR docs by...
+  FOLLOWED BY: laurakim
+
+[F50] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Also ΓÇö shouldn't we do something about the postmortem action items from Sprint 12? Those have been open for 4 sprints no...
+  FOLLOWED BY: jameswilson
+
+[F51] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Good callout. @James, can you check with Lisa on the test environment timeline?
+  FOLLOWED BY: jameswilson
+
+[F52] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  34% win rate is below our 40% target. @Michael, what's driving the conversion gap?
+  FOLLOWED BY: michaelchen
+
+[F53] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @Sofia, can you put together a competitive win-back plan for those 6 lost deals? If v4.2 addresses their concerns, we sh...
+  FOLLOWED BY: sofiarodriguez
+
+[F54] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @Rachel, the revenue bridge slide is strong but I want to add a 'path to profitability' appendix. Can you prepare that?
+  FOLLOWED BY: racheltorres
+
+[F55] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  FYI ΓÇö the board materials need to be distributed 48 hours before the meeting per the bylaws. That means everything final...
+  FOLLOWED BY: racheltorres
+
+[F56] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Action items ΓÇö I want these completed by end of Sprint 15: |  | 1. @James ΓÇö implement pre-deploy connection pool stress ...
+  FOLLOWED BY: jameswilson, alexkumar
+
+[F57] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Great instinct Laura. @David, for the AI platform vision ΓÇö I need a detailed technical roadmap by end of month. Break it...
+  FOLLOWED BY: davidpark
+
+[F58] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @Michael, I want you to develop an enterprise-only GTM strategy that leverages the AI features as the lead differentiato...
+  FOLLOWED BY: michaelchen
+
+[F59] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Approved. @Kevin, please process the Datadog PO. Negotiate the 3-year term for the best discount possible.
+  FOLLOWED BY: kevinzhang
+
+[F60] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Perfect. Also ΓÇö any update on the caching layer refactor? I think that was due last sprint.
+  FOLLOWED BY: priyasharma
+
+[F61] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Great. Let's make sure this gets done before the public announcement. It would be embarrassing to promise 99.95% uptime ...
+  FOLLOWED BY: laurakim
+
+[F62] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  I'll reach out to their VP to buy us time. @Maria, do you have the latest support ticket history for Zenith? I want to g...
+  FOLLOWED BY: mariasantos
+
+[F63] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Sending it now. They've had 7 P1 tickets in the last 90 days. That's way above our threshold.
+  FOLLOWED BY: alexkumar
+
+[F64] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  We did patch it, but the fix only covered the primary cluster. The secondary cluster wasn't updated. @James, can you con...
+  FOLLOWED BY: mariasantos
+
+[F65] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Following up ΓÇö it's been 30 minutes since the initial report. Do we have an ETA for resolution?
+  FOLLOWED BY: mariasantos
+
+[F66] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  I got Zenith's VP on the phone. He's willing to hold off on escalation if we can: (1) provide RCA by tomorrow, (2) commi...
+  FOLLOWED BY: mariasantos
+
+[F67] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  HR can handle the initial investigation. If it escalates to a formal grievance, we'll need Amanda. For now, I'd like you...
+  FOLLOWED BY: sarahmitchell
+
+[F68] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  That's a relief. But we still need to document this for our SOC 2 compliance records. @James, can you prepare the incide...
+  FOLLOWED BY: jameswilson, alexkumar
+
+[F69] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Agreed. And we need to address the 12-minute gap. @Priya, can you review the WAF rule propagation latency? I want that g...
+  FOLLOWED BY: priyasharma, alexkumar
+
+[F70] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Yes. Let's not have different security postures. @Alex, can you draft a proposal to unify the security controls across a...
+  FOLLOWED BY: alexkumar
+
+[F71] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  One more thing ΓÇö given this is the second security event this quarter, I recommend we brief the board's audit committee....
+  FOLLOWED BY: alexkumar
+
+[F72] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  I'll brief Sarah today and schedule the audit committee update. Good call, Amanda.
+  FOLLOWED BY: alexkumar
+
+[F73] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Thursday is cutting it close. Can you finish by Wednesday instead? I need a day to review before the auditors arrive.
+  FOLLOWED BY: kevinzhang
+
+[F74] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Good catch. Prepare a variance analysis memo. If it's truly a timing difference, we document it; if it's a real error, w...
+  FOLLOWED BY: kevinzhang
+
+[F75] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Team ΓÇö we need to make the go/no-go call on the Analytics Pro launch by end of today. Let's do a quick round-robin. @Dav...
+  FOLLOWED BY: davidpark
+
+[F76] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @Rachel ΓÇö financial projections still on track?
+  FOLLOWED BY: racheltorres
+
+[F77] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @Michael ΓÇö sales team ready?
+  FOLLOWED BY: michaelchen, laurakim
+
+[F78] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Ready. All AEs have been trained. One concern: Vertex Industries wants exclusive early access and is threatening to pull...
+  FOLLOWED BY: laurakim
+
+[F79] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Go with Amanda's recommendation ΓÇö 30-day head start, no exclusivity. @Michael, communicate that to Vertex today.
+  FOLLOWED BY: michaelchen
+
+[F80] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  No blockers. ToS and privacy policy updates are live. One reminder: the GDPR data processing addendum needs to be availa...
+  FOLLOWED BY: laurakim
+
+[F81] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  OK ΓÇö I'm calling it. We are GO for launch on Monday. The only open item is the GDPR addendum on the product page. @David...
+  FOLLOWED BY: davidpark, laurakim
+
+[F82] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Sofia, I need an updated forecast for Q2 by tomorrow morning. The board package goes to Sarah at noon.
+  FOLLOWED BY: sofiarodriguez
+
+[F83] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Sent. One more thing ΓÇö Vertex wants to renegotiate their payment terms from net-30 to net-60. Thoughts?
+  FOLLOWED BY: michaelchen
+
+[F84] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  What's our mitigation plan if Vertex slips?
+  FOLLOWED BY: michaelchen
+
+[F85] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  We have $600K in upside pipeline that could pull in. @Sofia, can you work those deals harder this month and give me a re...
+  FOLLOWED BY: sofiarodriguez
+
+[F86] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Good point. @Michael, @Rachel ΓÇö work together to streamline the discount approval process. I want a proposal by end of m...
+  FOLLOWED BY: michaelchen
+
+[F87] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Hi team ΓÇö we've confirmed the office move to the new building on March 15. Department heads need to submit their space r...
+  FOLLOWED BY: alexkumar
+
+[F88] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Make sure the new lease agreement is finalized before we start any physical move prep. I'm still reviewing clause 12.
+  FOLLOWED BY: daniellewright
+
+[F89] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Good point. Yes, we should. @Laura, can you draft customer communication? And @Amanda, when will clause 12 be resolved?
+  FOLLOWED BY: laurakim
+
+[F90] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  I see it. PagerDuty alert just fired. @Priya, are you available to help triage?
+  FOLLOWED BY: priyasharma
+
+[F91] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Rolling back now. ETA 3 minutes.
+  FOLLOWED BY: alexkumar
+
+[F92] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @Nina, can you start the incident timeline doc? We'll need it for the postmortem.
+  FOLLOWED BY: ninacosta
+
+[F93] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Will have it ready by noon tomorrow. @Priya, @James ΓÇö I'll need your input on the technical timeline.
+  FOLLOWED BY: priyasharma
+
+[F94] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  First ΓÇö can you rewrite the opening paragraph? It buries the lead. I want the customer ROI stat front and center.
+  FOLLOWED BY: chrisevans
+
+[F95] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Thanks. One more ΓÇö do we need to update our privacy policy before launching in the EU?
+  FOLLOWED BY: amandafoster
+
+[F96] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Just shared the new landing page mockups in the design channel. Everyone please review and leave feedback by tomorrow.
+  FOLLOWED BY: sofiarodriguez
+
+[F97] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @David, engineering is requesting $1.2M. That's 30% above Q1. Walk us through the justification.
+  FOLLOWED BY: davidpark
+
+[F98] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  The security spend is non-negotiable given the incidents. What about the analytics vendor ΓÇö can that wait?
+  FOLLOWED BY: davidpark, kevinzhang
+
+[F99] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  I ran the numbers. If we approve everything, we're $340K over the total Q2 operating budget. We'd need to either cut or ...
+  FOLLOWED BY: racheltorres
+
+[F100] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  OK, here's my call: approve engineering in full including analytics. Approve the AEs for sales but defer the CRM to Q3 ΓÇö...
+  FOLLOWED BY: racheltorres, kevinzhang
+
+[F101] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @Kevin, please update the budget tracker with today's decisions and distribute to all department heads by end of day.
+  FOLLOWED BY: kevinzhang
+
+[F102] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  There's some pressure to get it to design for LT preview tomorrow. Let's make sure it's polished.
+  FOLLOWED BY: alexkumar
+
+[F103] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Need sign-off by EOD or we miss the ship window for the release candidate.
+  FOLLOWED BY: alexkumar
+
+[F104] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Team ΓÇö these cleanups must be completed before 3/31. I've assigned owners in the tracking sheet. Check your items and co...
+  FOLLOWED BY: ninacosta
+
+Total Followed: 104
+
+================================================================================
+SECTION 2: SAVED SIGNALS
+================================================================================
+Messages someone 'Saved'. Should be reference info, deadlines, decisions, metrics.
+
+[S1] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  I'll send you the audit checklist this afternoon. It has the format requirements and specific controls they'll test. Als...
+  SAVED BY: kevinzhang
+
+[S2] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Is this something you can fix today? We need this migration done by Friday or we're going to miss the Q1 infra target.
+  SAVED BY: jameswilson
+
+[S3] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Repro: 1) Create a project with 51+ tasks, 2) Open the analytics dashboard, 3) Click on the resource allocation chart. B...
+  SAVED BY: priyasharma
+
+[S4] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Is this the AV upgrade we discussed in the facilities planning meeting? I thought the budget was $25K.
+  SAVED BY: lisanakamura
+
+[S5] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  OK, $28K is within my approval threshold. I'll approve it today. Can you make sure the vendor delivers before the end of...
+  SAVED BY: lisanakamura
+
+[S6] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Great. Also ΓÇö did you get quotes for the software license renewals? Those are due by April 1.
+  SAVED BY: lisanakamura
+
+[S7] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  The AI features are what Sarah wants to showcase to the board. I'd lean toward buying Datadog and keeping the engineerin...
+  SAVED BY: davidpark
+
+[S8] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  I'll have it ready by Monday. Should I include the AI features opportunity cost in the model, or keep it purely infra-fo...
+  SAVED BY: racheltorres
+
+[S9] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  I'm halfway through the visual regression test suite for v4.2. The dashboard rendering fix from Priya is verified. Remai...
+  SAVED BY: priyasharma, jameswilson
+
+[S10] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  OK, quick reminder ΓÇö v4.2 release candidate is due Friday. Let's make sure all the pieces are in place. Everyone please ...
+  SAVED BY: priyasharma
+
+[S11] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  That's not where I need it to be for the board. Michael, can you put together a risk mitigation plan with backup deals w...
+  SAVED BY: michaelchen, sofiarodriguez
+
+[S12] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Good input. @Chris, can you draft updated messaging that includes the integration ecosystem and security certifications ...
+  SAVED BY: sofiarodriguez
+
+[S13] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Budget is approved for 4 engineering headcount. @Danielle, please start the req process. I'd like offers extended by end...
+  SAVED BY: alexkumar
+
+[S14] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Three main factors: 1) Cloud infrastructure costs came in $180K over due to the scaling work, 2) The enterprise customer...
+  SAVED BY: sarahmitchell
+
+[S15] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Love the fireside chat idea. I'll put together a visual-first deck template. When do you need it?
+  SAVED BY: laurakim
+
+[S16] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Love it. I'll draft the registration form and share it by Friday. ≡ƒô¥
+  SAVED BY: lisanakamura
+
+[S17] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  OK let's keep it at $8M with the AE hiring as a flagged dependency. Everyone ΓÇö please send me your finalized OKR docs by...
+  SAVED BY: michaelchen
+
+[S18] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Retro notes from Sprint 14. Adding here for the record. |  | What went well: | - API v3 migration shipped on schedule | ...
+  SAVED BY: priyasharma
+
+[S19] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Action items from retro: | 1. @James ΓÇö implement deployment validation gates in CI/CD by end of Sprint 15 | 2. @Priya ΓÇö ...
+  SAVED BY: priyasharma, jameswilson
+
+[S20] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Looks like a solid plan. Alex, please send the finalized sprint scope to the team by EOD with story point allocations.
+  SAVED BY: alexkumar
+
+[S21] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  I'll update the PR checklist template in GitHub. I'll also add a 'has_db_changes' label that triggers the connection lif...
+  SAVED BY: derekjohnson
+
+[S22] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Capturing the key decisions from today's strategy session in chat: |  | 1. AI will be the core differentiator for H2 ΓÇö n...
+  SAVED BY: laurakim
+
+[S23] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Thanks everyone. Please finalize all ratings and feedback in the system by Friday. I'll compile the final calibration re...
+  SAVED BY: davidpark
+
+[S24] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Priya is working on it. The documentation gap was bigger than expected ΓÇö missing examples for 3 API endpoints and incorr...
+  SAVED BY: mariasantos
+
+[S25] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  I've been thinking about exactly this. I'll draft a proposal with specific metrics and alerting thresholds. Target: end ...
+  SAVED BY: michaelchen
+
+[S26] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Approved. @Kevin, please process the Datadog PO. Negotiate the 3-year term for the best discount possible.
+  SAVED BY: racheltorres, kevinzhang
+
+[S27] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Almost there. The writer is doing a final pass. I'll have it in your inbox by end of day.
+  SAVED BY: laurakim
+
+[S28] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Can someone prepare the financial overview slides? I can do the numbers but need templates from marketing.
+  SAVED BY: laurakim
+
+[S29] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  No blockers. ToS and privacy policy updates are live. One reminder: the GDPR data processing addendum needs to be availa...
+  SAVED BY: racheltorres, sarahmitchell
+
+[S30] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Will get it done by Friday.
+  SAVED BY: amandafoster, michaelchen
+
+[S31] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Speaking of dashboards ΓÇö has anyone noticed the deploy frequency metric is wrong? It's showing 3x our actual rate.
+  SAVED BY: mariasantos
+
+[S32] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  I'd say 75% confidence. The main risk is their budget approval process ΓÇö it's a public company and they have a new CFO w...
+  SAVED BY: racheltorres
+
+[S33] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Not with current staffing. We'd need an additional after-hours support engineer. That's a budget conversation with Rache...
+  SAVED BY: mariasantos
+
+[S34] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @James ΓÇö for the staging stability, can you create a proposal for dedicated staging infrastructure? Include cost estimat...
+  SAVED BY: jameswilson, priyasharma
+
+[S35] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Thanks. One more ΓÇö do we need to update our privacy policy before launching in the EU?
+  SAVED BY: amandafoster
+
+[S36] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Let's go through the Q2 budget proposals. Each department submitted their asks ΓÇö we need to decide allocations today.
+  SAVED BY: michaelchen, davidpark
+
+[S37] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Yes, that keeps us $110K under budget with some room for contingency. I'll update the allocations.
+  SAVED BY: davidpark, kevinzhang
+
+[S38] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  That's fine ΓÇö just don't sign anything until Q3 budget is confirmed.
+  SAVED BY: kevinzhang, davidpark
+
+[S39] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Do you know how to download this data from the analytics dashboard? I can't find the export button.
+  SAVED BY: jameswilson
+
+[S40] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  FYI: @Nikhil, @Andrew ΓÇö I don't see you listed as DRIs for the dashboard module. Can you check and confirm?
+  SAVED BY: davidpark
+
+Total Saved: 40
+
+================================================================================
+SECTION 3: REMINDER SIGNALS
+================================================================================
+Messages with reminders set. Should be future deadlines, upcoming events.
+
+[R1] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  What gaps specifically? I want to make sure we address them before the board presentation on the 28th.
+  REMINDER: davidpark @ 2026-01-18T09:00:00Z
+
+[R2] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Chris, where are we on the spring campaign blog posts? We need 3 posts live by March 20.
+  REMINDER: chrisevans @ 2026-01-24T09:00:00Z
+
+[R3] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  That vendor payment gap is a risk. The auditors specifically flagged authorization controls last year. Can you get that ...
+  REMINDER: kevinzhang @ 2026-01-24T09:00:00Z
+
+[R4] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Please make sure that Q1 access review is completed within the next two weeks. If they find that incomplete, it undermin...
+  REMINDER: kevinzhang @ 2026-01-24T09:00:00Z
+
+[R5] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Is this something you can fix today? We need this migration done by Friday or we're going to miss the Q1 infra target.
+  REMINDER: jameswilson @ 2026-01-25T09:00:00Z
+
+[R6] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Great. Also ΓÇö did you get quotes for the software license renewals? Those are due by April 1.
+  REMINDER: lisanakamura @ 2026-01-28T09:00:00Z
+
+[R7] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Can you reach out and get formal sign-off? I need confirmation by next Wednesday to make our production deadline. If the...
+  REMINDER: mariasantos @ 2026-01-29T09:00:00Z
+
+[R8] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  That's not where I need it to be for the board. Michael, can you put together a risk mitigation plan with backup deals w...
+  REMINDER: michaelchen @ 2026-02-01T09:00:00Z
+
+[R9] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Good work team. Total incident duration was about 25 minutes. Alex, please schedule a postmortem for tomorrow and send t...
+  REMINDER: alexkumar @ 2026-02-07T09:00:00Z
+
+[R10] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Tomorrow morning isn't fast enough. Their VP of Ops is already cc'ing our CEO on emails. If we don't show progress by en...
+  REMINDER: alexkumar @ 2026-02-10T09:00:00Z
+
+[R11] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  OK, everyone please submit your final evidence packages to me by April 8. That gives me a week to compile and review bef...
+  REMINDER: kevinzhang @ 2026-02-13T09:00:00Z
+
+[R12] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @Derek, can you make sure your team switches to the backup workflow for any critical tickets? And let me know if any cus...
+  REMINDER: derekjohnson @ 2026-02-16T09:00:00Z
+
+[R13] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @Maria ΓÇö confirm Pinnacle's availability for the customer testimonial. Deadline: Next Wednesday.
+  REMINDER: mariasantos @ 2026-02-17T09:00:00Z
+
+[R14] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Heads up ΓÇö we have 2 new engineers starting on April 7. @Alex, can you prepare their onboarding plan, team assignments, ...
+  REMINDER: alexkumar @ 2026-02-21T09:00:00Z
+
+[R15] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  That sounds great. Please make sure they also complete the security awareness training in their first week ΓÇö it's mandat...
+  REMINDER: alexkumar @ 2026-02-20T09:00:00Z
+
+[R16] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  OK let's keep it at $8M with the AE hiring as a flagged dependency. Everyone ΓÇö please send me your finalized OKR docs by...
+  REMINDER: michaelchen @ 2026-02-23T09:00:00Z
+
+[R17] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Looks like a solid plan. Alex, please send the finalized sprint scope to the team by EOD with story point allocations.
+  REMINDER: alexkumar @ 2026-02-26T09:00:00Z
+
+[R18] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @David, your product slide has too much detail. The board doesn't need to see the Jira breakdown. Focus on: what shipped...
+  REMINDER: davidpark @ 2026-02-28T09:00:00Z
+
+[R19] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Thanks for flagging that Amanda. So our hard deadline is Tuesday 6 PM, not Thursday. Everyone ΓÇö adjusted timeline. @Davi...
+  REMINDER: davidpark @ 2026-02-27T09:00:00Z
+
+[R20] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Tomorrow's packed ΓÇö I have back-to-backs from 1 to 4. How about Thursday morning?
+  REMINDER: laurakim @ 2026-03-09T09:00:00Z
+
+[R21] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  I got Zenith's VP on the phone. He's willing to hold off on escalation if we can: (1) provide RCA by tomorrow, (2) commi...
+  REMINDER: davidpark @ 2026-03-11T09:00:00Z
+
+[R22] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  That's a relief. But we still need to document this for our SOC 2 compliance records. @James, can you prepare the incide...
+  REMINDER: jameswilson @ 2026-03-14T09:00:00Z
+
+[R23] (OneOnOne) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Sofia, I need an updated forecast for Q2 by tomorrow morning. The board package goes to Sarah at noon.
+  REMINDER: sofiarodriguez @ 2026-03-23T09:00:00Z
+
+[R24] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Before everyone disappears for the weekend ΓÇö quick reminder that the customer NPS survey results come out Monday. @Alex,...
+  REMINDER: alexkumar @ 2026-03-21T09:00:00Z
+
+[R25] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Make sure the new lease agreement is finalized before we start any physical move prep. I'm still reviewing clause 12.
+  REMINDER: alexkumar @ 2026-03-24T09:00:00Z
+
+[R26] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Good work on the fast recovery. @Alex, I want a postmortem doc by tomorrow with: root cause, timeline, and preventive me...
+  REMINDER: alexkumar @ 2026-03-27T09:00:00Z
+
+[R27] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Will have it ready by noon tomorrow. @Priya, @James ΓÇö I'll need your input on the technical timeline.
+  REMINDER: priyasharma @ 2026-03-29T09:00:00Z
+
+[R28] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Just shared the new landing page mockups in the design channel. Everyone please review and leave feedback by tomorrow.
+  REMINDER: alexkumar @ 2026-04-01T09:00:00Z
+
+[R29] (Meeting) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  @Kevin, please update the budget tracker with today's decisions and distribute to all department heads by end of day.
+  REMINDER: kevinzhang @ 2026-04-03T09:00:00Z
+
+[R30] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  There's some pressure to get it to design for LT preview tomorrow. Let's make sure it's polished.
+  REMINDER: priyasharma @ 2026-04-08T09:00:00Z
+
+[R31] (Group) HasTask=? IsImp=?
+  FROM: ?
+  MSG:  Need sign-off by EOD or we miss the ship window for the release candidate.
+  REMINDER: priyasharma @ 2026-04-07T09:00:00Z
+
+Total Reminders: 31
+
+================================================================================
+SECTION 4: HasTask & IsImportant ΓÇö ALL MESSAGES
+================================================================================
+Checking every message for label correctness.
+
+[M1] (OneOnOne) ?
+  MSG: David, have you had a chance to look at the competitive analysis from last week?
+  LABELS: HasTask=False, IsImp=False
+
+[M2] (OneOnOne) ?
+  MSG: Yes, reviewed it over the weekend. Solid work by the team. A few gaps in the enterprise segment though.
+  LABELS: HasTask=False, IsImp=False
+
+[M3] (OneOnOne) ?
+  MSG: What gaps specifically? I want to make sure we address them before the board presentation on the 28th.
+  LABELS: HasTask=False, IsImp=False
+
+[M4] (OneOnOne) ?
+  MSG: Mainly around our analytics offering vs. Asana and Monday.com. They've shipped AI-assisted resource allocation ΓÇö we haven't. Also, our API ecosystem i...
+  LABELS: HasTask=False, IsImp=False
+
+[M5] (OneOnOne) ?
+  MSG: That would be perfect. Can you have it ready by Thursday? I want to review it before the pre-board sync on Friday.
+  LABELS: HasTask=False, IsImp=False
+
+[M6] (OneOnOne) ?
+  MSG: Thursday works. I'll pull in Alex for the technical feasibility piece.
+  LABELS: HasTask=False, IsImp=False
+
+[M7] (OneOnOne) ?
+  MSG: Great. Also ΓÇö should we position the AI roadmap as a separate initiative or fold it into the core platform story?
+  LABELS: HasTask=False, IsImp=False
+
+[M8] (OneOnOne) ?
+  MSG: I'd recommend folding it in. Positioning it separately risks signaling we're behind. If it's integrated, it looks like a natural evolution. Let me thi...
+  LABELS: HasTask=False, IsImp=False
+
+[M9] (OneOnOne) ?
+  MSG: Makes sense. One more thing ΓÇö did the infrastructure team confirm they can support the Q3 scale targets?
+  LABELS: HasTask=False, IsImp=False
+
+[M10] (OneOnOne) ?
+  MSG: James said they're at 85% confidence on the scale targets with current infra. The remaining 15% depends on the CDN migration finishing on time. I'll g...
+  LABELS: HasTask=False, IsImp=False
+
+[M11] (OneOnOne) ?
+  MSG: OK. Let me know as soon as you have it. We can't go to the board with gaps there.
+  LABELS: HasTask=False, IsImp=False
+
+[M12] (OneOnOne) ?
+  MSG: Understood. Will do.
+  LABELS: HasTask=False, IsImp=False
+
+[M13] (OneOnOne) ?
+  MSG: Thanks David. Talk tomorrow.
+  LABELS: HasTask=False, IsImp=False
+
+[M14] (OneOnOne) ?
+  MSG: Rachel, I need your sign-off on the Q2 hiring plan. David's team needs 4 additional engineers and Michael wants 2 more AEs.
+  LABELS: HasTask=False, IsImp=False
+
+[M15] (OneOnOne) ?
+  MSG: I saw the headcount request. The engineering asks are within budget, but the sales hires push us $180K over the Q2 operating plan. We'd need to pull f...
+  LABELS: HasTask=False, IsImp=False
+
+[M16] (OneOnOne) ?
+  MSG: What's left in the discretionary pool right now?
+  LABELS: HasTask=False, IsImp=False
+
+[M17] (OneOnOne) ?
+  MSG: $420K. But $200K of that is earmarked for the customer event in June. So realistically we have about $220K of true flex.
+  LABELS: HasTask=False, IsImp=False
+
+[M18] (OneOnOne) ?
+  MSG: That's tight. Can we defer the customer event spend and reallocate?
+  LABELS: HasTask=False, IsImp=False
+
+[M19] (OneOnOne) ?
+  MSG: We could, but Laura and Michael have been counting on that event for pipeline gen. I'd recommend we approve the engineering hires now and table the sa...
+  LABELS: HasTask=False, IsImp=False
+
+[M20] (OneOnOne) ?
+  MSG: Fair. Let's go with that. Can you process the approval for the 4 engineering headcount today? David's already got candidates in final rounds.
+  LABELS: HasTask=False, IsImp=False
+
+[M21] (OneOnOne) ?
+  MSG: Will do. I'll send the approval through the system by 3 PM and copy Danielle on the HR side.
+  LABELS: HasTask=False, IsImp=False
+
+[M22] (OneOnOne) ?
+  MSG: Perfect. And let's revisit the sales hires after the Q1 close on April 15.
+  LABELS: HasTask=False, IsImp=False
+
+[M23] (OneOnOne) ?
+  MSG: Noted. I'll flag it for our April budget sync.
+  LABELS: HasTask=False, IsImp=False
+
+[M24] (OneOnOne) ?
+  MSG: Thanks Rachel.
+  LABELS: HasTask=False, IsImp=False
+
+[M25] (OneOnOne) ?
+  MSG: David, heads up ΓÇö we're seeing elevated error rates on the API gateway. 5xx errors spiked to 12% in the last 10 minutes.
+  LABELS: HasTask=False, IsImp=False
+
+[M26] (OneOnOne) ?
+  MSG: How many customers affected? Is this the US or EU cluster?
+  LABELS: HasTask=False, IsImp=False
+
+[M27] (OneOnOne) ?
+  MSG: Both clusters. We're estimating 15K+ active users impacted. James is investigating ΓÇö looks like the last deployment introduced a connection pool leak.
+  LABELS: HasTask=False, IsImp=False
+
+[M28] (OneOnOne) ?
+  MSG: Roll back the deployment immediately. Don't wait for root cause.
+  LABELS: HasTask=False, IsImp=False
+
+[M29] (OneOnOne) ?
+  MSG: James is initiating the rollback now. ETA 5 minutes for the US cluster, 8 for EU.
+  LABELS: HasTask=False, IsImp=False
+
+[M30] (OneOnOne) ?
+  MSG: Good. I need you to send a status update to the exec distribution list. Sarah will ask about this in the morning.
+  LABELS: HasTask=False, IsImp=False
+
+[M31] (OneOnOne) ?
+  MSG: On it. I'll draft the exec update as soon as rollback is confirmed.
+  LABELS: HasTask=False, IsImp=False
+
+[M32] (OneOnOne) ?
+  MSG: What's our confidence that the rollback fully resolves this? Any chance it's infrastructure-related too?
+  LABELS: HasTask=False, IsImp=False
+
+[M33] (OneOnOne) ?
+  MSG: 95% confident it's the deployment. Connection pool metrics correlate exactly with the deploy timestamp. Infra metrics are clean ΓÇö CPU, memory, disk al...
+  LABELS: HasTask=False, IsImp=False
+
+[M34] (OneOnOne) ?
+  MSG: Update: US cluster rollback complete. Error rates dropping. EU rollback in progress.
+  LABELS: HasTask=False, IsImp=False
+
+[M35] (OneOnOne) ?
+  MSG: Great. Let me know when EU is confirmed clean. And schedule a postmortem for tomorrow ΓÇö I want the full team there.
+  LABELS: HasTask=False, IsImp=False
+
+[M36] (OneOnOne) ?
+  MSG: EU is clean now. All error rates back to baseline. Total impact window was about 22 minutes. I'll set up the postmortem for 10 AM tomorrow and send th...
+  LABELS: HasTask=False, IsImp=False
+
+[M37] (OneOnOne) ?
+  MSG: Thanks Alex. Good handling tonight. Let's make sure we add deployment validation gates to prevent this class of issue.
+  LABELS: HasTask=False, IsImp=False
+
+[M38] (OneOnOne) ?
+  MSG: Agreed. I'll add it to the postmortem action items.
+  LABELS: HasTask=False, IsImp=False
+
+[M39] (OneOnOne) ?
+  MSG: Priya, can you review the API v3 migration PR? It's PR #847. I want to ship this by end of sprint.
+  LABELS: HasTask=False, IsImp=False
+
+[M40] (OneOnOne) ?
+  MSG: Sure, I'll take a look this afternoon. Is there a specific area you want me to focus on?
+  LABELS: HasTask=False, IsImp=False
+
+[M41] (OneOnOne) ?
+  MSG: Mainly the pagination logic and the rate limiting changes. Those are the riskiest parts. The rest is mostly boilerplate.
+  LABELS: HasTask=False, IsImp=False
+
+[M42] (OneOnOne) ?
+  MSG: Got it. One question ΓÇö did you run the load tests against the new pagination? Last time we had issues with cursor-based pagination under high concurre...
+  LABELS: HasTask=False, IsImp=False
+
+[M43] (OneOnOne) ?
+  MSG: Good catch. I ran the basic load test but not the high-concurrency scenario. Can you include that in your review? Run the k6 suite with the 500-concur...
+  LABELS: HasTask=False, IsImp=False
+
+[M44] (OneOnOne) ?
+  MSG: Will do. I should have the review and load test results back to you by tomorrow morning.
+  LABELS: HasTask=False, IsImp=False
+
+[M45] (OneOnOne) ?
+  MSG: Perfect. Also, are you still on track to finish the webhook refactor this sprint?
+  LABELS: HasTask=False, IsImp=False
+
+[M46] (OneOnOne) ?
+  MSG: Yes, I'm about 80% done. The event filtering piece is the last part. Should have it wrapped up by Thursday.
+  LABELS: HasTask=False, IsImp=False
+
+[M47] (OneOnOne) ?
+  MSG: Great. Let me know if you hit any blockers.
+  LABELS: HasTask=False, IsImp=False
+
+[M48] (OneOnOne) ?
+  MSG: Will do. Thanks Alex.
+  LABELS: HasTask=False, IsImp=False
+
+[M49] (OneOnOne) ?
+  MSG: Sofia, what's happening with the Contoso deal? I just got a ping from Sarah ΓÇö they mentioned it in the exec sync.
+  LABELS: HasTask=False, IsImp=False
+
+[M50] (OneOnOne) ?
+  MSG: It's complicated. Their CISO flagged data residency concerns during the security review last week. They want all data stored in the EU, and our curren...
+  LABELS: HasTask=False, IsImp=False
+
+[M51] (OneOnOne) ?
+  MSG: This is a $2.4M deal. We can't lose it over infrastructure. What's the timeline ΓÇö when do they need an answer?
+  LABELS: HasTask=False, IsImp=False
+
+[M52] (OneOnOne) ?
+  MSG: They gave us until end of next week. Their procurement cycle closes March 31 ΓÇö if we miss that, the deal slips to Q3 at best, or they go with Smartshe...
+  LABELS: HasTask=False, IsImp=False
+
+[M53] (OneOnOne) ?
+  MSG: OK, I need you to do three things ASAP: 1) Set up a call with David's team to assess the EU data residency feasibility, 2) Draft a risk mitigation pro...
+  LABELS: HasTask=False, IsImp=False
+
+[M54] (OneOnOne) ?
+  MSG: On it. I've already pinged David's team for availability. I'll have the draft proposal ready by tomorrow EOD.
+  LABELS: HasTask=False, IsImp=False
+
+[M55] (OneOnOne) ?
+  MSG: Good. Keep me updated every day until this is resolved. I'm going to brief Sarah separately.
+  LABELS: HasTask=False, IsImp=False
+
+[M56] (OneOnOne) ?
+  MSG: Will do. One more thing ΓÇö should I offer them a price concession to sweeten the deal while we work on the technical side?
+  LABELS: HasTask=False, IsImp=False
+
+[M57] (OneOnOne) ?
+  MSG: Not yet. Let's see if the technical path works first. If we need to, I'll approve up to 10% off but I want that as a last resort. Don't mention it to ...
+  LABELS: HasTask=False, IsImp=False
+
+[M58] (OneOnOne) ?
+  MSG: Understood. I'll focus on the technical path first.
+  LABELS: HasTask=False, IsImp=False
+
+[M59] (OneOnOne) ?
+  MSG: Sarah, I've completed the analysis on the proposed restructuring. Can we discuss the recommendations?
+  LABELS: HasTask=False, IsImp=False
+
+[M60] (OneOnOne) ?
+  MSG: Yes, go ahead.
+  LABELS: HasTask=False, IsImp=False
+
+[M61] (OneOnOne) ?
+  MSG: Based on the data, I'm recommending we consolidate the Customer Success and Support teams under Maria. Derek's team would report to her directly. This...
+  LABELS: HasTask=False, IsImp=False
+
+[M62] (OneOnOne) ?
+  MSG: What's the impact on Derek? Is he being let go?
+  LABELS: HasTask=False, IsImp=False
+
+[M63] (OneOnOne) ?
+  MSG: No, the recommendation is to transition him to a senior IC role ΓÇö Support Engineering Lead. Same comp band, different scope. I've modeled it both ways...
+  LABELS: HasTask=False, IsImp=False
+
+[M64] (OneOnOne) ?
+  MSG: I like that approach. Has Legal reviewed the restructuring for any compliance issues?
+  LABELS: HasTask=False, IsImp=False
+
+[M65] (OneOnOne) ?
+  MSG: Amanda reviewed the draft plan last week. She flagged that we need to update the employee handbook and send formal notifications 30 days before the ef...
+  LABELS: HasTask=False, IsImp=False
+
+[M66] (OneOnOne) ?
+  MSG: Good. Let's target June 1 for the effective date. That gives us enough runway. Please prepare the formal proposal with the full timeline, role changes...
+  LABELS: HasTask=False, IsImp=False
+
+[M67] (OneOnOne) ?
+  MSG: I'll have it ready. One question ΓÇö do you want me to include a draft communication for the affected employees, or should we wait for leadership sign-o...
+  LABELS: HasTask=False, IsImp=False
+
+[M68] (OneOnOne) ?
+  MSG: Draft it now so we're ready to move fast after sign-off. But mark it clearly as DRAFT ΓÇö don't share it beyond us and Amanda.
+  LABELS: HasTask=False, IsImp=False
+
+[M69] (OneOnOne) ?
+  MSG: Understood. Will keep it tightly held.
+  LABELS: HasTask=False, IsImp=False
+
+[M70] (OneOnOne) ?
+  MSG: Thanks Danielle. This is sensitive ΓÇö please don't discuss with anyone outside of this until leadership approves.
+  LABELS: HasTask=False, IsImp=False
+
+[M71] (OneOnOne) ?
+  MSG: Chris, where are we on the spring campaign blog posts? We need 3 posts live by March 20.
+  LABELS: HasTask=False, IsImp=False
+
+[M72] (OneOnOne) ?
+  MSG: Post 1 is in final edit. Post 2 draft is done, needs your review. Post 3 I'm still outlining ΓÇö the customer story angle needs more input from Maria on...
+  LABELS: HasTask=False, IsImp=False
+
+[M73] (OneOnOne) ?
+  MSG: Can you send me the Post 2 draft? I'll review it today.
+  LABELS: HasTask=False, IsImp=False
+
+[M74] (OneOnOne) ?
+  MSG: Just shared it in the Marketing shared drive. It's in the Spring Campaign folder.
+  LABELS: HasTask=False, IsImp=False
+
+[M75] (OneOnOne) ?
+  MSG: Great. For Post 3 ΓÇö reach out to Maria directly and get the Pinnacle Logistics success metrics. Don't wait for her to come to you.
+  LABELS: HasTask=False, IsImp=False
+
+[M76] (OneOnOne) ?
+  MSG: Will do. Should I also include a quote from the customer in the blog post, or keep it to our internal metrics?
+  LABELS: HasTask=False, IsImp=False
+
+[M77] (OneOnOne) ?
+  MSG: Include a customer quote if they've approved it. Check with Maria ΓÇö she should have the testimonial clearance from their marketing team.
+  LABELS: HasTask=False, IsImp=False
+
+[M78] (OneOnOne) ?
+  MSG: Got it. I'll coordinate with Maria and have the Post 3 draft ready by Friday.
+  LABELS: HasTask=False, IsImp=False
+
+[M79] (OneOnOne) ?
+  MSG: Sounds good. Also, have you updated the social media calendar with the promotion schedule for these posts?
+  LABELS: HasTask=False, IsImp=False
+
+[M80] (OneOnOne) ?
+  MSG: Not yet, I'll do that this afternoon. I was waiting until the posts were finalized so the dates are accurate.
+  LABELS: HasTask=False, IsImp=False
+
+[M81] (OneOnOne) ?
+  MSG: OK, just make sure it's done before the team sync on Thursday. Jenna will need the schedule for social planning.
+  LABELS: HasTask=False, IsImp=False
+
+[M82] (OneOnOne) ?
+  MSG: Will have it ready by Wednesday EOD.
+  LABELS: HasTask=False, IsImp=False
+
+[M83] (OneOnOne) ?
+  MSG: Kevin, the SOC 2 auditors are coming on-site in 3 weeks. I need the financial controls documentation updated and ready for review. Where do we stand?
+  LABELS: HasTask=False, IsImp=False
+
+[M84] (OneOnOne) ?
+  MSG: The revenue recognition controls are updated. Expense management controls are about 70% done. The biggest gap is the vendor payment authorization docu...
+  LABELS: HasTask=False, IsImp=False
+
+[M85] (OneOnOne) ?
+  MSG: That vendor payment gap is a risk. The auditors specifically flagged authorization controls last year. Can you get that documentation completed by end...
+  LABELS: HasTask=False, IsImp=False
+
+[M86] (OneOnOne) ?
+  MSG: I'll prioritize it. I need to coordinate with James on the engineering side ΓÇö they modified the approval thresholds in the procurement system. Can you...
+  LABELS: HasTask=False, IsImp=False
+
+[M87] (OneOnOne) ?
+  MSG: I'll send you the audit checklist this afternoon. It has the format requirements and specific controls they'll test. Also ΓÇö have we resolved the acces...
+  LABELS: HasTask=False, IsImp=False
+
+[M88] (OneOnOne) ?
+  MSG: Yes, we implemented the segregation of duties changes in November. I have the evidence package ready for that one. The only outstanding item is the qu...
+  LABELS: HasTask=False, IsImp=False
+
+[M89] (OneOnOne) ?
+  MSG: Please make sure that Q1 access review is completed within the next two weeks. If they find that incomplete, it undermines our entire remediation stor...
+  LABELS: HasTask=False, IsImp=False
+
+[M90] (OneOnOne) ?
+  MSG: Understood. I'll coordinate with IT to get it done this week.
+  LABELS: HasTask=False, IsImp=False
+
+[M91] (OneOnOne) ?
+  MSG: Good. Let's do a dry run walkthrough of all the financial controls next Friday. Can you have everything ready by then?
+  LABELS: HasTask=False, IsImp=False
+
+[M92] (OneOnOne) ?
+  MSG: Yes, that's doable. I'll block the time.
+  LABELS: HasTask=False, IsImp=False
+
+[M93] (OneOnOne) ?
+  MSG: Derek, Pinnacle Logistics just escalated to me directly. They say they've had an open P1 ticket for 4 days with no resolution. What's going on?
+  LABELS: HasTask=False, IsImp=False
+
+[M94] (OneOnOne) ?
+  MSG: I know the ticket. It's the data export timeout issue ΓÇö ticket #45891. My team reproduced it but we're blocked on engineering. We filed a bug but have...
+  LABELS: HasTask=False, IsImp=False
+
+[M95] (OneOnOne) ?
+  MSG: Pinnacle is our third-largest customer. If we don't resolve this soon, the VP of Ops there is going to escalate to Michael. Can you get me the ticket ...
+  LABELS: HasTask=False, IsImp=False
+
+[M96] (OneOnOne) ?
+  MSG: Ticket #45891, engineering bug ENG-2847. Filed on Monday. Currently unassigned on the eng side as far as I can see.
+  LABELS: HasTask=False, IsImp=False
+
+[M97] (OneOnOne) ?
+  MSG: Unassigned for 4 days? That's unacceptable. Is there a workaround we can offer Pinnacle in the meantime?
+  LABELS: HasTask=False, IsImp=False
+
+[M98] (OneOnOne) ?
+  MSG: There's a partial workaround ΓÇö they can export in smaller batches. It's clunky but functional. My team offered it on day 2 but Pinnacle's ops team sai...
+  LABELS: HasTask=False, IsImp=False
+
+[M99] (OneOnOne) ?
+  MSG: OK, please prepare a formal escalation summary with the full timeline, business impact, and workaround status. I need it in the next 2 hours ΓÇö I'm set...
+  LABELS: HasTask=False, IsImp=False
+
+[M100] (OneOnOne) ?
+  MSG: I'll have it to you within the hour.
+  LABELS: HasTask=False, IsImp=False
+
+[M101] (OneOnOne) ?
+  MSG: Thanks Derek. Also ΓÇö going forward, any P1 from a top-20 customer should be flagged to me within 24 hours. Don't wait for the customer to escalate.
+  LABELS: HasTask=False, IsImp=False
+
+[M102] (OneOnOne) ?
+  MSG: Noted. I'll update our triage runbook with that rule.
+  LABELS: HasTask=False, IsImp=False
+
+[M103] (OneOnOne) ?
+  MSG: James, the CDN migration deploy is blocked. CI is failing on the integration tests. Can you look at it?
+  LABELS: HasTask=False, IsImp=False
+
+[M104] (OneOnOne) ?
+  MSG: Looking at it now. The integration test failures are all in the edge caching module ΓÇö looks like a config mismatch between staging and the new CDN end...
+  LABELS: HasTask=False, IsImp=False
+
+[M105] (OneOnOne) ?
+  MSG: Is this something you can fix today? We need this migration done by Friday or we're going to miss the Q1 infra target.
+  LABELS: HasTask=False, IsImp=False
+
+[M106] (OneOnOne) ?
+  MSG: The config fix itself is straightforward ΓÇö maybe an hour. But I want to run the full regression suite after, which takes about 3 hours. Earliest I can...
+  LABELS: HasTask=False, IsImp=False
+
+[M107] (OneOnOne) ?
+  MSG: That works. Go ahead with the fix and full regression. Don't cut corners on testing ΓÇö this is production traffic.
+  LABELS: HasTask=False, IsImp=False
+
+[M108] (OneOnOne) ?
+  MSG: Agreed. One thing ΓÇö I noticed the CDN provider's SSL cert for the EU endpoint expires in 12 days. Should I file a renewal request now or is that handl...
+  LABELS: HasTask=False, IsImp=False
+
+[M109] (OneOnOne) ?
+  MSG: Good catch. File the renewal request on our side ΓÇö don't rely on them. Better safe than sorry.
+  LABELS: HasTask=False, IsImp=False
+
+[M110] (OneOnOne) ?
+  MSG: Will do. I'll file it today and add monitoring for cert expiration to our alerting dashboard.
+  LABELS: HasTask=False, IsImp=False
+
+[M111] (OneOnOne) ?
+  MSG: Perfect. Ping me when the build is green.
+  LABELS: HasTask=False, IsImp=False
+
+[M112] (OneOnOne) ?
+  MSG: ≡ƒæì
+  LABELS: HasTask=False, IsImp=False
+
+[M113] (OneOnOne) ?
+  MSG: Amanda, I need the Northwind Traders NDA reviewed and redlined. Can you turn it around by Wednesday?
+  LABELS: HasTask=False, IsImp=False
+
+[M114] (OneOnOne) ?
+  MSG: I can take a look. Is this their paper or ours?
+  LABELS: HasTask=False, IsImp=False
+
+[M115] (OneOnOne) ?
+  MSG: Their paper. They sent a mutual NDA with some non-standard language around IP ownership that I'm not comfortable with. I flagged the sections in yello...
+  LABELS: HasTask=False, IsImp=False
+
+[M116] (OneOnOne) ?
+  MSG: OK, I'll review it. Non-standard IP language in an NDA is a red flag ΓÇö glad you caught it. Any particular deal terms driving urgency, or can this slip...
+  LABELS: HasTask=False, IsImp=False
+
+[M117] (OneOnOne) ?
+  MSG: Wednesday is ideal. We have a technical evaluation starting Thursday and they want the NDA executed before sharing their architecture docs. If it slip...
+  LABELS: HasTask=False, IsImp=False
+
+[M118] (OneOnOne) ?
+  MSG: Understood. I'll prioritize it. If the IP language is as non-standard as you're saying, I may need to push back on their counsel. Are you OK if I enga...
+  LABELS: HasTask=False, IsImp=False
+
+[M119] (OneOnOne) ?
+  MSG: Yes, please go ahead. Their legal contact is Rebecca Walsh ΓÇö I'll send you her email.
+  LABELS: HasTask=False, IsImp=False
+
+[M120] (OneOnOne) ?
+  MSG: Thanks. I'll have the redline back to you by Wednesday morning.
+  LABELS: HasTask=False, IsImp=False
+
+[M121] (OneOnOne) ?
+  MSG: Thanks Amanda ≡ƒÖÅ
+  LABELS: HasTask=False, IsImp=False
+
+[M122] (OneOnOne) ?
+  MSG: Priya, I found a critical rendering bug in the dashboard module. Charts aren't loading when there are more than 50 data points. This is a release bloc...
+  LABELS: HasTask=False, IsImp=False
+
+[M123] (OneOnOne) ?
+  MSG: That sounds like the chart library upgrade we did last sprint. Can you share the repro steps and browser/environment details?
+  LABELS: HasTask=False, IsImp=False
+
+[M124] (OneOnOne) ?
+  MSG: Repro: 1) Create a project with 51+ tasks, 2) Open the analytics dashboard, 3) Click on the resource allocation chart. Browser: Chrome 121 and Edge 12...
+  LABELS: HasTask=False, IsImp=False
+
+[M125] (OneOnOne) ?
+  MSG: Thanks. Chrome and Edge both use Blink rendering ΓÇö Firefox uses Gecko. That narrows it down. Is this in all chart types or just the resource allocatio...
+  LABELS: HasTask=False, IsImp=False
+
+[M126] (OneOnOne) ?
+  MSG: I tested all chart types. The resource allocation, timeline, and burndown charts are all affected. Pie charts and bar charts work fine. It seems to be...
+  LABELS: HasTask=False, IsImp=False
+
+[M127] (OneOnOne) ?
+  MSG: OK, I have a theory. The chart library v3 changed how it handles SVG rendering for large datasets. I'll work on a fix today. Can you also check if thi...
+  LABELS: HasTask=False, IsImp=False
+
+[M128] (OneOnOne) ?
+  MSG: I'll check staging right now.
+  LABELS: HasTask=False, IsImp=False
+
+[M129] (OneOnOne) ?
+  MSG: Confirmed ΓÇö same issue in staging. Definitely a code regression, not data.
+  LABELS: HasTask=False, IsImp=False
+
+[M130] (OneOnOne) ?
+  MSG: Found it. The library's SVG renderer has a default limit of 50 nodes per group. I need to set an explicit override. Fix is simple but I want to verify...
+  LABELS: HasTask=False, IsImp=False
+
+[M131] (OneOnOne) ?
+  MSG: Absolutely. Ping me when it's pushed and I'll run it immediately. I want this closed today if possible ΓÇö Alex is asking about the release timeline.
+  LABELS: HasTask=False, IsImp=False
+
+[M132] (OneOnOne) ?
+  MSG: Pushing now. Should be in CI within 10 minutes.
+  LABELS: HasTask=False, IsImp=False
+
+[M133] (OneOnOne) ?
+  MSG: Kevin, I need to submit the PO for the new conference room equipment. Can you approve the $28K spend?
+  LABELS: HasTask=False, IsImp=False
+
+[M134] (OneOnOne) ?
+  MSG: Is this the AV upgrade we discussed in the facilities planning meeting? I thought the budget was $25K.
+  LABELS: HasTask=False, IsImp=False
+
+[M135] (OneOnOne) ?
+  MSG: Yes, same project. The $3K difference is the additional cable management and mounting hardware that we didn't account for in the initial estimate. I h...
+  LABELS: HasTask=False, IsImp=False
+
+[M136] (OneOnOne) ?
+  MSG: OK, $28K is within my approval threshold. I'll approve it today. Can you make sure the vendor delivers before the end of March? We need to close this ...
+  LABELS: HasTask=False, IsImp=False
+
+[M137] (OneOnOne) ?
+  MSG: I'll confirm the delivery timeline with the vendor today. They originally quoted 2-3 weeks lead time, so we should be fine.
+  LABELS: HasTask=False, IsImp=False
+
+[M138] (OneOnOne) ?
+  MSG: Great. Also ΓÇö did you get quotes for the software license renewals? Those are due by April 1.
+  LABELS: HasTask=False, IsImp=False
+
+[M139] (OneOnOne) ?
+  MSG: Got quotes from all three vendors. The Figma renewal is 12% higher than last year. Slack and Zoom are comparable. I'll send you the comparison spreads...
+  LABELS: HasTask=False, IsImp=False
+
+[M140] (OneOnOne) ?
+  MSG: 12% increase on Figma? That's steep. Let me know the contract terms ΓÇö I may want to negotiate.
+  LABELS: HasTask=False, IsImp=False
+
+[M141] (OneOnOne) ?
+  MSG: Will do.
+  LABELS: HasTask=False, IsImp=False
+
+[M142] (OneOnOne) ?
+  MSG: Maria, we want to feature Pinnacle Logistics in our spring campaign as a case study. Have they agreed to participate?
+  LABELS: HasTask=False, IsImp=False
+
+[M143] (OneOnOne) ?
+  MSG: I spoke with their VP of Ops last month and she was open to it in principle. But I haven't gotten formal approval from their marketing or legal team y...
+  LABELS: HasTask=False, IsImp=False
+
+[M144] (OneOnOne) ?
+  MSG: Can you reach out and get formal sign-off? I need confirmation by next Wednesday to make our production deadline. If they can't commit by then, I'll n...
+  LABELS: HasTask=False, IsImp=False
+
+[M145] (OneOnOne) ?
+  MSG: I'll reach out today. One concern though ΓÇö they've had some frustrations with our support responsiveness recently. Might not be the best time to ask f...
+  LABELS: HasTask=False, IsImp=False
+
+[M146] (OneOnOne) ?
+  MSG: Good point. Is the support issue resolved?
+  LABELS: HasTask=False, IsImp=False
+
+[M147] (OneOnOne) ?
+  MSG: Derek's team resolved the P1 last week. Pinnacle's contact seemed satisfied with the resolution. I think we're OK to ask, but I wanted you to know the...
+  LABELS: HasTask=False, IsImp=False
+
+[M148] (OneOnOne) ?
+  MSG: Thanks for flagging that. Go ahead and ask. If they push back, don't force it ΓÇö customer relationship comes first.
+  LABELS: HasTask=False, IsImp=False
+
+[M149] (OneOnOne) ?
+  MSG: Agreed. I'll be thoughtful in my approach. Should I share the draft case study outline with them so they know what to expect?
+  LABELS: HasTask=False, IsImp=False
+
+[M150] (OneOnOne) ?
+  MSG: Yes, please share the outline. It'll make them more comfortable. Chris has the draft ΓÇö ask him to send it to you.
+  LABELS: HasTask=False, IsImp=False
+
+[M151] (OneOnOne) ?
+  MSG: Perfect. I'll coordinate with Chris and reach out to Pinnacle today.
+  LABELS: HasTask=False, IsImp=False
+
+[M152] (OneOnOne) ?
+  MSG: Rachel, I need to discuss the platform observability investment. We have two options ΓÇö build internally for ~$800K over 6 months, or buy Datadog Enter...
+  LABELS: HasTask=False, IsImp=False
+
+[M153] (OneOnOne) ?
+  MSG: What's the TCO comparison over 3 years?
+  LABELS: HasTask=False, IsImp=False
+
+[M154] (OneOnOne) ?
+  MSG: Build: ~$800K upfront + $200K/year maintenance = $1.4M over 3 years. Buy: $350K/year = $1.05M over 3 years. But the build option gives us custom integ...
+  LABELS: HasTask=False, IsImp=False
+
+[M155] (OneOnOne) ?
+  MSG: The $350K difference over 3 years is meaningful but not decisive. What's the engineering opportunity cost? Those engineers could be building product f...
+  LABELS: HasTask=False, IsImp=False
+
+[M156] (OneOnOne) ?
+  MSG: Good point. It would tie up 3 senior engineers for 6 months. That's roughly $600K in product feature velocity we'd lose. We were planning to use those...
+  LABELS: HasTask=False, IsImp=False
+
+[M157] (OneOnOne) ?
+  MSG: The AI features are what Sarah wants to showcase to the board. I'd lean toward buying Datadog and keeping the engineering team focused on product. Can...
+  LABELS: HasTask=False, IsImp=False
+
+[M158] (OneOnOne) ?
+  MSG: I'll have it ready by Monday. Should I include the AI features opportunity cost in the model, or keep it purely infra-focused?
+  LABELS: HasTask=False, IsImp=False
+
+[M159] (OneOnOne) ?
+  MSG: Include both. Sarah will want to see the full picture ΓÇö infra cost AND product velocity impact. That's what makes the decision compelling.
+  LABELS: HasTask=False, IsImp=False
+
+[M160] (OneOnOne) ?
+  MSG: Makes sense. I'll model it that way.
+  LABELS: HasTask=False, IsImp=False
+
+[M161] (OneOnOne) ?
+  MSG: Thanks David. This is a good example of the kind of investment discipline we need. ≡ƒæì
+  LABELS: HasTask=False, IsImp=False
+
+[M162] (Group) ?
+  MSG: Morning team. Let's do a quick standup. Where is everyone at?
+  LABELS: HasTask=False, IsImp=False
+
+[M163] (Group) ?
+  MSG: I wrapped up the API v3 pagination fix yesterday. PR #847 is ready for final review. Today I'm starting on the webhook refactor.
+  LABELS: HasTask=False, IsImp=False
+
+[M164] (Group) ?
+  MSG: CDN migration is back on track. Config fix is deployed, regression suite passed. I'm moving on to the monitoring dashboard updates today.
+  LABELS: HasTask=False, IsImp=False
+
+[M165] (Group) ?
+  MSG: I'm halfway through the visual regression test suite for v4.2. The dashboard rendering fix from Priya is verified. Remaining: export module and notifi...
+  LABELS: HasTask=False, IsImp=False
+
+[M166] (Group) ?
+  MSG: Good progress. @Priya, who's doing the final review on your pagination PR? I want it merged today.
+  LABELS: HasTask=False, IsImp=False
+
+[M167] (Group) ?
+  MSG: I assigned it to James for the infra perspective. James, can you review it before noon?
+  LABELS: HasTask=False, IsImp=False
+
+[M168] (Group) ?
+  MSG: Sure, I'll look at it by 11.
+  LABELS: HasTask=False, IsImp=False
+
+[M169] (Group) ?
+  MSG: Nina, any blockers on the regression suite?
+  LABELS: HasTask=False, IsImp=False
+
+[M170] (Group) ?
+  MSG: One minor blocker ΓÇö the staging environment is running an older build. I need it updated to the latest before I can run the export tests. @James, can ...
+  LABELS: HasTask=False, IsImp=False
+
+[M171] (Group) ?
+  MSG: Will do. Give me 20 minutes.
+  LABELS: HasTask=False, IsImp=False
+
+[M172] (Group) ?
+  MSG: OK, quick reminder ΓÇö v4.2 release candidate is due Friday. Let's make sure all the pieces are in place. Everyone please update Jira with your current ...
+  LABELS: HasTask=False, IsImp=False
+
+[M173] (Group) ?
+  MSG: ≡ƒæì
+  LABELS: HasTask=False, IsImp=False
+
+[M174] (Group) ?
+  MSG: Will do.
+  LABELS: HasTask=False, IsImp=False
+
+[M175] (Group) ?
+  MSG: On it.
+  LABELS: HasTask=False, IsImp=False
+
+[M176] (Group) ?
+  MSG: Sarah, Sofia ΓÇö let's align on the Q1 pipeline. We're 3 weeks from close. Sofia, can you give us the rundown on the top 5 deals?
+  LABELS: HasTask=False, IsImp=False
+
+[M177] (Group) ?
+  MSG: Here's where we stand: | 1. Contoso Enterprise - $2.4M - in security review (at risk) | 2. Northwind Traders - $850K - NDA in legal, eval starting nex...
+  LABELS: HasTask=False, IsImp=False
+
+[M178] (Group) ?
+  MSG: That's a big gap between committed and pipeline. What's the risk on Contoso?
+  LABELS: HasTask=False, IsImp=False
+
+[M179] (Group) ?
+  MSG: Data residency concern from their CISO. We're working on it ΓÇö David's team is assessing the EU hosting feasibility. I have a call with their procureme...
+  LABELS: HasTask=False, IsImp=False
+
+[M180] (Group) ?
+  MSG: Contoso is make-or-break for Q1. @Sofia, I need you to send me a daily status update on that deal until it's resolved. I'll handle the exec alignment ...
+  LABELS: HasTask=False, IsImp=False
+
+[M181] (Group) ?
+  MSG: Will do. I'll send updates by 5 PM daily.
+  LABELS: HasTask=False, IsImp=False
+
+[M182] (Group) ?
+  MSG: Michael, what's your confidence level that we hit the $3.5M target for Q1?
+  LABELS: HasTask=False, IsImp=False
+
+[M183] (Group) ?
+  MSG: Honestly, 60-40 right now. If Contoso closes, we're at $3.7M. Without it, we're at $1.3M committed which is well short. Everything hinges on the Conto...
+  LABELS: HasTask=False, IsImp=False
+
+[M184] (Group) ?
+  MSG: That's not where I need it to be for the board. Michael, can you put together a risk mitigation plan with backup deals we could accelerate? I need it ...
+  LABELS: HasTask=False, IsImp=False
+
+[M185] (Group) ?
+  MSG: I'll have it for you Sunday night.
+  LABELS: HasTask=False, IsImp=False
+
+[M186] (Group) ?
+  MSG: Thanks both. Let's regroup Wednesday after Sofia's Contoso call.
+  LABELS: HasTask=False, IsImp=False
+
+[M187] (Group) ?
+  MSG: Team, we're 2 weeks out from the v4.2 launch. I want to make sure every workstream is on track. Let's do a round-robin update.
+  LABELS: HasTask=False, IsImp=False
+
+[M188] (Group) ?
+  MSG: Engineering is green. RC build is on track for Friday. One open item ΓÇö the dashboard rendering fix needs to land today, but Priya and Nina are on it.
+  LABELS: HasTask=False, IsImp=False
+
+[M189] (Group) ?
+  MSG: Marketing is ready. Blog posts, social calendar, and email campaign are all queued. The only dependency is the final feature screenshots from the engi...
+  LABELS: HasTask=False, IsImp=False
+
+[M190] (Group) ?
+  MSG: I'll get them over by Wednesday so Chris has buffer time.
+  LABELS: HasTask=False, IsImp=False
+
+[M191] (Group) ?
+  MSG: Sales enablement deck is done. We're doing deal team training on Monday. One ask ΓÇö @Laura, can we get early access to the blog posts for the sales tea...
+  LABELS: HasTask=False, IsImp=False
+
+[M192] (Group) ?
+  MSG: Sure. @Chris, please share draft links with Michael's team by Friday.
+  LABELS: HasTask=False, IsImp=False
+
+[M193] (Group) ?
+  MSG: Will do.
+  LABELS: HasTask=False, IsImp=False
+
+[M194] (Group) ?
+  MSG: David, what's our rollback plan if something goes wrong on launch day?
+  LABELS: HasTask=False, IsImp=False
+
+[M195] (Group) ?
+  MSG: Blue-green deployment with instant rollback capability. We can revert within 2 minutes. James has the runbook ready.
+  LABELS: HasTask=False, IsImp=False
+
+[M196] (Group) ?
+  MSG: Good. @David and @Alex ΓÇö please do a launch readiness review on Thursday. I want sign-off from both of you before we go.
+  LABELS: HasTask=False, IsImp=False
+
+[M197] (Group) ?
+  MSG: Blocked on my calendar.
+  LABELS: HasTask=False, IsImp=False
+
+[M198] (Group) ?
+  MSG: Same. I'll prepare the checklist.
+  LABELS: HasTask=False, IsImp=False
+
+[M199] (Group) ?
+  MSG: Great. This launch needs to go smoothly ΓÇö it's our first big release since the Series C and investors are watching. Let's not drop the ball.
+  LABELS: HasTask=False, IsImp=False
+
+[M200] (Group) ?
+  MSG: We're a week out from the board meeting. Are we aligned on the narrative? I want to lead with product momentum and address the revenue gap proactively...
+  LABELS: HasTask=False, IsImp=False
+
+[M201] (Group) ?
+  MSG: I have the financial section ready. Revenue is $800K below forecast but I've framed it with the pipeline acceleration narrative. The bridge from Q1 ac...
+  LABELS: HasTask=False, IsImp=False
+
+[M202] (Group) ?
+  MSG: Product section is 80% done. I'm including the competitive analysis and the AI roadmap. One question ΓÇö do we want to disclose the Datadog vs. build de...
+  LABELS: HasTask=False, IsImp=False
+
+[M203] (Group) ?
+  MSG: Include it. The board will appreciate the disciplined approach to build vs buy. It shows we're thinking about TCO, not just features.
+  LABELS: HasTask=False, IsImp=False
+
+[M204] (Group) ?
+  MSG: Rachel, can you add a slide on the cost optimization initiatives? I want to show the board we're being responsible with the Series C capital.
+  LABELS: HasTask=False, IsImp=False
+
+[M205] (Group) ?
+  MSG: I'll add it. I have good data on the vendor consolidation savings and the infrastructure efficiency gains from James's team.
+  LABELS: HasTask=False, IsImp=False
+
+[M206] (Group) ?
+  MSG: David, I also need you to prepare a 3-minute demo of the AI-assisted resource allocation feature. Even if it's a prototype, the board needs to see whe...
+  LABELS: HasTask=False, IsImp=False
+
+[M207] (Group) ?
+  MSG: I can do a prototype demo. Alex's team has a working proof of concept. I'll polish it up.
+  LABELS: HasTask=False, IsImp=False
+
+[M208] (Group) ?
+  MSG: Sarah, should we also address the headcount discussion? The board may ask why we're hiring into a revenue gap.
+  LABELS: HasTask=False, IsImp=False
+
+[M209] (Group) ?
+  MSG: Yes, good call. Frame it as investing in growth ΓÇö the engineering hires are for the product features that drive the Q2-Q3 pipeline. It's correlated sp...
+  LABELS: HasTask=False, IsImp=False
+
+[M210] (Group) ?
+  MSG: Agreed. I can tie the hiring to specific product milestones that feed into Michael's pipeline forecast.
+  LABELS: HasTask=False, IsImp=False
+
+[M211] (Group) ?
+  MSG: Perfect. Let's do a dry run Tuesday afternoon. Rachel, can you coordinate a time?
+  LABELS: HasTask=False, IsImp=False
+
+[M212] (Group) ?
+  MSG: I'll send an invite for 3 PM Tuesday.
+  LABELS: HasTask=False, IsImp=False
+
+[M213] (Group) ?
+  MSG: Hey everyone, wanted to sync on the Q2 campaign plan. We're targeting enterprise accounts with the analytics story. @Michael, does this align with wha...
+  LABELS: HasTask=False, IsImp=False
+
+[M214] (Group) ?
+  MSG: Mostly. Analytics is the #1 feature request, but a lot of enterprise prospects also care about integrations and security certifications. Can we weave ...
+  LABELS: HasTask=False, IsImp=False
+
+[M215] (Group) ?
+  MSG: Good input. @Chris, can you draft updated messaging that includes the integration ecosystem and security certifications alongside analytics? I want a ...
+  LABELS: HasTask=False, IsImp=False
+
+[M216] (Group) ?
+  MSG: On it. Sofia, can you share the top 5 objections you hear from enterprise prospects? I want to make sure the messaging addresses those.
+  LABELS: HasTask=False, IsImp=False
+
+[M217] (Group) ?
+  MSG: Sure. The big ones are: 1) Data security/sovereignty, 2) Integration with existing tools, 3) Migration effort from current PM tool, 4) Reporting/analy...
+  LABELS: HasTask=False, IsImp=False
+
+[M218] (Group) ?
+  MSG: That's helpful. @Laura, one more thing ΓÇö we're hosting a webinar with Contoso's VP of Ops if the deal closes. Could that become part of the campaign?
+  LABELS: HasTask=False, IsImp=False
+
+[M219] (Group) ?
+  MSG: I love that idea. Let's plan for it tentatively and we can confirm once the deal closes. Chris, add a 'customer webinar' track to the campaign plan as...
+  LABELS: HasTask=False, IsImp=False
+
+[M220] (Group) ?
+  MSG: Added. I'll create the webinar landing page template so we're ready to go.
+  LABELS: HasTask=False, IsImp=False
+
+[M221] (Group) ?
+  MSG: Great sync everyone. Let's regroup next Wednesday with Chris's draft messaging.
+  LABELS: HasTask=False, IsImp=False
+
+[M222] (Group) ?
+  MSG: ≡ƒÜ¿ ALERT: Production database connection pool exhausted. All API endpoints returning 503. Multiple customers reporting issues.
+  LABELS: HasTask=False, IsImp=False
+
+[M223] (Group) ?
+  MSG: All hands on deck. @James, what's the current connection count vs pool limit? @Priya, check if the connection leak fix from PR #847 is deployed.
+  LABELS: HasTask=False, IsImp=False
+
+[M224] (Group) ?
+  MSG: Pool is at 500/500. We're fully saturated. The spike started 8 minutes ago. Correlates with a batch job that kicked off at 2 PM.
+  LABELS: HasTask=False, IsImp=False
+
+[M225] (Group) ?
+  MSG: PR #847 is deployed in production as of yesterday. But wait ΓÇö the pagination fix changed the connection handling. Let me check if there's a connection...
+  LABELS: HasTask=False, IsImp=False
+
+[M226] (Group) ?
+  MSG: What's customer impact right now? How many users affected?
+  LABELS: HasTask=False, IsImp=False
+
+[M227] (Group) ?
+  MSG: Monitoring shows ~8,000 active users getting errors. The status page is still green ΓÇö should I update it?
+  LABELS: HasTask=False, IsImp=False
+
+[M228] (Group) ?
+  MSG: Yes, update the status page immediately. Mark it as partial service degradation.
+  LABELS: HasTask=False, IsImp=False
+
+[M229] (Group) ?
+  MSG: Found it. The new pagination code opens a new connection for each cursor-based query but doesn't release it when the client disconnects mid-stream. Th...
+  LABELS: HasTask=False, IsImp=False
+
+[M230] (Group) ?
+  MSG: @Priya, can you push an emergency fix? In the meantime, @James, kill the batch job and manually free the stale connections.
+  LABELS: HasTask=False, IsImp=False
+
+[M231] (Group) ?
+  MSG: Batch job killed. Freeing stale connections now... Pool is recovering. Down to 320/500.
+  LABELS: HasTask=False, IsImp=False
+
+[M232] (Group) ?
+  MSG: Fix is ready ΓÇö adding a connection.close() in the finally block of the cursor handler. PR #852. Alex, can you fast-track review? It's a 3-line change.
+  LABELS: HasTask=False, IsImp=False
+
+[M233] (Group) ?
+  MSG: Reviewed. LGTM. Merge and deploy.
+  LABELS: HasTask=False, IsImp=False
+
+[M234] (Group) ?
+  MSG: Pool is back to 45/500. All endpoints responding normally. Deploying Priya's fix now.
+  LABELS: HasTask=False, IsImp=False
+
+[M235] (Group) ?
+  MSG: Good work team. Total incident duration was about 25 minutes. Alex, please schedule a postmortem for tomorrow and send the exec summary tonight.
+  LABELS: HasTask=False, IsImp=False
+
+[M236] (Group) ?
+  MSG: On it. Postmortem invite going out for 10 AM tomorrow. Exec summary in the next hour.
+  LABELS: HasTask=False, IsImp=False
+
+[M237] (Group) ?
+  MSG: Fix deployed. Monitoring confirms stable. Updating status page to resolved.
+  LABELS: HasTask=False, IsImp=False
+
+[M238] (Group) ?
+  MSG: Hi everyone. I want to finalize the Q2 headcount plan for engineering. David and Alex, can you confirm your final requirements?
+  LABELS: HasTask=False, IsImp=False
+
+[M239] (Group) ?
+  MSG: We need 4 positions: 2 senior backend engineers, 1 ML engineer for the AI features, and 1 DevOps engineer to support the scaling work.
+  LABELS: HasTask=False, IsImp=False
+
+[M240] (Group) ?
+  MSG: I agree with David's list. The backend engineers are the most urgent ΓÇö we're already short-staffed on the API team.
+  LABELS: HasTask=False, IsImp=False
+
+[M241] (Group) ?
+  MSG: Budget is approved for 4 engineering headcount. @Danielle, please start the req process. I'd like offers extended by end of April to manage the cash f...
+  LABELS: HasTask=False, IsImp=False
+
+[M242] (Group) ?
+  MSG: I'll open the reqs today. @David, @Alex ΓÇö I'll need updated job descriptions for the ML engineer and DevOps roles. The backend JDs we can reuse from l...
+  LABELS: HasTask=False, IsImp=False
+
+[M243] (Group) ?
+  MSG: I'll update the ML engineer JD today. Alex, can you handle the DevOps one?
+  LABELS: HasTask=False, IsImp=False
+
+[M244] (Group) ?
+  MSG: Sure. I'll have it over by tomorrow morning.
+  LABELS: HasTask=False, IsImp=False
+
+[M245] (Group) ?
+  MSG: Great. Once I have the JDs, I'll target having candidates in final rounds within 3 weeks. Rachel, any constraints on the comp bands?
+  LABELS: HasTask=False, IsImp=False
+
+[M246] (Group) ?
+  MSG: Standard band for senior engineers. For the ML role, we may need to go 10-15% above band to be competitive. I've seen market data showing a premium fo...
+  LABELS: HasTask=False, IsImp=False
+
+[M247] (Group) ?
+  MSG: Thanks Rachel. I'll factor that in. Let's check in next week on progress.
+  LABELS: HasTask=False, IsImp=False
+
+[M248] (Group) ?
+  MSG: I've completed the NDA review for Northwind Traders. There are three issues I need to flag: | 1. Their IP transfer clause is overly broad | 2. The non...
+  LABELS: HasTask=False, IsImp=False
+
+[M249] (Group) ?
+  MSG: That IP clause was the one that concerned me too. Can we push back on all three?
+  LABELS: HasTask=False, IsImp=False
+
+[M250] (Group) ?
+  MSG: We should push back on #1 and #2 ΓÇö those are deal-breakers from our perspective. On #3, I'm flexible ΓÇö New York is workable, just not ideal. @Sofia, d...
+  LABELS: HasTask=False, IsImp=False
+
+[M251] (Group) ?
+  MSG: Their legal team seemed pretty firm when we first discussed. But the deal is important to them too ΓÇö they specifically chose us over a competitor. I t...
+  LABELS: HasTask=False, IsImp=False
+
+[M252] (Group) ?
+  MSG: Amanda, can you prepare a counter-proposal with our preferred language on the IP and non-compete clauses? @Sofia, set up a call with their legal team ...
+  LABELS: HasTask=False, IsImp=False
+
+[M253] (Group) ?
+  MSG: I'll have the counter-proposal ready by Wednesday EOD. That gives Sofia time to share it before the call.
+  LABELS: HasTask=False, IsImp=False
+
+[M254] (Group) ?
+  MSG: Scheduling the call now. I'll send the invite once confirmed.
+  LABELS: HasTask=False, IsImp=False
+
+[M255] (Group) ?
+  MSG: Thanks team. Amanda ΓÇö if they won't budge on the IP clause, is there a middle ground we can live with?
+  LABELS: HasTask=False, IsImp=False
+
+[M256] (Group) ?
+  MSG: We could limit the IP scope to only work products specifically created for the integration project, rather than a blanket transfer. That protects our ...
+  LABELS: HasTask=False, IsImp=False
+
+[M257] (Group) ?
+  MSG: Smart. Let's lead with our preferred position and have that as a fallback. Good work team.
+  LABELS: HasTask=False, IsImp=False
+
+[M258] (Group) ?
+  MSG: Sarah, Kevin ΓÇö here's the Q1 budget summary. We're 6% under on revenue and 3% over on opex. Net impact is about $1.1M below plan.
+  LABELS: HasTask=False, IsImp=False
+
+[M259] (Group) ?
+  MSG: That's concerning. What's driving the opex overage?
+  LABELS: HasTask=False, IsImp=False
+
+[M260] (Group) ?
+  MSG: Three main factors: 1) Cloud infrastructure costs came in $180K over due to the scaling work, 2) The enterprise customer event ran $90K over budget, 3...
+  LABELS: HasTask=False, IsImp=False
+
+[M261] (Group) ?
+  MSG: We need to course-correct for Q2. @Kevin, can you prepare a cost optimization analysis ΓÇö identify at least $500K in savings opportunities across all d...
+  LABELS: HasTask=False, IsImp=False
+
+[M262] (Group) ?
+  MSG: I'll have it ready by next Friday. Should I coordinate with department heads, or keep the analysis independent first?
+  LABELS: HasTask=False, IsImp=False
+
+[M263] (Group) ?
+  MSG: Keep it independent first. I don't want departments sandbagging their numbers. We'll share with them after Rachel and I review.
+  LABELS: HasTask=False, IsImp=False
+
+[M264] (Group) ?
+  MSG: Agreed. Kevin, I'll share the department-level budget files with you today so you have the granular data. Also ΓÇö I want to flag that our cash runway i...
+  LABELS: HasTask=False, IsImp=False
+
+[M265] (Group) ?
+  MSG: Good to know. But I still want us operating lean. The board expects fiscal discipline post-Series C.
+  LABELS: HasTask=False, IsImp=False
+
+[M266] (Group) ?
+  MSG: Understood. I'll focus the analysis on efficiency gains, not just cuts ΓÇö so we're not sacrificing growth.
+  LABELS: HasTask=False, IsImp=False
+
+[M267] (Group) ?
+  MSG: Alex, Michael ΓÇö Pinnacle Logistics has an open P1 for 5 days. They're our 3rd largest customer ($1.2M ARR). The issue is a data export timeout that De...
+  LABELS: HasTask=False, IsImp=False
+
+[M268] (Group) ?
+  MSG: 5 days? That shouldn't have sat that long. Let me check the bug. Derek, what's the engineering ticket number?
+  LABELS: HasTask=False, IsImp=False
+
+[M269] (Group) ?
+  MSG: ENG-2847. Filed on Monday. It's been unassigned on the engineering side. I pinged the eng channel twice but got no response.
+  LABELS: HasTask=False, IsImp=False
+
+[M270] (Group) ?
+  MSG: I see it now. This fell through the cracks ΓÇö the auto-assignment was broken last week. I'm assigning this to Priya now and marking it P1. She'll have ...
+  LABELS: HasTask=False, IsImp=False
+
+[M271] (Group) ?
+  MSG: Tomorrow morning isn't fast enough. Their VP of Ops is already cc'ing our CEO on emails. If we don't show progress by end of today, we risk the renewa...
+  LABELS: HasTask=False, IsImp=False
+
+[M272] (Group) ?
+  MSG: OK, I'll pull Priya off her current work and make this the top priority. We'll have a workaround within 3 hours.
+  LABELS: HasTask=False, IsImp=False
+
+[M273] (Group) ?
+  MSG: Thank you. @Derek, please keep Pinnacle informed ΓÇö let them know we've escalated internally and they should expect an update by 5 PM today.
+  LABELS: HasTask=False, IsImp=False
+
+[M274] (Group) ?
+  MSG: Will do. Sending them an update now.
+  LABELS: HasTask=False, IsImp=False
+
+[M275] (Group) ?
+  MSG: Let's make sure we have a proper escalation process for top-20 accounts. This shouldn't have gone 5 days without engineering attention.
+  LABELS: HasTask=False, IsImp=False
+
+[M276] (Group) ?
+  MSG: Agreed. I'll fix the auto-assignment and add a 24-hour SLA alert for P1s from top accounts.
+  LABELS: HasTask=False, IsImp=False
+
+[M277] (Group) ?
+  MSG: Thanks everyone. I'll report back once Pinnacle acknowledges the update.
+  LABELS: HasTask=False, IsImp=False
+
+[M278] (Group) ?
+  MSG: PR #852 is up for the connection pool fix. It's a 3-line change in the cursor handler. @Alex already did a quick review during the incident, but I'd l...
+  LABELS: HasTask=False, IsImp=False
+
+[M279] (Group) ?
+  MSG: Taking a look now. Does the test suite cover the case where a client disconnects mid-stream during a cursor query?
+  LABELS: HasTask=False, IsImp=False
+
+[M280] (Group) ?
+  MSG: Good question. I added a test for graceful disconnect but not for abrupt disconnects (like network failure). Should I add that?
+  LABELS: HasTask=False, IsImp=False
+
+[M281] (Group) ?
+  MSG: Yes, definitely. The original bug was caused by abrupt disconnects from the batch job. We should test both scenarios. Also, can you add a test that ve...
+  LABELS: HasTask=False, IsImp=False
+
+[M282] (Group) ?
+  MSG: Will add both. Give me 30 minutes.
+  LABELS: HasTask=False, IsImp=False
+
+[M283] (Group) ?
+  MSG: While you're at it, can you also add a prometheus metric for active connection count? That would've helped us diagnose the issue faster during the inc...
+  LABELS: HasTask=False, IsImp=False
+
+[M284] (Group) ?
+  MSG: Good idea. I'll add it in this PR since it's related.
+  LABELS: HasTask=False, IsImp=False
+
+[M285] (Group) ?
+  MSG: Otherwise the fix itself looks clean. LGTM once the tests are added.
+  LABELS: HasTask=False, IsImp=False
+
+[M286] (Group) ?
+  MSG: Tests added and passing. CI is green. Ready for re-review.
+  LABELS: HasTask=False, IsImp=False
+
+[M287] (Group) ?
+  MSG: Looks great. Approved. Γ£à
+  LABELS: HasTask=False, IsImp=False
+
+[M288] (Group) ?
+  MSG: Team, let's plan the Q1 all-hands. I want it to feel different this time ΓÇö more interactive, less death-by-slides. Targeting the last Friday of the mo...
+  LABELS: HasTask=False, IsImp=False
+
+[M289] (Group) ?
+  MSG: I agree. We could do a fireside chat format for the product update instead of slides. @Chris, can you design the visual deck for the all-hands? Someth...
+  LABELS: HasTask=False, IsImp=False
+
+[M290] (Group) ?
+  MSG: Love the fireside chat idea. I'll put together a visual-first deck template. When do you need it?
+  LABELS: HasTask=False, IsImp=False
+
+[M291] (Group) ?
+  MSG: By Wednesday of that week so we have 2 days for dry run.
+  LABELS: HasTask=False, IsImp=False
+
+[M292] (Group) ?
+  MSG: I can handle the employee recognition segment. I have the Q1 award nominations finalized. @Lisa, can you coordinate with facilities on the venue setup...
+  LABELS: HasTask=False, IsImp=False
+
+[M293] (Group) ?
+  MSG: Sure. I'll also arrange catering for 50 in-office plus the streaming setup for remote folks. Want the usual lunch spread?
+  LABELS: HasTask=False, IsImp=False
+
+[M294] (Group) ?
+  MSG: Yes, but add some variety this time. People complained about the same sandwich platters. Budget is fine up to $1,500.
+  LABELS: HasTask=False, IsImp=False
+
+[M295] (Group) ?
+  MSG: Got it. I'll upgrade the menu. ≡ƒìò
+  LABELS: HasTask=False, IsImp=False
+
+[M296] (Group) ?
+  MSG: One more thing ΓÇö I want to open with a 5-minute video montage of team highlights from Q1. @Chris, can you put that together too? Use clips from the pr...
+  LABELS: HasTask=False, IsImp=False
+
+[M297] (Group) ?
+  MSG: Absolutely! I'll gather clips and have a draft ready for review by the Monday before.
+  LABELS: HasTask=False, IsImp=False
+
+[M298] (Group) ?
+  MSG: This is shaping up nicely. I'm excited!
+  LABELS: HasTask=False, IsImp=False
+
+[M299] (Group) ?
+  MSG: Everyone, the SOC 2 auditors confirmed their on-site visit for April 15. We have 3 weeks to close all open items. This is not negotiable ΓÇö a failed au...
+  LABELS: HasTask=False, IsImp=False
+
+[M300] (Group) ?
+  MSG: @David, I need engineering to complete the access control remediation and the disaster recovery test. What's the status?
+  LABELS: HasTask=False, IsImp=False
+
+[M301] (Group) ?
+  MSG: Access control remediation is done ΓÇö James implemented the segregation of duties changes in November. The DR test is scheduled for next week. I'll mak...
+  LABELS: HasTask=False, IsImp=False
+
+[M302] (Group) ?
+  MSG: @Kevin, the financial controls documentation ΓÇö specifically the vendor payment authorization gap we discussed. Is that closed?
+  LABELS: HasTask=False, IsImp=False
+
+[M303] (Group) ?
+  MSG: Almost. I'm waiting on James for the updated approval threshold documentation. I expect to have everything finalized by end of this week.
+  LABELS: HasTask=False, IsImp=False
+
+[M304] (Group) ?
+  MSG: @Danielle, HR controls ΓÇö employee onboarding/offboarding procedures, access provisioning documentation, background check records. Are those audit-read...
+  LABELS: HasTask=False, IsImp=False
+
+[M305] (Group) ?
+  MSG: Onboarding and offboarding procedures are documented and current. Background check records are complete. One gap ΓÇö we need to update the access provis...
+  LABELS: HasTask=False, IsImp=False
+
+[M306] (Group) ?
+  MSG: OK, everyone please submit your final evidence packages to me by April 8. That gives me a week to compile and review before the auditors arrive. I'll ...
+  LABELS: HasTask=False, IsImp=False
+
+[M307] (Group) ?
+  MSG: Will do.
+  LABELS: HasTask=False, IsImp=False
+
+[M308] (Group) ?
+  MSG: Understood.
+  LABELS: HasTask=False, IsImp=False
+
+[M309] (Group) ?
+  MSG: Got it. I'll coordinate with David on the access provisioning update.
+  LABELS: HasTask=False, IsImp=False
+
+[M310] (Group) ?
+  MSG: Thanks everyone. If anyone identifies a new gap, flag it immediately. No surprises during the audit.
+  LABELS: HasTask=False, IsImp=False
+
+[M311] (Group) ?
+  MSG: Draft messaging is ready for the spring enterprise campaign. I've shared the doc in the Marketing shared drive. Three tagline options to choose from: ...
+  LABELS: HasTask=False, IsImp=False
+
+[M312] (Group) ?
+  MSG: I like option B ΓÇö it ties directly to the AI features we're launching. But 'powered by' feels a bit generic. Can you iterate on that one?
+  LABELS: HasTask=False, IsImp=False
+
+[M313] (Group) ?
+  MSG: From a sales perspective, option A resonates most with enterprise buyers. They care about 'intelligence' and 'simplified' ΓÇö those are the exact words ...
+  LABELS: HasTask=False, IsImp=False
+
+[M314] (Group) ?
+  MSG: What if we combine them? 'Enterprise Intelligence, AI-Powered'. Gets the enterprise feel from A and the AI angle from B.
+  LABELS: HasTask=False, IsImp=False
+
+[M315] (Group) ?
+  MSG: I like that. Sofia, would that work in your sales conversations?
+  LABELS: HasTask=False, IsImp=False
+
+[M316] (Group) ?
+  MSG: Yes, that's strong. Short, professional, and hits the right keywords for the audience.
+  LABELS: HasTask=False, IsImp=False
+
+[M317] (Group) ?
+  MSG: Let's go with 'Enterprise Intelligence, AI-Powered'. Chris, please update all the campaign assets with the final tagline and send me the updated proof...
+  LABELS: HasTask=False, IsImp=False
+
+[M318] (Group) ?
+  MSG: On it. I'll also update the landing page header and the email templates.
+  LABELS: HasTask=False, IsImp=False
+
+[M319] (Group) ?
+  MSG: Perfect. Great collaboration everyone ≡ƒÄ¿
+  LABELS: HasTask=False, IsImp=False
+
+[M320] (Group) ?
+  MSG: Heads up everyone ΓÇö Salesforce has been down for the past 2 hours. I've submitted a support ticket with Salesforce but no ETA on resolution yet.
+  LABELS: HasTask=False, IsImp=False
+
+[M321] (Group) ?
+  MSG: This is impacting the support team badly. We can't access customer records or update tickets. Is there a workaround?
+  LABELS: HasTask=False, IsImp=False
+
+[M322] (Group) ?
+  MSG: I checked ΓÇö it's a Salesforce-side issue, not our integration. Their status page shows 'investigating.' Unfortunately there's no workaround for the co...
+  LABELS: HasTask=False, IsImp=False
+
+[M323] (Group) ?
+  MSG: @Derek, can you make sure your team switches to the backup workflow for any critical tickets? And let me know if any customer-facing commitments are a...
+  LABELS: HasTask=False, IsImp=False
+
+[M324] (Group) ?
+  MSG: Will do. We have 3 customers with SLA-bound responses due today. I'll handle them via the backup process.
+  LABELS: HasTask=False, IsImp=False
+
+[M325] (Group) ?
+  MSG: FYI ΓÇö I've set up an alert. When Salesforce comes back online, I'll sync the backup data automatically. Nothing will be lost.
+  LABELS: HasTask=False, IsImp=False
+
+[M326] (Group) ?
+  MSG: Thanks James. @Derek, please send me a list of any impacted SLA responses so I can notify the customer success team.
+  LABELS: HasTask=False, IsImp=False
+
+[M327] (Group) ?
+  MSG: Sending it now.
+  LABELS: HasTask=False, IsImp=False
+
+[M328] (Group) ?
+  MSG: Salesforce just came back online. Confirmed working. Total downtime: about 3 hours.
+  LABELS: HasTask=False, IsImp=False
+
+[M329] (Group) ?
+  MSG: Backup data sync initiated. Should be fully reconciled within 30 minutes.
+  LABELS: HasTask=False, IsImp=False
+
+[M330] (Group) ?
+  MSG: Team, let's define the MVP for the AI-assisted resource allocation feature. This is the top item on our Q2 roadmap and a key board commitment. @Michae...
+  LABELS: HasTask=False, IsImp=False
+
+[M331] (Group) ?
+  MSG: Top 3 requests: | 1. Automatic team member assignment based on skills and availability | 2. Workload balancing across projects | 3. Predictive timelin...
+  LABELS: HasTask=False, IsImp=False
+
+[M332] (Group) ?
+  MSG: From a technical standpoint, #1 and #2 are feasible for Q2 with 2 engineers. #3 requires a trained ML model on customer data ΓÇö that's at least Q3.
+  LABELS: HasTask=False, IsImp=False
+
+[M333] (Group) ?
+  MSG: I've been prototyping the matching algorithm. The challenge is real-time availability data ΓÇö our current calendar integration only syncs every 15 minu...
+  LABELS: HasTask=False, IsImp=False
+
+[M334] (Group) ?
+  MSG: Build for batch first ΓÇö 15-minute sync is fine for MVP. We can optimize to real-time in v2. @Priya, can you have the prototype ready for a demo by end...
+  LABELS: HasTask=False, IsImp=False
+
+[M335] (Group) ?
+  MSG: Yes, I can have a working demo with sample data by Friday. It won't be production-ready but it'll show the concept.
+  LABELS: HasTask=False, IsImp=False
+
+[M336] (Group) ?
+  MSG: Can I bring a customer to see the demo? Contoso has been asking about this exact feature.
+  LABELS: HasTask=False, IsImp=False
+
+[M337] (Group) ?
+  MSG: Not yet. Let's get it stable first. Once we're confident in the demo, we can set up a customer preview. Probably 2-3 weeks after the initial prototype...
+  LABELS: HasTask=False, IsImp=False
+
+[M338] (Group) ?
+  MSG: Agreed. Priya, let me know if you need help with the calendar integration piece. James might have some useful infrastructure code from the scheduling ...
+  LABELS: HasTask=False, IsImp=False
+
+[M339] (Group) ?
+  MSG: Thanks, I'll reach out. I think I actually have what I need from the existing API.
+  LABELS: HasTask=False, IsImp=False
+
+[M340] (Group) ?
+  MSG: Quick sync notes from today's meeting. Sharing here so everyone has the record: |  | 1. Spring campaign is on track. Chris finalizing assets by Thursd...
+  LABELS: HasTask=False, IsImp=False
+
+[M341] (Group) ?
+  MSG: @Chris ΓÇö finalize campaign landing page and send proof to me by Thursday EOD.
+  LABELS: HasTask=False, IsImp=False
+
+[M342] (Group) ?
+  MSG: @Sofia ΓÇö share the enterprise prospect objection list with Chris by Wednesday for the messaging update.
+  LABELS: HasTask=False, IsImp=False
+
+[M343] (Group) ?
+  MSG: @Maria ΓÇö confirm Pinnacle's availability for the customer testimonial. Deadline: Next Wednesday.
+  LABELS: HasTask=False, IsImp=False
+
+[M344] (Group) ?
+  MSG: Got it. Landing page is 90% done, I'll have it finalized Thursday morning.
+  LABELS: HasTask=False, IsImp=False
+
+[M345] (Group) ?
+  MSG: Will send the list to Chris tomorrow.
+  LABELS: HasTask=False, IsImp=False
+
+[M346] (Group) ?
+  MSG: I'm reaching out to Pinnacle today. Will update the group once I hear back.
+  LABELS: HasTask=False, IsImp=False
+
+[M347] (Group) ?
+  MSG: Great. Also FYI ΓÇö I'm OOO next Friday for a dentist appointment. Chris, you're in charge of any urgent requests that day.
+  LABELS: HasTask=False, IsImp=False
+
+[M348] (Group) ?
+  MSG: Noted. Safe teeth! ≡ƒÿä
+  LABELS: HasTask=False, IsImp=False
+
+[M349] (Group) ?
+  MSG: ≡ƒÿé Thanks. Have a good week everyone!
+  LABELS: HasTask=False, IsImp=False
+
+[M350] (Group) ?
+  MSG: URGENT: GlobalTech Solutions ($850K ARR) is threatening to cancel their contract. Their CTO sent an email directly to Sarah. Main complaints: | 1. Thr...
+  LABELS: HasTask=False, IsImp=False
+
+[M351] (Group) ?
+  MSG: I had no idea this was escalating. Maria, why wasn't I looped in earlier?
+  LABELS: HasTask=False, IsImp=False
+
+[M352] (Group) ?
+  MSG: The individual tickets didn't seem severe enough to escalate. But the pattern is the problem ΓÇö three unresolved issues compounded. My mistake ΓÇö I shou...
+  LABELS: HasTask=False, IsImp=False
+
+[M353] (Group) ?
+  MSG: The three tickets are legitimate. Two are feature limitations in our export API, and one is a documentation gap. The export issues need engineering wo...
+  LABELS: HasTask=False, IsImp=False
+
+[M354] (Group) ?
+  MSG: OK, I'll get the export API issues prioritized. @Derek, can you send me the ticket details with repro steps? I'll assign an engineer today.
+  LABELS: HasTask=False, IsImp=False
+
+[M355] (Group) ?
+  MSG: @Maria, I need you to draft a recovery plan for GlobalTech. Include: 1) Timeline for resolving all three issues, 2) Proposal for a dedicated account m...
+  LABELS: HasTask=False, IsImp=False
+
+[M356] (Group) ?
+  MSG: I'll have the draft ready by end of day tomorrow.
+  LABELS: HasTask=False, IsImp=False
+
+[M357] (Group) ?
+  MSG: Quick note ΓÇö if we're offering free premium support, I'll need to review the contract amendment. Their current agreement has specific SLA terms we can...
+  LABELS: HasTask=False, IsImp=False
+
+[M358] (Group) ?
+  MSG: Sending it now.
+  LABELS: HasTask=False, IsImp=False
+
+[M359] (Group) ?
+  MSG: Thanks everyone. Let's regroup tomorrow at 4 PM with the action plan. I'll schedule the meeting.
+  LABELS: HasTask=False, IsImp=False
+
+[M360] (Group) ?
+  MSG: Ticket details sent to Alex. All three with full repro steps.
+  LABELS: HasTask=False, IsImp=False
+
+[M361] (Group) ?
+  MSG: SECURITY ALERT: During routine log review, I found that a misconfigured S3 bucket exposed customer project names and email addresses for approximately...
+  LABELS: HasTask=False, IsImp=False
+
+[M362] (Group) ?
+  MSG: This is a potential GDPR/CCPA incident. James, how many customers were affected and what data was exposed?
+  LABELS: HasTask=False, IsImp=False
+
+[M363] (Group) ?
+  MSG: Based on the access logs, 247 customer accounts were in the exposed bucket. Data included: project names, user email addresses, and team names. No pas...
+  LABELS: HasTask=False, IsImp=False
+
+[M364] (Group) ?
+  MSG: OK. We need to assess whether this triggers notification requirements. Under GDPR, we have 72 hours from discovery. @David, can you confirm this has b...
+  LABELS: HasTask=False, IsImp=False
+
+[M365] (Group) ?
+  MSG: Confirmed contained. James fixed the bucket permissions last night and I verified the fix this morning. We've also audited all other S3 buckets ΓÇö no s...
+  LABELS: HasTask=False, IsImp=False
+
+[M366] (Group) ?
+  MSG: @James, I need the complete access log from the exposure window. We need to determine if anyone actually accessed the data, or if it was just theoreti...
+  LABELS: HasTask=False, IsImp=False
+
+[M367] (Group) ?
+  MSG: Pulling the logs now. Preliminary check shows 3 external IP addresses accessed the bucket during the window. Analyzing whether they accessed customer ...
+  LABELS: HasTask=False, IsImp=False
+
+[M368] (Group) ?
+  MSG: @Danielle, we may need to notify affected customers. Can you prepare a draft notification email? Use the incident response template but customize for ...
+  LABELS: HasTask=False, IsImp=False
+
+[M369] (Group) ?
+  MSG: I'll draft it immediately. Do we need to notify the DPA as well?
+  LABELS: HasTask=False, IsImp=False
+
+[M370] (Group) ?
+  MSG: Potentially. Let's wait for James's access log analysis. If the 3 external IPs actually accessed customer data, we have a reportable incident. If they...
+  LABELS: HasTask=False, IsImp=False
+
+[M371] (Group) ?
+  MSG: What preventive measures should we implement immediately? I don't want a repeat.
+  LABELS: HasTask=False, IsImp=False
+
+[M372] (Group) ?
+  MSG: I'm recommending: 1) Automated S3 policy scanning in CI/CD, 2) CloudTrail alerts for any public bucket creation, 3) Quarterly access review of all clo...
+  LABELS: HasTask=False, IsImp=False
+
+[M373] (Group) ?
+  MSG: Good. Everyone please treat this as confidential until we've completed the assessment and made notification decisions. No external communication until...
+  LABELS: HasTask=False, IsImp=False
+
+[M374] (Group) ?
+  MSG: Hey team! I'm organizing the spring hackathon for the engineering team. Thinking April 18-19 (Friday-Saturday). Who's in? ≡ƒÄë
+  LABELS: HasTask=False, IsImp=False
+
+[M375] (Group) ?
+  MSG: I'm in! Already have a project idea ΓÇö AI-powered code review bot. ≡ƒñû
+  LABELS: HasTask=False, IsImp=False
+
+[M376] (Group) ?
+  MSG: Count me in. Can we invite the support team too? Derek has some great ideas for automating ticket triage.
+  LABELS: HasTask=False, IsImp=False
+
+[M377] (Group) ?
+  MSG: Great idea ΓÇö let's make it cross-functional. @Lisa, can you help with logistics? We'll need the large conference room for 2 days, snacks, and maybe di...
+  LABELS: HasTask=False, IsImp=False
+
+[M378] (Group) ?
+  MSG: Happy to help! I'll reserve the Cascade Room for both days and order catering. How many people are we expecting?
+  LABELS: HasTask=False, IsImp=False
+
+[M379] (Group) ?
+  MSG: Probably 15-20 people if we open it up. Let's plan for 20 to be safe.
+  LABELS: HasTask=False, IsImp=False
+
+[M380] (Group) ?
+  MSG: Should we have a theme this year or keep it open?
+  LABELS: HasTask=False, IsImp=False
+
+[M381] (Group) ?
+  MSG: Let's keep it open but add a 'customer impact' bonus category ΓÇö projects that could directly improve customer experience get extra points.
+  LABELS: HasTask=False, IsImp=False
+
+[M382] (Group) ?
+  MSG: Love it. I'll draft the registration form and share it by Friday. ≡ƒô¥
+  LABELS: HasTask=False, IsImp=False
+
+[M383] (Group) ?
+  MSG: Conference room is booked. Catering ordered for 20. ≡ƒìò≡ƒìö
+  LABELS: HasTask=False, IsImp=False
+
+[M384] (Group) ?
+  MSG: You're the best Lisa! This is going to be fun. ≡ƒÜÇ
+  LABELS: HasTask=False, IsImp=False
+
+[M385] (Group) ?
+  MSG: Heads up ΓÇö we have 2 new engineers starting on April 7. @Alex, can you prepare their onboarding plan, team assignments, and buddy pairings? @Lisa, ple...
+  LABELS: HasTask=False, IsImp=False
+
+[M386] (Group) ?
+  MSG: I'll have the onboarding plan ready by April 3. Quick question ΓÇö are both backend engineers, or is one the ML engineer?
+  LABELS: HasTask=False, IsImp=False
+
+[M387] (Group) ?
+  MSG: Both are backend engineers. The ML role is still in final rounds.
+  LABELS: HasTask=False, IsImp=False
+
+[M388] (Group) ?
+  MSG: Laptops are ordered and expected to arrive April 2. I'll have their desk area set up in the engineering section. Do they have any accessibility requir...
+  LABELS: HasTask=False, IsImp=False
+
+[M389] (Group) ?
+  MSG: No specific accessibility needs flagged in their intake forms. Standard setup should be fine.
+  LABELS: HasTask=False, IsImp=False
+
+[M390] (Group) ?
+  MSG: I'm thinking of pairing them with Priya and James as onboarding buddies. They'll cover both the codebase orientation and the DevOps workflow.
+  LABELS: HasTask=False, IsImp=False
+
+[M391] (Group) ?
+  MSG: That sounds great. Please make sure they also complete the security awareness training in their first week ΓÇö it's mandatory for SOC 2 compliance.
+  LABELS: HasTask=False, IsImp=False
+
+[M392] (Group) ?
+  MSG: Noted ΓÇö I'll add it to the onboarding checklist.
+  LABELS: HasTask=False, IsImp=False
+
+[M393] (Group) ?
+  MSG: All set on my end. Welcome kit, badge, parking pass, and desk setup will be ready by April 4.
+  LABELS: HasTask=False, IsImp=False
+
+[M394] (Group) ?
+  MSG: Team, we need to finalize the observability vendor decision by end of month. I've narrowed it to Datadog and New Relic. Kevin, what are the cost compa...
+  LABELS: HasTask=False, IsImp=False
+
+[M395] (Group) ?
+  MSG: Datadog: $350K/year for enterprise plan. New Relic: $280K/year but with a more limited feature set. Datadog includes APM, log management, and infrastr...
+  LABELS: HasTask=False, IsImp=False
+
+[M396] (Group) ?
+  MSG: So all-in, Datadog is $350K vs New Relic at $340K if we add logs. Not a significant price difference. @Lisa, did the vendor references check out?
+  LABELS: HasTask=False, IsImp=False
+
+[M397] (Group) ?
+  MSG: I spoke with 3 references for each. Datadog got higher marks for reliability and support responsiveness. New Relic references mentioned occasional bil...
+  LABELS: HasTask=False, IsImp=False
+
+[M398] (Group) ?
+  MSG: That's helpful. I'm leaning Datadog based on completeness and reliability. Kevin, can you prepare the final cost model with 3-year terms? I want to ne...
+  LABELS: HasTask=False, IsImp=False
+
+[M399] (Group) ?
+  MSG: I'll have it ready by Wednesday. Should I model the 3-year TCO with a 15% discount assumption?
+  LABELS: HasTask=False, IsImp=False
+
+[M400] (Group) ?
+  MSG: Model at 10%, 15%, and 20% so we have negotiating room. @Lisa, please schedule a final vendor call with Datadog for next week to discuss enterprise te...
+  LABELS: HasTask=False, IsImp=False
+
+[M401] (Group) ?
+  MSG: I'll set it up for Tuesday or Wednesday. Any time preferences?
+  LABELS: HasTask=False, IsImp=False
+
+[M402] (Group) ?
+  MSG: Morning works best. Before noon Pacific.
+  LABELS: HasTask=False, IsImp=False
+
+[M403] (Group) ?
+  MSG: Once the cost model is done, should I present it to Rachel too? She'll need to sign off if it's over $300K annual.
+  LABELS: HasTask=False, IsImp=False
+
+[M404] (Group) ?
+  MSG: Yes, loop Rachel in. She'll want to see the ROI case too ΓÇö reduced MTTR and developer productivity gains. I can help with that narrative.
+  LABELS: HasTask=False, IsImp=False
+
+[M405] (Group) ?
+  MSG: Team, I want to finalize Q2 OKRs by end of this week. Each of you should submit your department's top 3 objectives with measurable KRs. Let's target n...
+  LABELS: HasTask=False, IsImp=False
+
+[M406] (Group) ?
+  MSG: Engineering objectives: 1) Ship v4.2 with AI features on time, 2) Reduce production incident MTTR by 40%, 3) Complete SOC 2 remediation. I'll have the...
+  LABELS: HasTask=False, IsImp=False
+
+[M407] (Group) ?
+  MSG: Sales: 1) Close $8M in new ARR, 2) Achieve 90%+ net retention, 3) Land 3 enterprise logos above $500K. I need to sync with Sofia on the pipeline actua...
+  LABELS: HasTask=False, IsImp=False
+
+[M408] (Group) ?
+  MSG: Finance: 1) Achieve quarterly operating margin of 15%, 2) Reduce SaaS tool spend by $200K, 3) Complete the audit with zero material findings.
+  LABELS: HasTask=False, IsImp=False
+
+[M409] (Group) ?
+  MSG: Marketing: 1) Generate 150 MQLs from the spring campaign, 2) Increase organic search traffic by 30%, 3) Launch customer advocacy program with 5 refere...
+  LABELS: HasTask=False, IsImp=False
+
+[M410] (Group) ?
+  MSG: Good starting points. I see potential overlap between David's SOC 2 objective and Rachel's audit objective. Should we combine those into a single comp...
+  LABELS: HasTask=False, IsImp=False
+
+[M411] (Group) ?
+  MSG: I'd recommend keeping them separate. The SOC 2 remediation is engineering-owned work. The audit is a finance/legal accountability. Different owners, d...
+  LABELS: HasTask=False, IsImp=False
+
+[M412] (Group) ?
+  MSG: Agree with Rachel. Different owners, but I'll coordinate with Kevin and Amanda to make sure the timelines are aligned.
+  LABELS: HasTask=False, IsImp=False
+
+[M413] (Group) ?
+  MSG: Fair point. Let's keep them separate. @Michael, your $8M target ΓÇö is that consistent with the pipeline we reviewed last week? That felt aggressive giv...
+  LABELS: HasTask=False, IsImp=False
+
+[M414] (Group) ?
+  MSG: It's a stretch but achievable if Contoso closes and we accelerate 2-3 mid-market deals. I'd rather aim high and add hiring as a dependency. If we don'...
+  LABELS: HasTask=False, IsImp=False
+
+[M415] (Group) ?
+  MSG: OK let's keep it at $8M with the AE hiring as a flagged dependency. Everyone ΓÇö please send me your finalized OKR docs by Friday COB. I'll compile and ...
+  LABELS: HasTask=False, IsImp=False
+
+[M416] (Group) ?
+  MSG: Will do.
+  LABELS: HasTask=False, IsImp=False
+
+[M417] (Group) ?
+  MSG: Done ΓÇö I already sent mine. ≡ƒÿä
+  LABELS: HasTask=False, IsImp=False
+
+[M418] (Group) ?
+  MSG: Friday works. I'll finalize with Sofia's numbers.
+  LABELS: HasTask=False, IsImp=False
+
+[M419] (Group) ?
+  MSG: Sending mine today.
+  LABELS: HasTask=False, IsImp=False
+
+[M420] (Group) ?
+  MSG: Retro notes from Sprint 14. Adding here for the record. |  | What went well: | - API v3 migration shipped on schedule | - Connection pool fix handled ...
+  LABELS: HasTask=False, IsImp=False
+
+[M421] (Group) ?
+  MSG: Action items from retro: | 1. @James ΓÇö implement deployment validation gates in CI/CD by end of Sprint 15 | 2. @Priya ΓÇö add connection pool monitoring...
+  LABELS: HasTask=False, IsImp=False
+
+[M422] (Group) ?
+  MSG: On the deployment gates ΓÇö should this block all deploys, or just production? I'm thinking we should start with staging gates first.
+  LABELS: HasTask=False, IsImp=False
+
+[M423] (Group) ?
+  MSG: Start with production only. We can extend to staging later. Don't over-engineer it.
+  LABELS: HasTask=False, IsImp=False
+
+[M424] (Group) ?
+  MSG: For the monitoring dashboard ΓÇö should I build on the existing Grafana setup or use the new Datadog instance once it's live?
+  LABELS: HasTask=False, IsImp=False
+
+[M425] (Group) ?
+  MSG: Use Grafana for now. Datadog decision isn't finalized yet. We can migrate later.
+  LABELS: HasTask=False, IsImp=False
+
+[M426] (Group) ?
+  MSG: Multi-tenant regression suite is going to be a bigger effort than expected. I'll need at least 2 weeks. Can I push to Sprint 16?
+  LABELS: HasTask=False, IsImp=False
+
+[M427] (Group) ?
+  MSG: That's fine. Get it right rather than rushing it.
+  LABELS: HasTask=False, IsImp=False
+
+[M428] (Group) ?
+  MSG: Also ΓÇö shouldn't we do something about the postmortem action items from Sprint 12? Those have been open for 4 sprints now. ≡ƒñª
+  LABELS: HasTask=False, IsImp=False
+
+[M429] (Group) ?
+  MSG: Good call. I'll review them tomorrow and either close or reassign. If they've been open this long, some are probably no longer relevant.
+  LABELS: HasTask=False, IsImp=False
+
+[M430] (Group) ?
+  MSG: Isn't that always the way with retro action items? ≡ƒÿà
+  LABELS: HasTask=False, IsImp=False
+
+[M431] (Group) ?
+  MSG: Harsh but fair ≡ƒÿé
+  LABELS: HasTask=False, IsImp=False
+
+[M432] (Group) ?
+  MSG: Who's up for lunch today? Thinking about trying that new Thai place on 3rd Street. ≡ƒì£
+  LABELS: HasTask=False, IsImp=False
+
+[M433] (Group) ?
+  MSG: I'm in! I've been wanting to try that place. What time?
+  LABELS: HasTask=False, IsImp=False
+
+[M434] (Group) ?
+  MSG: Count me in. 12:30 work for everyone?
+  LABELS: HasTask=False, IsImp=False
+
+[M435] (Group) ?
+  MSG: I'm stuck in the regression suite today ≡ƒÿ⌐ Going to have to grab something at my desk. Save me some pad thai! ≡ƒÖÅ
+  LABELS: HasTask=False, IsImp=False
+
+[M436] (Group) ?
+  MSG: Aw, next time Nina! 12:30 works for me. Sofia?
+  LABELS: HasTask=False, IsImp=False
+
+[M437] (Group) ?
+  MSG: 12:30 is perfect. See you all in the lobby!
+  LABELS: HasTask=False, IsImp=False
+
+[M438] (Group) ?
+  MSG: Anyone doing anything fun this weekend? I'm thinking about checking out the new exhibit at the art museum.
+  LABELS: HasTask=False, IsImp=False
+
+[M439] (Group) ?
+  MSG: I'm doing a hiking trail in the Olympics. If anyone wants to join, feel free!
+  LABELS: HasTask=False, IsImp=False
+
+[M440] (Group) ?
+  MSG: That sounds amazing! I might take you up on that. Let me check with my partner and get back to you.
+  LABELS: HasTask=False, IsImp=False
+
+[M441] (Group) ?
+  MSG: Jealous of all of you. I'll be debugging in my pajamas ≡ƒÿé
+  LABELS: HasTask=False, IsImp=False
+
+[M442] (Group) ?
+  MSG: Happy Friday everyone! ≡ƒÄë
+  LABELS: HasTask=False, IsImp=False
+
+[M443] (Meeting) ?
+  MSG: Sharing the Sprint 15 backlog priorities in chat since the screen share isn't working for everyone. |  | 1. AI resource allocation prototype (Priya) |...
+  LABELS: HasTask=False, IsImp=False
+
+[M444] (Meeting) ?
+  MSG: The AI prototype is top priority. @Priya, are you comfortable committing to a demo-ready version by end of sprint?
+  LABELS: HasTask=False, IsImp=False
+
+[M445] (Meeting) ?
+  MSG: Yes, demo-ready for internal review. Not production-ready though ΓÇö I'll need an additional sprint for hardening and tests.
+  LABELS: HasTask=False, IsImp=False
+
+[M446] (Meeting) ?
+  MSG: @James, the deployment gates ΓÇö can you estimate the effort? I want to make sure it doesn't conflict with the CDN work.
+  LABELS: HasTask=False, IsImp=False
+
+[M447] (Meeting) ?
+  MSG: Deployment gates: 3-4 days. CDN monitoring: 2 days. I can fit both in the sprint with a day of buffer.
+  LABELS: HasTask=False, IsImp=False
+
+[M448] (Meeting) ?
+  MSG: Quick flag ΓÇö the multi-tenant regression suite has a dependency on a test environment that Lisa's team is setting up. If the environment isn't ready b...
+  LABELS: HasTask=False, IsImp=False
+
+[M449] (Meeting) ?
+  MSG: Good callout. @James, can you check with Lisa on the test environment timeline?
+  LABELS: HasTask=False, IsImp=False
+
+[M450] (Meeting) ?
+  MSG: I'll follow up with her today.
+  LABELS: HasTask=False, IsImp=False
+
+[M451] (Meeting) ?
+  MSG: Looks like a solid plan. Alex, please send the finalized sprint scope to the team by EOD with story point allocations.
+  LABELS: HasTask=False, IsImp=False
+
+[M452] (Meeting) ?
+  MSG: Will do. I'll update Jira and send the summary.
+  LABELS: HasTask=False, IsImp=False
+
+[M453] (Meeting) ?
+  MSG: Sharing the pipeline summary in chat for reference. Total Q1 pipeline: $5.3M. Closed-won: $1.8M. Win rate: 34%.
+  LABELS: HasTask=False, IsImp=False
+
+[M454] (Meeting) ?
+  MSG: 34% win rate is below our 40% target. @Michael, what's driving the conversion gap?
+  LABELS: HasTask=False, IsImp=False
+
+[M455] (Meeting) ?
+  MSG: Two main factors: 1) Longer sales cycles in enterprise segment (avg 120 days vs 90 days last year), 2) Competitive pressure from Monday.com and Asana ...
+  LABELS: HasTask=False, IsImp=False
+
+[M456] (Meeting) ?
+  MSG: The longer cycle is pushing revenue into Q2 but it's not lost revenue. The real concern is win rate in mid-market where we're losing on price.
+  LABELS: HasTask=False, IsImp=False
+
+[M457] (Meeting) ?
+  MSG: Dropping a link to the competitive loss analysis in chat. We lost 6 deals to Monday.com specifically on the analytics feature gap. Once v4.2 ships, th...
+  LABELS: HasTask=False, IsImp=False
+
+[M458] (Meeting) ?
+  MSG: @Sofia, can you put together a competitive win-back plan for those 6 lost deals? If v4.2 addresses their concerns, we should re-engage.
+  LABELS: HasTask=False, IsImp=False
+
+[M459] (Meeting) ?
+  MSG: Great idea. I'll draft the win-back approach and target re-engaging within 2 weeks of v4.2 launch.
+  LABELS: HasTask=False, IsImp=False
+
+[M460] (Meeting) ?
+  MSG: Rachel, the pricing concern ΓÇö should we consider a mid-market pricing tier? We're priced for enterprise but trying to compete in mid-market without a ...
+  LABELS: HasTask=False, IsImp=False
+
+[M461] (Meeting) ?
+  MSG: That's a bigger discussion. Let's schedule a separate pricing strategy session. @Rachel, can you pull the margin analysis for a potential mid-market t...
+  LABELS: HasTask=False, IsImp=False
+
+[M462] (Meeting) ?
+  MSG: I'll model it out. Target: have the analysis ready for a pricing discussion in 2 weeks.
+  LABELS: HasTask=False, IsImp=False
+
+[M463] (Meeting) ?
+  MSG: Good QBR everyone. Clear action items. Let's execute.
+  LABELS: HasTask=False, IsImp=False
+
+[M464] (Meeting) ?
+  MSG: Good run-through everyone. A few things I want to tighten up before Thursday.
+  LABELS: HasTask=False, IsImp=False
+
+[M465] (Meeting) ?
+  MSG: @David, your product slide has too much detail. The board doesn't need to see the Jira breakdown. Focus on: what shipped, what's coming, and the compe...
+  LABELS: HasTask=False, IsImp=False
+
+[M466] (Meeting) ?
+  MSG: Fair feedback. I'll strip it down to 3 key slides: shipped features, AI roadmap, and market differentiation.
+  LABELS: HasTask=False, IsImp=False
+
+[M467] (Meeting) ?
+  MSG: @Rachel, the revenue bridge slide is strong but I want to add a 'path to profitability' appendix. Can you prepare that?
+  LABELS: HasTask=False, IsImp=False
+
+[M468] (Meeting) ?
+  MSG: Already started. I'll include our runway projection, burn rate trend, and the inflection point where subscription revenue covers operating costs.
+  LABELS: HasTask=False, IsImp=False
+
+[M469] (Meeting) ?
+  MSG: FYI ΓÇö the board materials need to be distributed 48 hours before the meeting per the bylaws. That means everything finalized by Tuesday 6 PM.
+  LABELS: HasTask=False, IsImp=False
+
+[M470] (Meeting) ?
+  MSG: Thanks for flagging that Amanda. So our hard deadline is Tuesday 6 PM, not Thursday. Everyone ΓÇö adjusted timeline. @David and @Rachel, I need final sl...
+  LABELS: HasTask=False, IsImp=False
+
+[M471] (Meeting) ?
+  MSG: Tuesday noon. Got it.
+  LABELS: HasTask=False, IsImp=False
+
+[M472] (Meeting) ?
+  MSG: Will make it work.
+  LABELS: HasTask=False, IsImp=False
+
+[M473] (Meeting) ?
+  MSG: I'll have the compilation and distribution done by Tuesday 3 PM. I'll also include the standard resolutions and consent agenda.
+  LABELS: HasTask=False, IsImp=False
+
+[M474] (Meeting) ?
+  MSG: Great team. Let's make this a strong board meeting. ≡ƒÆ¬
+  LABELS: HasTask=False, IsImp=False
+
+[M475] (Meeting) ?
+  MSG: Postmortem doc is in the shared drive. Sharing the action items in chat: |  | Root cause: Connection pool leak in cursor-based pagination (PR #847) | ...
+  LABELS: HasTask=False, IsImp=False
+
+[M476] (Meeting) ?
+  MSG: Good analysis. The key question for me is: how did a PR with a connection leak pass code review?
+  LABELS: HasTask=False, IsImp=False
+
+[M477] (Meeting) ?
+  MSG: The connection handling was in a code path that wasn't covered by existing tests. The reviewer (me) didn't catch it because the leak only manifests un...
+  LABELS: HasTask=False, IsImp=False
+
+[M478] (Meeting) ?
+  MSG: From the support side, we need better tooling to detect connection pool saturation earlier. My team saw the customer complaints 5 minutes before we go...
+  LABELS: HasTask=False, IsImp=False
+
+[M479] (Meeting) ?
+  MSG: Action items ΓÇö I want these completed by end of Sprint 15: |  | 1. @James ΓÇö implement pre-deploy connection pool stress test in CI pipeline | 2. @Alex...
+  LABELS: HasTask=False, IsImp=False
+
+[M480] (Meeting) ?
+  MSG: The CI stress test ΓÇö should it run on every PR or only for PRs touching database code?
+  LABELS: HasTask=False, IsImp=False
+
+[M481] (Meeting) ?
+  MSG: Start with PRs touching database or connection-related code. We can expand later if needed.
+  LABELS: HasTask=False, IsImp=False
+
+[M482] (Meeting) ?
+  MSG: I'll update the PR checklist template in GitHub. I'll also add a 'has_db_changes' label that triggers the connection lifecycle review requirement.
+  LABELS: HasTask=False, IsImp=False
+
+[M483] (Meeting) ?
+  MSG: Runbook draft will be ready by end of week. I'll base it on our existing incident response procedures and add the customer communication templates.
+  LABELS: HasTask=False, IsImp=False
+
+[M484] (Meeting) ?
+  MSG: Good. Let's track these in Jira and review completion at the Sprint 15 retro. Thanks everyone.
+  LABELS: HasTask=False, IsImp=False
+
+[M485] (Meeting) ?
+  MSG: Capturing the key decisions from today's strategy session in chat: |  | 1. AI will be the core differentiator for H2 ΓÇö not just a feature, but platfor...
+  LABELS: HasTask=False, IsImp=False
+
+[M486] (Meeting) ?
+  MSG: Agree with the enterprise focus. The SMB segment has high churn and low LTV. But we'll need to communicate the deprioritization carefully ΓÇö want to ma...
+  LABELS: HasTask=False, IsImp=False
+
+[M487] (Meeting) ?
+  MSG: I'll draft a communications plan for the pivot. We should reframe it as 'deepening our enterprise commitment' rather than 'deprioritizing SMB.'
+  LABELS: HasTask=False, IsImp=False
+
+[M488] (Meeting) ?
+  MSG: Great instinct Laura. @David, for the AI platform vision ΓÇö I need a detailed technical roadmap by end of month. Break it into: Q2 MVP, Q3 expansion, Q...
+  LABELS: HasTask=False, IsImp=False
+
+[M489] (Meeting) ?
+  MSG: Alex and I will build it out. We'll include resource requirements and key dependency milestones.
+  LABELS: HasTask=False, IsImp=False
+
+[M490] (Meeting) ?
+  MSG: @Michael, I want you to develop an enterprise-only GTM strategy that leverages the AI features as the lead differentiator. Work with Laura's team on t...
+  LABELS: HasTask=False, IsImp=False
+
+[M491] (Meeting) ?
+  MSG: On it. I'll sync with Laura this week to align the sales narrative with the marketing messaging.
+  LABELS: HasTask=False, IsImp=False
+
+[M492] (Meeting) ?
+  MSG: For the AI roadmap ΓÇö should we plan for the ML engineer hire being filled by Q2, or should we plan without them as a contingency?
+  LABELS: HasTask=False, IsImp=False
+
+[M493] (Meeting) ?
+  MSG: Plan for them being onboarded by mid-Q2. If the hire slips, we'll adjust. But I'd rather plan ambitiously and adjust down.
+  LABELS: HasTask=False, IsImp=False
+
+[M494] (Meeting) ?
+  MSG: This was a productive session. Let's execute with urgency. Q2 is when we prove the strategy.
+  LABELS: HasTask=False, IsImp=False
+
+[M495] (Meeting) ?
+  MSG: Sharing the calibration framework in chat. Each department should rank their reports into: Exceeds (top 15%), Meets (70%), Developing (10%), Below (5%...
+  LABELS: HasTask=False, IsImp=False
+
+[M496] (Meeting) ?
+  MSG: Engineering calibration: Exceeds ΓÇö Alex Kumar, Priya Sharma. Meets ΓÇö James Wilson, Nina Costa. No Developing or Below.
+  LABELS: HasTask=False, IsImp=False
+
+[M497] (Meeting) ?
+  MSG: Sales: Exceeds ΓÇö Sofia Rodriguez (closed 140% of target). Meets ΓÇö everyone else. No below expectations.
+  LABELS: HasTask=False, IsImp=False
+
+[M498] (Meeting) ?
+  MSG: David, no one in Developing? I find that hard to believe for a team of 5. The calibration is supposed to force-rank, not be a feel-good exercise.
+  LABELS: HasTask=False, IsImp=False
+
+[M499] (Meeting) ?
+  MSG: Fair challenge. If I had to differentiate, Nina's QA lead role has been solid but she hasn't stretched beyond core responsibilities. She could be 'Mee...
+  LABELS: HasTask=False, IsImp=False
+
+[M500] (Meeting) ?
+  MSG: That's a reasonable assessment. @David, can you document the development areas in the system? And @Michael, same for your team ΓÇö any development feedb...
+  LABELS: HasTask=False, IsImp=False
+
+[M501] (Meeting) ?
+  MSG: Will do by end of week.
+  LABELS: HasTask=False, IsImp=False
+
+[M502] (Meeting) ?
+  MSG: Same. I'll add the development feedback.
+  LABELS: HasTask=False, IsImp=False
+
+[M503] (Meeting) ?
+  MSG: Marketing calibration: Exceeds ΓÇö Chris Evans. Meets ΓÇö everyone else. Chris has been exceptional on the campaign work and the all-hands video montage w...
+  LABELS: HasTask=False, IsImp=False
+
+[M504] (Meeting) ?
+  MSG: Thanks everyone. Please finalize all ratings and feedback in the system by Friday. I'll compile the final calibration report for Sarah's review on Mon...
+  LABELS: HasTask=False, IsImp=False
+
+[M505] (Meeting) ?
+  MSG: Thanks Danielle. Good session. Let's make sure the feedback is constructive and actionable ΓÇö not just ratings.
+  LABELS: HasTask=False, IsImp=False
+
+[M506] (Meeting) ?
+  MSG: Status update on both escalations: |  | Pinnacle Logistics: Resolved. Export timeout fix deployed last week. Customer confirmed satisfaction. Renewal ...
+  LABELS: HasTask=False, IsImp=False
+
+[M507] (Meeting) ?
+  MSG: Good progress on Pinnacle. @Alex, what's the status on the GlobalTech API documentation issue?
+  LABELS: HasTask=False, IsImp=False
+
+[M508] (Meeting) ?
+  MSG: Priya is working on it. The documentation gap was bigger than expected ΓÇö missing examples for 3 API endpoints and incorrect parameter specs on 2 other...
+  LABELS: HasTask=False, IsImp=False
+
+[M509] (Meeting) ?
+  MSG: The GlobalTech contact has been getting daily updates from my team. Their tone has shifted from frustrated to cautiously optimistic. The dedicated acc...
+  LABELS: HasTask=False, IsImp=False
+
+[M510] (Meeting) ?
+  MSG: @Maria, once the API documentation is complete, I want to schedule an executive call with GlobalTech's CTO. Show them we take their partnership seriou...
+  LABELS: HasTask=False, IsImp=False
+
+[M511] (Meeting) ?
+  MSG: I'll coordinate with their CTO's office. Targeting the week after the API docs are delivered.
+  LABELS: HasTask=False, IsImp=False
+
+[M512] (Meeting) ?
+  MSG: Also ΓÇö I want a systemic fix to prevent this from happening again. @Derek, can you propose an early warning system for at-risk customers? Look at tick...
+  LABELS: HasTask=False, IsImp=False
+
+[M513] (Meeting) ?
+  MSG: I've been thinking about exactly this. I'll draft a proposal with specific metrics and alerting thresholds. Target: end of next week.
+  LABELS: HasTask=False, IsImp=False
+
+[M514] (Meeting) ?
+  MSG: From the engineering side, I'll also set up a weekly ticket review for top-20 accounts. Any P2+ that's open more than 48 hours gets auto-escalated.
+  LABELS: HasTask=False, IsImp=False
+
+[M515] (Meeting) ?
+  MSG: Excellent. Let's make sure we don't lose another customer to neglect.
+  LABELS: HasTask=False, IsImp=False
+
+[M516] (Meeting) ?
+  MSG: Dropping the Q2 spend approval requests in chat: |  | 1. Datadog Enterprise license: $350K/year (3-year term) ΓÇö recommended by David | 2. Enterprise c...
+  LABELS: HasTask=False, IsImp=False
+
+[M517] (Meeting) ?
+  MSG: Let's go through them. The Datadog license ΓÇö Rachel, did you review David's business case?
+  LABELS: HasTask=False, IsImp=False
+
+[M518] (Meeting) ?
+  MSG: Yes. The TCO analysis is solid ΓÇö $1.05M over 3 years vs $1.4M to build. Opportunity cost of diverting engineers is the clincher. I recommend approval.
+  LABELS: HasTask=False, IsImp=False
+
+[M519] (Meeting) ?
+  MSG: Approved. @Kevin, please process the Datadog PO. Negotiate the 3-year term for the best discount possible.
+  LABELS: HasTask=False, IsImp=False
+
+[M520] (Meeting) ?
+  MSG: Will do. I'll push for 15-20% multi-year discount.
+  LABELS: HasTask=False, IsImp=False
+
+[M521] (Meeting) ?
+  MSG: The customer event ΓÇö $75K. Rachel, where does this sit in the overall marketing budget?
+  LABELS: HasTask=False, IsImp=False
+
+[M522] (Meeting) ?
+  MSG: Within budget. Marketing has $320K remaining in Q2 discretionary. The event is the largest single item but it's budgeted.
+  LABELS: HasTask=False, IsImp=False
+
+[M523] (Meeting) ?
+  MSG: Approved. The AV upgrade and recruiting contingency ΓÇö any concerns on either?
+  LABELS: HasTask=False, IsImp=False
+
+[M524] (Meeting) ?
+  MSG: Both are straightforward. AV is within Lisa's approval authority. Recruiting contingency is standard for an active hiring cycle.
+  LABELS: HasTask=False, IsImp=False
+
+[M525] (Meeting) ?
+  MSG: All four approved. @Kevin, please process all POs this week and send confirmation to the requestors.
+  LABELS: HasTask=False, IsImp=False
+
+[M526] (Meeting) ?
+  MSG: Will have all POs processed by Thursday and requestors notified.
+  LABELS: HasTask=False, IsImp=False
+
+[M527] (Meeting) ?
+  MSG: Good. I'll update the Q2 forecast to reflect these commitments.
+  LABELS: HasTask=False, IsImp=False
+
+[M528] (Meeting) ?
+  MSG: Quick standup. Let's keep it to blockers and help needed. Status updates go in Jira.
+  LABELS: HasTask=False, IsImp=False
+
+[M529] (Meeting) ?
+  MSG: AI prototype is on track. One blocker ΓÇö I need access to the production data sample for the matching algorithm. @James, can you create a sanitized dat...
+  LABELS: HasTask=False, IsImp=False
+
+[M530] (Meeting) ?
+  MSG: I can have that to you by lunch. How much data do you need?
+  LABELS: HasTask=False, IsImp=False
+
+[M531] (Meeting) ?
+  MSG: At least 6 months of project allocation data. Anonymized is fine ΓÇö I just need the patterns, not the actual names.
+  LABELS: HasTask=False, IsImp=False
+
+[M532] (Meeting) ?
+  MSG: No blockers for me. Regression suite is progressing. I found 2 minor bugs in the notification module though ΓÇö not release-blocking but should be fixed...
+  LABELS: HasTask=False, IsImp=False
+
+[M533] (Meeting) ?
+  MSG: @Priya, can you take a look at those bugs after your prototype work? They're in your code area.
+  LABELS: HasTask=False, IsImp=False
+
+[M534] (Meeting) ?
+  MSG: Sure, I'll knock them out Thursday.
+  LABELS: HasTask=False, IsImp=False
+
+[M535] (Meeting) ?
+  MSG: FYI ΓÇö the CDN provider is doing maintenance tonight from 11 PM to 2 AM. Should have zero customer impact but I'll be monitoring.
+  LABELS: HasTask=False, IsImp=False
+
+[M536] (Meeting) ?
+  MSG: Thanks for the heads up. OK, that's it. Good meeting ΓÇö under 10 minutes. ≡ƒÄë
+  LABELS: HasTask=False, IsImp=False
+
+[M537] (Meeting) ?
+  MSG: Great all-hands today! The fireside chat format worked much better. Got a lot of positive feedback in the Q&A.
+  LABELS: HasTask=False, IsImp=False
+
+[M538] (Meeting) ?
+  MSG: Agreed. The video montage was a huge hit ΓÇö kudos to Chris. I got several messages from people saying it was the best all-hands we've done.
+  LABELS: HasTask=False, IsImp=False
+
+[M539] (Meeting) ?
+  MSG: The employee recognition segment was well-received too. A few people I spoke with mentioned they appreciated being recognized in front of the whole co...
+  LABELS: HasTask=False, IsImp=False
+
+[M540] (Meeting) ?
+  MSG: A few follow-up items from the Q&A that we owe the company: |  | 1. Several people asked about the remote work policy refresh ΓÇö @Danielle, can you sha...
+  LABELS: HasTask=False, IsImp=False
+
+[M541] (Meeting) ?
+  MSG: I'll have the updated remote work policy shared by Friday. I've been working on it ΓÇö just needed final approval from Amanda on the compliance pieces.
+  LABELS: HasTask=False, IsImp=False
+
+[M542] (Meeting) ?
+  MSG: I'll post the update tomorrow. I'll frame it as a 'focus and depth' decision rather than a postponement.
+  LABELS: HasTask=False, IsImp=False
+
+[M543] (Meeting) ?
+  MSG: Quarterly town halls ΓÇö absolutely. I'll build that into the communications calendar. Next one would be end of June.
+  LABELS: HasTask=False, IsImp=False
+
+[M544] (Meeting) ?
+  MSG: Thanks team. The all-hands sets the tone for the quarter. This one hit the right notes. ≡ƒæÅ
+  LABELS: HasTask=False, IsImp=False
+
+[M545] (Meeting) ?
+  MSG: One more thing ΓÇö the anonymous feedback form had some comments about work-life balance concerns on the engineering team. @David, you may want to addre...
+  LABELS: HasTask=False, IsImp=False
+
+[M546] (Meeting) ?
+  MSG: Thanks for flagging. I'll review the comments and discuss with Alex before bringing it to the team.
+  LABELS: HasTask=False, IsImp=False
+
+[M547] (OneOnOne) ?
+  MSG: Hey Priya, just circling back on the database migration PR. You mentioned it'd be ready by last Thursday.
+  LABELS: HasTask=False, IsImp=False
+
+[M548] (OneOnOne) ?
+  MSG: Yeah, sorry ΓÇö I hit a blocker with the schema validation. The new constraints are rejecting about 12% of legacy records.
+  LABELS: HasTask=False, IsImp=False
+
+[M549] (OneOnOne) ?
+  MSG: That's a bigger issue than expected. Can you quantify the data loss risk if we skip the validation step temporarily?
+  LABELS: HasTask=False, IsImp=False
+
+[M550] (OneOnOne) ?
+  MSG: I'll run the analysis this afternoon and get you numbers by EOD.
+  LABELS: HasTask=False, IsImp=False
+
+[M551] (OneOnOne) ?
+  MSG: Perfect. Also ΓÇö any update on the caching layer refactor? I think that was due last sprint.
+  LABELS: HasTask=False, IsImp=False
+
+[M552] (OneOnOne) ?
+  MSG: Pushed it to this sprint. Dependencies on James's infra work weren't resolved.
+  LABELS: HasTask=False, IsImp=False
+
+[M553] (OneOnOne) ?
+  MSG: OK. When James is done, loop me in so I can reprioritize your backlog if needed.
+  LABELS: HasTask=False, IsImp=False
+
+[M554] (OneOnOne) ?
+  MSG: Will do.
+  LABELS: HasTask=False, IsImp=False
+
+[M555] (OneOnOne) ?
+  MSG: One more thing ΓÇö the performance test results from two weeks ago. Did those ever get documented?
+  LABELS: HasTask=False, IsImp=False
+
+[M556] (OneOnOne) ?
+  MSG: I wrote up the summary in Confluence but forgot to share the link. Let me send it now.
+  LABELS: HasTask=False, IsImp=False
+
+[M557] (OneOnOne) ?
+  MSG: Thanks. And whenever you get a chance ΓÇö not urgent ΓÇö could you also add the latency benchmarks to the dashboard? Feel free to skip it if Q2 planning t...
+  LABELS: HasTask=False, IsImp=False
+
+[M558] (OneOnOne) ?
+  MSG: Sure, I'll try to squeeze it in this week.
+  LABELS: HasTask=False, IsImp=False
+
+[M559] (OneOnOne) ?
+  MSG: Amanda, I need you to review the Contoso enterprise agreement. Deal is $2.3M ARR and they want to close by end of month.
+  LABELS: HasTask=False, IsImp=False
+
+[M560] (OneOnOne) ?
+  MSG: I saw the draft yesterday. There are some non-standard indemnification clauses I need to redline. How flexible is the customer on those?
+  LABELS: HasTask=False, IsImp=False
+
+[M561] (OneOnOne) ?
+  MSG: They pushed back last time we tried to modify indemnification. Can we accept their language with a cap?
+  LABELS: HasTask=False, IsImp=False
+
+[M562] (OneOnOne) ?
+  MSG: I can accept a cap at 2x annual contract value. Anything beyond that needs Rachel's sign-off since it exceeds our standard risk threshold.
+  LABELS: HasTask=False, IsImp=False
+
+[M563] (OneOnOne) ?
+  MSG: OK, I'll propose the 2x cap to Contoso. Can you meanwhile redline sections 4.2 and 7.1 and send me a clean version by Wednesday?
+  LABELS: HasTask=False, IsImp=False
+
+[M564] (OneOnOne) ?
+  MSG: Wednesday is tight but doable. I'll prioritize it.
+  LABELS: HasTask=False, IsImp=False
+
+[M565] (OneOnOne) ?
+  MSG: Thank you! Also, quick question ΓÇö do we need a separate DPA for this deal or does our standard one cover it?
+  LABELS: HasTask=False, IsImp=False
+
+[M566] (OneOnOne) ?
+  MSG: Standard DPA covers it as long as they're not processing EU personal data. Confirm with the customer whether they have EU operations.
+  LABELS: HasTask=False, IsImp=False
+
+[M567] (OneOnOne) ?
+  MSG: Will check and confirm. Thanks Amanda!
+  LABELS: HasTask=False, IsImp=False
+
+[M568] (OneOnOne) ?
+  MSG: Chris, are you free tomorrow at 2 PM for a run-through of the campaign assets?
+  LABELS: HasTask=False, IsImp=False
+
+[M569] (OneOnOne) ?
+  MSG: Tomorrow's packed ΓÇö I have back-to-backs from 1 to 4. How about Thursday morning?
+  LABELS: HasTask=False, IsImp=False
+
+[M570] (OneOnOne) ?
+  MSG: Thursday 10 AM works. Can you book a room and send the invite?
+  LABELS: HasTask=False, IsImp=False
+
+[M571] (OneOnOne) ?
+  MSG: Done ΓÇö sent for 10-11 AM in the Rainier room.
+  LABELS: HasTask=False, IsImp=False
+
+[M572] (OneOnOne) ?
+  MSG: Perfect. Also ΓÇö can you check if the blog post draft is ready for my review? I want to approve it before the launch.
+  LABELS: HasTask=False, IsImp=False
+
+[M573] (OneOnOne) ?
+  MSG: Almost there. The writer is doing a final pass. I'll have it in your inbox by end of day.
+  LABELS: HasTask=False, IsImp=False
+
+[M574] (OneOnOne) ?
+  MSG: Great. And one more ΓÇö are you attending the product marketing sync on Friday?
+  LABELS: HasTask=False, IsImp=False
+
+[M575] (OneOnOne) ?
+  MSG: Yes, I'll be there.
+  LABELS: HasTask=False, IsImp=False
+
+[M576] (OneOnOne) ?
+  MSG: Cool. Can you prep a 5-minute overview of the campaign metrics to share at that meeting?
+  LABELS: HasTask=False, IsImp=False
+
+[M577] (OneOnOne) ?
+  MSG: Sure thing. Want me to include social engagement numbers or just web traffic?
+  LABELS: HasTask=False, IsImp=False
+
+[M578] (OneOnOne) ?
+  MSG: Both please. And add the email open rates too.
+  LABELS: HasTask=False, IsImp=False
+
+[M579] (OneOnOne) ?
+  MSG: Got it. I'll have the deck ready by Thursday EOD.
+  LABELS: HasTask=False, IsImp=False
+
+[M580] (Group) ?
+  MSG: Team, quick update ΓÇö the Q2 OKRs have been finalized. Take a look when you can.
+  LABELS: HasTask=False, IsImp=False
+
+[M581] (Group) ?
+  MSG: Nice. Are these the same ones we discussed last week or did anything change?
+  LABELS: HasTask=False, IsImp=False
+
+[M582] (Group) ?
+  MSG: Mostly the same. The only change is the reliability target moved from 99.9% to 99.95%.
+  LABELS: HasTask=False, IsImp=False
+
+[M583] (Group) ?
+  MSG: 99.95%? That's going to be fun ≡ƒÖâ
+  LABELS: HasTask=False, IsImp=False
+
+[M584] (Group) ?
+  MSG: Seriously though, has anyone actually modeled what 99.95% requires in terms of infra redundancy?
+  LABELS: HasTask=False, IsImp=False
+
+[M585] (Group) ?
+  MSG: Good question. @James, can you put together a quick feasibility assessment? Nothing fancy, just a back-of-envelope calc.
+  LABELS: HasTask=False, IsImp=False
+
+[M586] (Group) ?
+  MSG: Sure. I'll have something by Friday.
+  LABELS: HasTask=False, IsImp=False
+
+[M587] (Group) ?
+  MSG: From the marketing side ΓÇö we probably should align our messaging around the reliability story. Just saying.
+  LABELS: HasTask=False, IsImp=False
+
+[M588] (Group) ?
+  MSG: We should also update the status page SLA language. Who owns that?
+  LABELS: HasTask=False, IsImp=False
+
+[M589] (Group) ?
+  MSG: I think it's technically DevOps. @James?
+  LABELS: HasTask=False, IsImp=False
+
+[M590] (Group) ?
+  MSG: Yeah, I can update it. But I'll need legal to sign off on the new language.
+  LABELS: HasTask=False, IsImp=False
+
+[M591] (Group) ?
+  MSG: Great. Let's make sure this gets done before the public announcement. It would be embarrassing to promise 99.95% uptime and have the status page say 9...
+  LABELS: HasTask=False, IsImp=False
+
+[M592] (Group) ?
+  MSG: Agreed. I'll add a QA checkpoint for the status page update before it goes live.
+  LABELS: HasTask=False, IsImp=False
+
+[M593] (Group) ?
+  MSG: This is great teamwork. If you need any copy review on the status page language, feel free to ping me.
+  LABELS: HasTask=False, IsImp=False
+
+[M594] (Group) ?
+  MSG: URGENT: Zenith Corp is reporting complete system unavailability for the past 45 minutes. They're our third-largest customer and their VP of Engineerin...
+  LABELS: HasTask=False, IsImp=False
+
+[M595] (Group) ?
+  MSG: This is Zenith's second outage this quarter. They've been vocal about evaluating alternatives. We need to treat this as a potential churn event.
+  LABELS: HasTask=False, IsImp=False
+
+[M596] (Group) ?
+  MSG: @Alex, can your team investigate the root cause immediately? We need a preliminary RCA within the hour.
+  LABELS: HasTask=False, IsImp=False
+
+[M597] (Group) ?
+  MSG: On it. Pulling Priya and James into the war room now.
+  LABELS: HasTask=False, IsImp=False
+
+[M598] (Group) ?
+  MSG: I'll reach out to their VP to buy us time. @Maria, do you have the latest support ticket history for Zenith? I want to go in with full context.
+  LABELS: HasTask=False, IsImp=False
+
+[M599] (Group) ?
+  MSG: Sending it now. They've had 7 P1 tickets in the last 90 days. That's way above our threshold.
+  LABELS: HasTask=False, IsImp=False
+
+[M600] (Group) ?
+  MSG: I just spoke with the infra team. It's a database connection pool exhaustion issue ΓÇö same pattern as the March incident. I thought we fixed this.
+  LABELS: HasTask=False, IsImp=False
+
+[M601] (Group) ?
+  MSG: We did patch it, but the fix only covered the primary cluster. The secondary cluster wasn't updated. @James, can you confirm and apply the hotfix to s...
+  LABELS: HasTask=False, IsImp=False
+
+[M602] (Group) ?
+  MSG: Following up ΓÇö it's been 30 minutes since the initial report. Do we have an ETA for resolution?
+  LABELS: HasTask=False, IsImp=False
+
+[M603] (Group) ?
+  MSG: James is applying the hotfix now. ETA 15 minutes for connection pool recovery, then another 10 for full service restoration.
+  LABELS: HasTask=False, IsImp=False
+
+[M604] (Group) ?
+  MSG: I got Zenith's VP on the phone. He's willing to hold off on escalation if we can: (1) provide RCA by tomorrow, (2) commit to a permanent fix timeline,...
+  LABELS: HasTask=False, IsImp=False
+
+[M605] (Group) ?
+  MSG: I'll own the RCA. @Alex, you and the team get the permanent fix scoped. @Maria, work with finance on the service credit ΓÇö probably 1 month pro-rata.
+  LABELS: HasTask=False, IsImp=False
+
+[M606] (Group) ?
+  MSG: On it. I'll loop in Kevin from finance for the credit calculation.
+  LABELS: HasTask=False, IsImp=False
+
+[M607] (Group) ?
+  MSG: Service is back up as of 2:47 PM. Zenith confirmed. But let's not forget ΓÇö this is the SECOND time. We need the permanent fix before we lose this acco...
+  LABELS: HasTask=False, IsImp=False
+
+[M608] (Group) ?
+  MSG: Agreed. I want the permanent fix timeline in our next leadership sync. This is now a top-3 priority.
+  LABELS: HasTask=False, IsImp=False
+
+[M609] (OneOnOne) ?
+  MSG: Sarah, I need to flag something sensitive. We received a formal complaint from an employee on the engineering team about their manager's communication...
+  LABELS: HasTask=False, IsImp=False
+
+[M610] (OneOnOne) ?
+  MSG: Thanks for bringing this to me. Is this something HR can handle through normal channels or do we need legal involved?
+  LABELS: HasTask=False, IsImp=False
+
+[M611] (OneOnOne) ?
+  MSG: HR can handle the initial investigation. If it escalates to a formal grievance, we'll need Amanda. For now, I'd like your permission to proceed with t...
+  LABELS: HasTask=False, IsImp=False
+
+[M612] (OneOnOne) ?
+  MSG: You have my go-ahead. Keep me updated on progress but use your judgment on the approach.
+  LABELS: HasTask=False, IsImp=False
+
+[M613] (OneOnOne) ?
+  MSG: Will do. Separately ΓÇö the new PTO policy goes into effect Monday. I've sent the company-wide announcement but wanted to give you a heads-up in case an...
+  LABELS: HasTask=False, IsImp=False
+
+[M614] (OneOnOne) ?
+  MSG: Got it. Did you include the grandfathering clause for people who already have trips booked?
+  LABELS: HasTask=False, IsImp=False
+
+[M615] (OneOnOne) ?
+  MSG: Yes, it's in section 3 of the policy doc. Anyone with pre-approved PTO keeps their existing dates.
+  LABELS: HasTask=False, IsImp=False
+
+[M616] (OneOnOne) ?
+  MSG: Perfect. One more thing ΓÇö can you pull together the Q1 attrition numbers? I need them for the board deck.
+  LABELS: HasTask=False, IsImp=False
+
+[M617] (OneOnOne) ?
+  MSG: I'll have them to you by Thursday. Do you want voluntary and involuntary broken out separately?
+  LABELS: HasTask=False, IsImp=False
+
+[M618] (OneOnOne) ?
+  MSG: Yes, both. And if you can include a comparison to industry benchmarks, that would be helpful.
+  LABELS: HasTask=False, IsImp=False
+
+[M619] (OneOnOne) ?
+  MSG: Will do. Thanks Sarah.
+  LABELS: HasTask=False, IsImp=False
+
+[M620] (Group) ?
+  MSG: We need to get the Q2 kickoff on the calendar ASAP. @David @Rachel @Michael @Laura @Danielle ΓÇö what does next Tuesday look like for everyone?
+  LABELS: HasTask=False, IsImp=False
+
+[M621] (Group) ?
+  MSG: Tuesday works for me. Morning is better ΓÇö I have a deployment window in the afternoon.
+  LABELS: HasTask=False, IsImp=False
+
+[M622] (Group) ?
+  MSG: I can do Tuesday before noon. I have the audit committee call at 1 PM.
+  LABELS: HasTask=False, IsImp=False
+
+[M623] (Group) ?
+  MSG: Tuesday is out for me ΓÇö I'm in New York for client meetings all day. What about Wednesday?
+  LABELS: HasTask=False, IsImp=False
+
+[M624] (Group) ?
+  MSG: Either day works for me.
+  LABELS: HasTask=False, IsImp=False
+
+[M625] (Group) ?
+  MSG: Tuesday or Wednesday both fine.
+  LABELS: HasTask=False, IsImp=False
+
+[M626] (Group) ?
+  MSG: Let's do Wednesday 10 AM then. Michael, can you join remotely if needed?
+  LABELS: HasTask=False, IsImp=False
+
+[M627] (Group) ?
+  MSG: Yes, I'll dial in from the hotel.
+  LABELS: HasTask=False, IsImp=False
+
+[M628] (Group) ?
+  MSG: @Danielle, can you book the all-hands room and send the invite?
+  LABELS: HasTask=False, IsImp=False
+
+[M629] (Group) ?
+  MSG: On it. Should I include the full leadership team or just this group?
+  LABELS: HasTask=False, IsImp=False
+
+[M630] (Group) ?
+  MSG: Full leadership team plus the department heads.
+  LABELS: HasTask=False, IsImp=False
+
+[M631] (Group) ?
+  MSG: Can someone prepare the financial overview slides? I can do the numbers but need templates from marketing.
+  LABELS: HasTask=False, IsImp=False
+
+[M632] (Group) ?
+  MSG: I'll send you the template deck today.
+  LABELS: HasTask=False, IsImp=False
+
+[M633] (Group) ?
+  MSG: Thanks everyone. Let's make this a good kickoff. ≡ƒÜÇ
+  LABELS: HasTask=False, IsImp=False
+
+[M634] (Meeting) ?
+  MSG: OK everyone, let's walk through the March 28 incident. James, can you give us the timeline?
+  LABELS: HasTask=False, IsImp=False
+
+[M635] (Meeting) ?
+  MSG: At 3:12 AM Pacific, our IDS flagged anomalous traffic from an IP range associated with known threat actors. The traffic was targeting our staging envi...
+  LABELS: HasTask=False, IsImp=False
+
+[M636] (Meeting) ?
+  MSG: By 3:24 AM, the automated WAF rules blocked the majority of requests. However, approximately 2,400 requests made it through before the rules kicked in...
+  LABELS: HasTask=False, IsImp=False
+
+[M637] (Meeting) ?
+  MSG: Were any customer data endpoints exposed during that 12-minute window?
+  LABELS: HasTask=False, IsImp=False
+
+[M638] (Meeting) ?
+  MSG: No. The staging environment uses synthetic data. No customer PII was at risk.
+  LABELS: HasTask=False, IsImp=False
+
+[M639] (Meeting) ?
+  MSG: That's a relief. But we still need to document this for our SOC 2 compliance records. @James, can you prepare the incident report in the required form...
+  LABELS: HasTask=False, IsImp=False
+
+[M640] (Meeting) ?
+  MSG: Agreed. And we need to address the 12-minute gap. @Priya, can you review the WAF rule propagation latency? I want that gap under 60 seconds.
+  LABELS: HasTask=False, IsImp=False
+
+[M641] (Meeting) ?
+  MSG: I'll look into it. The latency is mostly due to the rule sync between our edge nodes. We might need to move to a push-based model.
+  LABELS: HasTask=False, IsImp=False
+
+[M642] (Meeting) ?
+  MSG: What about the staging environment access controls? Should we be putting staging behind the same WAF as production?
+  LABELS: HasTask=False, IsImp=False
+
+[M643] (Meeting) ?
+  MSG: Yes. Let's not have different security postures. @Alex, can you draft a proposal to unify the security controls across all environments?
+  LABELS: HasTask=False, IsImp=False
+
+[M644] (Meeting) ?
+  MSG: One more thing ΓÇö given this is the second security event this quarter, I recommend we brief the board's audit committee. Sarah should be in the loop.
+  LABELS: HasTask=False, IsImp=False
+
+[M645] (Meeting) ?
+  MSG: I'll brief Sarah today and schedule the audit committee update. Good call, Amanda.
+  LABELS: HasTask=False, IsImp=False
+
+[M646] (Meeting) ?
+  MSG: Action items from my side: (1) incident report for SOC 2 by Friday, (2) WAF rule propagation analysis with @Priya. Anything I'm missing?
+  LABELS: HasTask=False, IsImp=False
+
+[M647] (Meeting) ?
+  MSG: That covers it. Thanks everyone. Let's close the loop on all items by next Monday.
+  LABELS: HasTask=False, IsImp=False
+
+[M648] (OneOnOne) ?
+  MSG: Kevin, where are we on the Q1 close reconciliation? The external auditors start next Monday.
+  LABELS: HasTask=False, IsImp=False
+
+[M649] (OneOnOne) ?
+  MSG: Revenue recognition is done. Still working on the deferred revenue adjustments ΓÇö should be complete by Thursday.
+  LABELS: HasTask=False, IsImp=False
+
+[M650] (OneOnOne) ?
+  MSG: Thursday is cutting it close. Can you finish by Wednesday instead? I need a day to review before the auditors arrive.
+  LABELS: HasTask=False, IsImp=False
+
+[M651] (OneOnOne) ?
+  MSG: I'll try. The main blocker is the inter-company elimination entries ΓÇö I'm waiting on the UK office's numbers.
+  LABELS: HasTask=False, IsImp=False
+
+[M652] (OneOnOne) ?
+  MSG: Follow up with them today. Tell them it's for the external audit ΓÇö that usually gets fast responses.
+  LABELS: HasTask=False, IsImp=False
+
+[M653] (OneOnOne) ?
+  MSG: Will do. Also ΓÇö I noticed a $47K variance in the SaaS subscription accruals. It looks like a timing difference but I want to flag it before the audito...
+  LABELS: HasTask=False, IsImp=False
+
+[M654] (OneOnOne) ?
+  MSG: Good catch. Prepare a variance analysis memo. If it's truly a timing difference, we document it; if it's a real error, we need to correct before close...
+  LABELS: HasTask=False, IsImp=False
+
+[M655] (OneOnOne) ?
+  MSG: I'll have the memo ready alongside the reconciliation.
+  LABELS: HasTask=False, IsImp=False
+
+[M656] (OneOnOne) ?
+  MSG: Thanks Kevin. Let's make sure this audit goes smoothly. Last year's was rough.
+  LABELS: HasTask=False, IsImp=False
+
+[M657] (Group) ?
+  MSG: Team ΓÇö we need to make the go/no-go call on the Analytics Pro launch by end of today. Let's do a quick round-robin. @David ΓÇö engineering readiness?
+  LABELS: HasTask=False, IsImp=False
+
+[M658] (Group) ?
+  MSG: Engineering is green. All P0 bugs fixed, performance benchmarks met, and we passed the security review. One P2 cosmetic issue remains but it's not a b...
+  LABELS: HasTask=False, IsImp=False
+
+[M659] (Group) ?
+  MSG: @Rachel ΓÇö financial projections still on track?
+  LABELS: HasTask=False, IsImp=False
+
+[M660] (Group) ?
+  MSG: Yes. Break-even in 8 months with current pipeline. Michael's team has $1.2M in pre-launch commitments.
+  LABELS: HasTask=False, IsImp=False
+
+[M661] (Group) ?
+  MSG: @Michael ΓÇö sales team ready?
+  LABELS: HasTask=False, IsImp=False
+
+[M662] (Group) ?
+  MSG: Ready. All AEs have been trained. One concern: Vertex Industries wants exclusive early access and is threatening to pull their renewal if we don't off...
+  LABELS: HasTask=False, IsImp=False
+
+[M663] (Group) ?
+  MSG: I'd advise against exclusive access. It sets a precedent and the contract language would be complex. We can offer 30-day head start instead.
+  LABELS: HasTask=False, IsImp=False
+
+[M664] (Group) ?
+  MSG: Go with Amanda's recommendation ΓÇö 30-day head start, no exclusivity. @Michael, communicate that to Vertex today.
+  LABELS: HasTask=False, IsImp=False
+
+[M665] (Group) ?
+  MSG: @Laura ΓÇö marketing launch plan ready?
+  LABELS: HasTask=False, IsImp=False
+
+[M666] (Group) ?
+  MSG: All assets are staged. Press release goes out at 6 AM Pacific on launch day. Social campaign is scheduled. One ask: can we get a customer quote for th...
+  LABELS: HasTask=False, IsImp=False
+
+[M667] (Group) ?
+  MSG: I'll reach out to Pinnacle Systems ΓÇö they've been our most vocal champion. Should have an answer by tomorrow morning.
+  LABELS: HasTask=False, IsImp=False
+
+[M668] (Group) ?
+  MSG: @Amanda ΓÇö any legal blockers we should know about?
+  LABELS: HasTask=False, IsImp=False
+
+[M669] (Group) ?
+  MSG: No blockers. ToS and privacy policy updates are live. One reminder: the GDPR data processing addendum needs to be available on the product page before...
+  LABELS: HasTask=False, IsImp=False
+
+[M670] (Group) ?
+  MSG: OK ΓÇö I'm calling it. We are GO for launch on Monday. The only open item is the GDPR addendum on the product page. @David, can your team handle that?
+  LABELS: HasTask=False, IsImp=False
+
+[M671] (Group) ?
+  MSG: Will get it done by Friday.
+  LABELS: HasTask=False, IsImp=False
+
+[M672] (Group) ?
+  MSG: Thanks everyone. Great work getting us here. ≡ƒÄë
+  LABELS: HasTask=False, IsImp=False
+
+[M673] (OneOnOne) ?
+  MSG: Is the CI pipeline ever going to be stable? I've had 3 failed builds today because of infra timeouts.
+  LABELS: HasTask=False, IsImp=False
+
+[M674] (OneOnOne) ?
+  MSG: I know, it's been rough. The timeout issue is related to the shared runner pool being overloaded. I've been trying to get budget approval for dedicate...
+  LABELS: HasTask=False, IsImp=False
+
+[M675] (OneOnOne) ?
+  MSG: January?! Who do we need to escalate to?
+  LABELS: HasTask=False, IsImp=False
+
+[M676] (OneOnOne) ?
+  MSG: Alex said he'd take it to David. But honestly, I don't think it's been prioritized. Maybe if it comes from your side too it'll get more attention.
+  LABELS: HasTask=False, IsImp=False
+
+[M677] (OneOnOne) ?
+  MSG: I'll mention it in the next eng sync. In the meantime, can you at least increase the timeout threshold so my builds don't fail?
+  LABELS: HasTask=False, IsImp=False
+
+[M678] (OneOnOne) ?
+  MSG: Yeah, I can bump it from 300s to 600s. That should help for now. Done.
+  LABELS: HasTask=False, IsImp=False
+
+[M679] (OneOnOne) ?
+  MSG: Thanks ≡ƒÖÅ
+  LABELS: HasTask=False, IsImp=False
+
+[M680] (OneOnOne) ?
+  MSG: ≡ƒæì
+  LABELS: HasTask=False, IsImp=False
+
+[M681] (OneOnOne) ?
+  MSG: While we're at it ΓÇö the staging environment has been super slow too. Same issue?
+  LABELS: HasTask=False, IsImp=False
+
+[M682] (OneOnOne) ?
+  MSG: Different issue actually. Staging is overprovisioned on apps but underprovisioned on database. We need to rebalance. I'll create a ticket.
+  LABELS: HasTask=False, IsImp=False
+
+[M683] (Group) ?
+  MSG: We need to rethink our approach to the mobile SDK. It's been deprioritized for too long.
+  LABELS: HasTask=False, IsImp=False
+
+[M684] (Group) ?
+  MSG: Agreed. But who's going to own it? We don't have mobile engineers.
+  LABELS: HasTask=False, IsImp=False
+
+[M685] (Group) ?
+  MSG: From a sales perspective, we're losing deals because of the mobile gap. Three prospects in Q1 went with competitors specifically because of this.
+  LABELS: HasTask=False, IsImp=False
+
+[M686] (Group) ?
+  MSG: We should put together a competitive analysis of mobile offerings. It would strengthen the business case.
+  LABELS: HasTask=False, IsImp=False
+
+[M687] (Group) ?
+  MSG: Here's what I propose: Let's outsource the initial SDK build. @Alex, can you vet 3 agencies and bring recommendations to next week's sync?
+  LABELS: HasTask=False, IsImp=False
+
+[M688] (Group) ?
+  MSG: I'll reach out to our usual vendors. @Priya, you worked with a mobile SDK shop at your last company right? Can you share the contact?
+  LABELS: HasTask=False, IsImp=False
+
+[M689] (Group) ?
+  MSG: Yeah ΓÇö AppForge. They did solid work. I'll send you their info.
+  LABELS: HasTask=False, IsImp=False
+
+[M690] (Group) ?
+  MSG: Let's also loop in Sofia ΓÇö she has direct feedback from the prospects who churned over mobile.
+  LABELS: HasTask=False, IsImp=False
+
+[M691] (Group) ?
+  MSG: Good idea. @Alex, include Sofia in the vendor eval process.
+  LABELS: HasTask=False, IsImp=False
+
+[M692] (Group) ?
+  MSG: Got it. I'll set up a shared channel for the eval.
+  LABELS: HasTask=False, IsImp=False
+
+[M693] (Meeting) ?
+  MSG: Welcome everyone to our Q1 all-hands! We have a lot to cover today. Let's get started.
+  LABELS: HasTask=False, IsImp=False
+
+[M694] (Meeting) ?
+  MSG: First, I want to recognize the engineering team for shipping the Analytics Pro feature ahead of schedule. Amazing work.
+  LABELS: HasTask=False, IsImp=False
+
+[M695] (Meeting) ?
+  MSG: Team really crushed it. ≡ƒÄë
+  LABELS: HasTask=False, IsImp=False
+
+[M696] (Meeting) ?
+  MSG: Thanks! It was a team effort. ≡ƒÆ¬
+  LABELS: HasTask=False, IsImp=False
+
+[M697] (Meeting) ?
+  MSG: Q1 revenue came in at $14.2M against a target of $13.8M. Rachel, do you want to walk us through the highlights?
+  LABELS: HasTask=False, IsImp=False
+
+[M698] (Meeting) ?
+  MSG: Sure. The overperformance was driven by three large enterprise deals that closed early. Net retention rate is at 118%, up from 112% last quarter.
+  LABELS: HasTask=False, IsImp=False
+
+[M699] (Meeting) ?
+  MSG: Is the 118% net retention rate inclusive of the Zenith Corp downgrade?
+  LABELS: HasTask=False, IsImp=False
+
+[M700] (Meeting) ?
+  MSG: Yes, inclusive. Without Zenith it would be 121%.
+  LABELS: HasTask=False, IsImp=False
+
+[M701] (Meeting) ?
+  MSG: On the sales side, we closed 47 new logos in Q1. Pipeline for Q2 is looking strong.
+  LABELS: HasTask=False, IsImp=False
+
+[M702] (Meeting) ?
+  MSG: The Vertex Industries deal alone is worth $800K ARR. Great work Sofia! ≡ƒÖî
+  LABELS: HasTask=False, IsImp=False
+
+[M703] (Meeting) ?
+  MSG: Quick HR update: we've hired 12 people this quarter. Current headcount is 187. The engagement survey results will be shared next week.
+  LABELS: HasTask=False, IsImp=False
+
+[M704] (Meeting) ?
+  MSG: When will the new eng hires start? We're really feeling the capacity crunch.
+  LABELS: HasTask=False, IsImp=False
+
+[M705] (Meeting) ?
+  MSG: Four start next Monday, the rest throughout April.
+  LABELS: HasTask=False, IsImp=False
+
+[M706] (Meeting) ?
+  MSG: Can we get them access to the dev environment before Day 1? Last batch had to wait 3 days for accounts.
+  LABELS: HasTask=False, IsImp=False
+
+[M707] (Meeting) ?
+  MSG: Good point. I'll coordinate with IT to have everything set up by Friday.
+  LABELS: HasTask=False, IsImp=False
+
+[M708] (Meeting) ?
+  MSG: Great discussion everyone. We're in a strong position heading into Q2. Let's keep the momentum going!
+  LABELS: HasTask=False, IsImp=False
+
+[M709] (Meeting) ?
+  MSG: Thanks everyone! ≡ƒæÅ
+  LABELS: HasTask=False, IsImp=False
+
+[M710] (Meeting) ?
+  MSG: Great all-hands! ≡ƒÄë
+  LABELS: HasTask=False, IsImp=False
+
+[M711] (Meeting) ?
+  MSG: ≡ƒôï Meeting ended. Duration: 47 minutes. Recording and transcript are now available in the meeting chat. AI-generated summary will be ready in ~5 minute...
+  LABELS: HasTask=False, IsImp=False
+
+[M712] (OneOnOne) ?
+  MSG: Sofia, I need an updated forecast for Q2 by tomorrow morning. The board package goes to Sarah at noon.
+  LABELS: HasTask=False, IsImp=False
+
+[M713] (OneOnOne) ?
+  MSG: I'll have it ready by 9 AM. Quick question ΓÇö should I include the Acme deal at full value or weighted probability?
+  LABELS: HasTask=False, IsImp=False
+
+[M714] (OneOnOne) ?
+  MSG: Weighted. We can't count on full value until legal signs off on their custom terms.
+  LABELS: HasTask=False, IsImp=False
+
+[M715] (OneOnOne) ?
+  MSG: Got it. Also following up ΓÇö did you hear back from Rachel about the additional AE headcount? You mentioned escalating it two weeks ago.
+  LABELS: HasTask=False, IsImp=False
+
+[M716] (OneOnOne) ?
+  MSG: Still pending. Rachel wants to see Q1 close rates before committing Q2 headcount. Fair point honestly.
+  LABELS: HasTask=False, IsImp=False
+
+[M717] (OneOnOne) ?
+  MSG: The Pinnacle Systems RFP response is due Friday. I've drafted it but need your review on the pricing section. Can you take a look today?
+  LABELS: HasTask=False, IsImp=False
+
+[M718] (OneOnOne) ?
+  MSG: Send it over. I'll review after my 2 PM call.
+  LABELS: HasTask=False, IsImp=False
+
+[M719] (OneOnOne) ?
+  MSG: Sent. One more thing ΓÇö Vertex wants to renegotiate their payment terms from net-30 to net-60. Thoughts?
+  LABELS: HasTask=False, IsImp=False
+
+[M720] (OneOnOne) ?
+  MSG: That's a $800K deal ΓÇö we don't want to lose it over payment terms. Accept net-60 but ask for auto-renewal in exchange. Run it by Rachel for the cash f...
+  LABELS: HasTask=False, IsImp=False
+
+[M721] (OneOnOne) ?
+  MSG: Makes sense. I'll talk to Rachel this afternoon.
+  LABELS: HasTask=False, IsImp=False
+
+[M722] (Group) ?
+  MSG: Happy Friday team! ≡ƒìò Who's up for lunch at the new Thai place?
+  LABELS: HasTask=False, IsImp=False
+
+[M723] (Group) ?
+  MSG: I'm in! ≡ƒÖïΓÇìΓÖÇ∩╕Å
+  LABELS: HasTask=False, IsImp=False
+
+[M724] (Group) ?
+  MSG: Count me in. I'll drive.
+  LABELS: HasTask=False, IsImp=False
+
+[M725] (Group) ?
+  MSG: Can't today ΓÇö I have a dentist appointment at noon. Have fun!
+  LABELS: HasTask=False, IsImp=False
+
+[M726] (Group) ?
+  MSG: I'm remote today but enjoy!
+  LABELS: HasTask=False, IsImp=False
+
+[M727] (Group) ?
+  MSG: I'm heading to the downtown office for a client meeting this afternoon, back online by 4.
+  LABELS: HasTask=False, IsImp=False
+
+[M728] (Group) ?
+  MSG: Before everyone disappears for the weekend ΓÇö quick reminder that the customer NPS survey results come out Monday. @Alex, can you make sure the eng das...
+  LABELS: HasTask=False, IsImp=False
+
+[M729] (Group) ?
+  MSG: Sure, I'll double-check it before I leave today.
+  LABELS: HasTask=False, IsImp=False
+
+[M730] (Group) ?
+  MSG: Speaking of dashboards ΓÇö has anyone noticed the deploy frequency metric is wrong? It's showing 3x our actual rate.
+  LABELS: HasTask=False, IsImp=False
+
+[M731] (Group) ?
+  MSG: Yeah, it's double-counting rollbacks. I noticed it last week but kept forgetting to fix it. I'll do it now before I forget again.
+  LABELS: HasTask=False, IsImp=False
+
+[M732] (Group) ?
+  MSG: While you're fixing metrics, can you also check if the test pass rate metric is accurate? It seemed off in yesterday's report.
+  LABELS: HasTask=False, IsImp=False
+
+[M733] (Group) ?
+  MSG: Sure, adding it to the list.
+  LABELS: HasTask=False, IsImp=False
+
+[M734] (Group) ?
+  MSG: Anyone watching the game tonight? ΓÜ╜
+  LABELS: HasTask=False, IsImp=False
+
+[M735] (Group) ?
+  MSG: Which game?
+  LABELS: HasTask=False, IsImp=False
+
+[M736] (Group) ?
+  MSG: OK team, enjoy the weekend! And remember ΓÇö we have the sprint planning Monday at 10 AM. Come prepared with your estimates.
+  LABELS: HasTask=False, IsImp=False
+
+[M737] (Group) ?
+  MSG: Have a great weekend everyone! ≡ƒÄë
+  LABELS: HasTask=False, IsImp=False
+
+[M738] (Meeting) ?
+  MSG: Let's walk through the Q1 numbers. Sofia, can you start with the new business pipeline?
+  LABELS: HasTask=False, IsImp=False
+
+[M739] (Meeting) ?
+  MSG: Q1 new business: $4.1M closed against a $3.8M target. 108% attainment. Win rate improved from 28% to 34%.
+  LABELS: HasTask=False, IsImp=False
+
+[M740] (Meeting) ?
+  MSG: That's excellent. What drove the win rate improvement?
+  LABELS: HasTask=False, IsImp=False
+
+[M741] (Meeting) ?
+  MSG: Two things: the new competitive battle cards Chris put together, and the faster POC turnaround from engineering.
+  LABELS: HasTask=False, IsImp=False
+
+[M742] (Meeting) ?
+  MSG: What's the average deal size trending? I'm seeing smaller deals in the pipeline.
+  LABELS: HasTask=False, IsImp=False
+
+[M743] (Meeting) ?
+  MSG: Average deal size did drop from $85K to $72K, but volume is up significantly. Net effect is positive.
+  LABELS: HasTask=False, IsImp=False
+
+[M744] (Meeting) ?
+  MSG: The big concern is Vertex. They represent 18% of our Q2 pipeline. If that deal slips, we miss target. @Sofia, what's the confidence level?
+  LABELS: HasTask=False, IsImp=False
+
+[M745] (Meeting) ?
+  MSG: I'd say 75% confidence. The main risk is their budget approval process ΓÇö it's a public company and they have a new CFO who's scrutinizing all new spen...
+  LABELS: HasTask=False, IsImp=False
+
+[M746] (Meeting) ?
+  MSG: What's our mitigation plan if Vertex slips?
+  LABELS: HasTask=False, IsImp=False
+
+[M747] (Meeting) ?
+  MSG: We have $600K in upside pipeline that could pull in. @Sofia, can you work those deals harder this month and give me a realistic pull-in forecast by ne...
+  LABELS: HasTask=False, IsImp=False
+
+[M748] (Meeting) ?
+  MSG: I'll accelerate outreach on the top 5 upside deals and have the forecast to you by Thursday.
+  LABELS: HasTask=False, IsImp=False
+
+[M749] (Meeting) ?
+  MSG: I'd also recommend we review the discount approval process. Some deals are taking 2 weeks to get pricing approved. That's killing deal velocity.
+  LABELS: HasTask=False, IsImp=False
+
+[M750] (Meeting) ?
+  MSG: Good point. @Michael, @Rachel ΓÇö work together to streamline the discount approval process. I want a proposal by end of month.
+  LABELS: HasTask=False, IsImp=False
+
+[M751] (Meeting) ?
+  MSG: Will do.
+  LABELS: HasTask=False, IsImp=False
+
+[M752] (Meeting) ?
+  MSG: I'll schedule time with Michael next week.
+  LABELS: HasTask=False, IsImp=False
+
+[M753] (OneOnOne) ?
+  MSG: Derek, following up on the GreenTech Support case. Did they accept our remediation plan?
+  LABELS: HasTask=False, IsImp=False
+
+[M754] (OneOnOne) ?
+  MSG: Partially. They're OK with the process changes but still unhappy about the response time SLA. They want 1-hour response instead of 4-hour for P1 issue...
+  LABELS: HasTask=False, IsImp=False
+
+[M755] (OneOnOne) ?
+  MSG: Can we realistically offer 1-hour response for their tier?
+  LABELS: HasTask=False, IsImp=False
+
+[M756] (OneOnOne) ?
+  MSG: Not with current staffing. We'd need an additional after-hours support engineer. That's a budget conversation with Rachel.
+  LABELS: HasTask=False, IsImp=False
+
+[M757] (OneOnOne) ?
+  MSG: OK, I'll raise it with Rachel. Meanwhile ΓÇö any update on the NovaCorp onboarding? They were supposed to go live last week.
+  LABELS: HasTask=False, IsImp=False
+
+[M758] (OneOnOne) ?
+  MSG: NovaCorp is delayed. Their IT team hasn't completed the SSO integration. I've been chasing them but they keep rescheduling.
+  LABELS: HasTask=False, IsImp=False
+
+[M759] (OneOnOne) ?
+  MSG: That's been going on for 3 weeks now. Can you escalate to their project sponsor? If they don't go live soon, we risk losing the implementation window.
+  LABELS: HasTask=False, IsImp=False
+
+[M760] (OneOnOne) ?
+  MSG: Good idea. I'll send a formal email to their VP of IT today.
+  LABELS: HasTask=False, IsImp=False
+
+[M761] (OneOnOne) ?
+  MSG: Thanks. And circle back with me once you hear from them so I can update the leadership report.
+  LABELS: HasTask=False, IsImp=False
+
+[M762] (OneOnOne) ?
+  MSG: Will do.
+  LABELS: HasTask=False, IsImp=False
+
+[M763] (Group) ?
+  MSG: Hi team ΓÇö we've confirmed the office move to the new building on March 15. Department heads need to submit their space requirements by end of this wee...
+  LABELS: HasTask=False, IsImp=False
+
+[M764] (Group) ?
+  MSG: How many sq ft per person are we budgeting? Engineering needs more space for hardware labs.
+  LABELS: HasTask=False, IsImp=False
+
+[M765] (Group) ?
+  MSG: Standard is 120 sqft per person. Labs are separate ΓÇö submit that as a special request with justification.
+  LABELS: HasTask=False, IsImp=False
+
+[M766] (Group) ?
+  MSG: Do we have the budget numbers for the move? Rachel asked me to track it.
+  LABELS: HasTask=False, IsImp=False
+
+[M767] (Group) ?
+  MSG: Total budget is $450K. I'll send you the breakdown.
+  LABELS: HasTask=False, IsImp=False
+
+[M768] (Group) ?
+  MSG: Make sure the new lease agreement is finalized before we start any physical move prep. I'm still reviewing clause 12.
+  LABELS: HasTask=False, IsImp=False
+
+[M769] (Group) ?
+  MSG: Do we need to communicate the move to customers? Some of them visit our office.
+  LABELS: HasTask=False, IsImp=False
+
+[M770] (Group) ?
+  MSG: Good point. Yes, we should. @Laura, can you draft customer communication? And @Amanda, when will clause 12 be resolved?
+  LABELS: HasTask=False, IsImp=False
+
+[M771] (Group) ?
+  MSG: Sure, I'll draft something by Wednesday.
+  LABELS: HasTask=False, IsImp=False
+
+[M772] (Group) ?
+  MSG: Hoping by end of week. The landlord's legal team has been slow to respond.
+  LABELS: HasTask=False, IsImp=False
+
+[M773] (Group) ?
+  MSG: Thanks for organizing this, Danielle. ≡ƒæÅ
+  LABELS: HasTask=False, IsImp=False
+
+[M774] (OneOnOne) ?
+  MSG: James ΓÇö what's the SSH key for the staging jumpbox? I need to debug something.
+  LABELS: HasTask=False, IsImp=False
+
+[M775] (OneOnOne) ?
+  MSG: Check 1Password ΓÇö it's in the 'Staging Infra' vault. Key name is 'jumpbox-staging-2026'.
+  LABELS: HasTask=False, IsImp=False
+
+[M776] (OneOnOne) ?
+  MSG: Found it. Thanks!
+  LABELS: HasTask=False, IsImp=False
+
+[M777] (OneOnOne) ?
+  MSG: Danielle, is the Cascade room available tomorrow from 2-3 PM?
+  LABELS: HasTask=False, IsImp=False
+
+[M778] (OneOnOne) ?
+  MSG: Let me check... it's booked at 2, but free from 2:30 onward. Want me to book it for 2:30-3:30?
+  LABELS: HasTask=False, IsImp=False
+
+[M779] (OneOnOne) ?
+  MSG: 2:30 works. Yes please!
+  LABELS: HasTask=False, IsImp=False
+
+[M780] (OneOnOne) ?
+  MSG: Done! Invite sent.
+  LABELS: HasTask=False, IsImp=False
+
+[M781] (OneOnOne) ?
+  MSG: Thanks! ≡ƒÖÅ
+  LABELS: HasTask=False, IsImp=False
+
+[M782] (Group) ?
+  MSG: ≡ƒÜ¿ PROD IS DOWN. API gateway returning 502s across all endpoints. Started 2 minutes ago.
+  LABELS: HasTask=False, IsImp=False
+
+[M783] (Group) ?
+  MSG: I see it. PagerDuty alert just fired. @Priya, are you available to help triage?
+  LABELS: HasTask=False, IsImp=False
+
+[M784] (Group) ?
+  MSG: I'm here. Pulling up the dashboards now.
+  LABELS: HasTask=False, IsImp=False
+
+[M785] (Group) ?
+  MSG: Root cause: the latest deploy introduced a memory leak. Pod memory usage hit 100% and OOMKilled. All replicas affected.
+  LABELS: HasTask=False, IsImp=False
+
+[M786] (Group) ?
+  MSG: Roll back immediately. We'll investigate after service is restored.
+  LABELS: HasTask=False, IsImp=False
+
+[M787] (Group) ?
+  MSG: Rolling back now. ETA 3 minutes.
+  LABELS: HasTask=False, IsImp=False
+
+[M788] (Group) ?
+  MSG: @Nina, can you start the incident timeline doc? We'll need it for the postmortem.
+  LABELS: HasTask=False, IsImp=False
+
+[M789] (Group) ?
+  MSG: On it. I'll track everything in the Confluence incident page.
+  LABELS: HasTask=False, IsImp=False
+
+[M790] (Group) ?
+  MSG: Rollback complete. Services recovering. Health checks passing on 4 of 6 pods.
+  LABELS: HasTask=False, IsImp=False
+
+[M791] (Group) ?
+  MSG: All 6 pods healthy. API gateway responding normally. Incident over.
+  LABELS: HasTask=False, IsImp=False
+
+[M792] (Group) ?
+  MSG: Good work on the fast recovery. @Alex, I want a postmortem doc by tomorrow with: root cause, timeline, and preventive measures. Include a section on w...
+  LABELS: HasTask=False, IsImp=False
+
+[M793] (Group) ?
+  MSG: Will have it ready by noon tomorrow. @Priya, @James ΓÇö I'll need your input on the technical timeline.
+  LABELS: HasTask=False, IsImp=False
+
+[M794] (Group) ?
+  MSG: I'll write up what I found in the logs.
+  LABELS: HasTask=False, IsImp=False
+
+[M795] (Group) ?
+  MSG: Same. I'll document the deploy and rollback timeline.
+  LABELS: HasTask=False, IsImp=False
+
+[M796] (OneOnOne) ?
+  MSG: Chris, I just read the Analytics Pro launch blog post draft. Nice work but I have several rounds of feedback.
+  LABELS: HasTask=False, IsImp=False
+
+[M797] (OneOnOne) ?
+  MSG: First ΓÇö can you rewrite the opening paragraph? It buries the lead. I want the customer ROI stat front and center.
+  LABELS: HasTask=False, IsImp=False
+
+[M798] (OneOnOne) ?
+  MSG: Makes sense. The 43% efficiency gain stat?
+  LABELS: HasTask=False, IsImp=False
+
+[M799] (OneOnOne) ?
+  MSG: Yes, that one. Second ΓÇö the technical section is too jargon-heavy for our audience. Simplify it. Third ΓÇö add a CTA at the end directing to the product...
+  LABELS: HasTask=False, IsImp=False
+
+[M800] (OneOnOne) ?
+  MSG: I'll rework all three and have a revised draft to you by tomorrow morning.
+  LABELS: HasTask=False, IsImp=False
+
+[M801] (OneOnOne) ?
+  MSG: Great. I need to give final approval before it goes live on Tuesday, so tomorrow is the latest I can review.
+  LABELS: HasTask=False, IsImp=False
+
+[M802] (OneOnOne) ?
+  MSG: Understood. I'll make sure it's in your inbox by 9 AM.
+  LABELS: HasTask=False, IsImp=False
+
+[M803] (OneOnOne) ?
+  MSG: Also ΓÇö can you check if the featured image meets our new brand guidelines? Sarah's been particular about visual consistency lately.
+  LABELS: HasTask=False, IsImp=False
+
+[M804] (OneOnOne) ?
+  MSG: Will verify against the style guide.
+  LABELS: HasTask=False, IsImp=False
+
+[M805] (Group) ?
+  MSG: @Alex ΓÇö I need you to evaluate DataStream and CloudMetrics as analytics vendors. @Rachel and @Kevin ΓÇö FYI, this will impact the Q3 budget. @Amanda ΓÇö w...
+  LABELS: HasTask=False, IsImp=False
+
+[M806] (Group) ?
+  MSG: I'll start with technical evaluations this week. @David, any specific criteria beyond the ones in the RFP?
+  LABELS: HasTask=False, IsImp=False
+
+[M807] (Group) ?
+  MSG: Focus on: (1) real-time streaming support, (2) cost per query at our scale, (3) SOC 2 compliance. Those are the non-negotiables.
+  LABELS: HasTask=False, IsImp=False
+
+[M808] (Group) ?
+  MSG: For budget context ΓÇö we have $200K allocated for analytics tooling in Q3. The current Tableau license is $85K of that.
+  LABELS: HasTask=False, IsImp=False
+
+[M809] (Group) ?
+  MSG: If the new vendor costs more than the Tableau allocation, we'll need a budget amendment. Just flagging now so there are no surprises.
+  LABELS: HasTask=False, IsImp=False
+
+[M810] (Group) ?
+  MSG: Noted. I'll include a cost comparison in my evaluation. Aiming to have recommendations ready in two weeks.
+  LABELS: HasTask=False, IsImp=False
+
+[M811] (Group) ?
+  MSG: When you're ready for contract review, give me at least 5 business days. These vendor agreements tend to be complex.
+  LABELS: HasTask=False, IsImp=False
+
+[M812] (Group) ?
+  MSG: Great. Let's reconvene in two weeks. @Alex, set up the review meeting.
+  LABELS: HasTask=False, IsImp=False
+
+[M813] (Meeting) ?
+  MSG: OK team, let's do our retro. What went well this sprint?
+  LABELS: HasTask=False, IsImp=False
+
+[M814] (Meeting) ?
+  MSG: The Analytics Pro feature shipped on time. Good collaboration between frontend and backend.
+  LABELS: HasTask=False, IsImp=False
+
+[M815] (Meeting) ?
+  MSG: The new CI pipeline improvements reduced build times by 40%. Big win.
+  LABELS: HasTask=False, IsImp=False
+
+[M816] (Meeting) ?
+  MSG: Test coverage went from 72% to 81%. The team actually wrote tests this sprint! ≡ƒÿä
+  LABELS: HasTask=False, IsImp=False
+
+[M817] (Meeting) ?
+  MSG: Great. Now ΓÇö what didn't go well?
+  LABELS: HasTask=False, IsImp=False
+
+[M818] (Meeting) ?
+  MSG: The last-minute scope change from product. We got a new requirement 2 days before the sprint ended. That's not sustainable.
+  LABELS: HasTask=False, IsImp=False
+
+[M819] (Meeting) ?
+  MSG: The staging environment was flaky all sprint. Cost us probably 2 days of lost productivity across the team.
+  LABELS: HasTask=False, IsImp=False
+
+[M820] (Meeting) ?
+  MSG: Both valid. Let's turn these into action items. For the scope change issue ΓÇö @Priya, can you document the impact and I'll take it to the next product-...
+  LABELS: HasTask=False, IsImp=False
+
+[M821] (Meeting) ?
+  MSG: Sure. I'll write up a brief with the timeline impact.
+  LABELS: HasTask=False, IsImp=False
+
+[M822] (Meeting) ?
+  MSG: @James ΓÇö for the staging stability, can you create a proposal for dedicated staging infrastructure? Include cost estimates so I can make the budget ca...
+  LABELS: HasTask=False, IsImp=False
+
+[M823] (Meeting) ?
+  MSG: I actually started drafting this last week. I'll finalize it by end of sprint.
+  LABELS: HasTask=False, IsImp=False
+
+[M824] (Meeting) ?
+  MSG: Can we also add a rule that no new requirements can be added in the last 3 days of a sprint?
+  LABELS: HasTask=False, IsImp=False
+
+[M825] (Meeting) ?
+  MSG: I love that idea. Let me propose it as a team agreement. I'll bring it to the next standup for a vote.
+  LABELS: HasTask=False, IsImp=False
+
+[M826] (Meeting) ?
+  MSG: Best retro we've had in a while. ≡ƒæì
+  LABELS: HasTask=False, IsImp=False
+
+[M827] (OneOnOne) ?
+  MSG: Amanda, quick question ΓÇö can we use customer logos on our website without explicit written permission?
+  LABELS: HasTask=False, IsImp=False
+
+[M828] (OneOnOne) ?
+  MSG: No. We need a written logo usage agreement or a clause in the master agreement permitting it. Some of our contracts have it, some don't.
+  LABELS: HasTask=False, IsImp=False
+
+[M829] (OneOnOne) ?
+  MSG: Can you check which of our top 10 customers have the clause and which need a separate agreement?
+  LABELS: HasTask=False, IsImp=False
+
+[M830] (OneOnOne) ?
+  MSG: I'll pull the contracts and let you know by end of week.
+  LABELS: HasTask=False, IsImp=False
+
+[M831] (OneOnOne) ?
+  MSG: Thanks. One more ΓÇö do we need to update our privacy policy before launching in the EU?
+  LABELS: HasTask=False, IsImp=False
+
+[M832] (OneOnOne) ?
+  MSG: Yes, absolutely. GDPR requires specific disclosures. I'll send you the list of required changes.
+  LABELS: HasTask=False, IsImp=False
+
+[M833] (OneOnOne) ?
+  MSG: Perfect. Appreciate the quick turnaround on these.
+  LABELS: HasTask=False, IsImp=False
+
+[M834] (Group) ?
+  MSG: Just shared the new landing page mockups in the design channel. Everyone please review and leave feedback by tomorrow.
+  LABELS: HasTask=False, IsImp=False
+
+[M835] (Group) ?
+  MSG: Looks great! The hero section is much better than the last version.
+  LABELS: HasTask=False, IsImp=False
+
+[M836] (Group) ?
+  MSG: The performance metrics section is confusing. Can we restructure it to lead with the business impact numbers?
+  LABELS: HasTask=False, IsImp=False
+
+[M837] (Group) ?
+  MSG: From a sales perspective, we need the pricing to be more prominent. Prospects always ask about pricing first.
+  LABELS: HasTask=False, IsImp=False
+
+[M838] (Group) ?
+  MSG: Good feedback all around. @Chris, can you mock up the restructured metrics section? And I'll work on making pricing more visible.
+  LABELS: HasTask=False, IsImp=False
+
+[M839] (Group) ?
+  MSG: On it. I'll have a revised mockup by tomorrow afternoon.
+  LABELS: HasTask=False, IsImp=False
+
+[M840] (Group) ?
+  MSG: ≡ƒæì
+  LABELS: HasTask=False, IsImp=False
+
+[M841] (Group) ?
+  MSG: ≡ƒÖî
+  LABELS: HasTask=False, IsImp=False
+
+[M842] (Meeting) ?
+  MSG: Let's go through the Q2 budget proposals. Each department submitted their asks ΓÇö we need to decide allocations today.
+  LABELS: HasTask=False, IsImp=False
+
+[M843] (Meeting) ?
+  MSG: @David, engineering is requesting $1.2M. That's 30% above Q1. Walk us through the justification.
+  LABELS: HasTask=False, IsImp=False
+
+[M844] (Meeting) ?
+  MSG: The increase breaks down as: $400K for 4 new hires, $300K for the analytics vendor evaluation Alex is running, $200K for staging infrastructure improv...
+  LABELS: HasTask=False, IsImp=False
+
+[M845] (Meeting) ?
+  MSG: The security spend is non-negotiable given the incidents. What about the analytics vendor ΓÇö can that wait?
+  LABELS: HasTask=False, IsImp=False
+
+[M846] (Meeting) ?
+  MSG: We could push it to Q3, but we'd miss the window for annual pricing negotiations. We'd likely pay 20% more.
+  LABELS: HasTask=False, IsImp=False
+
+[M847] (Meeting) ?
+  MSG: @Michael, sales is asking for $800K. That includes 2 new AEs at $350K total and $450K for the new CRM implementation.
+  LABELS: HasTask=False, IsImp=False
+
+[M848] (Meeting) ?
+  MSG: The AEs are critical ΓÇö we're leaving pipeline on the table. The CRM is overdue ΓÇö our current system is a spreadsheet nightmare.
+  LABELS: HasTask=False, IsImp=False
+
+[M849] (Meeting) ?
+  MSG: I ran the numbers. If we approve everything, we're $340K over the total Q2 operating budget. We'd need to either cut or pull from reserves.
+  LABELS: HasTask=False, IsImp=False
+
+[M850] (Meeting) ?
+  MSG: OK, here's my call: approve engineering in full including analytics. Approve the AEs for sales but defer the CRM to Q3 ΓÇö that saves $450K and gives us...
+  LABELS: HasTask=False, IsImp=False
+
+[M851] (Meeting) ?
+  MSG: Yes, that keeps us $110K under budget with some room for contingency. I'll update the allocations.
+  LABELS: HasTask=False, IsImp=False
+
+[M852] (Meeting) ?
+  MSG: Can we at least start the CRM vendor evaluation in Q2 so we're ready to implement in Q3?
+  LABELS: HasTask=False, IsImp=False
+
+[M853] (Meeting) ?
+  MSG: That's fine ΓÇö just don't sign anything until Q3 budget is confirmed.
+  LABELS: HasTask=False, IsImp=False
+
+[M854] (Meeting) ?
+  MSG: @Kevin, please update the budget tracker with today's decisions and distribute to all department heads by end of day.
+  LABELS: HasTask=False, IsImp=False
+
+[M855] (Meeting) ?
+  MSG: Will do.
+  LABELS: HasTask=False, IsImp=False
+
+[M856] (OneOnOne) ?
+  MSG: Alex, I'm getting spammed with these auto-generated security scan notifications. Do you know how to filter them?
+  LABELS: HasTask=False, IsImp=False
+
+[M857] (OneOnOne) ?
+  MSG: Yeah, there's a filter rule in the Outlook settings. I'll send you the steps.
+  LABELS: HasTask=False, IsImp=False
+
+[M858] (OneOnOne) ?
+  MSG: Thanks. By the way ΓÇö the automated deploy reports are showing duplicate entries. Can you check if the webhook is firing twice?
+  LABELS: HasTask=False, IsImp=False
+
+[M859] (OneOnOne) ?
+  MSG: I noticed that too. I think it's the retry logic. Let me investigate and fix it.
+  LABELS: HasTask=False, IsImp=False
+
+[M860] (OneOnOne) ?
+  MSG: Perfect. Let me know when it's fixed so I can verify on my end.
+  LABELS: HasTask=False, IsImp=False
+
+[M861] (OneOnOne) ?
+  MSG: Will do ≡ƒæì
+  LABELS: HasTask=False, IsImp=False
+
+[M862] (Group) ?
+  MSG: Morning standup! Quick updates from everyone please.
+  LABELS: HasTask=False, IsImp=False
+
+[M863] (Group) ?
+  MSG: Yesterday: finished the data pipeline refactor. Today: starting on the API rate limiter. Blocker: none.
+  LABELS: HasTask=False, IsImp=False
+
+[M864] (Group) ?
+  MSG: Yesterday: deployed monitoring dashboards. Today: working on the CDN migration. Blocker: waiting on DNS propagation, should be done by noon.
+  LABELS: HasTask=False, IsImp=False
+
+[M865] (Group) ?
+  MSG: Yesterday: wrote integration tests for the new auth flow. Today: regression testing for the release. Blocker: I need the test environment credentials ...
+  LABELS: HasTask=False, IsImp=False
+
+[M866] (Group) ?
+  MSG: I can refresh those. Give me 10 minutes.
+  LABELS: HasTask=False, IsImp=False
+
+[M867] (Group) ?
+  MSG: Thanks James! ≡ƒÖÅ
+  LABELS: HasTask=False, IsImp=False
+
+[M868] (Group) ?
+  MSG: Looks like we're on track for the release. @Priya ΓÇö on the rate limiter, make sure you coordinate with James on the CDN config since they'll interact.
+  LABELS: HasTask=False, IsImp=False
+
+[M869] (Group) ?
+  MSG: Already synced with him yesterday. We're good.
+  LABELS: HasTask=False, IsImp=False
+
+[M870] (Group) ?
+  MSG: Any other blockers or concerns before I close standup?
+  LABELS: HasTask=False, IsImp=False
+
+[M871] (Group) ?
+  MSG: All good here.
+  LABELS: HasTask=False, IsImp=False
+
+[M872] (Group) ?
+  MSG: Same.
+  LABELS: HasTask=False, IsImp=False
+
+[M873] (Group) ?
+  MSG: Nothing from me.
+  LABELS: HasTask=False, IsImp=False
+
+[M874] (Group) ?
+  MSG: Great. Let's crush it today! ≡ƒÆ¬
+  LABELS: HasTask=False, IsImp=False
+
+[M875] (OneOnOne) ?
+  MSG: David, I've been thinking about our AI strategy. We might be falling behind.
+  LABELS: HasTask=False, IsImp=False
+
+[M876] (OneOnOne) ?
+  MSG: What makes you say that? I thought we were in a good spot with the analytics rollout.
+  LABELS: HasTask=False, IsImp=False
+
+[M877] (OneOnOne) ?
+  MSG: I saw the Gartner report yesterday. Our competitors are investing 3x what we are in ML infrastructure. I just wanted to flag it.
+  LABELS: HasTask=False, IsImp=False
+
+[M878] (OneOnOne) ?
+  MSG: That's worth looking into. I could put together a competitive landscape analysis focused on AI/ML investments if you think it's a priority.
+  LABELS: HasTask=False, IsImp=False
+
+[M879] (OneOnOne) ?
+  MSG: That would be great actually. But don't deprioritize the current release for it. When things calm down after the launch, let's revisit.
+  LABELS: HasTask=False, IsImp=False
+
+[M880] (OneOnOne) ?
+  MSG: Makes sense. I'll keep it on the backlog.
+  LABELS: HasTask=False, IsImp=False
+
+[M881] (OneOnOne) ?
+  MSG: How's the team morale? I know the last few sprints have been intense.
+  LABELS: HasTask=False, IsImp=False
+
+[M882] (OneOnOne) ?
+  MSG: Mixed. The senior folks are energized by the Analytics Pro launch. But the junior engineers are feeling stretched. We might want to think about a team...
+  LABELS: HasTask=False, IsImp=False
+
+[M883] (OneOnOne) ?
+  MSG: Good to know. Let's keep an eye on it.
+  LABELS: HasTask=False, IsImp=False
+
+[M884] (OneOnOne) ?
+  MSG: Will do. Thanks for checking in, Sarah.
+  LABELS: HasTask=False, IsImp=False
+
+[M885] (OneOnOne) ?
+  MSG: Do you know how to download this data from the analytics dashboard? I can't find the export button.
+  LABELS: HasTask=False, IsImp=False
+
+[M886] (OneOnOne) ?
+  MSG: Yeah, it's under Settings > Export > CSV. They moved it in the last release.
+  LABELS: HasTask=False, IsImp=False
+
+[M887] (OneOnOne) ?
+  MSG: Thanks for the update!
+  LABELS: HasTask=False, IsImp=False
+
+[M888] (OneOnOne) ?
+  MSG: Can you call me when you're free? Need to discuss the migration plan.
+  LABELS: HasTask=False, IsImp=False
+
+[M889] (OneOnOne) ?
+  MSG: Sure, does 2 PM work for you?
+  LABELS: HasTask=False, IsImp=False
+
+[M890] (OneOnOne) ?
+  MSG: Works
+  LABELS: HasTask=False, IsImp=False
+
+[M891] (Group) ?
+  MSG: Could you please review the Status Update post before I send it to leadership? @Nina
+  LABELS: HasTask=False, IsImp=False
+
+[M892] (Group) ?
+  MSG: Sure, send it over.
+  LABELS: HasTask=False, IsImp=False
+
+[M893] (Group) ?
+  MSG: There's some pressure to get it to design for LT preview tomorrow. Let's make sure it's polished.
+  LABELS: HasTask=False, IsImp=False
+
+[M894] (Group) ?
+  MSG: Folks, I'm unwell. Will be OOF today and maybe tomorrow.
+  LABELS: HasTask=False, IsImp=False
+
+[M895] (Group) ?
+  MSG: Feel better Priya! We've got you covered.
+  LABELS: HasTask=False, IsImp=False
+
+[M896] (Group) ?
+  MSG: FYI: @Nikhil, @Andrew ΓÇö I don't see you listed as DRIs for the dashboard module. Can you check and confirm?
+  LABELS: HasTask=False, IsImp=False
+
+[M897] (Group) ?
+  MSG: Need sign-off by EOD or we miss the ship window for the release candidate.
+  LABELS: HasTask=False, IsImp=False
+
+[M898] (Group) ?
+  MSG: Following up ΓÇö still waiting on approval from the security team. This is blocking the rollout.
+  LABELS: HasTask=False, IsImp=False
+
+[M899] (Group) ?
+  MSG: Quality is at 56% assertion rate vs our 80% production target. We need to address this before release.
+  LABELS: HasTask=False, IsImp=False
+
+[M900] (Group) ?
+  MSG: We cannot proceed with module 5.3C in its current form. It needs a full rewrite of the validation layer.
+  LABELS: HasTask=False, IsImp=False
+
+[M901] (Group) ?
+  MSG: Team ΓÇö these cleanups must be completed before 3/31. I've assigned owners in the tracking sheet. Check your items and confirm you're on track.
+  LABELS: HasTask=False, IsImp=False
+
+[M902] (Group) ?
+  MSG: Checked ΓÇö my 3 items are on track. Should be done by Thursday.
+  LABELS: HasTask=False, IsImp=False
+
+[M903] (Group) ?
+  MSG: Two of mine are done. The third is blocked on the DNS propagation ΓÇö same issue from last week.
+  LABELS: HasTask=False, IsImp=False
+
+[M904] (Group) ?
+  MSG: All QA items done. Tests pass. Γ£à
+  LABELS: HasTask=False, IsImp=False
+
+[M905] (Group) ?
+  MSG: @James, can you escalate the DNS issue to the provider? We can't let this slip past 3/31.
+  LABELS: HasTask=False, IsImp=False
+
+[M906] (Group) ?
+  MSG: Already sent an email this morning. Waiting for their response.
+  LABELS: HasTask=False, IsImp=False
+
+[M907] (Group) ?
+  MSG: Good. Keep me posted.
+  LABELS: HasTask=False, IsImp=False
+
+Total messages: 907
