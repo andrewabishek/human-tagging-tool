@@ -203,39 +203,4 @@ async function getAdminStats() {
   return { conversations: convs, assignments, tags, evidence };
 }
 
-async function getExistingJudges() {
-  const { data, error } = await db
-    .from("judge_sessions")
-    .select("judge_name")
-    .order("last_active_at", { ascending: false });
-  if (error) throw error;
-  return data.map((d) => d.judge_name);
-}
 
-async function getTagsForMessages(messageIds) {
-  // Fetch tags in batches to avoid URL length limits
-  const batchSize = 200;
-  const results = [];
-  for (let i = 0; i < messageIds.length; i += batchSize) {
-    const batch = messageIds.slice(i, i + batchSize);
-    const { data, error } = await db
-      .from("tags")
-      .select("*")
-      .in("message_id", batch);
-    if (error) throw error;
-    results.push(...data);
-  }
-  return results;
-}
-
-async function getAssignedMessages(judgeName) {
-  const { data, error } = await db
-    .from("message_assignments")
-    .select(
-      "message_id, is_tiebreaker, messages(*, conversations(title, full_conversation, source_row_index))",
-    )
-    .eq("judge_name", judgeName)
-    .order("message_id", { ascending: true });
-  if (error) throw error;
-  return data;
-}
