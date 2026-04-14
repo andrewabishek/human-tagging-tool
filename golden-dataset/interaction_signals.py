@@ -56,6 +56,14 @@ TONE_NEGATIVE = [
     "thought we fixed", "thought it was fixed",
 ]
 
+# CONSTRUCTIVE_CRITICISM: corrective feedback that's not celebratory
+TONE_CRITICISM = [
+    "too much detail", "too much", "too many", "too long", "too complex",
+    "simplify", "strip it down", "needs work", "needs improvement",
+    "not strong enough", "doesn't need to see", "don't need", "cut it down",
+    "tighten up", "fair feedback", "rework", "fair criticism",
+]
+
 # CELEBRATORY: milestones, approvals, launches, completions, impressive results
 TONE_CELEBRATORY = [
     "approved", "greenlight", "go-ahead", "go for launch",
@@ -234,6 +242,10 @@ def _detect_tone(content):
     # Humor
     if any(kw in lower for kw in TONE_HUMOR):
         return "humor"
+    
+    # Constructive criticism — corrective feedback, not celebratory
+    if any(kw in lower for kw in TONE_CRITICISM):
+        return "agreement"  # Produces 👍 / 💯 — acknowledging the feedback
     
     # Appreciative — thanks, praise, recognition
     if any(kw in lower for kw in TONE_APPRECIATIVE):

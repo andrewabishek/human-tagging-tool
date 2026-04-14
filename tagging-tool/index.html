@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conversation Tagging Tool</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- ========== LOGIN SCREEN ========== -->
+    <div id="login-screen" class="login-screen">
+      <div class="login-card">
+        <h1>Conversation Tagging Tool</h1>
+        <p>
+          Tag conversations for HasTask &amp; IsImportant at conversation level
+        </p>
+
+        <div
+          id="existing-judges-section"
+          class="hidden"
+          style="margin-bottom: 16px"
+        >
+          <label
+            style="
+              display: block;
+              font-size: 12px;
+              font-weight: 600;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+              color: var(--text-muted);
+              margin-bottom: 6px;
+              text-align: left;
+            "
+            >Returning judge</label
+          >
+          <select
+            id="judge-select"
+            class="login-input"
+            style="text-align: left; margin-bottom: 8px"
+          >
+            <option value="">— Select your name —</option>
+          </select>
+          <div
+            style="
+              text-align: center;
+              font-size: 12px;
+              color: var(--text-muted);
+              margin-bottom: 8px;
+            "
+          >
+            or
+          </div>
+        </div>
+
+        <label
+          id="new-judge-label"
+          style="
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            text-align: left;
+          "
+          >New judge name</label
+        >
+        <input
+          type="text"
+          id="judge-name-input"
+          class="login-input"
+          placeholder="Enter a new name or alias"
+          maxlength="50"
+          autocomplete="off"
+        />
+        <button id="login-btn" class="login-btn" disabled>Start Tagging</button>
+      </div>
+    </div>
+
+    <!-- ========== MAIN TAGGING APP ========== -->
+    <div id="app-screen" class="hidden">
+      <header class="app-header">
+        <h1>Conversation Tagging Tool</h1>
+        <div class="header-right">
+          <span id="progress-badge" class="progress-badge"
+            >0 / 0 conversations</span
+          >
+          <span id="judge-badge" class="judge-badge">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="8" r="4" />
+              <path d="M20 21a8 8 0 10-16 0" />
+            </svg>
+            <span id="judge-display-name"></span>
+          </span>
+          <a
+            id="admin-link"
+            href="#admin"
+            class="export-btn hidden"
+            title="Admin Dashboard"
+            onclick="location.reload()"
+            >🛡 Admin</a
+          >
+          <button
+            id="export-csv-btn"
+            class="export-btn"
+            title="Export CSV"
+            onclick="exportCSV()"
+          >
+            ⬇ CSV
+          </button>
+          <button
+            id="export-json-btn"
+            class="export-btn"
+            title="Export JSON"
+            onclick="exportJSON()"
+          >
+            ⬇ JSON
+          </button>
+        </div>
+      </header>
+
+      <div class="main-container">
+        <!-- Sidebar: Guidelines -->
+        <aside class="sidebar" id="guidelines-panel">
+          <h2>Quick Reference</h2>
+
+          <div class="guideline-section decision-rule">
+            <h3>HasTask</h3>
+            <p class="decision-text">
+              "Does the conversation contain an
+              <strong>unresolved</strong> request or action?"
+            </p>
+            <p class="decision-answer">
+              Yes → <span class="tag-true">TRUE</span> &nbsp; No →
+              <span class="tag-false">FALSE</span>
+            </p>
+          </div>
+
+          <div
+            class="guideline-section decision-rule"
+            style="
+              border-color: var(--warning);
+              background: var(--warning-light);
+            "
+          >
+            <h3>IsImportant</h3>
+            <p class="decision-text">
+              "Is this conversation <strong>urgent</strong> or
+              <strong>high organizational impact</strong>?"
+            </p>
+            <p class="decision-answer">
+              Yes → <span class="tag-true">TRUE</span> &nbsp; No →
+              <span class="tag-false">FALSE</span>
+            </p>
+          </div>
+
+          <div class="guideline-section">
+            <h3><span class="tag-true">HasTask = TRUE</span></h3>
+            <ul>
+              <li>
+                Someone is asked to <strong>do, send, review, approve</strong>
+              </li>
+              <li>A <strong>question</strong> expecting an answer</li>
+              <li><strong>Follow-up</strong> on a prior unresolved ask</li>
+              <li>
+                Request for <strong>sign-off, availability, decision</strong>
+              </li>
+            </ul>
+          </div>
+
+          <div class="guideline-section">
+            <h3><span class="tag-false">HasTask = FALSE</span></h3>
+            <ul>
+              <li class="negative">FYI, status update, announcement</li>
+              <li class="negative">Sender's own commitment ("I'll do it")</li>
+              <li class="negative">All asks resolved in thread</li>
+              <li class="negative">Social, greeting, bot-generated</li>
+            </ul>
+          </div>
+
+          <div class="guideline-section">
+            <h3>Evidence Selection</h3>
+            <p style="font-size: 12px; color: var(--text-secondary)">
+              Click the blue/orange buttons on messages that support your tag.
+              This helps us understand <em>which</em> messages drove your
+              decision.
+            </p>
+          </div>
+        </aside>
+
+        <!-- Content Area -->
+        <div class="content-area">
+          <!-- Conversation Header -->
+          <div class="conv-header-bar">
+            <div class="conv-header-left">
+              <h3 id="conv-topic">Conversation</h3>
+              <span id="conv-meta" class="conv-meta"></span>
+            </div>
+            <span id="conv-counter" class="conv-counter"></span>
+          </div>
+
+          <!-- Conversation Messages (scrollable) -->
+          <div class="conversation-panel" id="conversation-panel">
+            <div id="conversation-messages" class="conversation-messages">
+              <!-- Filled by JS -->
+            </div>
+          </div>
+
+          <!-- Tagging Panel (fixed at bottom) -->
+          <div class="tagging-panel" id="tagging-panel">
+            <div class="tagging-card" id="tagging-card">
+              <!-- HasTask Toggle -->
+              <div class="tag-row">
+                <div class="tag-group">
+                  <label>HasTask</label>
+                  <div class="toggle-group">
+                    <button
+                      class="toggle-btn"
+                      id="btn-has-task-true"
+                      onclick="setHasTask(true)"
+                    >
+                      ✓ Yes
+                    </button>
+                    <button
+                      class="toggle-btn"
+                      id="btn-has-task-false"
+                      onclick="setHasTask(false)"
+                    >
+                      ✗ No
+                    </button>
+                  </div>
+                </div>
+
+                <div class="tag-group">
+                  <label>IsImportant</label>
+                  <div class="toggle-group">
+                    <button
+                      class="toggle-btn"
+                      id="btn-important-true"
+                      onclick="setIsImportant(true)"
+                    >
+                      ✓ Yes
+                    </button>
+                    <button
+                      class="toggle-btn"
+                      id="btn-important-false"
+                      onclick="setIsImportant(false)"
+                    >
+                      ✗ No
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Evidence count + notes -->
+              <div class="tag-row secondary">
+                <span id="evidence-count" class="evidence-count"
+                  >0 task · 0 important evidence</span
+                >
+                <input
+                  type="text"
+                  class="notes-inline"
+                  id="notes-input"
+                  placeholder="Notes (optional)"
+                />
+              </div>
+
+              <!-- Navigation -->
+              <div class="nav-section">
+                <button
+                  class="nav-btn secondary"
+                  id="btn-prev"
+                  onclick="navigateConv(-1)"
+                >
+                  ← Prev
+                </button>
+                <div class="shortcut-hint">
+                  ← → navigate &nbsp;|&nbsp; Enter = Save &amp; Next
+                </div>
+                <button
+                  class="nav-btn primary"
+                  id="btn-save-next"
+                  onclick="saveAndNext()"
+                >
+                  Save & Next →
+                </button>
+              </div>
+            </div>
+
+            <div
+              id="done-card"
+              class="tagging-card hidden"
+              style="text-align: center; padding: 40px"
+            >
+              <h2>All done! 🎉</h2>
+              <p style="color: var(--text-secondary); margin-top: 8px">
+                You've tagged all assigned conversations. Export your results
+                above.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== UPLOAD SCREEN ========== -->
+    <div id="upload-screen" class="upload-screen hidden">
+      <div class="upload-card">
+        <h1>Upload Conversation Data</h1>
+        <p>
+          Upload a V2 CSV (conversation_id, conversation_topic, chat_type,
+          Conversation body, ...)
+        </p>
+        <div class="drop-zone" id="drop-zone">
+          <div class="icon">📄</div>
+          <div class="label">Drop CSV file here or click to browse</div>
+          <input
+            type="file"
+            id="file-input"
+            accept=".csv"
+            style="display: none"
+          />
+        </div>
+        <button class="login-btn" id="upload-btn" disabled>
+          Upload & Parse
+        </button>
+        <div id="upload-status" class="upload-status"></div>
+        <div style="margin-top: 24px">
+          <a
+            href="#"
+            onclick="
+              location.hash = '';
+              location.reload();
+            "
+            style="font-size: 13px; color: var(--accent)"
+            >← Back to tagging</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== ADMIN DASHBOARD ========== -->
+    <div id="admin-screen" class="hidden">
+      <header class="app-header">
+        <h1>🛡 Admin Dashboard</h1>
+        <div class="header-right">
+          <button id="admin-refresh" class="export-btn">↻ Refresh</button>
+          <a href="#upload" class="export-btn" onclick="location.reload()"
+            >📄 Upload Data</a
+          >
+          <a
+            href="#"
+            class="export-btn"
+            onclick="
+              location.hash = '';
+              location.reload();
+            "
+            >← Tagging</a
+          >
+        </div>
+      </header>
+      <div class="admin-body" id="admin-content">
+        <p>Loading...</p>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/csv-parser.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

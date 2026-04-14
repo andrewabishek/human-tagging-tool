@@ -41,12 +41,6 @@ def build_chat_message(msg, base_time, msg_index):
         cm["Reactions"] = [{"Reaction": r[0], "Sender": r[1]} for r in msg["reactions"]]
     if msg.get("mentions"):
         cm["Mentions"] = [{"MentionText": m, "Mentioned": {"User": {"DisplayName": USER_MAP.get(m, {}).get("DisplayName", m)}}} for m in msg["mentions"]]
-    if msg.get("followed_by"):
-        cm["Followed"] = [{"Sender": u} for u in msg["followed_by"]]
-    if msg.get("saved_by"):
-        cm["Saved"] = [{"Sender": u} for u in msg["saved_by"]]
-    if msg.get("reminder"):
-        cm["Reminder"] = [{"Sender": r[0], "ReminderDateTime": r[1]} for r in msg["reminder"]]
     return cm
 
 
@@ -67,64 +61,9 @@ def build_chat_json(conv, base_time):
     }
 
 
-def apply_conv_level_overrides(conversations, annotations_map):
-    """Apply conversation-level task annotations and override message-level tags.
-
-    For conv_has_task=TRUE: only evidence messages keep has_task=True.
-    For conv_has_task=FALSE: all messages set to has_task=False.
-    Evidence is expanded to include the message immediately before each
-    evidence index if that message currently has has_task=True (captures
-    request-commitment pairs).
-    """
-    stats = {"conv_true": 0, "conv_false": 0, "msgs_stripped": 0}
-    for i, conv in enumerate(conversations):
-        ann = annotations_map.get(i)
-        if ann is None:
-            # Not in annotations (e.g., new notask conversations)
-            conv["conv_has_task"] = False
-            conv["task_evidence"] = []
-            stats["conv_false"] += 1
-            continue
-
-        conv["conv_has_task"] = ann["conv_has_task"]
-
-        if not ann["conv_has_task"]:
-            conv["task_evidence"] = []
-            stats["conv_false"] += 1
-            for msg in conv["messages"]:
-                if msg["annotations"]["has_task"]:
-                    stats["msgs_stripped"] += 1
-                msg["annotations"]["has_task"] = False
-                msg["annotations"]["task_sub_class"] = "Neither"
-                msg["annotations"]["task_type"] = ""
-                msg["annotations"]["attribution"] = ""
-                msg["annotations"]["assignee"] = []
-        else:
-            stats["conv_true"] += 1
-            evidence = set(ann["task_evidence"])
-            expanded = set(evidence)
-            for idx in evidence:
-                if idx > 0 and conv["messages"][idx - 1]["annotations"]["has_task"]:
-                    expanded.add(idx - 1)
-            conv["task_evidence"] = sorted(expanded)
-
-            for j, msg in enumerate(conv["messages"]):
-                if j not in expanded:
-                    if msg["annotations"]["has_task"]:
-                        stats["msgs_stripped"] += 1
-                    msg["annotations"]["has_task"] = False
-                    msg["annotations"]["task_sub_class"] = "Neither"
-                    msg["annotations"]["task_type"] = ""
-                    msg["annotations"]["attribution"] = ""
-                    msg["annotations"]["assignee"] = []
-
-    return stats
-
-
 def build_annotation_rows(conv):
     """Extract annotation rows for CSV from conversation."""
     rows = []
-    evidence_set = set(conv.get("task_evidence", []))
     for i, msg in enumerate(conv["messages"]):
         ann = msg.get("annotations", {})
         rows.append({
@@ -132,8 +71,6 @@ def build_annotation_rows(conv):
             "conversation_topic": conv.get("topic", ""),
             "chat_type": conv["chat_type"],
             "domain": conv.get("domain", ""),
-            "conv_has_task": conv.get("conv_has_task", False),
-            "is_task_evidence": i in evidence_set,
             "message_id": msg.get("id", ""),
             "message_index": i,
             "from_user": msg["from"],
@@ -181,11 +118,6 @@ def generate_review_html(conversations, annotations):
     has_task_true = sum(1 for a in annotations if a["has_task"])
     is_important_true = sum(1 for a in annotations if a["is_important"])
 
-    # Conversation-level stats
-    conv_ht_true = sum(1 for c in conversations if c.get("conv_has_task"))
-    conv_ht_false = len(conversations) - conv_ht_true
-    evidence_msgs = sum(1 for a in annotations if a.get("is_task_evidence"))
-
     # Count by quadrant
     q_tt = sum(1 for a in annotations if a["has_task"] and a["is_important"])
     q_tf = sum(1 for a in annotations if a["has_task"] and not a["is_important"])
@@ -226,25 +158,6 @@ def generate_review_html(conversations, annotations):
     for a in annotations:
         sc = a["task_sub_class"] or "Neither"
         sub_class_counts[sc] = sub_class_counts.get(sc, 0) + 1
-
-    # Count interaction signals
-    sig_reactions = sum(1 for c in conversations for m in c["messages"] if m.get("reactions"))
-    sig_followed = sum(1 for c in conversations for m in c["messages"] if m.get("followed_by"))
-    sig_saved = sum(1 for c in conversations for m in c["messages"] if m.get("saved_by"))
-    sig_reminder = sum(1 for c in conversations for m in c["messages"] if m.get("reminder"))
-
-    # Count importance signals
-    imp_signal_counts = {}
-    for a in annotations:
-        if a["is_important"] and a.get("importance_signal"):
-            sig = a["importance_signal"]
-            imp_signal_counts[sig] = imp_signal_counts.get(sig, 0) + 1
-
-    # Count unique users
-    unique_users = set()
-    for c in conversations:
-        for m in c["messages"]:
-            unique_users.add(m["from"])
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -325,33 +238,9 @@ body {{ font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; col
 .tag-broadcast {{ background: #8764b8; color: white; }}
 .tag-na {{ background: #e0e0e0; color: #888; }}
 .attr-detail {{ font-size: 11px; color: #666; margin-top: 2px; }}
+.edge-tag {{ background: #ff8c00; color: white; padding: 1px 6px; border-radius: 3px; font-size: 10px; margin-left: 4px; }}
 .notes {{ font-size: 11px; color: #888; font-style: italic; margin-top: 4px; }}
 .msg-count {{ font-size: 12px; color: #888; }}
-.signal-badges {{ display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }}
-.signal {{ display: inline-flex; align-items: center; gap: 2px; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 600; }}
-.signal-reaction {{ background: #fff3e0; color: #ca5010; }}
-.signal-followed {{ background: #e8f4fd; color: #0078d4; }}
-.signal-saved {{ background: #fde8e8; color: #d13438; }}
-.signal-reminder {{ background: #e8fde8; color: #107c10; }}
-
-/* Summary section */
-.summary-card {{ background: white; border-radius: 8px; padding: 24px 28px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 4px solid #0078d4; }}
-.summary-card h2 {{ font-size: 18px; font-weight: 700; color: #0078d4; margin-bottom: 16px; }}
-.summary-card p {{ font-size: 14px; line-height: 1.7; color: #333; margin-bottom: 10px; }}
-.summary-card ul {{ margin: 8px 0 12px 20px; font-size: 13px; line-height: 1.8; color: #444; }}
-.summary-card li {{ margin-bottom: 2px; }}
-.summary-card .highlight {{ font-weight: 600; color: #0078d4; }}
-.summary-card .section-label {{ font-size: 14px; font-weight: 700; color: #333; margin: 16px 0 6px; }}
-.summary-card hr {{ border: none; border-top: 1px solid #e8e8e8; margin: 16px 0; }}
-
-/* Conv-level task badge */
-.conv-task-badge {{ padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; margin-right: 8px; }}
-.conv-task-true {{ background: #107c10; color: white; }}
-.conv-task-false {{ background: #e0e0e0; color: #888; }}
-
-/* Evidence highlight */
-.msg-row.evidence {{ background: #f0faf0; border-left: 3px solid #107c10; }}
-.evidence-badge {{ display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 700; background: #107c10; color: white; margin-left: 6px; }}
 </style>
 </head>
 <body>
@@ -361,75 +250,24 @@ body {{ font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; col
 </div>
 <div class="container">
 
-<!-- Executive Summary -->
-<div class="summary-card">
-    <h2>Dataset Summary</h2>
-    <p>This golden dataset contains <span class="highlight">{total_msgs} messages</span> across <span class="highlight">{len(conversations)} conversations</span> involving <span class="highlight">{len(unique_users)} users</span> at a fictional SaaS company (Meridian Technologies / EcoSync). It covers all three Teams chat types — 1:1 chats, group chats, and meeting chats — across <span class="highlight">{len(domain_counts)} workplace domains</span>.</p>
-
-    <p class="section-label">Purpose</p>
-    <p>Provide a comprehensive, spec-aligned test set for evaluating <strong>HasTask</strong> and <strong>IsImportant</strong> classifiers at both <strong>conversation level</strong> and <strong>message level</strong>.</p>
-
-    <hr>
-    <p class="section-label">Tagging Approach: Conversation-First</p>
-    <ul>
-        <li><strong>Step 1 — Conversation level:</strong> Each conversation is tagged <em>conv_has_task = TRUE/FALSE</em>. TRUE means outstanding work extends beyond the thread. FALSE means all questions/asks were resolved in-thread, or the conversation is purely informational/social.</li>
-        <li><strong>Step 2 — Message level:</strong> Only if a conversation has a task (conv_has_task=TRUE), individual messages that <em>contribute</em> to the outstanding work are tagged has_task=TRUE. These are marked as <strong>task evidence</strong> messages.</li>
-        <li><strong>Key rule:</strong> A question asked AND fully answered in the same thread = conv_has_task=FALSE. "What is the status?" with an answer in-thread does not constitute task intent at conversation level.</li>
-    </ul>
-
-    <hr>
-    <p class="section-label">Conversation-Level Distribution</p>
-    <ul>
-        <li><strong>{conv_ht_true}</strong> conversations with task intent ({round(conv_ht_true/len(conversations)*100)}%) — outstanding work extends beyond the thread</li>
-        <li><strong>{conv_ht_false}</strong> conversations without task intent ({round(conv_ht_false/len(conversations)*100)}%) — self-contained exchanges, social, FYI</li>
-        <li><strong>{evidence_msgs}</strong> task evidence messages — the specific messages that create the outstanding work</li>
-    </ul>
-
-    <hr>
-    <p class="section-label">Label Definitions (per Spec v3)</p>
-    <ul>
-        <li><strong>HasTask = TRUE</strong> — Message contributes to outstanding work that extends beyond the conversation. Only tagged on evidence messages within task conversations.</li>
-        <li><strong>IsImportant = TRUE</strong> — Message has high urgency or organizational impact: production incidents, blockers, hard deadlines at risk, compliance/security issues, CEO/board escalations, revenue/churn risk, policy changes.</li>
-        <li><strong>Attribution</strong> — Who the task is assigned to: Explicit (@mention), Implicit (contextual), Broadcast (everyone), Unassigned.</li>
-    </ul>
-
-    <hr>
-    <p class="section-label">Coverage Highlights</p>
-    <ul>
-        <li><strong>{has_task_true}</strong> HasTask=TRUE messages ({round(has_task_true/total_msgs*100)}%) and <strong>{total_msgs - has_task_true}</strong> HasTask=FALSE ({round((total_msgs - has_task_true)/total_msgs*100)}%)</li>
-        <li><strong>{is_important_true}</strong> IsImportant=TRUE ({round(is_important_true/total_msgs*100)}%) across all 12 importance signal types</li>
-        <li><strong>{edge_cases}</strong> annotated edge cases: rhetorical questions, conditionals, multi-part tasks, bot messages, optional asks, sender's own plans</li>
-        <li>Teams interaction signals: <strong>{sig_reactions}</strong> reactions, <strong>{sig_followed}</strong> followed, <strong>{sig_saved}</strong> saved, <strong>{sig_reminder}</strong> reminders</li>
-    </ul>
-
-    <hr>
-    <p class="section-label">QC Notes</p>
-    <ul>
-        <li>Conversation-level tagging applied first, then message-level for evidence messages only</li>
-        <li>All labels verified against HasTask_IsImportant_Tag_Definitions_v3 spec</li>
-        <li>Commitment messages (sender's own plan/promise) consistently labeled HasTask=FALSE per spec Section 2.1</li>
-        <li>Reactions validated via tone-based semantic matching — no mismatches between emoji and message content</li>
-    </ul>
-</div>
-
 <!-- Stats Dashboard -->
 <div class="stats-grid">
-    <div class="stat-card"><div class="value">{len(conversations)}</div><div class="label">Conversations</div></div>
-    <div class="stat-card"><div class="value">{conv_ht_true}</div><div class="label">Conv HasTask=TRUE ({round(conv_ht_true/len(conversations)*100)}%)</div></div>
-    <div class="stat-card"><div class="value">{conv_ht_false}</div><div class="label">Conv HasTask=FALSE ({round(conv_ht_false/len(conversations)*100)}%)</div></div>
     <div class="stat-card"><div class="value">{total_msgs}</div><div class="label">Total Messages</div></div>
-    <div class="stat-card"><div class="value">{has_task_true}</div><div class="label">Msg HasTask=TRUE ({round(has_task_true/total_msgs*100)}%)</div></div>
-    <div class="stat-card"><div class="value">{evidence_msgs}</div><div class="label">Task Evidence Messages</div></div>
-    <div class="stat-card"><div class="value">{is_important_true}</div><div class="label">IsImportant=TRUE ({round(is_important_true/total_msgs*100)}%)</div></div>
+    <div class="stat-card"><div class="value">{len(conversations)}</div><div class="label">Conversations</div></div>
+    <div class="stat-card"><div class="value">{has_task_true}</div><div class="label">HasTask = TRUE ({round(has_task_true/total_msgs*100)}%)</div></div>
+    <div class="stat-card"><div class="value">{is_important_true}</div><div class="label">IsImportant = TRUE ({round(is_important_true/total_msgs*100)}%)</div></div>
     <div class="stat-card"><div class="value">{edge_cases}</div><div class="label">Edge Cases ({round(edge_cases/total_msgs*100)}%)</div></div>
 </div>
 
-<!-- Interaction Signals -->
-<div class="stats-grid">
-    <div class="stat-card"><div class="value">{sig_reactions}</div><div class="label">❤️ Reacted ({round(sig_reactions/total_msgs*100)}%)</div></div>
-    <div class="stat-card"><div class="value">{sig_followed}</div><div class="label">👁️ Followed ({round(sig_followed/total_msgs*100)}%)</div></div>
-    <div class="stat-card"><div class="value">{sig_saved}</div><div class="label">📌 Saved ({round(sig_saved/total_msgs*100)}%)</div></div>
-    <div class="stat-card"><div class="value">{sig_reminder}</div><div class="label">⏰ Reminder ({round(sig_reminder/total_msgs*100)}%)</div></div>
+<!-- Quadrant Matrix -->
+<div class="coverage">
+    <h2>HasTask × IsImportant Quadrant Distribution</h2>
+    <div class="quadrant">
+        <div class="cell tt"><div class="val">{q_tt}</div><div class="desc">HasTask=TRUE + IsImportant=TRUE</div></div>
+        <div class="cell tf"><div class="val">{q_tf}</div><div class="desc">HasTask=TRUE + IsImportant=FALSE</div></div>
+        <div class="cell ft"><div class="val">{q_ft}</div><div class="desc">HasTask=FALSE + IsImportant=TRUE</div></div>
+        <div class="cell ff"><div class="val">{q_ff}</div><div class="desc">HasTask=FALSE + IsImportant=FALSE</div></div>
+    </div>
 </div>
 
 <!-- Coverage Tables -->
@@ -471,14 +309,6 @@ body {{ font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; col
 
 <!-- Filters -->
 <div class="filters">
-    <div class="filter-group">
-        <label>Conv HasTask:</label>
-        <select id="filterConvTask" onchange="applyFilters()">
-            <option value="all">All</option>
-            <option value="true">TRUE</option>
-            <option value="false">FALSE</option>
-        </select>
-    </div>
     <div class="filter-group">
         <label>Chat Type:</label>
         <select id="filterChatType" onchange="applyFilters()">
@@ -535,19 +365,12 @@ body {{ font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; col
         conv_tasks = sum(1 for m in conv["messages"] if m.get("annotations", {}).get("has_task"))
         conv_important = sum(1 for m in conv["messages"] if m.get("annotations", {}).get("is_important"))
 
-        # Conversation-level task
-        conv_has_task = conv.get("conv_has_task", False)
-        conv_task_class = "conv-task-true" if conv_has_task else "conv-task-false"
-        conv_task_label = "TASK" if conv_has_task else "NO TASK"
-        evidence_set = set(conv.get("task_evidence", []))
-
         html += f"""
-<div class="conv-card" data-chattype="{chat_type}" data-domain="{conv.get('domain', '')}" data-convtask="{str(conv_has_task).lower()}">
+<div class="conv-card" data-chattype="{chat_type}" data-domain="{conv.get('domain', '')}">
     <div class="conv-header" onclick="this.nextElementSibling.classList.toggle('open')">
         <div>
-            <span class="conv-task-badge {conv_task_class}">{conv_task_label}</span>
             <span class="conv-title">{conv.get('topic', 'Untitled')}</span>
-            <span class="msg-count"> · {msg_count} messages · {conv_tasks} task msgs · {conv_important} important</span>
+            <span class="msg-count"> · {msg_count} messages · {conv_tasks} tasks · {conv_important} important</span>
         </div>
         <div class="conv-meta">
             <span class="badge {badge_class}">{chat_type}</span>
@@ -560,7 +383,7 @@ body {{ font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; col
             <div>From</div><div>Message</div><div>HasTask</div><div>Important</div><div>Sub-class</div><div>Attribution</div>
         </div>
 """
-        for idx, msg in enumerate(conv["messages"]):
+        for msg in conv["messages"]:
             ann = msg.get("annotations", {})
             ht = ann.get("has_task", False)
             imp = ann.get("is_important", False)
@@ -570,48 +393,23 @@ body {{ font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; col
             edge = ann.get("edge_case", "")
             notes = ann.get("notes", "")
             sender_name = USER_MAP.get(msg["from"], {}).get("DisplayName", msg["from"])
-            is_evidence = idx in evidence_set
 
             ht_class = "tag-true" if ht else "tag-false"
             imp_class = "tag-true" if imp else "tag-false"
             sc_class = {"RfA": "tag-rfa", "RfK": "tag-rfk", "Commitment": "tag-commitment"}.get(sc, "tag-neither")
             attr_class = {"Explicit": "tag-explicit", "Implicit": "tag-implicit", "Unassigned": "tag-unassigned", "Broadcast": "tag-broadcast"}.get(attr, "tag-na")
 
-            edge_html = ""
-            evidence_html = '<span class="evidence-badge">EVIDENCE</span>' if is_evidence else ""
+            edge_html = f'<span class="edge-tag">{edge}</span>' if edge else ""
             notes_html = f'<div class="notes">{notes}</div>' if notes else ""
             assignee_html = f'<div class="attr-detail">→ {assignee}</div>' if assignee else ""
-            row_class = "msg-row"
-            if is_evidence:
-                row_class += " evidence"
-            if edge:
-                row_class += " edge-case"
+            row_class = "msg-row edge-case" if edge else "msg-row"
 
             content_escaped = msg["content"].replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-
-            # Build interaction signal badges
-            signal_html_parts = []
-            if msg.get("reactions"):
-                rxn_parts = []
-                for r in msg["reactions"]:
-                    reactor_name = USER_MAP.get(r[1], {}).get("DisplayName", r[1])
-                    rxn_parts.append(f'{r[0]} <b>{reactor_name}</b>')
-                signal_html_parts.append(f'<span class="signal signal-reaction">{", ".join(rxn_parts)}</span>')
-            if msg.get("followed_by"):
-                followers = ", ".join(msg["followed_by"])
-                signal_html_parts.append(f'<span class="signal signal-followed">👁️ {followers}</span>')
-            if msg.get("saved_by"):
-                savers = ", ".join(msg["saved_by"])
-                signal_html_parts.append(f'<span class="signal signal-saved">📌 {savers}</span>')
-            if msg.get("reminder"):
-                reminders = ", ".join(f"{r[0]}" for r in msg["reminder"])
-                signal_html_parts.append(f'<span class="signal signal-reminder">⏰ {reminders}</span>')
-            signals_html = f'<div class="signal-badges">{" ".join(signal_html_parts)}</div>' if signal_html_parts else ""
 
             html += f"""
         <div class="{row_class}" data-hastask="{str(ht).lower()}" data-isimportant="{str(imp).lower()}" data-edge="{bool(edge)}">
             <div class="msg-from">{sender_name}</div>
-            <div class="msg-content">{content_escaped}{evidence_html}{edge_html}{signals_html}{notes_html}</div>
+            <div class="msg-content">{content_escaped}{edge_html}{notes_html}</div>
             <div><span class="tag {ht_class}">{"TRUE" if ht else "FALSE"}</span></div>
             <div><span class="tag {imp_class}">{"TRUE" if imp else "FALSE"}</span></div>
             <div><span class="tag {sc_class}">{sc}</span></div>
@@ -626,7 +424,6 @@ body {{ font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; col
 
 <script>
 function applyFilters() {
-    const convTask = document.getElementById('filterConvTask').value;
     const chatType = document.getElementById('filterChatType').value;
     const hasTask = document.getElementById('filterHasTask').value;
     const isImportant = document.getElementById('filterIsImportant').value;
@@ -636,7 +433,6 @@ function applyFilters() {
 
     document.querySelectorAll('.conv-card').forEach(card => {
         let show = true;
-        if (convTask !== 'all' && card.dataset.convtask !== convTask) show = false;
         if (chatType !== 'all' && card.dataset.chattype !== chatType) show = false;
         if (domain !== 'all' && card.dataset.domain !== domain) show = false;
 
@@ -671,14 +467,8 @@ def main():
     from conversations_group import GROUP_CONVERSATIONS
     from conversations_meeting import MEETING_CONVERSATIONS
     from conversations_supplemental import SUPPLEMENTAL_CONVERSATIONS
-    from conversations_notask import NOTASK_CONVERSATIONS
-    from conv_annotations import CONV_ANNOTATIONS
 
-    from interaction_signals import apply_interaction_signals
-
-    all_conversations = (ONE_ON_ONE_CONVERSATIONS + GROUP_CONVERSATIONS +
-                         MEETING_CONVERSATIONS + SUPPLEMENTAL_CONVERSATIONS +
-                         NOTASK_CONVERSATIONS)
+    all_conversations = ONE_ON_ONE_CONVERSATIONS + GROUP_CONVERSATIONS + MEETING_CONVERSATIONS + SUPPLEMENTAL_CONVERSATIONS
 
     # Assign IDs to conversations and messages
     base_time = datetime(2026, 1, 15, 9, 0, 0)
@@ -689,13 +479,6 @@ def main():
         for j, msg in enumerate(conv["messages"]):
             if "id" not in msg:
                 msg["id"] = gen_id()
-
-    # Apply Teams interaction signals (Reactions, Followed, Saved, Reminder)
-    signal_stats = apply_interaction_signals(all_conversations, base_time)
-
-    # Apply conversation-level task annotations
-    conv_stats = apply_conv_level_overrides(all_conversations, CONV_ANNOTATIONS)
-    print(f"✓ Conv-level overrides: {conv_stats['conv_true']} TRUE, {conv_stats['conv_false']} FALSE, {conv_stats['msgs_stripped']} msgs stripped")
 
     # 1. Generate users.config.json
     users_out = []
@@ -752,9 +535,7 @@ def main():
     for conv in all_conversations:
         all_annotations.extend(build_annotation_rows(conv))
 
-    fieldnames = ["conversation_id", "conversation_topic", "chat_type", "domain",
-                  "conv_has_task", "is_task_evidence",
-                  "message_id", "message_index",
+    fieldnames = ["conversation_id", "conversation_topic", "chat_type", "domain", "message_id", "message_index",
                   "from_user", "content", "has_task", "task_sub_class", "task_type", "is_important",
                   "attribution", "assignee", "edge_case", "notes"]
     with open(os.path.join(OUTPUT_DIR, "golden_annotations.csv"), "w", newline="", encoding="utf-8") as f:
@@ -774,17 +555,13 @@ def main():
     ht_true = sum(1 for a in all_annotations if a["has_task"])
     ii_true = sum(1 for a in all_annotations if a["is_important"])
     edges = sum(1 for a in all_annotations if a["edge_case"])
-    conv_ht = sum(1 for c in all_conversations if c.get("conv_has_task"))
-    conv_no_ht = len(all_conversations) - conv_ht
     print(f"\n=== GOLDEN DATASET SUMMARY ===")
     print(f"Total conversations: {len(all_conversations)}")
     print(f"  1:1 chats: {sum(1 for c in all_conversations if c['chat_type'] == 'OneOnOne')}")
     print(f"  Group chats: {sum(1 for c in all_conversations if c['chat_type'] == 'Group')}")
     print(f"  Meeting chats: {sum(1 for c in all_conversations if c['chat_type'] == 'Meeting')}")
-    print(f"  Conv HasTask=TRUE: {conv_ht} ({round(conv_ht/len(all_conversations)*100)}%)")
-    print(f"  Conv HasTask=FALSE: {conv_no_ht} ({round(conv_no_ht/len(all_conversations)*100)}%)")
     print(f"Total messages: {total}")
-    print(f"  Msg HasTask=TRUE: {ht_true} ({round(ht_true/total*100)}%)")
+    print(f"  HasTask=TRUE: {ht_true} ({round(ht_true/total*100)}%)")
     print(f"  IsImportant=TRUE: {ii_true} ({round(ii_true/total*100)}%)")
     print(f"  Edge cases: {edges} ({round(edges/total*100)}%)")
     print(f"  Domains: {sorted(set(a['domain'] for a in all_annotations))}")
