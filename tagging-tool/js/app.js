@@ -300,8 +300,18 @@ async function autoAssignConversations(judgeName) {
       (c) => convInfo[c.id].assignCount === 0,
     );
     const oneAssign = available.filter((c) => convInfo[c.id].assignCount === 1);
-    const sorted = [...zeroAssign, ...oneAssign];
-    const toAssign = sorted.slice(0, Math.min(MAX_PER_JUDGE, sorted.length));
+    const pool = [...zeroAssign, ...oneAssign];
+
+    // Offset start position by judge number so different judges get
+    // different conversations at the front. This ensures max coverage
+    // even when judges only complete partway through their batch.
+    const existingJudgeNames = [
+      ...new Set(allAssigns.map((a) => a.judge_name)),
+    ];
+    const judgeIndex = existingJudgeNames.length; // 0-based for new judge
+    const offset = (judgeIndex * MAX_PER_JUDGE) % pool.length;
+    const rotated = [...pool.slice(offset), ...pool.slice(0, offset)];
+    const toAssign = rotated.slice(0, Math.min(MAX_PER_JUDGE, rotated.length));
 
     if (toAssign.length > 0) {
       const newAssigns = toAssign.map((c) => ({
@@ -522,7 +532,9 @@ function setHasTask(value) {
     "toggle-btn" + (!value ? " active-false" : "");
   // Show/hide task type + attribution dropdowns
   document.getElementById("task-type-group").classList.toggle("hidden", !value);
-  document.getElementById("attribution-group").classList.toggle("hidden", !value);
+  document
+    .getElementById("attribution-group")
+    .classList.toggle("hidden", !value);
 }
 
 function setIsImportant(value) {
