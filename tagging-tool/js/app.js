@@ -416,9 +416,50 @@ async function renderCurrentConversation() {
     : "Save & Next →";
 }
 
+/**
+ * Highlight @mentions (explicit) and plain name references (implicit) in text.
+ * Escapes HTML first to prevent XSS, then applies highlights.
+ */
+function highlightNames(text, speakerNames) {
+  // Escape HTML entities
+  let safe = text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
+  // 1. Highlight @mentions (explicit) — blue pill
+  safe = safe.replace(
+    /@(\w+)/g,
+    '<span class="mention-explicit" title="Explicit @mention">@$1</span>',
+  );
+
+  // 2. Highlight plain name references (implicit) — subtle underline
+  // Only match names that aren't already inside an @mention highlight
+  speakerNames.forEach((name) => {
+    // Match the name as a standalone word, not preceded by @ or already in a tag
+    const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(
+      `(?<!@)(?<![\\w])(?<!">)(${escaped})(?![<\\w])`,
+      "gi",
+    );
+    safe = safe.replace(
+      regex,
+      '<span class="mention-implicit" title="Implicit name reference">$1</span>',
+    );
+  });
+
+  return safe;
+}
+
 function renderMessages() {
   const container = document.getElementById("conversation-messages");
   container.innerHTML = "";
+
+  // Collect all speaker names for implicit name detection
+  const speakerNames = [
+    ...new Set(currentConvMessages.map((m) => m.speaker_name)),
+  ];
 
   currentConvMessages.forEach((msg) => {
     const div = document.createElement("div");
@@ -442,7 +483,7 @@ function renderMessages() {
 
     const text = document.createElement("div");
     text.className = "msg-text";
-    text.textContent = msg.message_text;
+    text.innerHTML = highlightNames(msg.message_text, speakerNames);
     div.appendChild(text);
 
     // Evidence buttons

@@ -300,6 +300,22 @@ body {
   background: var(--bg-hover);
 }
 
+/* @mention highlights */
+.mention-explicit {
+  background: var(--accent-light);
+  color: var(--accent);
+  font-weight: 600;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.mention-implicit {
+  color: var(--important-color);
+  font-weight: 600;
+  border-bottom: 1.5px dashed var(--important-color);
+}
+
 /* Evidence highlights */
 .conv-message.evidence-has-task {
   border-left: 4px solid var(--accent);
