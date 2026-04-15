@@ -190,7 +190,9 @@
             <h3>Task Type (when TRUE)</h3>
             <ul>
               <li><strong>RfA</strong>: Action, Review, Schedule, Delegate</li>
-              <li><strong>RfK</strong>: Question, Confirm, RSVP, Status, Decision</li>
+              <li>
+                <strong>RfK</strong>: Question, Confirm, RSVP, Status, Decision
+              </li>
               <li><strong>Follow-up</strong>: Re-surfaces prior ask</li>
             </ul>
           </div>
@@ -235,9 +237,9 @@
           <!-- Tagging Panel (fixed at bottom) -->
           <div class="tagging-panel" id="tagging-panel">
             <div class="tagging-card" id="tagging-card">
-              <!-- HasTask Toggle -->
-              <div class="tag-row">
-                <div class="tag-group">
+              <!-- Row 1: All tag controls inline -->
+              <div class="tag-row-main">
+                <div class="tag-group compact">
                   <label>HasTask</label>
                   <div class="toggle-group">
                     <button
@@ -257,7 +259,7 @@
                   </div>
                 </div>
 
-                <div class="tag-group">
+                <div class="tag-group compact">
                   <label>IsImportant</label>
                   <div class="toggle-group">
                     <button
@@ -276,40 +278,35 @@
                     </button>
                   </div>
                 </div>
-              </div>
 
-              <!-- Evidence count + notes -->
-              <div class="tag-row secondary">
-                <span id="evidence-count" class="evidence-count"
-                  >0 task · 0 important evidence</span
-                >
-                <input
-                  type="text"
-                  class="notes-inline"
-                  id="notes-input"
-                  placeholder="Notes (optional)"
-                />
-              </div>
-
-              <!-- Task Type + Attribution (visible when HasTask = TRUE) -->
-              <div class="tag-row conditional-fields hidden" id="task-fields">
-                <div class="tag-group">
+                <div class="tag-group compact hidden" id="task-type-group">
                   <label>Task Type</label>
                   <select id="task-type-select" class="tag-select">
                     <option value="">— Select —</option>
                     <option value="Action Request">Action Request (RfA)</option>
-                    <option value="Review / Approval">Review / Approval (RfA)</option>
-                    <option value="Scheduling Action">Scheduling Action (RfA)</option>
+                    <option value="Review / Approval">
+                      Review / Approval (RfA)
+                    </option>
+                    <option value="Scheduling Action">
+                      Scheduling Action (RfA)
+                    </option>
                     <option value="Delegation">Delegation (RfA)</option>
                     <option value="Question">Question (RfK)</option>
-                    <option value="Confirmation / Permission">Confirmation / Permission (RfK)</option>
-                    <option value="Availability / RSVP">Availability / RSVP (RfK)</option>
+                    <option value="Confirmation / Permission">
+                      Confirmation / Permission (RfK)
+                    </option>
+                    <option value="Availability / RSVP">
+                      Availability / RSVP (RfK)
+                    </option>
                     <option value="Status Request">Status Request (RfK)</option>
-                    <option value="Decision Request">Decision Request (RfK)</option>
+                    <option value="Decision Request">
+                      Decision Request (RfK)
+                    </option>
                     <option value="Follow-up">Follow-up (RfA/RfK)</option>
                   </select>
                 </div>
-                <div class="tag-group">
+
+                <div class="tag-group compact hidden" id="attribution-group">
                   <label>Attribution</label>
                   <select id="attribution-select" class="tag-select">
                     <option value="">— Select —</option>
@@ -320,25 +317,37 @@
                 </div>
               </div>
 
-              <!-- Navigation -->
-              <div class="nav-section">
-                <button
-                  class="nav-btn secondary"
-                  id="btn-prev"
-                  onclick="navigateConv(-1)"
+              <!-- Row 2: Evidence + Notes + Nav -->
+              <div class="tag-row-bottom">
+                <span id="evidence-count" class="evidence-count"
+                  >0 task · 0 important evidence</span
                 >
-                  ← Prev
-                </button>
-                <div class="shortcut-hint">
-                  ← → navigate &nbsp;|&nbsp; Enter = Save &amp; Next
+                <input
+                  type="text"
+                  class="notes-inline"
+                  id="notes-input"
+                  placeholder="Notes (optional)"
+                />
+                <div class="nav-group">
+                  <button
+                    class="nav-btn secondary"
+                    id="btn-prev"
+                    onclick="navigateConv(-1)"
+                  >
+                    ← Prev
+                  </button>
+                  <button
+                    class="nav-btn primary"
+                    id="btn-save-next"
+                    onclick="saveAndNext()"
+                  >
+                    Save & Next →
+                  </button>
                 </div>
-                <button
-                  class="nav-btn primary"
-                  id="btn-save-next"
-                  onclick="saveAndNext()"
-                >
-                  Save & Next →
-                </button>
+              </div>
+
+              <div class="shortcut-hint">
+                ← → navigate &nbsp;|&nbsp; Enter = Save &amp; Next
               </div>
             </div>
 

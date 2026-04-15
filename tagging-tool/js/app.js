@@ -367,9 +367,16 @@ async function renderCurrentConversation() {
     currentTagId = existing.id;
 
     // Restore task type + attribution dropdowns
-    document.getElementById("task-type-select").value = existing.task_type || "";
-    document.getElementById("attribution-select").value = existing.attribution || "";
-    document.getElementById("task-fields").classList.toggle("hidden", !existing.has_task);
+    document.getElementById("task-type-select").value =
+      existing.task_type || "";
+    document.getElementById("attribution-select").value =
+      existing.attribution || "";
+    document
+      .getElementById("task-type-group")
+      .classList.toggle("hidden", !existing.has_task);
+    document
+      .getElementById("attribution-group")
+      .classList.toggle("hidden", !existing.has_task);
 
     // Load evidence
     evidenceState = {};
@@ -502,7 +509,8 @@ function resetTagUI() {
   document.getElementById("notes-input").value = "";
   document.getElementById("task-type-select").value = "";
   document.getElementById("attribution-select").value = "";
-  document.getElementById("task-fields").classList.add("hidden");
+  document.getElementById("task-type-group").classList.add("hidden");
+  document.getElementById("attribution-group").classList.add("hidden");
 }
 
 // ---- Tag Actions ----
@@ -513,8 +521,8 @@ function setHasTask(value) {
   document.getElementById("btn-has-task-false").className =
     "toggle-btn" + (!value ? " active-false" : "");
   // Show/hide task type + attribution dropdowns
-  const fields = document.getElementById("task-fields");
-  if (fields) fields.classList.toggle("hidden", !value);
+  document.getElementById("task-type-group").classList.toggle("hidden", !value);
+  document.getElementById("attribution-group").classList.toggle("hidden", !value);
 }
 
 function setIsImportant(value) {
