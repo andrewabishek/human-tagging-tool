@@ -187,6 +187,24 @@
           </div>
 
           <div class="guideline-section">
+            <h3>Task Type (when TRUE)</h3>
+            <ul>
+              <li><strong>RfA</strong>: Action, Review, Schedule, Delegate</li>
+              <li><strong>RfK</strong>: Question, Confirm, RSVP, Status, Decision</li>
+              <li><strong>Follow-up</strong>: Re-surfaces prior ask</li>
+            </ul>
+          </div>
+
+          <div class="guideline-section">
+            <h3>Attribution (when TRUE)</h3>
+            <ul>
+              <li><strong>Explicit</strong>: @mention or named assignee</li>
+              <li><strong>Implicit</strong>: Name in text / 1:1 context</li>
+              <li><strong>Unassigned</strong>: "Can someone…" / broadcast</li>
+            </ul>
+          </div>
+
+          <div class="guideline-section">
             <h3>Evidence Selection</h3>
             <p style="font-size: 12px; color: var(--text-secondary)">
               Click the blue/orange buttons on messages that support your tag.
@@ -271,6 +289,35 @@
                   id="notes-input"
                   placeholder="Notes (optional)"
                 />
+              </div>
+
+              <!-- Task Type + Attribution (visible when HasTask = TRUE) -->
+              <div class="tag-row conditional-fields hidden" id="task-fields">
+                <div class="tag-group">
+                  <label>Task Type</label>
+                  <select id="task-type-select" class="tag-select">
+                    <option value="">— Select —</option>
+                    <option value="Action Request">Action Request (RfA)</option>
+                    <option value="Review / Approval">Review / Approval (RfA)</option>
+                    <option value="Scheduling Action">Scheduling Action (RfA)</option>
+                    <option value="Delegation">Delegation (RfA)</option>
+                    <option value="Question">Question (RfK)</option>
+                    <option value="Confirmation / Permission">Confirmation / Permission (RfK)</option>
+                    <option value="Availability / RSVP">Availability / RSVP (RfK)</option>
+                    <option value="Status Request">Status Request (RfK)</option>
+                    <option value="Decision Request">Decision Request (RfK)</option>
+                    <option value="Follow-up">Follow-up (RfA/RfK)</option>
+                  </select>
+                </div>
+                <div class="tag-group">
+                  <label>Attribution</label>
+                  <select id="attribution-select" class="tag-select">
+                    <option value="">— Select —</option>
+                    <option value="Explicit">Explicit (@mention)</option>
+                    <option value="Implicit">Implicit (name/context)</option>
+                    <option value="Unassigned">Unassigned (broadcast)</option>
+                  </select>
+                </div>
               </div>
 
               <!-- Navigation -->

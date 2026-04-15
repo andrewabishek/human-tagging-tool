@@ -5,6 +5,7 @@
 // ---- Constants ----
 const ADMIN_JUDGE = "Andrew Abishek";
 const JUDGES_PER_CONV = 2;
+const MAX_PER_JUDGE = 25;
 
 // ---- State ----
 let currentJudgeName = "";
@@ -293,21 +294,14 @@ async function autoAssignConversations(judgeName) {
 
     if (available.length === 0) return;
 
-    // Target: each judge gets ~(JUDGES_PER_CONV * total / numJudges) conversations
-    const existingJudges = new Set(allAssigns.map((a) => a.judge_name));
-    const totalJudges =
-      existingJudges.size + (existingJudges.has(judgeName) ? 0 : 1);
-    const targetPerJudge = Math.ceil(
-      (allConvs.length * JUDGES_PER_CONV) / totalJudges,
-    );
-
-    // Prioritize conversations with 0 assignments
+    // Cap at MAX_PER_JUDGE conversations per judge
+    // Prioritize conversations with 0 assignments, then 1
     const zeroAssign = available.filter(
       (c) => convInfo[c.id].assignCount === 0,
     );
     const oneAssign = available.filter((c) => convInfo[c.id].assignCount === 1);
     const sorted = [...zeroAssign, ...oneAssign];
-    const toAssign = sorted.slice(0, Math.min(targetPerJudge, sorted.length));
+    const toAssign = sorted.slice(0, Math.min(MAX_PER_JUDGE, sorted.length));
 
     if (toAssign.length > 0) {
       const newAssigns = toAssign.map((c) => ({
@@ -371,6 +365,11 @@ async function renderCurrentConversation() {
       "toggle-btn" + (!existing.is_important ? " active-false" : "");
     document.getElementById("notes-input").value = existing.notes || "";
     currentTagId = existing.id;
+
+    // Restore task type + attribution dropdowns
+    document.getElementById("task-type-select").value = existing.task_type || "";
+    document.getElementById("attribution-select").value = existing.attribution || "";
+    document.getElementById("task-fields").classList.toggle("hidden", !existing.has_task);
 
     // Load evidence
     evidenceState = {};
@@ -501,6 +500,9 @@ function resetTagUI() {
   document.getElementById("btn-important-true").className = "toggle-btn";
   document.getElementById("btn-important-false").className = "toggle-btn";
   document.getElementById("notes-input").value = "";
+  document.getElementById("task-type-select").value = "";
+  document.getElementById("attribution-select").value = "";
+  document.getElementById("task-fields").classList.add("hidden");
 }
 
 // ---- Tag Actions ----
@@ -510,6 +512,9 @@ function setHasTask(value) {
     "toggle-btn" + (value ? " active-true" : "");
   document.getElementById("btn-has-task-false").className =
     "toggle-btn" + (!value ? " active-false" : "");
+  // Show/hide task type + attribution dropdowns
+  const fields = document.getElementById("task-fields");
+  if (fields) fields.classList.toggle("hidden", !value);
 }
 
 function setIsImportant(value) {
@@ -569,6 +574,20 @@ async function saveAndNext() {
     return;
   }
 
+  // Validate task_type + attribution when HasTask = TRUE
+  const taskType = document.getElementById("task-type-select").value;
+  const attribution = document.getElementById("attribution-select").value;
+  if (hasTask) {
+    if (!taskType) {
+      showToast("Please select Task Type", "error");
+      return;
+    }
+    if (!attribution) {
+      showToast("Please select Attribution", "error");
+      return;
+    }
+  }
+
   const notes = document.getElementById("notes-input").value.trim();
 
   // Save conversation tag
@@ -577,6 +596,8 @@ async function saveAndNext() {
     judge_name: currentJudgeName,
     has_task: hasTask,
     is_important: isImportant,
+    task_type: hasTask ? taskType : null,
+    attribution: hasTask ? attribution : null,
     notes: notes || null,
     updated_at: new Date().toISOString(),
   };
@@ -670,6 +691,8 @@ function exportCSV() {
     "chat_type",
     "source_row_index",
     "has_task",
+    "task_type",
+    "attribution",
     "is_important",
     "notes",
     "task_evidence_msg_indices",
@@ -695,6 +718,8 @@ function exportCSV() {
       conv.chat_type || "",
       conv.source_row_index,
       tag.has_task !== undefined ? tag.has_task : "",
+      csvEscape(tag.task_type || ""),
+      csvEscape(tag.attribution || ""),
       tag.is_important !== undefined ? tag.is_important : "",
       csvEscape(tag.notes || ""),
       taskEv.join(";"),
@@ -726,6 +751,8 @@ function exportJSON() {
       topic: conv.topic,
       chat_type: conv.chat_type,
       has_task: tag.has_task ?? null,
+      task_type: tag.task_type || null,
+      attribution: tag.attribution || null,
       is_important: tag.is_important ?? null,
       notes: tag.notes || null,
       judge_name: currentJudgeName,
@@ -1000,7 +1027,7 @@ async function loadAdminDashboard() {
     if (disagreements.length > 0) {
       html += `<h3>Disagreements</h3>
         <table class="admin-table">
-          <thead><tr><th>#</th><th>Topic</th><th>Judge</th><th>HasTask</th><th>IsImportant</th><th>GT</th></tr></thead>
+          <thead><tr><th>#</th><th>Topic</th><th>Judge</th><th>HasTask</th><th>Type</th><th>Attribution</th><th>IsImportant</th><th>GT</th></tr></thead>
           <tbody>`;
       disagreements.forEach((d) => {
         d.tags.forEach((t, i) => {
@@ -1009,6 +1036,8 @@ async function loadAdminDashboard() {
             <td>${i === 0 ? d.conv.topic || "-" : ""}</td>
             <td>${t.judge_name}</td>
             <td>${t.has_task ? "✓" : "✗"}</td>
+            <td>${t.task_type || "-"}</td>
+            <td>${t.attribution || "-"}</td>
             <td>${t.is_important ? "✓" : "✗"}</td>
             <td>${i === 0 ? (d.conv.ground_truth_has_task === null ? "-" : d.conv.ground_truth_has_task ? "✓" : "✗") : ""}</td>
           </tr>`;
@@ -1027,7 +1056,7 @@ async function loadAdminDashboard() {
       const tagSummary = tgs
         .map(
           (t) =>
-            `${t.judge_name.split(" ")[0]}:${t.has_task ? "T" : "F"}/${t.is_important ? "I" : "-"}`,
+            `${t.judge_name.split(" ")[0]}:${t.has_task ? "T" : "F"}/${t.is_important ? "I" : "-"}${t.task_type ? "/" + t.task_type.split(" ")[0] : ""}`,
         )
         .join(", ");
       html += `<tr>

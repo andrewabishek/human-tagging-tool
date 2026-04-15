@@ -411,6 +411,31 @@ body {
   margin-bottom: 10px;
 }
 
+.tag-row.conditional-fields {
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.tag-select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.tag-select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+  margin-bottom: 10px;
+}
+
 .tag-group {
   flex: 1;
 }
