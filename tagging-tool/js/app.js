@@ -362,6 +362,10 @@ async function renderCurrentConversation() {
   currentConvMessages = await getMessagesByConversation(conv.id);
   renderMessages();
 
+  // Populate assignee picker from speakers in this conversation
+  const speakerNames = [...new Set(currentConvMessages.map((m) => m.speaker_name))];
+  populateAssigneePicker(speakerNames);
+
   // Restore tag state
   const existing = judgeTags[conv.id];
   if (existing) {
@@ -387,6 +391,17 @@ async function renderCurrentConversation() {
     document
       .getElementById("attribution-group")
       .classList.toggle("hidden", !existing.has_task);
+    document
+      .getElementById("assignee-group")
+      .classList.toggle("hidden", !existing.has_task);
+
+    // Restore assignees
+    try {
+      const assignees = existing.task_assignees ? JSON.parse(existing.task_assignees) : [];
+      setSelectedAssignees(assignees);
+    } catch (e) {
+      setSelectedAssignees([]);
+    }
 
     // Load evidence
     evidenceState = {};
@@ -404,6 +419,7 @@ async function renderCurrentConversation() {
     resetTagUI();
     evidenceState = {};
     currentTagId = null;
+    setSelectedAssignees([]);
   }
 
   updateEvidenceHighlights();
@@ -451,6 +467,106 @@ function highlightNames(text, speakerNames) {
 
   return safe;
 }
+
+// ---- Assignee Picker ----
+
+let selectedAssignees = new Set();
+
+function populateAssigneePicker(speakerNames) {
+  const dropdown = document.getElementById("assignee-dropdown");
+  dropdown.innerHTML = "";
+
+  // Add "Everyone / Broadcast" option first
+  const allNames = ["Everyone (Broadcast)", ...speakerNames];
+
+  allNames.forEach((name) => {
+    const item = document.createElement("label");
+    item.className = "assignee-option";
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.value = name;
+    cb.checked = selectedAssignees.has(name);
+    cb.addEventListener("change", () => {
+      if (cb.checked) {
+        selectedAssignees.add(name);
+      } else {
+        selectedAssignees.delete(name);
+      }
+      renderAssigneePills();
+    });
+    const span = document.createElement("span");
+    span.textContent = name;
+    item.appendChild(cb);
+    item.appendChild(span);
+    dropdown.appendChild(item);
+  });
+}
+
+function renderAssigneePills() {
+  const container = document.getElementById("assignee-selected");
+  container.innerHTML = "";
+
+  if (selectedAssignees.size === 0) {
+    const ph = document.createElement("span");
+    ph.className = "assignee-placeholder";
+    ph.textContent = "Select people…";
+    container.appendChild(ph);
+    return;
+  }
+
+  selectedAssignees.forEach((name) => {
+    const pill = document.createElement("span");
+    pill.className = "assignee-pill";
+    pill.textContent = name;
+    const x = document.createElement("span");
+    x.className = "assignee-pill-x";
+    x.textContent = "×";
+    x.addEventListener("click", (e) => {
+      e.stopPropagation();
+      selectedAssignees.delete(name);
+      renderAssigneePills();
+      // Uncheck in dropdown
+      const dropdown = document.getElementById("assignee-dropdown");
+      const cbs = dropdown.querySelectorAll('input[type="checkbox"]');
+      cbs.forEach((cb) => {
+        if (cb.value === name) cb.checked = false;
+      });
+    });
+    pill.appendChild(x);
+    container.appendChild(pill);
+  });
+}
+
+function getSelectedAssignees() {
+  return [...selectedAssignees];
+}
+
+function setSelectedAssignees(names) {
+  selectedAssignees = new Set(names || []);
+  renderAssigneePills();
+  // Sync checkboxes
+  const dropdown = document.getElementById("assignee-dropdown");
+  if (dropdown) {
+    const cbs = dropdown.querySelectorAll('input[type="checkbox"]');
+    cbs.forEach((cb) => {
+      cb.checked = selectedAssignees.has(cb.value);
+    });
+  }
+}
+
+// Toggle dropdown on click
+document.addEventListener("click", (e) => {
+  const picker = document.getElementById("assignee-picker");
+  const dropdown = document.getElementById("assignee-dropdown");
+  const selected = document.getElementById("assignee-selected");
+  if (!picker || !dropdown) return;
+
+  if (selected && selected.contains(e.target)) {
+    dropdown.classList.toggle("hidden");
+  } else if (!picker.contains(e.target)) {
+    dropdown.classList.add("hidden");
+  }
+});
 
 function renderMessages() {
   const container = document.getElementById("conversation-messages");
@@ -562,6 +678,8 @@ function resetTagUI() {
   document.getElementById("attribution-select").value = "";
   document.getElementById("task-type-group").classList.add("hidden");
   document.getElementById("attribution-group").classList.add("hidden");
+  document.getElementById("assignee-group").classList.add("hidden");
+  setSelectedAssignees([]);
 }
 
 // ---- Tag Actions ----
@@ -571,10 +689,13 @@ function setHasTask(value) {
     "toggle-btn" + (value ? " active-true" : "");
   document.getElementById("btn-has-task-false").className =
     "toggle-btn" + (!value ? " active-false" : "");
-  // Show/hide task type + attribution dropdowns
+  // Show/hide task type + attribution + assignee dropdowns
   document.getElementById("task-type-group").classList.toggle("hidden", !value);
   document
     .getElementById("attribution-group")
+    .classList.toggle("hidden", !value);
+  document
+    .getElementById("assignee-group")
     .classList.toggle("hidden", !value);
 }
 
@@ -635,9 +756,10 @@ async function saveAndNext() {
     return;
   }
 
-  // Validate task_type + attribution when HasTask = TRUE
+  // Validate task_type + attribution + assignees when HasTask = TRUE
   const taskType = document.getElementById("task-type-select").value;
   const attribution = document.getElementById("attribution-select").value;
+  const assignees = getSelectedAssignees();
   if (hasTask) {
     if (!taskType) {
       showToast("Please select Task Type", "error");
@@ -645,6 +767,10 @@ async function saveAndNext() {
     }
     if (!attribution) {
       showToast("Please select Attribution", "error");
+      return;
+    }
+    if (assignees.length === 0) {
+      showToast("Please select who the task is assigned to", "error");
       return;
     }
   }
@@ -659,6 +785,7 @@ async function saveAndNext() {
     is_important: isImportant,
     task_type: hasTask ? taskType : null,
     attribution: hasTask ? attribution : null,
+    task_assignees: hasTask ? JSON.stringify(assignees) : null,
     notes: notes || null,
     updated_at: new Date().toISOString(),
   };
@@ -754,6 +881,7 @@ function exportCSV() {
     "has_task",
     "task_type",
     "attribution",
+    "task_assignees",
     "is_important",
     "notes",
     "task_evidence_msg_indices",
@@ -781,6 +909,7 @@ function exportCSV() {
       tag.has_task !== undefined ? tag.has_task : "",
       csvEscape(tag.task_type || ""),
       csvEscape(tag.attribution || ""),
+      csvEscape(tag.task_assignees || ""),
       tag.is_important !== undefined ? tag.is_important : "",
       csvEscape(tag.notes || ""),
       taskEv.join(";"),
@@ -814,6 +943,7 @@ function exportJSON() {
       has_task: tag.has_task ?? null,
       task_type: tag.task_type || null,
       attribution: tag.attribution || null,
+      task_assignees: tag.task_assignees ? JSON.parse(tag.task_assignees) : null,
       is_important: tag.is_important ?? null,
       notes: tag.notes || null,
       judge_name: currentJudgeName,
@@ -1088,10 +1218,11 @@ async function loadAdminDashboard() {
     if (disagreements.length > 0) {
       html += `<h3>Disagreements</h3>
         <table class="admin-table">
-          <thead><tr><th>#</th><th>Topic</th><th>Judge</th><th>HasTask</th><th>Type</th><th>Attribution</th><th>IsImportant</th><th>GT</th></tr></thead>
+          <thead><tr><th>#</th><th>Topic</th><th>Judge</th><th>HasTask</th><th>Type</th><th>Attribution</th><th>Assigned To</th><th>IsImportant</th><th>GT</th></tr></thead>
           <tbody>`;
       disagreements.forEach((d) => {
         d.tags.forEach((t, i) => {
+          const assigneesStr = t.task_assignees ? JSON.parse(t.task_assignees).join(", ") : "-";
           html += `<tr${i === 0 ? ' class="disagreement-first"' : ""}>
             <td>${i === 0 ? d.conv.source_row_index + 1 : ""}</td>
             <td>${i === 0 ? d.conv.topic || "-" : ""}</td>
@@ -1099,6 +1230,7 @@ async function loadAdminDashboard() {
             <td>${t.has_task ? "✓" : "✗"}</td>
             <td>${t.task_type || "-"}</td>
             <td>${t.attribution || "-"}</td>
+            <td>${assigneesStr}</td>
             <td>${t.is_important ? "✓" : "✗"}</td>
             <td>${i === 0 ? (d.conv.ground_truth_has_task === null ? "-" : d.conv.ground_truth_has_task ? "✓" : "✗") : ""}</td>
           </tr>`;

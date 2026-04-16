@@ -207,6 +207,15 @@
           </div>
 
           <div class="guideline-section">
+            <h3>Assigned To (when TRUE)</h3>
+            <p style="font-size: 12px; color: var(--text-secondary)">
+              Select <strong>who</strong> the task is directed at.
+              Multi-select from conversation participants.
+              Use "Everyone" for broadcast asks.
+            </p>
+          </div>
+
+          <div class="guideline-section">
             <h3>Evidence Selection</h3>
             <p style="font-size: 12px; color: var(--text-secondary)">
               Click the blue/orange buttons on messages that support your tag.
@@ -314,6 +323,18 @@
                     <option value="Implicit">Implicit (name/context)</option>
                     <option value="Unassigned">Unassigned (broadcast)</option>
                   </select>
+                </div>
+
+                <div class="tag-group compact hidden" id="assignee-group">
+                  <label>Assigned To</label>
+                  <div class="assignee-picker" id="assignee-picker">
+                    <div class="assignee-selected" id="assignee-selected" tabindex="0">
+                      <span class="assignee-placeholder">Select people…</span>
+                    </div>
+                    <div class="assignee-dropdown hidden" id="assignee-dropdown">
+                      <!-- Populated by JS from conversation speakers -->
+                    </div>
+                  </div>
                 </div>
               </div>
 
