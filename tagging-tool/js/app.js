@@ -519,7 +519,8 @@ function displayName(name) {
 function getInitials(name) {
   const display = displayName(name);
   const parts = display.split(/\s+/).filter(Boolean);
-  if (parts.length >= 2) return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  if (parts.length >= 2)
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
   return display.substring(0, 2).toUpperCase();
 }
 
