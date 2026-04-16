@@ -1308,7 +1308,7 @@ async function loadAdminDashboard() {
       <table class="admin-table compact">
         <thead><tr><th>#</th><th>Topic</th><th>GT</th><th>Action</th><th>Commit</th><th>Knowledge</th><th>Tags</th></tr></thead>
         <tbody>`;
-    conversations.slice(0, 50).forEach((c) => {
+    conversations.forEach((c) => {
       const tgs = convTagMap[c.id] || [];
       const tagSummary = tgs
         .map(
@@ -1326,8 +1326,6 @@ async function loadAdminDashboard() {
         <td>${tagSummary || "-"}</td>
       </tr>`;
     });
-    if (conversations.length > 50)
-      html += `<tr><td colspan="7" style="text-align:center;color:var(--text-muted);">...and ${conversations.length - 50} more</td></tr>`;
     html += `</tbody></table>`;
 
     content.innerHTML = html;
