@@ -472,10 +472,55 @@ function highlightNames(text, speakerNames) {
 
 let selectedAssignees = new Set();
 
-// Format "sarahmitchell" → "Sarahmitchell" for display
+// Known speaker → display name mapping
+const DISPLAY_NAMES = {
+  droliviachen: "Dr. Olivia Chen",
+  aliciaramirez: "Alicia Ramirez",
+  emilychen: "Emily Chen",
+  jessicachen: "Jessica Chen",
+  julianpark: "Julian Park",
+  jacoblin: "Jacob Lin",
+  emmathompson: "Emma Thompson",
+  jennasullivan: "Jenna Sullivan",
+  mayachen: "Maya Chen",
+  jasminenguyen: "Jasmine Nguyen",
+  sarahmitchell: "Sarah Mitchell",
+  davidpark: "David Park",
+  alexkumar: "Alex Kumar",
+  amandafoster: "Amanda Foster",
+  chrisevans: "Chris Evans",
+  daniellebooks: "Danielle Books",
+  daniellewright: "Danielle Wright",
+  derekjohnson: "Derek Johnson",
+  jameswilson: "James Wilson",
+  kevinzhang: "Kevin Zhang",
+  laurakim: "Laura Kim",
+  lisaanderson: "Lisa Anderson",
+  lisanakamura: "Lisa Nakamura",
+  mariagonzalez: "Maria Gonzalez",
+  mariasantos: "Maria Santos",
+  michaelchen: "Michael Chen",
+  ninacosta: "Nina Costa",
+  priyasharma: "Priya Sharma",
+  racheltorres: "Rachel Torres",
+  sofiaramirez: "Sofia Ramirez",
+  sofiarodriguez: "Sofia Rodriguez",
+  ecosyncbot: "EcoSync Bot",
+};
+
 function displayName(name) {
   if (!name || name.startsWith("Everyone")) return name;
+  const key = name.toLowerCase();
+  if (DISPLAY_NAMES[key]) return DISPLAY_NAMES[key];
+  // Fallback: capitalize first letter
   return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
+function getInitials(name) {
+  const display = displayName(name);
+  const parts = display.split(/\s+/).filter(Boolean);
+  if (parts.length >= 2) return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  return display.substring(0, 2).toUpperCase();
 }
 
 function populateAssigneePicker(speakerNames) {
@@ -500,9 +545,23 @@ function populateAssigneePicker(speakerNames) {
       }
       renderAssigneePills();
     });
+
+    // Avatar circle
+    const avatar = document.createElement("span");
+    if (name.startsWith("Everyone")) {
+      avatar.className = "assignee-avatar broadcast";
+      avatar.textContent = "👥";
+    } else {
+      avatar.className = "assignee-avatar";
+      avatar.textContent = getInitials(name);
+    }
+
     const span = document.createElement("span");
+    span.className = "assignee-name";
     span.textContent = displayName(name);
+
     item.appendChild(cb);
+    item.appendChild(avatar);
     item.appendChild(span);
     dropdown.appendChild(item);
   });
