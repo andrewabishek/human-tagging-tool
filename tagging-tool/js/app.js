@@ -359,7 +359,9 @@ async function renderCurrentConversation() {
   renderMessages();
 
   // Populate assignee picker from speakers in this conversation
-  const speakerNames = [...new Set(currentConvMessages.map((m) => m.speaker_name))];
+  const speakerNames = [
+    ...new Set(currentConvMessages.map((m) => m.speaker_name)),
+  ];
   populateAssigneePicker(speakerNames);
 
   // Restore tag state
@@ -393,7 +395,9 @@ async function renderCurrentConversation() {
 
     // Restore assignees
     try {
-      const assignees = existing.task_assignees ? JSON.parse(existing.task_assignees) : [];
+      const assignees = existing.task_assignees
+        ? JSON.parse(existing.task_assignees)
+        : [];
       setSelectedAssignees(assignees);
     } catch (e) {
       setSelectedAssignees([]);
@@ -468,6 +472,12 @@ function highlightNames(text, speakerNames) {
 
 let selectedAssignees = new Set();
 
+// Format "sarahmitchell" → "Sarahmitchell" for display
+function displayName(name) {
+  if (!name || name.startsWith("Everyone")) return name;
+  return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
 function populateAssigneePicker(speakerNames) {
   const dropdown = document.getElementById("assignee-dropdown");
   dropdown.innerHTML = "";
@@ -491,7 +501,7 @@ function populateAssigneePicker(speakerNames) {
       renderAssigneePills();
     });
     const span = document.createElement("span");
-    span.textContent = name;
+    span.textContent = displayName(name);
     item.appendChild(cb);
     item.appendChild(span);
     dropdown.appendChild(item);
@@ -513,7 +523,7 @@ function renderAssigneePills() {
   selectedAssignees.forEach((name) => {
     const pill = document.createElement("span");
     pill.className = "assignee-pill";
-    pill.textContent = name;
+    pill.textContent = displayName(name);
     const x = document.createElement("span");
     x.className = "assignee-pill-x";
     x.textContent = "×";
@@ -690,9 +700,7 @@ function setHasTask(value) {
   document
     .getElementById("attribution-group")
     .classList.toggle("hidden", !value);
-  document
-    .getElementById("assignee-group")
-    .classList.toggle("hidden", !value);
+  document.getElementById("assignee-group").classList.toggle("hidden", !value);
 }
 
 function setIsImportant(value) {
@@ -939,7 +947,9 @@ function exportJSON() {
       has_task: tag.has_task ?? null,
       task_type: tag.task_type || null,
       attribution: tag.attribution || null,
-      task_assignees: tag.task_assignees ? JSON.parse(tag.task_assignees) : null,
+      task_assignees: tag.task_assignees
+        ? JSON.parse(tag.task_assignees)
+        : null,
       is_important: tag.is_important ?? null,
       notes: tag.notes || null,
       judge_name: currentJudgeName,
@@ -1214,7 +1224,9 @@ async function loadAdminDashboard() {
           <tbody>`;
       disagreements.forEach((d) => {
         d.tags.forEach((t, i) => {
-          const assigneesStr = t.task_assignees ? JSON.parse(t.task_assignees).join(", ") : "-";
+          const assigneesStr = t.task_assignees
+            ? JSON.parse(t.task_assignees).join(", ")
+            : "-";
           html += `<tr${i === 0 ? ' class="disagreement-first"' : ""}>
             <td>${i === 0 ? d.conv.source_row_index + 1 : ""}</td>
             <td>${i === 0 ? d.conv.topic || "-" : ""}</td>
