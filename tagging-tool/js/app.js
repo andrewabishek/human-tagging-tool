@@ -259,11 +259,7 @@ async function autoAssignConversations(judgeName) {
       const info = convInfo[cid];
       if (info.tags.length >= 2 && !info.assignedTo.includes(judgeName)) {
         const htVals = info.tags.map((t) => t.has_task);
-        const iiVals = info.tags.map((t) => t.is_important);
-        if (
-          htVals.some((v) => v !== htVals[0]) ||
-          iiVals.some((v) => v !== iiVals[0])
-        ) {
+        if (htVals.some((v) => v !== htVals[0])) {
           tiebreakerIds.push(parseInt(cid));
         }
       }
@@ -1131,16 +1127,12 @@ async function loadAdminDashboard() {
       convTagMap[t.conversation_id].push(t);
     });
 
-    // Disagreements
+    // Disagreements (only on has_task — is_important uses union: any TRUE = TRUE)
     const disagreements = [];
     Object.entries(convTagMap).forEach(([cid, tgs]) => {
       if (tgs.length >= 2) {
         const htVals = tgs.map((t) => t.has_task);
-        const iiVals = tgs.map((t) => t.is_important);
-        if (
-          htVals.some((v) => v !== htVals[0]) ||
-          iiVals.some((v) => v !== iiVals[0])
-        ) {
+        if (htVals.some((v) => v !== htVals[0])) {
           const conv = conversations.find((c) => c.id === parseInt(cid));
           disagreements.push({ conv, tags: tgs });
         }
