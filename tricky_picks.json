@@ -1,0 +1,458 @@
+{
+  "utkarsh_picks": [
+    {
+      "conv_id": 57,
+      "idx": 57,
+      "topic": "Q2 Kickoff Planning"
+    },
+    {
+      "conv_id": 79,
+      "idx": 79,
+      "topic": "Engineering Standup Thread"
+    },
+    {
+      "conv_id": 80,
+      "idx": 80,
+      "topic": "Casual Check-in with CTO"
+    },
+    {
+      "conv_id": 87,
+      "idx": 87,
+      "topic": "System Maintenance \u2014 Complete"
+    },
+    {
+      "conv_id": 51,
+      "idx": 51,
+      "topic": "Migration Follow-ups"
+    },
+    {
+      "conv_id": 52,
+      "idx": 52,
+      "topic": "Contoso Enterprise Agreement Review"
+    },
+    {
+      "conv_id": 56,
+      "idx": 56,
+      "topic": "Employee Relations & Policy Updates"
+    },
+    {
+      "conv_id": 63,
+      "idx": 63,
+      "topic": "Meridian Technologies Q1 All-Hands"
+    },
+    {
+      "conv_id": 26,
+      "idx": 26,
+      "topic": "PR #852 \u2014 Connection Pool Fix Review"
+    },
+    {
+      "conv_id": 30,
+      "idx": 30,
+      "topic": "Salesforce Down \u2014 Impact & Workaround"
+    }
+  ],
+  "all_tricky_ranked": [
+    {
+      "conv_id": 57,
+      "idx": 57,
+      "topic": "Q2 Kickoff Planning",
+      "score": 15
+    },
+    {
+      "conv_id": 79,
+      "idx": 79,
+      "topic": "Engineering Standup Thread",
+      "score": 12
+    },
+    {
+      "conv_id": 80,
+      "idx": 80,
+      "topic": "Casual Check-in with CTO",
+      "score": 11
+    },
+    {
+      "conv_id": 87,
+      "idx": 87,
+      "topic": "System Maintenance \u2014 Complete",
+      "score": 10
+    },
+    {
+      "conv_id": 3,
+      "idx": 3,
+      "topic": "Production Incident \u2014 API Gateway Outage",
+      "score": 7
+    },
+    {
+      "conv_id": 51,
+      "idx": 51,
+      "topic": "Migration Follow-ups",
+      "score": 7
+    },
+    {
+      "conv_id": 52,
+      "idx": 52,
+      "topic": "Contoso Enterprise Agreement Review",
+      "score": 7
+    },
+    {
+      "conv_id": 56,
+      "idx": 56,
+      "topic": "Employee Relations & Policy Updates",
+      "score": 7
+    },
+    {
+      "conv_id": 63,
+      "idx": 63,
+      "topic": "Meridian Technologies Q1 All-Hands",
+      "score": 7
+    },
+    {
+      "conv_id": 26,
+      "idx": 26,
+      "topic": "PR #852 \u2014 Connection Pool Fix Review",
+      "score": 6
+    },
+    {
+      "conv_id": 30,
+      "idx": 30,
+      "topic": "Salesforce Down \u2014 Impact & Workaround",
+      "score": 6
+    },
+    {
+      "conv_id": 1,
+      "idx": 1,
+      "topic": "Q2 Product Strategy & Board Prep",
+      "score": 5
+    },
+    {
+      "conv_id": 2,
+      "idx": 2,
+      "topic": "Q2 Hiring Budget Approval",
+      "score": 5
+    },
+    {
+      "conv_id": 4,
+      "idx": 4,
+      "topic": "API v3 Migration \u2014 Code Review",
+      "score": 5
+    },
+    {
+      "conv_id": 47,
+      "idx": 47,
+      "topic": "GlobalTech & Pinnacle \u2014 Customer Escalation Review",
+      "score": 5
+    },
+    {
+      "conv_id": 53,
+      "idx": 53,
+      "topic": "Campaign Launch Coordination",
+      "score": 5
+    },
+    {
+      "conv_id": 59,
+      "idx": 59,
+      "topic": "Q1 Close & Audit Prep Follow-ups",
+      "score": 5
+    },
+    {
+      "conv_id": 61,
+      "idx": 61,
+      "topic": "Dev Tooling Frustrations",
+      "score": 5
+    },
+    {
+      "conv_id": 64,
+      "idx": 64,
+      "topic": "Deal Pipeline & Forecast Review",
+      "score": 5
+    },
+    {
+      "conv_id": 67,
+      "idx": 67,
+      "topic": "At-Risk Account Reviews",
+      "score": 5
+    },
+    {
+      "conv_id": 72,
+      "idx": 72,
+      "topic": "Blog Post Review & Approval",
+      "score": 5
+    },
+    {
+      "conv_id": 75,
+      "idx": 75,
+      "topic": "Quick Legal Questions",
+      "score": 5
+    },
+    {
+      "conv_id": 78,
+      "idx": 78,
+      "topic": "System Notifications Discussion",
+      "score": 5
+    },
+    {
+      "conv_id": 81,
+      "idx": 81,
+      "topic": "Data Export & Call Scheduling",
+      "score": 5
+    },
+    {
+      "conv_id": 83,
+      "idx": 83,
+      "topic": "EOQ Cleanup Tasks",
+      "score": 4
+    },
+    {
+      "conv_id": 5,
+      "idx": 5,
+      "topic": "Contoso Enterprise Deal \u2014 At Risk",
+      "score": 3
+    },
+    {
+      "conv_id": 6,
+      "idx": 6,
+      "topic": "Q2 Org Restructuring \u2014 Confidential",
+      "score": 3
+    },
+    {
+      "conv_id": 7,
+      "idx": 7,
+      "topic": "Spring Campaign \u2014 Content and Assets",
+      "score": 3
+    },
+    {
+      "conv_id": 9,
+      "idx": 9,
+      "topic": "Pinnacle Logistics \u2014 P1 Support Escalation",
+      "score": 3
+    },
+    {
+      "conv_id": 10,
+      "idx": 10,
+      "topic": "CDN Migration \u2014 Deployment Blocked",
+      "score": 3
+    },
+    {
+      "conv_id": 11,
+      "idx": 11,
+      "topic": "Northwind Traders NDA Review",
+      "score": 3
+    },
+    {
+      "conv_id": 12,
+      "idx": 12,
+      "topic": "Release Blocker \u2014 Dashboard Rendering Bug",
+      "score": 3
+    },
+    {
+      "conv_id": 13,
+      "idx": 13,
+      "topic": "Office Equipment & Software Procurement",
+      "score": 3
+    },
+    {
+      "conv_id": 14,
+      "idx": 14,
+      "topic": "Customer Testimonial \u2014 Pinnacle Logistics",
+      "score": 3
+    },
+    {
+      "conv_id": 15,
+      "idx": 15,
+      "topic": "Engineering Platform Investment \u2014 Build vs Buy",
+      "score": 3
+    },
+    {
+      "conv_id": 44,
+      "idx": 44,
+      "topic": "Postmortem \u2014 API Gateway Incident (Jan 16)",
+      "score": 3
+    },
+    {
+      "conv_id": 45,
+      "idx": 45,
+      "topic": "H2 Product Strategy Offsite",
+      "score": 3
+    },
+    {
+      "conv_id": 46,
+      "idx": 46,
+      "topic": "H1 Performance Calibration \u2014 Engineering & Sales",
+      "score": 3
+    },
+    {
+      "conv_id": 48,
+      "idx": 48,
+      "topic": "Budget Committee \u2014 Q2 Spend Approvals",
+      "score": 3
+    },
+    {
+      "conv_id": 49,
+      "idx": 49,
+      "topic": "Engineering Weekly Standup",
+      "score": 3
+    },
+    {
+      "conv_id": 50,
+      "idx": 50,
+      "topic": "Q1 All-Hands Follow-up",
+      "score": 3
+    },
+    {
+      "conv_id": 29,
+      "idx": 29,
+      "topic": "Spring Campaign \u2014 Creative Review",
+      "score": 2
+    },
+    {
+      "conv_id": 37,
+      "idx": 37,
+      "topic": "Observability Vendor Evaluation \u2014 Datadog vs New Relic",
+      "score": 2
+    },
+    {
+      "conv_id": 54,
+      "idx": 54,
+      "topic": "Q2 Planning Edge Cases",
+      "score": 2
+    },
+    {
+      "conv_id": 60,
+      "idx": 60,
+      "topic": "Meridian Analytics Pro \u2014 Launch Go/No-Go",
+      "score": 2
+    },
+    {
+      "conv_id": 62,
+      "idx": 62,
+      "topic": "Product Roadmap Alignment",
+      "score": 2
+    },
+    {
+      "conv_id": 65,
+      "idx": 65,
+      "topic": "General - Friday Vibes & Housekeeping",
+      "score": 2
+    },
+    {
+      "conv_id": 71,
+      "idx": 71,
+      "topic": "PRODUCTION DOWN \u2014 API Gateway Failure",
+      "score": 2
+    },
+    {
+      "conv_id": 73,
+      "idx": 73,
+      "topic": "Vendor Selection for Analytics Platform",
+      "score": 2
+    },
+    {
+      "conv_id": 76,
+      "idx": 76,
+      "topic": "Design Review Feedback",
+      "score": 2
+    },
+    {
+      "conv_id": 8,
+      "idx": 8,
+      "topic": "SOC 2 Audit Preparation",
+      "score": 1
+    },
+    {
+      "conv_id": 41,
+      "idx": 41,
+      "topic": "Sprint 15 Planning",
+      "score": 1
+    },
+    {
+      "conv_id": 42,
+      "idx": 42,
+      "topic": "Q1 QBR \u2014 Sales & Revenue Review",
+      "score": 1
+    },
+    {
+      "conv_id": 43,
+      "idx": 43,
+      "topic": "Board Deck Final Review \u2014 Dry Run",
+      "score": 1
+    },
+    {
+      "conv_id": 58,
+      "idx": 58,
+      "topic": "Security Incident Postmortem \u2014 March 28 Breach Attempt",
+      "score": 1
+    },
+    {
+      "conv_id": 66,
+      "idx": 66,
+      "topic": "Q1 Sales Quarterly Business Review",
+      "score": 1
+    },
+    {
+      "conv_id": 69,
+      "idx": 69,
+      "topic": "Quick Ask",
+      "score": 1
+    },
+    {
+      "conv_id": 70,
+      "idx": 70,
+      "topic": "Meeting Room",
+      "score": 1
+    },
+    {
+      "conv_id": 74,
+      "idx": 74,
+      "topic": "Sprint 47 Retrospective",
+      "score": 1
+    },
+    {
+      "conv_id": 77,
+      "idx": 77,
+      "topic": "Q2 Budget Review Meeting",
+      "score": 1
+    },
+    {
+      "conv_id": 90,
+      "idx": 90,
+      "topic": "VPN Setup Help",
+      "score": 1
+    },
+    {
+      "conv_id": 91,
+      "idx": 91,
+      "topic": "Expense Report Question",
+      "score": 1
+    },
+    {
+      "conv_id": 98,
+      "idx": 98,
+      "topic": "Meeting Link",
+      "score": 1
+    },
+    {
+      "conv_id": 103,
+      "idx": 103,
+      "topic": "Product Demo \u2014 Internal Preview",
+      "score": 1
+    },
+    {
+      "conv_id": 107,
+      "idx": 107,
+      "topic": "WiFi Password",
+      "score": 1
+    },
+    {
+      "conv_id": 109,
+      "idx": 109,
+      "topic": "Git Branch Question",
+      "score": 1
+    },
+    {
+      "conv_id": 112,
+      "idx": 112,
+      "topic": "Quick Status Check",
+      "score": 1
+    }
+  ]
+}

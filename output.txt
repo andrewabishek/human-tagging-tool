@@ -1,0 +1,319 @@
+=== HUMAN TAGS: 89 ===
+  #1 [OneOnOne] Q2 Product Strategy & Board Prep
+    GT=True | Judge=Andrew Abishek | HasTask=True | Important=True | Type='Follow-up' | Attr='Implicit' | Assignees='["davidpark"]'
+
+  #1 [OneOnOne] Q2 Product Strategy & Board Prep
+    GT=True | Judge=Utkarsh Jha | HasTask=True | Important=True | Type='Action Request' | Attr='Implicit' | Assignees='["sarahmitchell","davidpark"]'
+
+  #2 [OneOnOne] Q2 Hiring Budget Approval
+    GT=True | Judge=Andrew Abishek | HasTask=True | Important=True | Type='Action Request' | Attr='Implicit' | Assignees='["racheltorres"]'
+
+  #2 [OneOnOne] Q2 Hiring Budget Approval
+    GT=True | Judge=Utkarsh Jha | HasTask=True | Important=True | Type='Review / Approval' | Attr='Implicit' | Assignees='["racheltorres"]'
+
+  #3 [OneOnOne] Production Incident ΓÇö API Gateway Outage
+    GT=True | Judge=Andrew Abishek | HasTask=True | Important=False | Type='Status Request' | Attr='Implicit' | Assignees='["alexkumar"]'
+
+  #3 [OneOnOne] Production Incident ΓÇö API Gateway Outage
+    GT=True | Judge=Utkarsh Jha | HasTask=True | Important=True | Type='Action Request' | Attr='Implicit' | Assignees='["alexkumar"]'
+
+  #4 [OneOnOne] API v3 Migration ΓÇö Code Review
+    GT=True | Judge=Andrew Abishek | HasTask=True | Important=True | Type='Review / Approval' | Attr='Implicit' | Assignees='["priyasharma"]'
+
+  #4 [OneOnOne] API v3 Migration ΓÇö Code Review
+    GT=True | Judge=Utkarsh Jha | HasTask=True | Important=True | Type='Action Request' | Attr='Implicit' | Assignees='["alexkumar","priyasharma"]'
+
+  #5 [OneOnOne] Contoso Enterprise Deal ΓÇö At Risk
+    GT=True | Judge=Andrew Abishek | HasTask=True | Important=True | Type='Action Request' | Attr='Implicit' | Assignees='["michaelchen","sofiarodriguez"]'
+
+  #6 [OneOnOne] Q2 Org Restructuring ΓÇö Confidential
+    GT=True | Judge=Andrew Abishek | HasTask=True | Important=True | Type='Action Request' | Attr='Implicit' | Assignees='["daniellewright"]'
+
+  #7 [OneOnOne] Spring Campaign ΓÇö Content and Assets
+    GT=True | Judge=Andrew Abishek | HasTask=True | Important=True | Type='Follow-up' | Attr='Implicit' | Assignees='["chrisevans"]'
+
+  #8 [OneOnOne] SOC 2 Audit Preparation
+    GT=True | Judge=Andrew Abishek | HasTask=True | Important=False | Type='Follow-up' | Attr='Explicit' | Assignees='["kevinzhang"]'
+
+  #9 [OneOnOne] Pinnacle Logistics ΓÇö P1 Support Escalation
+    GT=True | Judge=Andrew Abishek | HasTask=True | Important=True | Type='Status Request' | Attr='Implicit' | Assignees='["derekjohnson"]'
+
+  #10 [OneOnOne] CDN Migration ΓÇö Deployment Blocked
+    GT=True | Judge=Andrew Abishek | HasTask=True | Important=True | Type='Status Request' | Attr='Implicit' | Assignees='["jameswilson"]'
+
+  #44 [Meeting] Postmortem ΓÇö API Gateway Incident (Jan 16)
+    GT=True | Judge=Sasank | HasTask=True | Important=True | Type='Action Request' | Attr='Explicit' | Assignees='["jameswilson","alexkumar","derekjohnson"]'
+
+  #45 [Meeting] H2 Product Strategy Offsite
+    GT=True | Judge=Sasank | HasTask=True | Important=True | Type='Action Request' | Attr='Implicit' | Assignees='["michaelchen","davidpark","alexkumar","laurakim"]'
+
+  #46 [Meeting] H1 Performance Calibration ΓÇö Engineering & Sales
+    GT=True | Judge=Sasank | HasTask=True | Important=True | Type='Action Request' | Attr='Explicit' | Assignees='["davidpark","michaelchen"]'
+
+  #47 [Meeting] GlobalTech & Pinnacle ΓÇö Customer Escalation Review
+    GT=True | Judge=Sasank | HasTask=True | Important=True | Type='Action Request' | Attr='Implicit' | Assignees='["mariasantos","michaelchen","derekjohnson","alexkumar"]'
+
+  #48 [Meeting] Budget Committee ΓÇö Q2 Spend Approvals
+    GT=True | Judge=Sasank | HasTask=True | Important=False | Type='Action Request' | Attr='Implicit' | Assignees='["kevinzhang"]'
+
+  #49 [Meeting] Engineering Weekly Standup
+    GT=True | Judge=Sasank | HasTask=True | Important=True | Type='Action Request' | Attr='Explicit' | Assignees='["priyasharma","jameswilson"]'
+
+  #50 [Meeting] Q1 All-Hands Follow-up
+    GT=True | Judge=Sasank | HasTask=True | Important=True | Type='Action Request' | Attr='Explicit' | Assignees='["daniellewright","davidpark","laurakim"]'
+
+  #51 [OneOnOne] Migration Follow-ups
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Status Request' | Attr='Implicit' | Assignees='["priyasharma"]'
+
+  #52 [OneOnOne] Contoso Enterprise Agreement Review
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Status Request' | Attr='Implicit' | Assignees='["priyasharma"]'
+
+  #53 [OneOnOne] Campaign Launch Coordination
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Action Request' | Attr='Implicit' | Assignees='["chrisevans"]'
+
+  #54 [Group] Q2 Planning Edge Cases
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Action Request' | Attr='Explicit' | Assignees='["jameswilson"]'
+
+  #55 [Group] Zenith Corp Escalation ΓÇö System Outage Impact
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Action Request' | Attr='Explicit' | Assignees='["mariasantos","alexkumar"]'
+
+  #56 [OneOnOne] Employee Relations & Policy Updates
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Confirmation / Permission' | Attr='Implicit' | Assignees='["daniellewright"]'
+
+  #57 [Group] Q2 Kickoff Planning
+    GT=False | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Delegation' | Attr='Implicit' | Assignees='["laurakim","daniellewright"]'
+
+  #58 [Meeting] Security Incident Postmortem ΓÇö March 28 Breach Att
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Action Request' | Attr='Explicit' | Assignees='["priyasharma","alexkumar","jameswilson","davidpark"]'
+
+  #59 [OneOnOne] Q1 Close & Audit Prep Follow-ups
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Action Request' | Attr='Implicit' | Assignees='["kevinzhang"]'
+
+  #60 [Group] Meridian Analytics Pro ΓÇö Launch Go/No-Go
+    GT=True | Judge=yashvijay | HasTask=True | Important=True | Type='Status Request' | Attr='Explicit' | Assignees='["davidpark","racheltorres","michaelchen"]'
+
+  #60 [Group] Meridian Analytics Pro ΓÇö Launch Go/No-Go
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Action Request' | Attr='Explicit' | Assignees='["davidpark","michaelchen"]'
+
+  #61 [OneOnOne] Dev Tooling Frustrations
+    GT=True | Judge=yashvijay | HasTask=True | Important=False | Type='Action Request' | Attr='Implicit' | Assignees='["jameswilson"]'
+
+  #61 [OneOnOne] Dev Tooling Frustrations
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Action Request' | Attr='Implicit' | Assignees='["priyasharma","jameswilson"]'
+
+  #62 [Group] Product Roadmap Alignment
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Action Request' | Attr='Explicit' | Assignees='["alexkumar"]'
+
+  #62 [Group] Product Roadmap Alignment
+    GT=True | Judge=yashvijay | HasTask=True | Important=False | Type='Action Request' | Attr='Explicit' | Assignees='["Everyone (Broadcast)","alexkumar","priyasharma"]'
+
+  #63 [Meeting] Meridian Technologies Q1 All-Hands
+    GT=True | Judge=yashvijay | HasTask=True | Important=False | Type='Action Request' | Attr='Implicit' | Assignees='["Everyone (Broadcast)"]'
+
+  #63 [Meeting] Meridian Technologies Q1 All-Hands
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Delegation' | Attr='Implicit' | Assignees='["daniellewright"]'
+
+  #64 [OneOnOne] Deal Pipeline & Forecast Review
+    GT=True | Judge=yashvijay | HasTask=True | Important=False | Type='Action Request' | Attr='Explicit' | Assignees='["sofiarodriguez","michaelchen"]'
+
+  #64 [OneOnOne] Deal Pipeline & Forecast Review
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Action Request' | Attr='Implicit' | Assignees='["sofiarodriguez"]'
+
+  #65 [Group] General - Friday Vibes & Housekeeping
+    GT=True | Judge=yashvijay | HasTask=True | Important=False | Type='Action Request' | Attr='Explicit' | Assignees='["Everyone (Broadcast)","alexkumar","jameswilson"]'
+
+  #65 [Group] General - Friday Vibes & Housekeeping
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=False | Type='Action Request' | Attr='Implicit' | Assignees='["jameswilson"]'
+
+  #66 [Meeting] Q1 Sales Quarterly Business Review
+    GT=True | Judge=yashvijay | HasTask=True | Important=False | Type='Action Request' | Attr='Explicit' | Assignees='["sofiarodriguez","michaelchen"]'
+
+  #66 [Meeting] Q1 Sales Quarterly Business Review
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=False | Type='Action Request' | Attr='Explicit' | Assignees='["sofiarodriguez","michaelchen","racheltorres"]'
+
+  #67 [OneOnOne] At-Risk Account Reviews
+    GT=True | Judge=yashvijay | HasTask=True | Important=False | Type='Action Request' | Attr='Explicit' | Assignees='["derekjohnson"]'
+
+  #67 [OneOnOne] At-Risk Account Reviews
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=False | Type='Question' | Attr='Implicit' | Assignees='["derekjohnson","mariasantos"]'
+
+  #68 [Group] Office Move Planning
+    GT=True | Judge=yashvijay | HasTask=True | Important=False | Type='Action Request' | Attr='Explicit' | Assignees='["daniellewright","amandafoster","laurakim","alexkumar"]'
+
+  #68 [Group] Office Move Planning
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=False | Type='Action Request' | Attr='Explicit' | Assignees='["amandafoster","laurakim"]'
+
+  #69 [OneOnOne] Quick Ask
+    GT=False | Judge=yashvijay | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #69 [OneOnOne] Quick Ask
+    GT=False | Judge=Ritika Gupta | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #70 [OneOnOne] Meeting Room
+    GT=False | Judge=yashvijay | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #70 [OneOnOne] Meeting Room
+    GT=False | Judge=Ritika Gupta | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #71 [Group] PRODUCTION DOWN ΓÇö API Gateway Failure
+    GT=True | Judge=yashvijay | HasTask=True | Important=False | Type='Action Request' | Attr='Explicit' | Assignees='["alexkumar","priyasharma","ninacosta","jameswilson"]'
+
+  #71 [Group] PRODUCTION DOWN ΓÇö API Gateway Failure
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Action Request' | Attr='Explicit' | Assignees='["ninacosta","alexkumar"]'
+
+  #72 [OneOnOne] Blog Post Review & Approval
+    GT=True | Judge=yashvijay | HasTask=True | Important=False | Type='Action Request' | Attr='Implicit' | Assignees='["chrisevans"]'
+
+  #72 [OneOnOne] Blog Post Review & Approval
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=True | Type='Action Request' | Attr='Implicit' | Assignees='["chrisevans"]'
+
+  #73 [Group] Vendor Selection for Analytics Platform
+    GT=True | Judge=yashvijay | HasTask=True | Important=False | Type='Action Request' | Attr='Explicit' | Assignees='["alexkumar","amandafoster"]'
+
+  #73 [Group] Vendor Selection for Analytics Platform
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=False | Type='Scheduling Action' | Attr='Explicit' | Assignees='["alexkumar"]'
+
+  #74 [Meeting] Sprint 47 Retrospective
+    GT=True | Judge=yashvijay | HasTask=True | Important=False | Type='Action Request' | Attr='Explicit' | Assignees='["priyasharma","jameswilson"]'
+
+  #74 [Meeting] Sprint 47 Retrospective
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=False | Type='Action Request' | Attr='Explicit' | Assignees='["priyasharma","jameswilson"]'
+
+  #75 [OneOnOne] Quick Legal Questions
+    GT=True | Judge=yashvijay | HasTask=True | Important=False | Type='Action Request' | Attr='Implicit' | Assignees='["amandafoster"]'
+
+  #75 [OneOnOne] Quick Legal Questions
+    GT=True | Judge=Ritika Gupta | HasTask=True | Important=False | Type='Question' | Attr='Implicit' | Assignees='["amandafoster"]'
+
+  #76 [Group] Design Review Feedback
+    GT=True | Judge=Sasank | HasTask=True | Important=True | Type='Action Request' | Attr='Explicit' | Assignees='["chrisevans"]'
+
+  #77 [Meeting] Q2 Budget Review Meeting
+    GT=True | Judge=Sasank | HasTask=True | Important=False | Type='Action Request' | Attr='Explicit' | Assignees='["kevinzhang"]'
+
+  #78 [OneOnOne] System Notifications Discussion
+    GT=True | Judge=Sasank | HasTask=True | Important=True | Type='Action Request' | Attr='Implicit' | Assignees='["alexkumar"]'
+
+  #79 [Group] Engineering Standup Thread
+    GT=True | Judge=Sasank | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #80 [OneOnOne] Casual Check-in with CTO
+    GT=False | Judge=Sasank | HasTask=True | Important=False | Type='Delegation' | Attr='Implicit' | Assignees='["davidpark"]'
+
+  #81 [OneOnOne] Data Export & Call Scheduling
+    GT=True | Judge=Sasank | HasTask=True | Important=False | Type='Action Request' | Attr='Implicit' | Assignees='["priyasharma"]'
+
+  #82 [Group] Sprint 48 Pre-Launch Tasks
+    GT=True | Judge=Sasank | HasTask=True | Important=True | Type='Action Request' | Attr='Explicit' | Assignees='["alexkumar","davidpark"]'
+
+  #83 [Group] EOQ Cleanup Tasks
+    GT=True | Judge=Sasank | HasTask=True | Important=False | Type='Delegation' | Attr='Implicit' | Assignees='["davidpark"]'
+
+  #84 [Group] Happy Birthday Chris! ≡ƒÄé
+    GT=False | Judge=Sasank | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #85 [Group] Weekend Plans
+    GT=False | Judge=Sasank | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #86 [Group] Office Closure ΓÇö Presidents' Day
+    GT=False | Judge=Sasank | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #87 [Group] System Maintenance ΓÇö Complete
+    GT=False | Judge=Sasank | HasTask=True | Important=False | Type='Action Request' | Attr='Implicit' | Assignees='["derekjohnson"]'
+
+  #88 [Group] We Hit 10K Customers! ≡ƒÄë
+    GT=False | Judge=Sasank | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #89 [Group] Lunch Today
+    GT=False | Judge=Sasank | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #90 [OneOnOne] VPN Setup Help
+    GT=False | Judge=Sasank | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #91 [OneOnOne] Expense Report Question
+    GT=False | Judge=Sasank | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #92 [Group] General ΓÇö Interesting Read
+    GT=False | Judge=Sasank | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #93 [Group] Sprint 46 Report ΓÇö Final Numbers
+    GT=False | Judge=Sasank | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #101 [Group] Q1 Revenue ΓÇö Final Numbers
+    GT=False | Judge=yashvijay | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #102 [Group] Pet Tax Thread ≡ƒÉò
+    GT=False | Judge=yashvijay | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #103 [Meeting] Product Demo ΓÇö Internal Preview
+    GT=False | Judge=yashvijay | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #104 [Group] Did You See The Game Last Night?
+    GT=False | Judge=yashvijay | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #105 [Group] All-Hands Recording Available
+    GT=False | Judge=yashvijay | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #106 [Group] Wednesday Trivia ΓÜí
+    GT=False | Judge=yashvijay | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #107 [OneOnOne] WiFi Password
+    GT=False | Judge=yashvijay | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #108 [Group] Holiday Party Recap ≡ƒÄä
+    GT=False | Judge=yashvijay | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+  #109 [OneOnOne] Git Branch Question
+    GT=False | Judge=yashvijay | HasTask=False | Important=False | Type=None | Attr=None | Assignees=None
+
+
+=== TAGGED CONVERSATION IDS: 69 unique ===
+=== TOTAL CONVERSATIONS: 116 ===
+=== UNTAGGED: 47 ===
+  #11 [OneOnOne] Northwind Traders NDA Review | GT=True
+  #12 [OneOnOne] Release Blocker ΓÇö Dashboard Rendering Bug | GT=True
+  #13 [OneOnOne] Office Equipment & Software Procurement | GT=True
+  #14 [OneOnOne] Customer Testimonial ΓÇö Pinnacle Logistics | GT=True
+  #15 [OneOnOne] Engineering Platform Investment ΓÇö Build vs Buy | GT=True
+  #16 [Group] Engineering Daily Standup | GT=True
+  #17 [Group] Q1 Pipeline Review & Forecast | GT=True
+  #18 [Group] Meridian v4.2 Launch Coordination | GT=True
+  #19 [Group] Board Meeting Preparation ΓÇö Q1 Review | GT=True
+  #20 [Group] Q2 Campaign Alignment ΓÇö Marketing + Sales | GT=True
+  #21 [Group] ≡ƒÜ¿ Production Incident ΓÇö Database Connection Pool Exhaustion | GT=True
+  #22 [Group] Q2 Headcount Planning ΓÇö Engineering | GT=True
+  #23 [Group] Northwind Traders ΓÇö Contract Review | GT=True
+  #24 [Group] Q1 Budget Review & Q2 Forecast | GT=True
+  #25 [Group] Pinnacle Logistics ΓÇö P1 Escalation Thread | GT=True
+  #26 [Group] PR #852 ΓÇö Connection Pool Fix Review | GT=False
+  #27 [Group] Q1 All-Hands Planning | GT=True
+  #28 [Group] SOC 2 & GDPR Compliance ΓÇö Cross-team Coordination | GT=True
+  #29 [Group] Spring Campaign ΓÇö Creative Review | GT=True
+  #30 [Group] Salesforce Down ΓÇö Impact & Workaround | GT=False
+  #31 [Group] AI Resource Allocation Feature ΓÇö Requirements | GT=True
+  #32 [Group] Marketing Weekly Sync Notes | GT=True
+  #33 [Group] ΓÜá∩╕Å GlobalTech Solutions ΓÇö Churn Risk Escalation | GT=True
+  #34 [Group] ≡ƒöÆ SECURITY: Potential Data Exposure Incident | GT=True
+  #35 [Group] Spring Hackathon Planning ≡ƒÜÇ | GT=True
+  #36 [Group] New Hire Onboarding ΓÇö Starting April 7 | GT=True
+  #37 [Group] Observability Vendor Evaluation ΓÇö Datadog vs New Relic | GT=True
+  #38 [Group] Q2 OKR Planning ΓÇö Leadership Alignment | GT=True
+  #39 [Group] Sprint 14 Retrospective Notes | GT=True
+  #40 [Group] Team Social ΓÇö Lunch & Weekend Plans | GT=False
+  #41 [Meeting] Sprint 15 Planning | GT=True
+  #42 [Meeting] Q1 QBR ΓÇö Sales & Revenue Review | GT=True
+  #43 [Meeting] Board Deck Final Review ΓÇö Dry Run | GT=True
+  #94 [Group] Priya's 3-Year Anniversary! ≡ƒÄë | GT=False
+  #95 [Group] Competitor News ΓÇö Worth Knowing | GT=False
+  #96 [Group] Amazing Customer Feedback! | GT=False
+  #97 [Group] General Chat | GT=False
+  #98 [OneOnOne] Meeting Link | GT=False
+  #99 [Group] Feedback on Security Training | GT=False
+  #100 [Group] New Office Tour ≡ƒô╕ | GT=False
+  #110 [Group] Shoutout ΓÇö Nina's QA Work ≡ƒîƒ | GT=False
+  #111 [Group] Meridian v4.2 Launch Day! ≡ƒÜÇ | GT=False
+  #112 [OneOnOne] Quick Status Check | GT=False
+  #113 [Group] Coffee Machine Situation Γÿò | GT=False
+  #114 [Group] Traffic Alert | GT=False
+  #115 [Group] March Book Club Pick ≡ƒôÜ | GT=False
+  #116 [Group] CI/CD ΓÇö Build Notifications | GT=False

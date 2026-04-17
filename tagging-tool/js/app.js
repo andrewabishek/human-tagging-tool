@@ -5,7 +5,7 @@
 // ---- Constants ----
 const ADMIN_JUDGE = "Andrew Abishek";
 const JUDGES_PER_CONV = 2;
-const MAX_PER_JUDGE = 25;
+const MAX_PER_JUDGE = 10;
 
 // ---- State ----
 let currentJudgeName = "";
@@ -278,36 +278,53 @@ async function autoAssignConversations(judgeName) {
     }
   }
 
-  // --- Initial round-robin (new judge) ---
+  // --- Initial assignment (new judge): prioritize tricky conversations ---
   if (myAssignments.length === 0) {
-    const available = allConvs.filter((c) => {
-      const info = convInfo[c.id];
-      return (
-        info.assignCount < JUDGES_PER_CONV &&
-        !info.assignedTo.includes(judgeName)
-      );
-    });
+    const available = allConvs.filter(
+      (c) => !convInfo[c.id].assignedTo.includes(judgeName),
+    );
 
     if (available.length === 0) return;
 
-    // Cap at MAX_PER_JUDGE conversations per judge
-    // Prioritize conversations with 0 assignments, then 1
-    const zeroAssign = available.filter(
-      (c) => convInfo[c.id].assignCount === 0,
-    );
-    const oneAssign = available.filter((c) => convInfo[c.id].assignCount === 1);
-    const pool = [...zeroAssign, ...oneAssign];
+    // Score each conversation by trickiness
+    const scored = available.map((c) => {
+      const info = convInfo[c.id];
+      const gt = c.ground_truth_has_task;
+      let score = 0;
 
-    // Offset start position by judge number so different judges get
-    // different conversations at the front. This ensures max coverage
-    // even when judges only complete partway through their batch.
-    const existingJudgeNames = [
-      ...new Set(allAssigns.map((a) => a.judge_name)),
-    ];
-    const judgeIndex = existingJudgeNames.length; // 0-based for new judge
-    const offset = (judgeIndex * MAX_PER_JUDGE) % pool.length;
-    const rotated = [...pool.slice(offset), ...pool.slice(0, offset)];
-    const toAssign = rotated.slice(0, Math.min(MAX_PER_JUDGE, rotated.length));
+      // 1. Judge-GT disagreement (any judge disagrees with GT)
+      const gtDisagrees = info.tags.filter((t) => t.has_task !== gt).length;
+      if (gtDisagrees > 0) score += 3 * gtDisagrees;
+
+      // 2. Judge-judge disagreement on has_task
+      const htVals = new Set(info.tags.map((t) => t.has_task));
+      if (htVals.size > 1) score += 5;
+
+      // 3. Borderline: has_task=true but attribution=Implicit
+      if (info.tags.some((t) => t.has_task === true && t.attribution === "Implicit"))
+        score += 2;
+
+      // 4. is_important disagreement between judges
+      const impVals = new Set(
+        info.tags.filter((t) => t.is_important != null).map((t) => t.is_important),
+      );
+      if (impVals.size > 1) score += 2;
+
+      // 5. Task type variety
+      const taskTypes = new Set(
+        info.tags.filter((t) => t.task_type).map((t) => t.task_type),
+      );
+      if (taskTypes.size > 1) score += 2;
+
+      // 6. Edge-case chat types (harder to judge)
+      if (c.chat_type === "OneOnOne" || c.chat_type === "Meeting") score += 1;
+
+      return { conv: c, score };
+    });
+
+    // Sort by trickiness (highest first), break ties by source_row_index
+    scored.sort((a, b) => b.score - a.score || a.conv.source_row_index - b.conv.source_row_index);
+    const toAssign = scored.slice(0, MAX_PER_JUDGE).map((s) => s.conv);
 
     if (toAssign.length > 0) {
       const newAssigns = toAssign.map((c) => ({

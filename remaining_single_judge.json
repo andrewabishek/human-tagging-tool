@@ -1,0 +1,2089 @@
+[
+  {
+    "db_id": 44,
+    "source_row_index": 43,
+    "topic": "Postmortem — API Gateway Incident (Jan 16)",
+    "chat_type": "Meeting",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "alexkumar",
+        "text": "Postmortem doc is in the shared drive. Sharing the action items in chat: Root cause: Connection pool leak in cursor-based pagination (PR #847) Impact: 22 minutes, ~15K users affected Resolution: Emergency fix PR #852, deployed within 45 minutes of identification"
+      },
+      {
+        "idx": 1,
+        "speaker": "davidpark",
+        "text": "Good analysis. The key question for me is: how did a PR with a connection leak pass code review?"
+      },
+      {
+        "idx": 2,
+        "speaker": "alexkumar",
+        "text": "The connection handling was in a code path that wasn't covered by existing tests. The reviewer (me) didn't catch it because the leak only manifests under high concurrency with client disconnects — a scenario we didn't have a test for."
+      },
+      {
+        "idx": 3,
+        "speaker": "derekjohnson",
+        "text": "From the support side, we need better tooling to detect connection pool saturation earlier. My team saw the customer complaints 5 minutes before we got the automated alert."
+      },
+      {
+        "idx": 4,
+        "speaker": "davidpark",
+        "text": "Action items — I want these completed by end of Sprint 15: 1. @James — implement pre-deploy connection pool stress test in CI pipeline 2. @Alex — add mandatory connection lifecycle review to the PR checklist 3. @Derek — create a customer impact escalation runbook for production incidents"
+      },
+      {
+        "idx": 5,
+        "speaker": "jameswilson",
+        "text": "The CI stress test — should it run on every PR or only for PRs touching database code?"
+      },
+      {
+        "idx": 6,
+        "speaker": "davidpark",
+        "text": "Start with PRs touching database or connection-related code. We can expand later if needed."
+      },
+      {
+        "idx": 7,
+        "speaker": "alexkumar",
+        "text": "I'll update the PR checklist template in GitHub. I'll also add a 'has_db_changes' label that triggers the connection lifecycle review requirement."
+      },
+      {
+        "idx": 8,
+        "speaker": "derekjohnson",
+        "text": "Runbook draft will be ready by end of week. I'll base it on our existing incident response procedures and add the customer communication templates."
+      },
+      {
+        "idx": 9,
+        "speaker": "davidpark",
+        "text": "Good. Let's track these in Jira and review completion at the Sprint 15 retro. Thanks everyone."
+      }
+    ]
+  },
+  {
+    "db_id": 45,
+    "source_row_index": 44,
+    "topic": "H2 Product Strategy Offsite",
+    "chat_type": "Meeting",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "sarahmitchell",
+        "text": "Capturing the key decisions from today's strategy session in chat: 1. AI will be the core differentiator for H2 — not just a feature, but platform-wide intelligence 2. We're going all-in on enterprise, deprioritizing SMB self-serve 3. International expansion pushed to 2027 — focus on North America first"
+      },
+      {
+        "idx": 1,
+        "speaker": "michaelchen",
+        "text": "Agree with the enterprise focus. The SMB segment has high churn and low LTV. But we'll need to communicate the deprioritization carefully — want to make sure existing SMB customers don't feel abandoned."
+      },
+      {
+        "idx": 2,
+        "speaker": "laurakim",
+        "text": "I'll draft a communications plan for the pivot. We should reframe it as 'deepening our enterprise commitment' rather than 'deprioritizing SMB.'"
+      },
+      {
+        "idx": 3,
+        "speaker": "sarahmitchell",
+        "text": "Great instinct Laura. @David, for the AI platform vision — I need a detailed technical roadmap by end of month. Break it into: Q2 MVP, Q3 expansion, Q4 platform integration."
+      },
+      {
+        "idx": 4,
+        "speaker": "davidpark",
+        "text": "Alex and I will build it out. We'll include resource requirements and key dependency milestones."
+      },
+      {
+        "idx": 5,
+        "speaker": "sarahmitchell",
+        "text": "@Michael, I want you to develop an enterprise-only GTM strategy that leverages the AI features as the lead differentiator. Work with Laura's team on the messaging."
+      },
+      {
+        "idx": 6,
+        "speaker": "michaelchen",
+        "text": "On it. I'll sync with Laura this week to align the sales narrative with the marketing messaging."
+      },
+      {
+        "idx": 7,
+        "speaker": "alexkumar",
+        "text": "For the AI roadmap — should we plan for the ML engineer hire being filled by Q2, or should we plan without them as a contingency?"
+      },
+      {
+        "idx": 8,
+        "speaker": "davidpark",
+        "text": "Plan for them being onboarded by mid-Q2. If the hire slips, we'll adjust. But I'd rather plan ambitiously and adjust down."
+      },
+      {
+        "idx": 9,
+        "speaker": "sarahmitchell",
+        "text": "This was a productive session. Let's execute with urgency. Q2 is when we prove the strategy."
+      }
+    ]
+  },
+  {
+    "db_id": 46,
+    "source_row_index": 45,
+    "topic": "H1 Performance Calibration — Engineering & Sales",
+    "chat_type": "Meeting",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "daniellewright",
+        "text": "Sharing the calibration framework in chat. Each department should rank their reports into: Exceeds (top 15%), Meets (70%), Developing (10%), Below (5%). Use the rubric doc I shared Monday."
+      },
+      {
+        "idx": 1,
+        "speaker": "davidpark",
+        "text": "Engineering calibration: Exceeds — Alex Kumar, Priya Sharma. Meets — James Wilson, Nina Costa. No Developing or Below."
+      },
+      {
+        "idx": 2,
+        "speaker": "michaelchen",
+        "text": "Sales: Exceeds — Sofia Rodriguez (closed 140% of target). Meets — everyone else. No below expectations."
+      },
+      {
+        "idx": 3,
+        "speaker": "sarahmitchell",
+        "text": "David, no one in Developing? I find that hard to believe for a team of 5. The calibration is supposed to force-rank, not be a feel-good exercise."
+      },
+      {
+        "idx": 4,
+        "speaker": "davidpark",
+        "text": "Fair challenge. If I had to differentiate, Nina's QA lead role has been solid but she hasn't stretched beyond core responsibilities. She could be 'Meets with development areas' rather than straight 'Meets.'"
+      },
+      {
+        "idx": 5,
+        "speaker": "daniellewright",
+        "text": "That's a reasonable assessment. @David, can you document the development areas in the system? And @Michael, same for your team — any development feedback for the 'Meets' group?"
+      },
+      {
+        "idx": 6,
+        "speaker": "davidpark",
+        "text": "Will do by end of week."
+      },
+      {
+        "idx": 7,
+        "speaker": "michaelchen",
+        "text": "Same. I'll add the development feedback."
+      },
+      {
+        "idx": 8,
+        "speaker": "laurakim",
+        "text": "Marketing calibration: Exceeds — Chris Evans. Meets — everyone else. Chris has been exceptional on the campaign work and the all-hands video montage was entirely his initiative."
+      },
+      {
+        "idx": 9,
+        "speaker": "daniellewright",
+        "text": "Thanks everyone. Please finalize all ratings and feedback in the system by Friday. I'll compile the final calibration report for Sarah's review on Monday."
+      },
+      {
+        "idx": 10,
+        "speaker": "sarahmitchell",
+        "text": "Thanks Danielle. Good session. Let's make sure the feedback is constructive and actionable — not just ratings."
+      }
+    ]
+  },
+  {
+    "db_id": 47,
+    "source_row_index": 46,
+    "topic": "GlobalTech & Pinnacle — Customer Escalation Review",
+    "chat_type": "Meeting",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "mariasantos",
+        "text": "Status update on both escalations: Pinnacle Logistics: Resolved. Export timeout fix deployed last week. Customer confirmed satisfaction. Renewal confirmed for Q2. GlobalTech Solutions: Recovery plan delivered. 2 of 3 P2 tickets resolved. Third ticket (API documentation) in progress — ETA next Wednesday."
+      },
+      {
+        "idx": 1,
+        "speaker": "michaelchen",
+        "text": "Good progress on Pinnacle. @Alex, what's the status on the GlobalTech API documentation issue?"
+      },
+      {
+        "idx": 2,
+        "speaker": "alexkumar",
+        "text": "Priya is working on it. The documentation gap was bigger than expected — missing examples for 3 API endpoints and incorrect parameter specs on 2 others. She should have it complete by Monday."
+      },
+      {
+        "idx": 3,
+        "speaker": "derekjohnson",
+        "text": "The GlobalTech contact has been getting daily updates from my team. Their tone has shifted from frustrated to cautiously optimistic. The dedicated account manager assignment made a big difference."
+      },
+      {
+        "idx": 4,
+        "speaker": "michaelchen",
+        "text": "@Maria, once the API documentation is complete, I want to schedule an executive call with GlobalTech's CTO. Show them we take their partnership seriously. Can you set that up?"
+      },
+      {
+        "idx": 5,
+        "speaker": "mariasantos",
+        "text": "I'll coordinate with their CTO's office. Targeting the week after the API docs are delivered."
+      },
+      {
+        "idx": 6,
+        "speaker": "michaelchen",
+        "text": "Also — I want a systemic fix to prevent this from happening again. @Derek, can you propose an early warning system for at-risk customers? Look at ticket volume, response times, and sentiment patterns."
+      },
+      {
+        "idx": 7,
+        "speaker": "derekjohnson",
+        "text": "I've been thinking about exactly this. I'll draft a proposal with specific metrics and alerting thresholds. Target: end of next week."
+      },
+      {
+        "idx": 8,
+        "speaker": "alexkumar",
+        "text": "From the engineering side, I'll also set up a weekly ticket review for top-20 accounts. Any P2+ that's open more than 48 hours gets auto-escalated."
+      },
+      {
+        "idx": 9,
+        "speaker": "michaelchen",
+        "text": "Excellent. Let's make sure we don't lose another customer to neglect."
+      }
+    ]
+  },
+  {
+    "db_id": 48,
+    "source_row_index": 47,
+    "topic": "Budget Committee — Q2 Spend Approvals",
+    "chat_type": "Meeting",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "racheltorres",
+        "text": "Dropping the Q2 spend approval requests in chat: 1. Datadog Enterprise license: $350K/year (3-year term) — recommended by David 2. Enterprise customer event: $75K — Laura's marketing budget 3. Office AV upgrades: $28K — Lisa's facilities budget 4. Recruiting agency contingency: $100K — Danielle's HR budget"
+      },
+      {
+        "idx": 1,
+        "speaker": "sarahmitchell",
+        "text": "Let's go through them. The Datadog license — Rachel, did you review David's business case?"
+      },
+      {
+        "idx": 2,
+        "speaker": "racheltorres",
+        "text": "Yes. The TCO analysis is solid — $1.05M over 3 years vs $1.4M to build. Opportunity cost of diverting engineers is the clincher. I recommend approval."
+      },
+      {
+        "idx": 3,
+        "speaker": "sarahmitchell",
+        "text": "Approved. @Kevin, please process the Datadog PO. Negotiate the 3-year term for the best discount possible."
+      },
+      {
+        "idx": 4,
+        "speaker": "kevinzhang",
+        "text": "Will do. I'll push for 15-20% multi-year discount."
+      },
+      {
+        "idx": 5,
+        "speaker": "sarahmitchell",
+        "text": "The customer event — $75K. Rachel, where does this sit in the overall marketing budget?"
+      },
+      {
+        "idx": 6,
+        "speaker": "racheltorres",
+        "text": "Within budget. Marketing has $320K remaining in Q2 discretionary. The event is the largest single item but it's budgeted."
+      },
+      {
+        "idx": 7,
+        "speaker": "sarahmitchell",
+        "text": "Approved. The AV upgrade and recruiting contingency — any concerns on either?"
+      },
+      {
+        "idx": 8,
+        "speaker": "kevinzhang",
+        "text": "Both are straightforward. AV is within Lisa's approval authority. Recruiting contingency is standard for an active hiring cycle."
+      },
+      {
+        "idx": 9,
+        "speaker": "sarahmitchell",
+        "text": "All four approved. @Kevin, please process all POs this week and send confirmation to the requestors."
+      },
+      {
+        "idx": 10,
+        "speaker": "kevinzhang",
+        "text": "Will have all POs processed by Thursday and requestors notified."
+      },
+      {
+        "idx": 11,
+        "speaker": "racheltorres",
+        "text": "Good. I'll update the Q2 forecast to reflect these commitments."
+      }
+    ]
+  },
+  {
+    "db_id": 49,
+    "source_row_index": 48,
+    "topic": "Engineering Weekly Standup",
+    "chat_type": "Meeting",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "alexkumar",
+        "text": "Quick standup. Let's keep it to blockers and help needed. Status updates go in Jira."
+      },
+      {
+        "idx": 1,
+        "speaker": "priyasharma",
+        "text": "AI prototype is on track. One blocker — I need access to the production data sample for the matching algorithm. @James, can you create a sanitized data export for me?"
+      },
+      {
+        "idx": 2,
+        "speaker": "jameswilson",
+        "text": "I can have that to you by lunch. How much data do you need?"
+      },
+      {
+        "idx": 3,
+        "speaker": "priyasharma",
+        "text": "At least 6 months of project allocation data. Anonymized is fine — I just need the patterns, not the actual names."
+      },
+      {
+        "idx": 4,
+        "speaker": "ninacosta",
+        "text": "No blockers for me. Regression suite is progressing. I found 2 minor bugs in the notification module though — not release-blocking but should be fixed. Filed ENG-2915 and ENG-2916."
+      },
+      {
+        "idx": 5,
+        "speaker": "alexkumar",
+        "text": "@Priya, can you take a look at those bugs after your prototype work? They're in your code area."
+      },
+      {
+        "idx": 6,
+        "speaker": "priyasharma",
+        "text": "Sure, I'll knock them out Thursday."
+      },
+      {
+        "idx": 7,
+        "speaker": "jameswilson",
+        "text": "FYI — the CDN provider is doing maintenance tonight from 11 PM to 2 AM. Should have zero customer impact but I'll be monitoring."
+      },
+      {
+        "idx": 8,
+        "speaker": "alexkumar",
+        "text": "Thanks for the heads up. OK, that's it. Good meeting — under 10 minutes. 🎉"
+      }
+    ]
+  },
+  {
+    "db_id": 50,
+    "source_row_index": 49,
+    "topic": "Q1 All-Hands Follow-up",
+    "chat_type": "Meeting",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "sarahmitchell",
+        "text": "Great all-hands today! The fireside chat format worked much better. Got a lot of positive feedback in the Q&A."
+      },
+      {
+        "idx": 1,
+        "speaker": "laurakim",
+        "text": "Agreed. The video montage was a huge hit — kudos to Chris. I got several messages from people saying it was the best all-hands we've done."
+      },
+      {
+        "idx": 2,
+        "speaker": "daniellewright",
+        "text": "The employee recognition segment was well-received too. A few people I spoke with mentioned they appreciated being recognized in front of the whole company."
+      },
+      {
+        "idx": 3,
+        "speaker": "sarahmitchell",
+        "text": "A few follow-up items from the Q&A that we owe the company: 1. Several people asked about the remote work policy refresh — @Danielle, can you share the updated policy by end of next week? 2. The international expansion question — @David, can you post a brief update in the engineering channel about the timeline shift to 2027? 3. People want more frequent town halls — @Laura, can we do these quarterly instead of bi-annually?"
+      },
+      {
+        "idx": 4,
+        "speaker": "daniellewright",
+        "text": "I'll have the updated remote work policy shared by Friday. I've been working on it — just needed final approval from Amanda on the compliance pieces."
+      },
+      {
+        "idx": 5,
+        "speaker": "davidpark",
+        "text": "I'll post the update tomorrow. I'll frame it as a 'focus and depth' decision rather than a postponement."
+      },
+      {
+        "idx": 6,
+        "speaker": "laurakim",
+        "text": "Quarterly town halls — absolutely. I'll build that into the communications calendar. Next one would be end of June."
+      },
+      {
+        "idx": 7,
+        "speaker": "sarahmitchell",
+        "text": "Thanks team. The all-hands sets the tone for the quarter. This one hit the right notes. 👏"
+      },
+      {
+        "idx": 8,
+        "speaker": "daniellewright",
+        "text": "One more thing — the anonymous feedback form had some comments about work-life balance concerns on the engineering team. @David, you may want to address that in your next team meeting."
+      },
+      {
+        "idx": 9,
+        "speaker": "davidpark",
+        "text": "Thanks for flagging. I'll review the comments and discuss with Alex before bringing it to the team."
+      }
+    ]
+  },
+  {
+    "db_id": 51,
+    "source_row_index": 50,
+    "topic": "Migration Follow-ups",
+    "chat_type": "OneOnOne",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "alexkumar",
+        "text": "Hey Priya, just circling back on the database migration PR. You mentioned it'd be ready by last Thursday."
+      },
+      {
+        "idx": 1,
+        "speaker": "priyasharma",
+        "text": "Yeah, sorry — I hit a blocker with the schema validation. The new constraints are rejecting about 12% of legacy records."
+      },
+      {
+        "idx": 2,
+        "speaker": "alexkumar",
+        "text": "That's a bigger issue than expected. Can you quantify the data loss risk if we skip the validation step temporarily?"
+      },
+      {
+        "idx": 3,
+        "speaker": "priyasharma",
+        "text": "I'll run the analysis this afternoon and get you numbers by EOD."
+      },
+      {
+        "idx": 4,
+        "speaker": "alexkumar",
+        "text": "Perfect. Also — any update on the caching layer refactor? I think that was due last sprint."
+      },
+      {
+        "idx": 5,
+        "speaker": "priyasharma",
+        "text": "Pushed it to this sprint. Dependencies on James's infra work weren't resolved."
+      },
+      {
+        "idx": 6,
+        "speaker": "alexkumar",
+        "text": "OK. When James is done, loop me in so I can reprioritize your backlog if needed."
+      },
+      {
+        "idx": 7,
+        "speaker": "priyasharma",
+        "text": "Will do."
+      },
+      {
+        "idx": 8,
+        "speaker": "alexkumar",
+        "text": "One more thing — the performance test results from two weeks ago. Did those ever get documented?"
+      },
+      {
+        "idx": 9,
+        "speaker": "priyasharma",
+        "text": "I wrote up the summary in Confluence but forgot to share the link. Let me send it now."
+      },
+      {
+        "idx": 10,
+        "speaker": "alexkumar",
+        "text": "Thanks. And whenever you get a chance — not urgent — could you also add the latency benchmarks to the dashboard? Feel free to skip it if Q2 planning takes priority."
+      },
+      {
+        "idx": 11,
+        "speaker": "priyasharma",
+        "text": "Sure, I'll try to squeeze it in this week."
+      }
+    ]
+  },
+  {
+    "db_id": 52,
+    "source_row_index": 51,
+    "topic": "Contoso Enterprise Agreement Review",
+    "chat_type": "OneOnOne",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "sofiarodriguez",
+        "text": "Amanda, I need you to review the Contoso enterprise agreement. Deal is $2.3M ARR and they want to close by end of month."
+      },
+      {
+        "idx": 1,
+        "speaker": "amandafoster",
+        "text": "I saw the draft yesterday. There are some non-standard indemnification clauses I need to redline. How flexible is the customer on those?"
+      },
+      {
+        "idx": 2,
+        "speaker": "sofiarodriguez",
+        "text": "They pushed back last time we tried to modify indemnification. Can we accept their language with a cap?"
+      },
+      {
+        "idx": 3,
+        "speaker": "amandafoster",
+        "text": "I can accept a cap at 2x annual contract value. Anything beyond that needs Rachel's sign-off since it exceeds our standard risk threshold."
+      },
+      {
+        "idx": 4,
+        "speaker": "sofiarodriguez",
+        "text": "OK, I'll propose the 2x cap to Contoso. Can you meanwhile redline sections 4.2 and 7.1 and send me a clean version by Wednesday?"
+      },
+      {
+        "idx": 5,
+        "speaker": "amandafoster",
+        "text": "Wednesday is tight but doable. I'll prioritize it."
+      },
+      {
+        "idx": 6,
+        "speaker": "sofiarodriguez",
+        "text": "Thank you! Also, quick question — do we need a separate DPA for this deal or does our standard one cover it?"
+      },
+      {
+        "idx": 7,
+        "speaker": "amandafoster",
+        "text": "Standard DPA covers it as long as they're not processing EU personal data. Confirm with the customer whether they have EU operations."
+      },
+      {
+        "idx": 8,
+        "speaker": "sofiarodriguez",
+        "text": "Will check and confirm. Thanks Amanda!"
+      }
+    ]
+  },
+  {
+    "db_id": 53,
+    "source_row_index": 52,
+    "topic": "Campaign Launch Coordination",
+    "chat_type": "OneOnOne",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "laurakim",
+        "text": "Chris, are you free tomorrow at 2 PM for a run-through of the campaign assets?"
+      },
+      {
+        "idx": 1,
+        "speaker": "chrisevans",
+        "text": "Tomorrow's packed — I have back-to-backs from 1 to 4. How about Thursday morning?"
+      },
+      {
+        "idx": 2,
+        "speaker": "laurakim",
+        "text": "Thursday 10 AM works. Can you book a room and send the invite?"
+      },
+      {
+        "idx": 3,
+        "speaker": "chrisevans",
+        "text": "Done — sent for 10-11 AM in the Rainier room."
+      },
+      {
+        "idx": 4,
+        "speaker": "laurakim",
+        "text": "Perfect. Also — can you check if the blog post draft is ready for my review? I want to approve it before the launch."
+      },
+      {
+        "idx": 5,
+        "speaker": "chrisevans",
+        "text": "Almost there. The writer is doing a final pass. I'll have it in your inbox by end of day."
+      },
+      {
+        "idx": 6,
+        "speaker": "laurakim",
+        "text": "Great. And one more — are you attending the product marketing sync on Friday?"
+      },
+      {
+        "idx": 7,
+        "speaker": "chrisevans",
+        "text": "Yes, I'll be there."
+      },
+      {
+        "idx": 8,
+        "speaker": "laurakim",
+        "text": "Cool. Can you prep a 5-minute overview of the campaign metrics to share at that meeting?"
+      },
+      {
+        "idx": 9,
+        "speaker": "chrisevans",
+        "text": "Sure thing. Want me to include social engagement numbers or just web traffic?"
+      },
+      {
+        "idx": 10,
+        "speaker": "laurakim",
+        "text": "Both please. And add the email open rates too."
+      },
+      {
+        "idx": 11,
+        "speaker": "chrisevans",
+        "text": "Got it. I'll have the deck ready by Thursday EOD."
+      }
+    ]
+  },
+  {
+    "db_id": 54,
+    "source_row_index": 53,
+    "topic": "Q2 Planning Edge Cases",
+    "chat_type": "Group",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "alexkumar",
+        "text": "Team, quick update — the Q2 OKRs have been finalized. Take a look when you can."
+      },
+      {
+        "idx": 1,
+        "speaker": "priyasharma",
+        "text": "Nice. Are these the same ones we discussed last week or did anything change?"
+      },
+      {
+        "idx": 2,
+        "speaker": "alexkumar",
+        "text": "Mostly the same. The only change is the reliability target moved from 99.9% to 99.95%."
+      },
+      {
+        "idx": 3,
+        "speaker": "jameswilson",
+        "text": "99.95%? That's going to be fun 🙃"
+      },
+      {
+        "idx": 4,
+        "speaker": "ninacosta",
+        "text": "Seriously though, has anyone actually modeled what 99.95% requires in terms of infra redundancy?"
+      },
+      {
+        "idx": 5,
+        "speaker": "alexkumar",
+        "text": "Good question. @James, can you put together a quick feasibility assessment? Nothing fancy, just a back-of-envelope calc."
+      },
+      {
+        "idx": 6,
+        "speaker": "jameswilson",
+        "text": "Sure. I'll have something by Friday."
+      },
+      {
+        "idx": 7,
+        "speaker": "laurakim",
+        "text": "From the marketing side — we probably should align our messaging around the reliability story. Just saying."
+      },
+      {
+        "idx": 8,
+        "speaker": "priyasharma",
+        "text": "We should also update the status page SLA language. Who owns that?"
+      },
+      {
+        "idx": 9,
+        "speaker": "alexkumar",
+        "text": "I think it's technically DevOps. @James?"
+      },
+      {
+        "idx": 10,
+        "speaker": "jameswilson",
+        "text": "Yeah, I can update it. But I'll need legal to sign off on the new language."
+      },
+      {
+        "idx": 11,
+        "speaker": "alexkumar",
+        "text": "Great. Let's make sure this gets done before the public announcement. It would be embarrassing to promise 99.95% uptime and have the status page say 99.9%."
+      },
+      {
+        "idx": 12,
+        "speaker": "ninacosta",
+        "text": "Agreed. I'll add a QA checkpoint for the status page update before it goes live."
+      },
+      {
+        "idx": 13,
+        "speaker": "laurakim",
+        "text": "This is great teamwork. If you need any copy review on the status page language, feel free to ping me."
+      }
+    ]
+  },
+  {
+    "db_id": 55,
+    "source_row_index": 54,
+    "topic": "Zenith Corp Escalation — System Outage Impact",
+    "chat_type": "Group",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "derekjohnson",
+        "text": "URGENT: Zenith Corp is reporting complete system unavailability for the past 45 minutes. They're our third-largest customer and their VP of Engineering just called our support line directly."
+      },
+      {
+        "idx": 1,
+        "speaker": "mariasantos",
+        "text": "This is Zenith's second outage this quarter. They've been vocal about evaluating alternatives. We need to treat this as a potential churn event."
+      },
+      {
+        "idx": 2,
+        "speaker": "derekjohnson",
+        "text": "@Alex, can your team investigate the root cause immediately? We need a preliminary RCA within the hour."
+      },
+      {
+        "idx": 3,
+        "speaker": "alexkumar",
+        "text": "On it. Pulling Priya and James into the war room now."
+      },
+      {
+        "idx": 4,
+        "speaker": "sofiarodriguez",
+        "text": "I'll reach out to their VP to buy us time. @Maria, do you have the latest support ticket history for Zenith? I want to go in with full context."
+      },
+      {
+        "idx": 5,
+        "speaker": "mariasantos",
+        "text": "Sending it now. They've had 7 P1 tickets in the last 90 days. That's way above our threshold."
+      },
+      {
+        "idx": 6,
+        "speaker": "davidpark",
+        "text": "I just spoke with the infra team. It's a database connection pool exhaustion issue — same pattern as the March incident. I thought we fixed this."
+      },
+      {
+        "idx": 7,
+        "speaker": "alexkumar",
+        "text": "We did patch it, but the fix only covered the primary cluster. The secondary cluster wasn't updated. @James, can you confirm and apply the hotfix to secondary NOW?"
+      },
+      {
+        "idx": 8,
+        "speaker": "derekjohnson",
+        "text": "Following up — it's been 30 minutes since the initial report. Do we have an ETA for resolution?"
+      },
+      {
+        "idx": 9,
+        "speaker": "alexkumar",
+        "text": "James is applying the hotfix now. ETA 15 minutes for connection pool recovery, then another 10 for full service restoration."
+      },
+      {
+        "idx": 10,
+        "speaker": "sofiarodriguez",
+        "text": "I got Zenith's VP on the phone. He's willing to hold off on escalation if we can: (1) provide RCA by tomorrow, (2) commit to a permanent fix timeline, and (3) offer a service credit."
+      },
+      {
+        "idx": 11,
+        "speaker": "davidpark",
+        "text": "I'll own the RCA. @Alex, you and the team get the permanent fix scoped. @Maria, work with finance on the service credit — probably 1 month pro-rata."
+      },
+      {
+        "idx": 12,
+        "speaker": "mariasantos",
+        "text": "On it. I'll loop in Kevin from finance for the credit calculation."
+      },
+      {
+        "idx": 13,
+        "speaker": "derekjohnson",
+        "text": "Service is back up as of 2:47 PM. Zenith confirmed. But let's not forget — this is the SECOND time. We need the permanent fix before we lose this account."
+      },
+      {
+        "idx": 14,
+        "speaker": "davidpark",
+        "text": "Agreed. I want the permanent fix timeline in our next leadership sync. This is now a top-3 priority."
+      }
+    ]
+  },
+  {
+    "db_id": 56,
+    "source_row_index": 55,
+    "topic": "Employee Relations & Policy Updates",
+    "chat_type": "OneOnOne",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "daniellewright",
+        "text": "Sarah, I need to flag something sensitive. We received a formal complaint from an employee on the engineering team about their manager's communication style."
+      },
+      {
+        "idx": 1,
+        "speaker": "sarahmitchell",
+        "text": "Thanks for bringing this to me. Is this something HR can handle through normal channels or do we need legal involved?"
+      },
+      {
+        "idx": 2,
+        "speaker": "daniellewright",
+        "text": "HR can handle the initial investigation. If it escalates to a formal grievance, we'll need Amanda. For now, I'd like your permission to proceed with the informal resolution process."
+      },
+      {
+        "idx": 3,
+        "speaker": "sarahmitchell",
+        "text": "You have my go-ahead. Keep me updated on progress but use your judgment on the approach."
+      },
+      {
+        "idx": 4,
+        "speaker": "daniellewright",
+        "text": "Will do. Separately — the new PTO policy goes into effect Monday. I've sent the company-wide announcement but wanted to give you a heads-up in case anyone on the leadership team has questions."
+      },
+      {
+        "idx": 5,
+        "speaker": "sarahmitchell",
+        "text": "Got it. Did you include the grandfathering clause for people who already have trips booked?"
+      },
+      {
+        "idx": 6,
+        "speaker": "daniellewright",
+        "text": "Yes, it's in section 3 of the policy doc. Anyone with pre-approved PTO keeps their existing dates."
+      },
+      {
+        "idx": 7,
+        "speaker": "sarahmitchell",
+        "text": "Perfect. One more thing — can you pull together the Q1 attrition numbers? I need them for the board deck."
+      },
+      {
+        "idx": 8,
+        "speaker": "daniellewright",
+        "text": "I'll have them to you by Thursday. Do you want voluntary and involuntary broken out separately?"
+      },
+      {
+        "idx": 9,
+        "speaker": "sarahmitchell",
+        "text": "Yes, both. And if you can include a comparison to industry benchmarks, that would be helpful."
+      },
+      {
+        "idx": 10,
+        "speaker": "daniellewright",
+        "text": "Will do. Thanks Sarah."
+      }
+    ]
+  },
+  {
+    "db_id": 57,
+    "source_row_index": 56,
+    "topic": "Q2 Kickoff Planning",
+    "chat_type": "Group",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "sarahmitchell",
+        "text": "We need to get the Q2 kickoff on the calendar ASAP. @David @Rachel @Michael @Laura @Danielle — what does next Tuesday look like for everyone?"
+      },
+      {
+        "idx": 1,
+        "speaker": "davidpark",
+        "text": "Tuesday works for me. Morning is better — I have a deployment window in the afternoon."
+      },
+      {
+        "idx": 2,
+        "speaker": "racheltorres",
+        "text": "I can do Tuesday before noon. I have the audit committee call at 1 PM."
+      },
+      {
+        "idx": 3,
+        "speaker": "michaelchen",
+        "text": "Tuesday is out for me — I'm in New York for client meetings all day. What about Wednesday?"
+      },
+      {
+        "idx": 4,
+        "speaker": "laurakim",
+        "text": "Either day works for me."
+      },
+      {
+        "idx": 5,
+        "speaker": "daniellewright",
+        "text": "Tuesday or Wednesday both fine."
+      },
+      {
+        "idx": 6,
+        "speaker": "sarahmitchell",
+        "text": "Let's do Wednesday 10 AM then. Michael, can you join remotely if needed?"
+      },
+      {
+        "idx": 7,
+        "speaker": "michaelchen",
+        "text": "Yes, I'll dial in from the hotel."
+      },
+      {
+        "idx": 8,
+        "speaker": "sarahmitchell",
+        "text": "@Danielle, can you book the all-hands room and send the invite?"
+      },
+      {
+        "idx": 9,
+        "speaker": "daniellewright",
+        "text": "On it. Should I include the full leadership team or just this group?"
+      },
+      {
+        "idx": 10,
+        "speaker": "sarahmitchell",
+        "text": "Full leadership team plus the department heads."
+      },
+      {
+        "idx": 11,
+        "speaker": "racheltorres",
+        "text": "Can someone prepare the financial overview slides? I can do the numbers but need templates from marketing."
+      },
+      {
+        "idx": 12,
+        "speaker": "laurakim",
+        "text": "I'll send you the template deck today."
+      },
+      {
+        "idx": 13,
+        "speaker": "sarahmitchell",
+        "text": "Thanks everyone. Let's make this a good kickoff. 🚀"
+      }
+    ]
+  },
+  {
+    "db_id": 58,
+    "source_row_index": 57,
+    "topic": "Security Incident Postmortem — March 28 Breach Attempt",
+    "chat_type": "Meeting",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "davidpark",
+        "text": "OK everyone, let's walk through the March 28 incident. James, can you give us the timeline?"
+      },
+      {
+        "idx": 1,
+        "speaker": "jameswilson",
+        "text": "At 3:12 AM Pacific, our IDS flagged anomalous traffic from an IP range associated with known threat actors. The traffic was targeting our staging environment's API gateway."
+      },
+      {
+        "idx": 2,
+        "speaker": "jameswilson",
+        "text": "By 3:24 AM, the automated WAF rules blocked the majority of requests. However, approximately 2,400 requests made it through before the rules kicked in."
+      },
+      {
+        "idx": 3,
+        "speaker": "amandafoster",
+        "text": "Were any customer data endpoints exposed during that 12-minute window?"
+      },
+      {
+        "idx": 4,
+        "speaker": "jameswilson",
+        "text": "No. The staging environment uses synthetic data. No customer PII was at risk."
+      },
+      {
+        "idx": 5,
+        "speaker": "amandafoster",
+        "text": "That's a relief. But we still need to document this for our SOC 2 compliance records. @James, can you prepare the incident report in the required format by end of week?"
+      },
+      {
+        "idx": 6,
+        "speaker": "davidpark",
+        "text": "Agreed. And we need to address the 12-minute gap. @Priya, can you review the WAF rule propagation latency? I want that gap under 60 seconds."
+      },
+      {
+        "idx": 7,
+        "speaker": "priyasharma",
+        "text": "I'll look into it. The latency is mostly due to the rule sync between our edge nodes. We might need to move to a push-based model."
+      },
+      {
+        "idx": 8,
+        "speaker": "alexkumar",
+        "text": "What about the staging environment access controls? Should we be putting staging behind the same WAF as production?"
+      },
+      {
+        "idx": 9,
+        "speaker": "davidpark",
+        "text": "Yes. Let's not have different security postures. @Alex, can you draft a proposal to unify the security controls across all environments?"
+      },
+      {
+        "idx": 10,
+        "speaker": "amandafoster",
+        "text": "One more thing — given this is the second security event this quarter, I recommend we brief the board's audit committee. Sarah should be in the loop."
+      },
+      {
+        "idx": 11,
+        "speaker": "davidpark",
+        "text": "I'll brief Sarah today and schedule the audit committee update. Good call, Amanda."
+      },
+      {
+        "idx": 12,
+        "speaker": "jameswilson",
+        "text": "Action items from my side: (1) incident report for SOC 2 by Friday, (2) WAF rule propagation analysis with @Priya. Anything I'm missing?"
+      },
+      {
+        "idx": 13,
+        "speaker": "davidpark",
+        "text": "That covers it. Thanks everyone. Let's close the loop on all items by next Monday."
+      }
+    ]
+  },
+  {
+    "db_id": 59,
+    "source_row_index": 58,
+    "topic": "Q1 Close & Audit Prep Follow-ups",
+    "chat_type": "OneOnOne",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "racheltorres",
+        "text": "Kevin, where are we on the Q1 close reconciliation? The external auditors start next Monday."
+      },
+      {
+        "idx": 1,
+        "speaker": "kevinzhang",
+        "text": "Revenue recognition is done. Still working on the deferred revenue adjustments — should be complete by Thursday."
+      },
+      {
+        "idx": 2,
+        "speaker": "racheltorres",
+        "text": "Thursday is cutting it close. Can you finish by Wednesday instead? I need a day to review before the auditors arrive."
+      },
+      {
+        "idx": 3,
+        "speaker": "kevinzhang",
+        "text": "I'll try. The main blocker is the inter-company elimination entries — I'm waiting on the UK office's numbers."
+      },
+      {
+        "idx": 4,
+        "speaker": "racheltorres",
+        "text": "Follow up with them today. Tell them it's for the external audit — that usually gets fast responses."
+      },
+      {
+        "idx": 5,
+        "speaker": "kevinzhang",
+        "text": "Will do. Also — I noticed a $47K variance in the SaaS subscription accruals. It looks like a timing difference but I want to flag it before the auditors find it."
+      },
+      {
+        "idx": 6,
+        "speaker": "racheltorres",
+        "text": "Good catch. Prepare a variance analysis memo. If it's truly a timing difference, we document it; if it's a real error, we need to correct before close."
+      },
+      {
+        "idx": 7,
+        "speaker": "kevinzhang",
+        "text": "I'll have the memo ready alongside the reconciliation."
+      },
+      {
+        "idx": 8,
+        "speaker": "racheltorres",
+        "text": "Thanks Kevin. Let's make sure this audit goes smoothly. Last year's was rough."
+      }
+    ]
+  },
+  {
+    "db_id": 76,
+    "source_row_index": 75,
+    "topic": "Design Review Feedback",
+    "chat_type": "Group",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "laurakim",
+        "text": "Just shared the new landing page mockups in the design channel. Everyone please review and leave feedback by tomorrow."
+      },
+      {
+        "idx": 1,
+        "speaker": "chrisevans",
+        "text": "Looks great! The hero section is much better than the last version."
+      },
+      {
+        "idx": 2,
+        "speaker": "alexkumar",
+        "text": "The performance metrics section is confusing. Can we restructure it to lead with the business impact numbers?"
+      },
+      {
+        "idx": 3,
+        "speaker": "sofiarodriguez",
+        "text": "From a sales perspective, we need the pricing to be more prominent. Prospects always ask about pricing first."
+      },
+      {
+        "idx": 4,
+        "speaker": "laurakim",
+        "text": "Good feedback all around. @Chris, can you mock up the restructured metrics section? And I'll work on making pricing more visible."
+      },
+      {
+        "idx": 5,
+        "speaker": "chrisevans",
+        "text": "On it. I'll have a revised mockup by tomorrow afternoon."
+      },
+      {
+        "idx": 6,
+        "speaker": "alexkumar",
+        "text": "👍"
+      },
+      {
+        "idx": 7,
+        "speaker": "sofiarodriguez",
+        "text": "🙌"
+      }
+    ]
+  },
+  {
+    "db_id": 77,
+    "source_row_index": 76,
+    "topic": "Q2 Budget Review Meeting",
+    "chat_type": "Meeting",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "racheltorres",
+        "text": "Let's go through the Q2 budget proposals. Each department submitted their asks — we need to decide allocations today."
+      },
+      {
+        "idx": 1,
+        "speaker": "racheltorres",
+        "text": "@David, engineering is requesting $1.2M. That's 30% above Q1. Walk us through the justification."
+      },
+      {
+        "idx": 2,
+        "speaker": "davidpark",
+        "text": "The increase breaks down as: $400K for 4 new hires, $300K for the analytics vendor evaluation Alex is running, $200K for staging infrastructure improvements, and $300K for the security hardening initiatives we discussed after the March incident."
+      },
+      {
+        "idx": 3,
+        "speaker": "sarahmitchell",
+        "text": "The security spend is non-negotiable given the incidents. What about the analytics vendor — can that wait?"
+      },
+      {
+        "idx": 4,
+        "speaker": "davidpark",
+        "text": "We could push it to Q3, but we'd miss the window for annual pricing negotiations. We'd likely pay 20% more."
+      },
+      {
+        "idx": 5,
+        "speaker": "racheltorres",
+        "text": "@Michael, sales is asking for $800K. That includes 2 new AEs at $350K total and $450K for the new CRM implementation."
+      },
+      {
+        "idx": 6,
+        "speaker": "michaelchen",
+        "text": "The AEs are critical — we're leaving pipeline on the table. The CRM is overdue — our current system is a spreadsheet nightmare."
+      },
+      {
+        "idx": 7,
+        "speaker": "kevinzhang",
+        "text": "I ran the numbers. If we approve everything, we're $340K over the total Q2 operating budget. We'd need to either cut or pull from reserves."
+      },
+      {
+        "idx": 8,
+        "speaker": "sarahmitchell",
+        "text": "OK, here's my call: approve engineering in full including analytics. Approve the AEs for sales but defer the CRM to Q3 — that saves $450K and gives us buffer. @Rachel, does that math work?"
+      },
+      {
+        "idx": 9,
+        "speaker": "racheltorres",
+        "text": "Yes, that keeps us $110K under budget with some room for contingency. I'll update the allocations."
+      },
+      {
+        "idx": 10,
+        "speaker": "michaelchen",
+        "text": "Can we at least start the CRM vendor evaluation in Q2 so we're ready to implement in Q3?"
+      },
+      {
+        "idx": 11,
+        "speaker": "sarahmitchell",
+        "text": "That's fine — just don't sign anything until Q3 budget is confirmed."
+      },
+      {
+        "idx": 12,
+        "speaker": "racheltorres",
+        "text": "@Kevin, please update the budget tracker with today's decisions and distribute to all department heads by end of day."
+      },
+      {
+        "idx": 13,
+        "speaker": "kevinzhang",
+        "text": "Will do."
+      }
+    ]
+  },
+  {
+    "db_id": 78,
+    "source_row_index": 77,
+    "topic": "System Notifications Discussion",
+    "chat_type": "OneOnOne",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "jameswilson",
+        "text": "Alex, I'm getting spammed with these auto-generated security scan notifications. Do you know how to filter them?"
+      },
+      {
+        "idx": 1,
+        "speaker": "alexkumar",
+        "text": "Yeah, there's a filter rule in the Outlook settings. I'll send you the steps."
+      },
+      {
+        "idx": 2,
+        "speaker": "jameswilson",
+        "text": "Thanks. By the way — the automated deploy reports are showing duplicate entries. Can you check if the webhook is firing twice?"
+      },
+      {
+        "idx": 3,
+        "speaker": "alexkumar",
+        "text": "I noticed that too. I think it's the retry logic. Let me investigate and fix it."
+      },
+      {
+        "idx": 4,
+        "speaker": "jameswilson",
+        "text": "Perfect. Let me know when it's fixed so I can verify on my end."
+      },
+      {
+        "idx": 5,
+        "speaker": "alexkumar",
+        "text": "Will do 👍"
+      }
+    ]
+  },
+  {
+    "db_id": 79,
+    "source_row_index": 78,
+    "topic": "Engineering Standup Thread",
+    "chat_type": "Group",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "alexkumar",
+        "text": "Morning standup! Quick updates from everyone please."
+      },
+      {
+        "idx": 1,
+        "speaker": "priyasharma",
+        "text": "Yesterday: finished the data pipeline refactor. Today: starting on the API rate limiter. Blocker: none."
+      },
+      {
+        "idx": 2,
+        "speaker": "jameswilson",
+        "text": "Yesterday: deployed monitoring dashboards. Today: working on the CDN migration. Blocker: waiting on DNS propagation, should be done by noon."
+      },
+      {
+        "idx": 3,
+        "speaker": "ninacosta",
+        "text": "Yesterday: wrote integration tests for the new auth flow. Today: regression testing for the release. Blocker: I need the test environment credentials refreshed — they expired."
+      },
+      {
+        "idx": 4,
+        "speaker": "jameswilson",
+        "text": "I can refresh those. Give me 10 minutes."
+      },
+      {
+        "idx": 5,
+        "speaker": "ninacosta",
+        "text": "Thanks James! 🙏"
+      },
+      {
+        "idx": 6,
+        "speaker": "alexkumar",
+        "text": "Looks like we're on track for the release. @Priya — on the rate limiter, make sure you coordinate with James on the CDN config since they'll interact."
+      },
+      {
+        "idx": 7,
+        "speaker": "priyasharma",
+        "text": "Already synced with him yesterday. We're good."
+      },
+      {
+        "idx": 8,
+        "speaker": "alexkumar",
+        "text": "Any other blockers or concerns before I close standup?"
+      },
+      {
+        "idx": 9,
+        "speaker": "priyasharma",
+        "text": "All good here."
+      },
+      {
+        "idx": 10,
+        "speaker": "jameswilson",
+        "text": "Same."
+      },
+      {
+        "idx": 11,
+        "speaker": "ninacosta",
+        "text": "Nothing from me."
+      },
+      {
+        "idx": 12,
+        "speaker": "alexkumar",
+        "text": "Great. Let's crush it today! 💪"
+      }
+    ]
+  },
+  {
+    "db_id": 80,
+    "source_row_index": 79,
+    "topic": "Casual Check-in with CTO",
+    "chat_type": "OneOnOne",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "sarahmitchell",
+        "text": "David, I've been thinking about our AI strategy. We might be falling behind."
+      },
+      {
+        "idx": 1,
+        "speaker": "davidpark",
+        "text": "What makes you say that? I thought we were in a good spot with the analytics rollout."
+      },
+      {
+        "idx": 2,
+        "speaker": "sarahmitchell",
+        "text": "I saw the Gartner report yesterday. Our competitors are investing 3x what we are in ML infrastructure. I just wanted to flag it."
+      },
+      {
+        "idx": 3,
+        "speaker": "davidpark",
+        "text": "That's worth looking into. I could put together a competitive landscape analysis focused on AI/ML investments if you think it's a priority."
+      },
+      {
+        "idx": 4,
+        "speaker": "sarahmitchell",
+        "text": "That would be great actually. But don't deprioritize the current release for it. When things calm down after the launch, let's revisit."
+      },
+      {
+        "idx": 5,
+        "speaker": "davidpark",
+        "text": "Makes sense. I'll keep it on the backlog."
+      },
+      {
+        "idx": 6,
+        "speaker": "sarahmitchell",
+        "text": "How's the team morale? I know the last few sprints have been intense."
+      },
+      {
+        "idx": 7,
+        "speaker": "davidpark",
+        "text": "Mixed. The senior folks are energized by the Analytics Pro launch. But the junior engineers are feeling stretched. We might want to think about a team event after the launch."
+      },
+      {
+        "idx": 8,
+        "speaker": "sarahmitchell",
+        "text": "Good to know. Let's keep an eye on it."
+      },
+      {
+        "idx": 9,
+        "speaker": "davidpark",
+        "text": "Will do. Thanks for checking in, Sarah."
+      }
+    ]
+  },
+  {
+    "db_id": 81,
+    "source_row_index": 80,
+    "topic": "Data Export & Call Scheduling",
+    "chat_type": "OneOnOne",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "priyasharma",
+        "text": "Do you know how to download this data from the analytics dashboard? I can't find the export button."
+      },
+      {
+        "idx": 1,
+        "speaker": "jameswilson",
+        "text": "Yeah, it's under Settings > Export > CSV. They moved it in the last release."
+      },
+      {
+        "idx": 2,
+        "speaker": "priyasharma",
+        "text": "Thanks for the update!"
+      },
+      {
+        "idx": 3,
+        "speaker": "priyasharma",
+        "text": "Can you call me when you're free? Need to discuss the migration plan."
+      },
+      {
+        "idx": 4,
+        "speaker": "jameswilson",
+        "text": "Sure, does 2 PM work for you?"
+      },
+      {
+        "idx": 5,
+        "speaker": "priyasharma",
+        "text": "Works"
+      }
+    ]
+  },
+  {
+    "db_id": 82,
+    "source_row_index": 81,
+    "topic": "Sprint 48 Pre-Launch Tasks",
+    "chat_type": "Group",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "alexkumar",
+        "text": "Could you please review the Status Update post before I send it to leadership? @Nina"
+      },
+      {
+        "idx": 1,
+        "speaker": "ninacosta",
+        "text": "Sure, send it over."
+      },
+      {
+        "idx": 2,
+        "speaker": "davidpark",
+        "text": "There's some pressure to get it to design for LT preview tomorrow. Let's make sure it's polished."
+      },
+      {
+        "idx": 3,
+        "speaker": "priyasharma",
+        "text": "Folks, I'm unwell. Will be OOF today and maybe tomorrow."
+      },
+      {
+        "idx": 4,
+        "speaker": "alexkumar",
+        "text": "Feel better Priya! We've got you covered."
+      },
+      {
+        "idx": 5,
+        "speaker": "alexkumar",
+        "text": "FYI: @Nikhil, @Andrew — I don't see you listed as DRIs for the dashboard module. Can you check and confirm?"
+      },
+      {
+        "idx": 6,
+        "speaker": "ninacosta",
+        "text": "Need sign-off by EOD or we miss the ship window for the release candidate."
+      },
+      {
+        "idx": 7,
+        "speaker": "davidpark",
+        "text": "Following up — still waiting on approval from the security team. This is blocking the rollout."
+      },
+      {
+        "idx": 8,
+        "speaker": "alexkumar",
+        "text": "Quality is at 56% assertion rate vs our 80% production target. We need to address this before release."
+      },
+      {
+        "idx": 9,
+        "speaker": "davidpark",
+        "text": "We cannot proceed with module 5.3C in its current form. It needs a full rewrite of the validation layer."
+      }
+    ]
+  },
+  {
+    "db_id": 83,
+    "source_row_index": 82,
+    "topic": "EOQ Cleanup Tasks",
+    "chat_type": "Group",
+    "ground_truth_has_task": true,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "alexkumar",
+        "text": "Team — these cleanups must be completed before 3/31. I've assigned owners in the tracking sheet. Check your items and confirm you're on track."
+      },
+      {
+        "idx": 1,
+        "speaker": "priyasharma",
+        "text": "Checked — my 3 items are on track. Should be done by Thursday."
+      },
+      {
+        "idx": 2,
+        "speaker": "jameswilson",
+        "text": "Two of mine are done. The third is blocked on the DNS propagation — same issue from last week."
+      },
+      {
+        "idx": 3,
+        "speaker": "ninacosta",
+        "text": "All QA items done. Tests pass. ✅"
+      },
+      {
+        "idx": 4,
+        "speaker": "alexkumar",
+        "text": "@James, can you escalate the DNS issue to the provider? We can't let this slip past 3/31."
+      },
+      {
+        "idx": 5,
+        "speaker": "jameswilson",
+        "text": "Already sent an email this morning. Waiting for their response."
+      },
+      {
+        "idx": 6,
+        "speaker": "alexkumar",
+        "text": "Good. Keep me posted."
+      }
+    ]
+  },
+  {
+    "db_id": 84,
+    "source_row_index": 83,
+    "topic": "Happy Birthday Chris! 🎂",
+    "chat_type": "Group",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "laurakim",
+        "text": "Happy birthday @Chris! 🎉🎂 Hope you have an amazing day!"
+      },
+      {
+        "idx": 1,
+        "speaker": "ninacosta",
+        "text": "Happy birthday Chris!! 🥳 Are you doing anything fun tonight?"
+      },
+      {
+        "idx": 2,
+        "speaker": "chrisevans",
+        "text": "Thanks everyone! Yeah, going to that new Italian place downtown with some friends. Very excited. 😄"
+      },
+      {
+        "idx": 3,
+        "speaker": "derekjohnson",
+        "text": "Oh nice, I've heard great things! Happy birthday man 🎉"
+      },
+      {
+        "idx": 4,
+        "speaker": "lisaanderson",
+        "text": "Happy birthday Chris! 🎂 Enjoy the evening!"
+      }
+    ]
+  },
+  {
+    "db_id": 85,
+    "source_row_index": 84,
+    "topic": "Weekend Plans",
+    "chat_type": "Group",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "jameswilson",
+        "text": "Anyone doing anything fun this weekend?"
+      },
+      {
+        "idx": 1,
+        "speaker": "priyasharma",
+        "text": "Taking the kids to the science museum. They have a new robotics exhibit that looks cool. 🤖"
+      },
+      {
+        "idx": 2,
+        "speaker": "alexkumar",
+        "text": "Nice! I'm going hiking at Rattlesnake Ridge if the weather holds up. 🏔️"
+      },
+      {
+        "idx": 3,
+        "speaker": "ninacosta",
+        "text": "I'm binge-watching that new Netflix series everyone's been talking about. Zero guilt. 😂"
+      },
+      {
+        "idx": 4,
+        "speaker": "jameswilson",
+        "text": "Ha! I might do the same honestly. The couch is calling my name."
+      }
+    ]
+  },
+  {
+    "db_id": 86,
+    "source_row_index": 85,
+    "topic": "Office Closure — Presidents' Day",
+    "chat_type": "Group",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "daniellebooks",
+        "text": "Hi all — just a reminder that the office will be closed on Monday, February 16 for Presidents' Day. No action needed, just enjoy the long weekend! 🇺🇸"
+      },
+      {
+        "idx": 1,
+        "speaker": "sarahmitchell",
+        "text": "Thanks for the reminder, Danielle!"
+      },
+      {
+        "idx": 2,
+        "speaker": "lisaanderson",
+        "text": "Perfect timing — my PTO request for Tuesday is already in so I get a 4-day weekend 😊"
+      },
+      {
+        "idx": 3,
+        "speaker": "kevinzhang",
+        "text": "Noted, thanks!"
+      }
+    ]
+  },
+  {
+    "db_id": 87,
+    "source_row_index": 86,
+    "topic": "System Maintenance — Complete",
+    "chat_type": "Group",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "alexkumar",
+        "text": "FYI — the scheduled maintenance window for the production database is now complete. All services are back online and running normally. No issues detected during the migration."
+      },
+      {
+        "idx": 1,
+        "speaker": "jameswilson",
+        "text": "Great, monitoring looks clean on my end too. Latency is actually slightly better than before."
+      },
+      {
+        "idx": 2,
+        "speaker": "priyasharma",
+        "text": "Awesome. API response times are looking good in Grafana. Nice work team! 👏"
+      },
+      {
+        "idx": 3,
+        "speaker": "derekjohnson",
+        "text": "Thanks for the update Alex. I'll let the customers who asked about it know."
+      }
+    ]
+  },
+  {
+    "db_id": 88,
+    "source_row_index": 87,
+    "topic": "We Hit 10K Customers! 🎉",
+    "chat_type": "Group",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "michaelchen",
+        "text": "Team — I'm thrilled to share that we officially crossed 10,000 active customers this morning! 🎉🔥 This is a huge milestone for EcoSync."
+      },
+      {
+        "idx": 1,
+        "speaker": "sofiaramirez",
+        "text": "Amazing!! The sales team has been crushing it. So proud of everyone. 🙌"
+      },
+      {
+        "idx": 2,
+        "speaker": "sarahmitchell",
+        "text": "Incredible achievement. This took 18 months of hard work from every single department. I'm buying lunch for the whole office on Friday. 🍕"
+      },
+      {
+        "idx": 3,
+        "speaker": "laurakim",
+        "text": "We should do a social media post about this! Oh wait, it went out at 9 AM — already on LinkedIn and Twitter 😄"
+      },
+      {
+        "idx": 4,
+        "speaker": "racheltorres",
+        "text": "From a finance perspective, this puts us solidly on track for our Series B targets. Well done everyone! 📈"
+      }
+    ]
+  },
+  {
+    "db_id": 89,
+    "source_row_index": 88,
+    "topic": "Lunch Today",
+    "chat_type": "Group",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "lisaanderson",
+        "text": "Hey! Anyone want to go halfsies on the Thai place for lunch? Their pad thai is 🔥"
+      },
+      {
+        "idx": 1,
+        "speaker": "kevinzhang",
+        "text": "I'm in! Green curry for me please. 🍛"
+      },
+      {
+        "idx": 2,
+        "speaker": "ninacosta",
+        "text": "Yes! Pad see ew please. Should I place the order?"
+      },
+      {
+        "idx": 3,
+        "speaker": "derekjohnson",
+        "text": "Mango sticky rice for me. Dessert counts as lunch, right? 😂"
+      },
+      {
+        "idx": 4,
+        "speaker": "ninacosta",
+        "text": "Order placed! Should be here by 12:30. I added mango sticky rice for the table. 🥭"
+      },
+      {
+        "idx": 5,
+        "speaker": "lisaanderson",
+        "text": "You're the best Nina! 🙏"
+      }
+    ]
+  },
+  {
+    "db_id": 90,
+    "source_row_index": 89,
+    "topic": "VPN Setup Help",
+    "chat_type": "OneOnOne",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "ninacosta",
+        "text": "Hey James, quick question — how do I connect to the staging VPN from my new laptop? The old instructions don't seem to work anymore."
+      },
+      {
+        "idx": 1,
+        "speaker": "jameswilson",
+        "text": "Yeah, we switched VPN providers last month. Go to vpn.meridian.io, download the new client, and use your Okta SSO credentials. Let me know if it doesn't work."
+      },
+      {
+        "idx": 2,
+        "speaker": "ninacosta",
+        "text": "That worked perfectly, thanks! Connected in 30 seconds. Way faster than the old one. 👍"
+      }
+    ]
+  },
+  {
+    "db_id": 91,
+    "source_row_index": 90,
+    "topic": "Expense Report Question",
+    "chat_type": "OneOnOne",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "chrisevans",
+        "text": "Hey Kevin, what's the limit for client meals before I need VP approval?"
+      },
+      {
+        "idx": 1,
+        "speaker": "kevinzhang",
+        "text": "It's $250 per meal for individual client meetings. Anything above that needs VP sign-off plus a business justification note. For team events it's $75 per head."
+      },
+      {
+        "idx": 2,
+        "speaker": "chrisevans",
+        "text": "Perfect, the dinner I'm logging is $180 so I should be fine. Thanks for the quick answer!"
+      },
+      {
+        "idx": 3,
+        "speaker": "kevinzhang",
+        "text": "Yep, you're good. Just make sure to attach the receipt. 👍"
+      }
+    ]
+  },
+  {
+    "db_id": 92,
+    "source_row_index": 91,
+    "topic": "General — Interesting Read",
+    "chat_type": "Group",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "davidpark",
+        "text": "Came across this great article on microservice observability patterns: https://techblog.example.com/observability-2026. Really relevant to what we're building."
+      },
+      {
+        "idx": 1,
+        "speaker": "alexkumar",
+        "text": "Good find! Their approach to distributed tracing is similar to what we discussed for the monitoring dashboard."
+      },
+      {
+        "idx": 2,
+        "speaker": "priyasharma",
+        "text": "The section on SLO-based alerting is interesting. We're already doing most of that with our Datadog setup."
+      },
+      {
+        "idx": 3,
+        "speaker": "jameswilson",
+        "text": "Bookmarked. The log aggregation patterns in section 3 are solid."
+      }
+    ]
+  },
+  {
+    "db_id": 93,
+    "source_row_index": 92,
+    "topic": "Sprint 46 Report — Final Numbers",
+    "chat_type": "Group",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "alexkumar",
+        "text": "Sprint 46 final numbers are in: • Velocity: 47 points (target: 45) ✅"
+      },
+      {
+        "idx": 1,
+        "speaker": "• Bugs resolved: 8",
+        "text": "• Carryover: 2 stories (by design — deferred to next sprint)"
+      },
+      {
+        "idx": 2,
+        "speaker": "davidpark",
+        "text": "Good numbers. The carryover items make sense given the priority shift mid-sprint. Nice work team."
+      },
+      {
+        "idx": 3,
+        "speaker": "priyasharma",
+        "text": "The API performance story took longer than expected but we're happy with the result — 40% latency improvement on the main endpoints."
+      },
+      {
+        "idx": 4,
+        "speaker": "ninacosta",
+        "text": "QA pass rate was 96% this sprint. Highest we've had all quarter. 💪"
+      }
+    ]
+  },
+  {
+    "db_id": 101,
+    "source_row_index": 100,
+    "topic": "Q1 Revenue — Final Numbers",
+    "chat_type": "Group",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "racheltorres",
+        "text": "Q1 revenue is finalized: $18.4M, which is 12% above target. Gross margin came in at 72%. Full report is in the shared Finance folder for anyone who wants the breakdown."
+      },
+      {
+        "idx": 1,
+        "speaker": "sarahmitchell",
+        "text": "Excellent result. The team should be proud. 12% above target with improving margins — that's exactly what the board wants to see."
+      },
+      {
+        "idx": 2,
+        "speaker": "michaelchen",
+        "text": "Sales team delivered $6.2M in new ARR. Renewals at 94%. Strong quarter all around."
+      },
+      {
+        "idx": 3,
+        "speaker": "kevinzhang",
+        "text": "Numbers all reconciled on my end. Clean close this quarter. 👍"
+      }
+    ]
+  },
+  {
+    "db_id": 102,
+    "source_row_index": 101,
+    "topic": "Pet Tax Thread 🐕",
+    "chat_type": "Group",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "ninacosta",
+        "text": "OK it's pet tax time. Here's my new puppy, Luna! 🐶 She's a 4-month-old golden retriever and she's already stolen my heart."
+      },
+      {
+        "idx": 1,
+        "speaker": "priyasharma",
+        "text": "Oh my GOD she is adorable! 😍 Here's my cat Mochi being dramatic as usual."
+      },
+      {
+        "idx": 2,
+        "speaker": "chrisevans",
+        "text": "Luna is so cute! And Priya, Mochi looks like she owns the place 😂"
+      },
+      {
+        "idx": 3,
+        "speaker": "derekjohnson",
+        "text": "My dog Max says hi to Luna 🐕 He's a 3-year-old lab. They'd be best friends."
+      },
+      {
+        "idx": 4,
+        "speaker": "laurakim",
+        "text": "I don't have a pet but I volunteer at the local shelter on weekends. Yesterday I got to cuddle with 6 kittens. 🐱"
+      }
+    ]
+  },
+  {
+    "db_id": 103,
+    "source_row_index": 102,
+    "topic": "Product Demo — Internal Preview",
+    "chat_type": "Meeting",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "alexkumar",
+        "text": "Notes from today's demo session: 1. New analytics dashboard — performance is excellent, sub-200ms for all queries 2. AI recommendation engine — accuracy improved to 94% with latest model 3. Mobile app redesign — iOS version looking polished All items are on track for Sprint 48."
+      },
+      {
+        "idx": 1,
+        "speaker": "davidpark",
+        "text": "Great demo everyone. The AI recommendation accuracy improvement is impressive. Priya, well done on that."
+      },
+      {
+        "idx": 2,
+        "speaker": "priyasharma",
+        "text": "Thanks David! The new training data pipeline made a big difference. Excited to see it in production."
+      },
+      {
+        "idx": 3,
+        "speaker": "ninacosta",
+        "text": "QA is tracking well too. No P0/P1 bugs open against any of these features."
+      }
+    ]
+  },
+  {
+    "db_id": 104,
+    "source_row_index": 103,
+    "topic": "Did You See The Game Last Night?",
+    "chat_type": "Group",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "jameswilson",
+        "text": "That Lakers game last night was INSANE. OT buzzer beater! 🏀"
+      },
+      {
+        "idx": 1,
+        "speaker": "derekjohnson",
+        "text": "I know! I was watching at the bar and everyone went absolutely nuts. Best game of the season."
+      },
+      {
+        "idx": 2,
+        "speaker": "michaelchen",
+        "text": "I fell asleep in the 3rd quarter and missed everything. My timeline is full of spoilers 😭"
+      },
+      {
+        "idx": 3,
+        "speaker": "kevinzhang",
+        "text": "Classic Michael 😂 Don't worry, it'll be on YouTube highlights by now."
+      },
+      {
+        "idx": 4,
+        "speaker": "jameswilson",
+        "text": "Playoffs are going to be wild this year. Anyone want to do a bracket pool?"
+      },
+      {
+        "idx": 5,
+        "speaker": "derekjohnson",
+        "text": "Yes! I'm in. I promise to pick terribly as always. 😅"
+      }
+    ]
+  },
+  {
+    "db_id": 105,
+    "source_row_index": 104,
+    "topic": "All-Hands Recording Available",
+    "chat_type": "Group",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "daniellebooks",
+        "text": "For those who couldn't attend today's all-hands, the recording and slides are now available on SharePoint: https://meridian.sharepoint.com/allhands-q1. Passcode is MeridianQ1."
+      },
+      {
+        "idx": 1,
+        "speaker": "alexkumar",
+        "text": "Thanks Danielle! I was in back-to-back meetings and missed it. Will watch this afternoon."
+      },
+      {
+        "idx": 2,
+        "speaker": "michaelchen",
+        "text": "The Q&A section at the end was really good. Sarah addressed the remote work question directly."
+      }
+    ]
+  },
+  {
+    "db_id": 106,
+    "source_row_index": 105,
+    "topic": "Wednesday Trivia ⚡",
+    "chat_type": "Group",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "laurakim",
+        "text": "Wednesday trivia time! 🧠 What's the most spoken language in the world by total number of speakers?"
+      },
+      {
+        "idx": 1,
+        "speaker": "chrisevans",
+        "text": "Mandarin Chinese?"
+      },
+      {
+        "idx": 2,
+        "speaker": "ninacosta",
+        "text": "English!"
+      },
+      {
+        "idx": 3,
+        "speaker": "priyasharma",
+        "text": "It's English by total speakers (native + non-native). Mandarin is #1 by native speakers only."
+      },
+      {
+        "idx": 4,
+        "speaker": "laurakim",
+        "text": "Priya is correct! 🎉 English: ~1.5 billion total speakers. Mandarin: ~1.1 billion. Next trivia on Friday!"
+      },
+      {
+        "idx": 5,
+        "speaker": "derekjohnson",
+        "text": "I was going to say Spanish but I'll take my L quietly 😂"
+      }
+    ]
+  },
+  {
+    "db_id": 107,
+    "source_row_index": 106,
+    "topic": "WiFi Password",
+    "chat_type": "OneOnOne",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "derekjohnson",
+        "text": "Lisa, what's the guest WiFi password for the conference room? We have external visitors tomorrow."
+      },
+      {
+        "idx": 1,
+        "speaker": "lisaanderson",
+        "text": "It's MeridianGuest2026. It auto-rotates monthly. The current one is posted on the welcome board by reception too."
+      },
+      {
+        "idx": 2,
+        "speaker": "derekjohnson",
+        "text": "Perfect, thanks!"
+      }
+    ]
+  },
+  {
+    "db_id": 108,
+    "source_row_index": 107,
+    "topic": "Holiday Party Recap 🎄",
+    "chat_type": "Group",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "daniellebooks",
+        "text": "Great holiday party last night! Thanks to everyone who came. 🎉 Lisa, the venue was perfect."
+      },
+      {
+        "idx": 1,
+        "speaker": "lisaanderson",
+        "text": "So much fun! The photo booth was a hit. I'll share the photos once they're uploaded. 📸"
+      },
+      {
+        "idx": 2,
+        "speaker": "chrisevans",
+        "text": "The karaoke session at the end was legendary. Kevin's rendition of Bohemian Rhapsody will live rent-free in my head forever. 😂"
+      },
+      {
+        "idx": 3,
+        "speaker": "kevinzhang",
+        "text": "I regret nothing. 🎤"
+      },
+      {
+        "idx": 4,
+        "speaker": "ninacosta",
+        "text": "It was such a great way to end the year. Already looking forward to the next one! 🥂"
+      }
+    ]
+  },
+  {
+    "db_id": 109,
+    "source_row_index": 108,
+    "topic": "Git Branch Question",
+    "chat_type": "OneOnOne",
+    "ground_truth_has_task": false,
+    "messages": [
+      {
+        "idx": 0,
+        "speaker": "ninacosta",
+        "text": "Alex, which branch should I use for the regression tests? I see main, develop, and release/4.2."
+      },
+      {
+        "idx": 1,
+        "speaker": "alexkumar",
+        "text": "Use develop for the regression suite. release/4.2 is frozen for the launch. Main is only for hotfixes right now."
+      },
+      {
+        "idx": 2,
+        "speaker": "ninacosta",
+        "text": "Makes sense, thanks! Targeting develop now."
+      }
+    ]
+  }
+]
