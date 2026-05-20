@@ -17,6 +17,68 @@ let evidenceState = {}; // messageId -> Set('has_task','is_important')
 let currentTagId = null; // DB id of current conversation_tag row
 let isSupabaseReady = false;
 let isAdmin = false;
+let isDemoMode = false;
+
+// ---- Demo Data ----
+const DEMO_CONVERSATIONS = [
+  {
+    id: 1, source_row_index: 0, conversation_id: "demo-001",
+    topic: "Q2 Product Strategy & Board Prep", chat_type: "OneOnOne",
+    full_conversation: "Sarah Mitchell\n\n:David, have you had a chance to look at the competitive analysis from last week?\n\nDavid Park\n\n:Yes, reviewed it over the weekend. Solid work by the team. A few gaps in the enterprise segment though.\n\nSarah Mitchell\n\n:What gaps specifically? I want to make sure we address them before the board presentation on the 28th.\n\nDavid Park\n\n:Mainly around our analytics offering vs. Asana and Monday.com. They've shipped AI-assisted resource allocation — we haven't. Also, our API ecosystem is lagging. I can put together a 2-pager summarizing the gaps with a proposed roadmap.\n\nSarah Mitchell\n\n:That would be perfect. Can you have it ready by Thursday? I want to review it before the pre-board sync on Friday.\n\nDavid Park\n\n:Thursday works. I'll pull in Alex for the technical feasibility piece.\n\nSarah Mitchell\n\n:Great. Also — should we position the AI roadmap as a separate initiative or fold it into the core platform story?\n\nDavid Park\n\n:I'd recommend folding it in. Positioning it separately risks signaling we're behind. If it's integrated, it looks like a natural evolution.\n\nSarah Mitchell\n\n:Makes sense. One more thing — did the infrastructure team confirm they can support the Q3 scale targets?\n\nDavid Park\n\n:James said they're at 85% confidence. The remaining 15% depends on the CDN migration finishing on time. I'll get a firm answer by end of week.\n\nSarah Mitchell\n\n:OK. Let me know as soon as you have it. We can't go to the board with gaps there.\n\nDavid Park\n\n:Understood. Will do."
+  },
+  {
+    id: 2, source_row_index: 1, conversation_id: "demo-002",
+    topic: "Production Incident — API Gateway Outage", chat_type: "OneOnOne",
+    full_conversation: "Alex Kumar\n\n:David, heads up — we're seeing elevated error rates on the API gateway. 5xx errors spiked to 12% in the last 10 minutes.\n\nDavid Park\n\n:How many customers affected? Is this the US or EU cluster?\n\nAlex Kumar\n\n:Both clusters. We're estimating 15K+ active users impacted. James is investigating — looks like the last deployment introduced a connection pool leak.\n\nDavid Park\n\n:Roll back the deployment immediately. Don't wait for root cause.\n\nAlex Kumar\n\n:James is initiating the rollback now. ETA 5 minutes for the US cluster, 8 for EU.\n\nDavid Park\n\n:Good. I need you to send a status update to the exec distribution list. Sarah will ask about this in the morning.\n\nAlex Kumar\n\n:On it. I'll send the update in 10 minutes once we confirm the rollback is clean.\n\nDavid Park\n\n:Also — after this stabilizes, schedule a blameless post-mortem for tomorrow. Include James, Priya, and anyone who touched the deployment pipeline.\n\nAlex Kumar\n\n:Will do. Quick question — should we hold off on the Friday deploy until the post-mortem conclusions are in?\n\nDavid Park\n\n:Yes. Full deploy freeze until we have the RCA and fixes confirmed. I'll communicate this to Sarah and the product team.\n\nAlex Kumar\n\n:Understood. Rollback on US cluster is complete. EU should be done in 2 minutes. Error rates are already dropping."
+  },
+  {
+    id: 3, source_row_index: 2, conversation_id: "demo-003",
+    topic: "Weekend Plans Chat", chat_type: "Group",
+    full_conversation: "Priya Sharma\n\n:Hey team, anyone doing anything fun this weekend?\n\nJames Chen\n\n:Thinking about checking out that new ramen place downtown. Heard good things.\n\nAlex Kumar\n\n:Oh which one? The one on 5th street?\n\nJames Chen\n\n:Yeah, Ramen Lab. They have a spicy miso that's supposed to be incredible.\n\nPriya Sharma\n\n:I've been there! The tonkotsu is amazing. Highly recommend.\n\nAlex Kumar\n\n:Nice, maybe we should make it a team lunch next week?\n\nJames Chen\n\n:I'm down! Beats the cafeteria for sure.\n\nPriya Sharma\n\n:Haha agreed. I'm probably just going hiking this weekend though. Weather looks perfect.\n\nAlex Kumar\n\n:Jealous. I have to finish painting my apartment. Been putting it off for months.\n\nJames Chen\n\n:The joys of adulting. Good luck with that!"
+  }
+];
+
+function parseDemoMessages(conv) {
+  const messages = [];
+  const lines = conv.full_conversation.split('\n');
+  let currentSpeaker = null;
+  let currentText = [];
+  let messageIndex = 0;
+  let msgId = conv.id * 100;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    if (trimmed.startsWith(':')) {
+      const text = trimmed.substring(1).trim();
+      if (text) currentText.push(text);
+    } else if (trimmed.split(/\s+/).length <= 4 && trimmed.replace(/[^a-zA-Z\s]/g, '').length / trimmed.length > 0.7) {
+      if (currentSpeaker && currentText.length > 0) {
+        messages.push({
+          id: msgId++,
+          conversation_id: conv.id,
+          message_index: messageIndex++,
+          speaker_name: currentSpeaker,
+          message_text: currentText.join(' ').trim()
+        });
+        currentText = [];
+      }
+      currentSpeaker = trimmed;
+    } else {
+      if (currentSpeaker) currentText.push(trimmed);
+    }
+  }
+  if (currentSpeaker && currentText.length > 0) {
+    messages.push({
+      id: msgId++,
+      conversation_id: conv.id,
+      message_index: messageIndex++,
+      speaker_name: currentSpeaker,
+      message_text: currentText.join(' ').trim()
+    });
+  }
+  return messages;
+}
 
 // ---- Initialization ----
 
@@ -165,10 +227,9 @@ async function startSession() {
     if (!isSupabaseReady) throw new Error("Supabase not loaded");
     await db.from("conversations").select("id", { count: "exact", head: true });
   } catch (e) {
-    showToast("Connection failed: " + e.message, "error");
-    document.getElementById("login-btn").disabled = false;
-    document.getElementById("login-btn").textContent = "Start Tagging";
-    return;
+    // Fall back to demo mode
+    isDemoMode = true;
+    console.warn("Supabase unreachable, entering demo mode:", e.message);
   }
 
   showScreen("app");
@@ -183,6 +244,18 @@ async function startSession() {
 
 async function loadData() {
   showLoadingState(true);
+
+  if (isDemoMode) {
+    // Use demo data
+    assignedConversations = DEMO_CONVERSATIONS;
+    judgeTags = {};
+    currentConvIdx = 0;
+    updateProgress();
+    await renderCurrentConversation();
+    showLoadingState(false);
+    return;
+  }
+
   try {
     await createOrUpdateJudgeSession(currentJudgeName);
   } catch (e) {
@@ -301,12 +374,18 @@ async function autoAssignConversations(judgeName) {
       if (htVals.size > 1) score += 5;
 
       // 3. Borderline: has_task=true but attribution=Implicit
-      if (info.tags.some((t) => t.has_task === true && t.attribution === "Implicit"))
+      if (
+        info.tags.some(
+          (t) => t.has_task === true && t.attribution === "Implicit",
+        )
+      )
         score += 2;
 
       // 4. is_important disagreement between judges
       const impVals = new Set(
-        info.tags.filter((t) => t.is_important != null).map((t) => t.is_important),
+        info.tags
+          .filter((t) => t.is_important != null)
+          .map((t) => t.is_important),
       );
       if (impVals.size > 1) score += 2;
 
@@ -323,7 +402,10 @@ async function autoAssignConversations(judgeName) {
     });
 
     // Sort by trickiness (highest first), break ties by source_row_index
-    scored.sort((a, b) => b.score - a.score || a.conv.source_row_index - b.conv.source_row_index);
+    scored.sort(
+      (a, b) =>
+        b.score - a.score || a.conv.source_row_index - b.conv.source_row_index,
+    );
     const toAssign = scored.slice(0, MAX_PER_JUDGE).map((s) => s.conv);
 
     if (toAssign.length > 0) {
@@ -372,7 +454,11 @@ async function renderCurrentConversation() {
   counterEl.textContent = `${currentConvIdx + 1} / ${assignedConversations.length}`;
 
   // Load messages for this conversation
-  currentConvMessages = await getMessagesByConversation(conv.id);
+  if (isDemoMode) {
+    currentConvMessages = parseDemoMessages(conv);
+  } else {
+    currentConvMessages = await getMessagesByConversation(conv.id);
+  }
   renderMessages();
 
   // Populate assignee picker from speakers in this conversation
@@ -871,6 +957,13 @@ async function saveAndNext() {
     updated_at: new Date().toISOString(),
   };
 
+  if (isDemoMode) {
+    // Demo mode: store locally only
+    tag.id = Date.now();
+    judgeTags[conv.id] = tag;
+    currentTagId = tag.id;
+    showToast("Saved (demo mode)", "success");
+  } else {
   try {
     const saved = await upsertConversationTag(tag);
     const savedTag = saved[0];
@@ -910,6 +1003,7 @@ async function saveAndNext() {
     showToast("Save failed: " + e.message, "error");
     console.error(e);
     return;
+  }
   }
 
   updateProgress();
