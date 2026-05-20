@@ -225,7 +225,8 @@ async function startSession() {
   try {
     initSupabaseIfNeeded();
     if (!isSupabaseReady) throw new Error("Supabase not loaded");
-    await db.from("conversations").select("id", { count: "exact", head: true });
+    const { error } = await db.from("conversations").select("id", { count: "exact", head: true });
+    if (error) throw error;
   } catch (e) {
     // Fall back to demo mode
     isDemoMode = true;
